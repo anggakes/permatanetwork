@@ -1,5 +1,5 @@
 <div class='row'>
-<div class='col-md-6'>
+<div class='col-md-8'>
 <h3 class='col-sm-8'><strong>Member</strong> <small>Registration Form</small></h3>
     
     <a href="<?= base_url() ?>auth/login" class='btn btn-link pull-right'> Sudah Punya Akun ?</a>
