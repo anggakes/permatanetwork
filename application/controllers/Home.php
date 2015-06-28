@@ -25,8 +25,21 @@ class Home extends CI_Controller {
 			// untuk mengecek login belum, jika belum di redirect ke login
 			$this->authlibrary->check_login();
 			$this->authlibrary->check_role('members');
+			$user = unserialize($_SESSION['login_user']);
+			$data['user'] = $user;
 			
-			$this->template->load('template/template_main','member/dashboard');
+			if($user->attributes('status') == 1){
+
+				$this->template->load('template/template_main','member/home/dashboard',$data);	
+			}
+			else if($user->attributes('status') == 2){
+
+			}
+			else if($user->attributes('status') == 0){
+
+				$this->template->load('template/template_main','member/home/inactive',$data);
+			}
+			
 		}else{
 
 

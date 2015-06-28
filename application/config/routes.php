@@ -56,4 +56,3 @@ $route['translate_uri_dashes'] = FALSE;
 //routes untuk profile user
 $route['profile/(:any)'] = 'profile/index/$1';
 
-$route['konfirmasi/(:any)'] = 'admin/aktifasimember/konfirmasi/$1';

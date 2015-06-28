@@ -25,11 +25,27 @@ class Auth extends CI_Controller {
 	    $this->load->library('captchalibrary');
 	}
 
+	function accept_terms()
+	{
+		//if (isset($_POST['accept_terms_checkbox']))
+            if ($this->input->post('accept_terms_checkbox'))
+		{
+			return TRUE;
+		}
+		else
+		{
+			$error = 'Anda belum menyetujui syarat dan kondisi kami';
+			$this->form_validation->set_message('accept_terms', $error);
+			return FALSE;
+		}
+	}
+
 	public function daftar()
 	{	
 
 		$rule = $this->member_model->rules();
-		$rule[] =  array(
+		$rule[] = array(
+					array(
 	                'field' => 'captcha',
 	                'label' => 'Captcha',
 	                'rules' => array('required',
@@ -41,8 +57,10 @@ class Auth extends CI_Controller {
 					                        }
 					                )
         						),
-	                'errors' => array('check_captcha'=>'Maaf captcha yang anda masukkan salah')        
-	        );
+	                'errors' => array('check_captcha'=>'Maaf captcha yang anda masukkan salah')),
+	        
+	        	);
+		$this->form_validation->set_rules('accept_terms_checkbox', '', 'callback_accept_terms');
 		$this->form_validation->set_rules($rule);
 
 		// Form validation 
@@ -111,7 +129,7 @@ class Auth extends CI_Controller {
 	}
 	
 	public function tes(){
-		print_r($this->voucher_model->cekKodeVoucher('0039-4bc0-dfe6-eafd'));
+		print_r($this->member_model->hash_password("first"));
 
 	}
 }

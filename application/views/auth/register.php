@@ -82,35 +82,15 @@
   <div style='color:red'><?= form_error('captcha') ?></div>
    <div class="checkbox">
     <label>
-      <input class='setuju' type="checkbox"> Setuju dengan ketentuan dan syarat 
+      <input class='setuju' type="checkbox" name='accept_terms_checkbox'> Setuju dengan ketentuan dan syarat 
     </label>
+      <div style='color:red'><?= form_error('accept_terms_checkbox') ?></div>
   </div>
   <hr>
     <div class="form-group">
   <button type="submit" class="btn btn-danger pull-right">Daftar <br> Menjadi Member </button>
+
   </div>
   <div class='clearfix'></div>
   <br>
                           </form>
-
-<script type="text/javascript">
-
-$(document).ready(function(){
-
-    /*
-        Submit form
-    */
-
-    $('#form-registrasi').submit(function(){
-    
-        if($('.setuju').is(':checked'))
-        {
-          return true;
-        }
-        alert('Maaf anda belum menyetujui syarat dan ketentuan')
-        return false;
-    });
-
-});
-
-</script>

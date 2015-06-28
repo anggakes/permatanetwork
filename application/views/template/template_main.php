@@ -21,7 +21,7 @@
     <link href="<?= base_url() ?>theme/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
-    <link href="<?= base_url() ?>theme/dist/css/skin-red.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url() ?>theme/dist/css/skin-black-light.min.css" rel="stylesheet" type="text/css" />
     <!-- iCheck -->
     <link href="<?= base_url() ?>theme/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
        <!-- Date Picker -->
@@ -58,7 +58,7 @@
     </style>
  
   </head>
-  <body class="skin-red sidebar-mini layout-boxed">
+  <body class="skin-black-light sidebar-mini layout-boxed">
     <div class="wrapper">
       
       <header class="main-header">
@@ -138,7 +138,7 @@
                       <a href="#" class="btn btn-default btn-flat">Edit Profil</a>
                     </div>
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Lihat Profil</a>
+                      <a href="<?= base_url('profile/'.$user->attributes('username')) ?>" class="btn btn-default btn-flat">Lihat Profil</a>
                     </div>
                   </li>
                 </ul>
@@ -159,7 +159,7 @@
         <section class="sidebar">
           <!-- Sidebar user panel -->
 <?php if ($_SESSION['login_role'] == "members") : ?> 
-          <div class="user-panel" style='background:#000'>
+          <div class="user-panel" style='background:#f4f4f4'>
             <h5 style='color:#c0c0c0'>Kode Member :</h5>
             <h2 style='text-align:center;color:#c0c0c0'><?= $user->attributes('code') ?></h2>
           </div>

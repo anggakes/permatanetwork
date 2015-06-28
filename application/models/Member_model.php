@@ -60,16 +60,12 @@ class Member_model extends CI_Model
 		return $confirmation ;	
 	}
 
-	public function activation(){
+	public function activation($status){
 
 		$this->db->trans_start();
-		// fire buat isi dompet dulu om ! 
-		$this->wallet_model->create($this);
-		
-		// kasih bonus untuk atasan ^^
-		$this->bonuslibrary->run($this);
 		// update status member
-		$this->db->set('status',1);
+		// 0 => tidak aktif, 1=> aktif, 2=>transfer, -1=>banned
+		$this->db->set('status',$status);
 		$this->db->where('id', $this->attributes('id'));
 		$this->db->update('members');
 
@@ -184,10 +180,10 @@ class Member_model extends CI_Model
 
 	public function generate_code($username){
 
-		return strtoupper(substr(md5($username),0,6));
+		return strtoupper(substr(md5($username),0,7));
 	}
 
-	private function hash_password($password) {
+	public function hash_password($password) {
 		
 		
 		return password_hash($password, PASSWORD_BCRYPT);

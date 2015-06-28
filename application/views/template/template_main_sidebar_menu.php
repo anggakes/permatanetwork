@@ -2,27 +2,31 @@
 
 <?php if ($_SESSION['login_role'] == "members") : ?> 
           <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
-            
-            <li>
-              <a href="<?= base_url(); ?>">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-              </a>
-            </li>
-            <li class="">
-              <a href="<?= base_url(); ?>downline">
-                <i class="fa fa-sitemap"></i> <span>Downline Chart</span>
-              </a>
-            </li>
-            <li class="">
-              <a href="<?= base_url(); ?>">
-                <i class="fa fa-book"></i> <span>Panduan</span>
-              </a>
-              
-            </li>
-           
-          </ul>
-
+                  <li>
+                    <a href="<?= base_url(); ?>">
+                      <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    </a>
+                  </li>
+          <?php if($user->isActive()) : ?>
+                
+                  <li class="header">MAIN NAVIGATION</li>
+                  
+                  
+                  <li class="">
+                    <a href="<?= base_url(); ?>downline">
+                      <i class="fa fa-sitemap"></i> <span>Downline Chart</span>
+                    </a>
+                  </li>
+                  <li class="">
+                    <a href="<?= base_url(); ?>">
+                      <i class="fa fa-book"></i> <span>Panduan</span>
+                    </a>
+                    
+                  </li>
+                 
+                
+          <?php endif; ?>
+        </ul>
 <?php elseif($_SESSION['login_role'] == "admin"): ?>
 
           <ul class="sidebar-menu">
