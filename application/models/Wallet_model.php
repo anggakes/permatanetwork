@@ -13,11 +13,10 @@ class Wallet_model extends CI_Model
 		$this->load->model('configuration_model');
 	}
 
-	public function create($member){
-
+	public function create($id){
 		$data = array(
-				"id_member" => $member->attributes('id'),
-				"balance"	=> $this->configuration_model->getValue('saldo_awal'),
+				"id_member" => $id,
+				"balance"	=> 0,
 			);
 		return $this->db->insert('wallet', $data);
 	}

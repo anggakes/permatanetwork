@@ -39,7 +39,10 @@ class Member_model extends CI_Model
 			$id_member 					= $this->db->insert_id();			
 			$data_profile 				= $this->input->post('profile');
 			$data_profile['id_member'] 	= $id_member;
-		$this->db->insert('profile',$data_profile);		
+		$this->db->insert('profile',$data_profile);	
+		// buat dompet dulu om ! 
+		$this->wallet_model->create($this);
+
 		$this->db->trans_complete();
 
 		return $this->db->trans_status();

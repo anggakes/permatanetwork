@@ -33,7 +33,8 @@ class Home extends CI_Controller {
 				$this->template->load('template/template_main','member/home/dashboard',$data);	
 			}
 			else if($user->attributes('status') == 2){
-
+				
+				$this->template->load('template/template_main','member/home/transfer',$data);	
 			}
 			else if($user->attributes('status') == 0){
 
