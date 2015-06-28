@@ -215,7 +215,7 @@ class Member_model extends CI_Model
 	        array(
 	                'field' => 'member[referral_code]',
 	                'label' => 'Refferal Code',
-	                'rules' => array(
+	                'rules' => array('required',
 					                array(
 					                        'referral_code_validation',
 					                        function($str)
@@ -226,7 +226,7 @@ class Member_model extends CI_Model
 					                        }
 					                )
         						),
-	                'errors' => array('referral_code_validation'=>'Your Refferal Code not valid')
+	                'errors' => array('referral_code_validation'=>'Kode Refferal yang anda masukkan tidak valid')        
 	        ),
 	        array(
 	                'field' => 'member[email]',

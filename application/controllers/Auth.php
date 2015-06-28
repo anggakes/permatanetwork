@@ -21,19 +21,35 @@ class Auth extends CI_Controller {
         $this->load->library('session');
 	    $this->load->library('authlibrary',$this->params);
 	    $this->load->model('member_model');
-
-
+	    $this->load->model('voucher_model');
+	    $this->load->library('captchalibrary');
 	}
 
 	public function daftar()
 	{	
 
-		$this->form_validation->set_rules($this->member_model->rules());
+		$rule = $this->member_model->rules();
+		$rule[] =  array(
+	                'field' => 'captcha',
+	                'label' => 'Captcha',
+	                'rules' => array('required',
+					                array(
+					                        'check_captcha',
+					                        function($str)
+					                        {
+					                           return ($this->captchalibrary->cek_captcha());
+					                        }
+					                )
+        						),
+	                'errors' => array('check_captcha'=>'Maaf captcha yang anda masukkan salah')        
+	        );
+		$this->form_validation->set_rules($rule);
 
 		// Form validation 
 		if ($this->form_validation->run() == FALSE){
+				$data['cap_img'] = $this->captchalibrary->make_captcha();
 
-				$this->template->load('template/template_auth','auth/register');
+				$this->template->load('template/template_auth','auth/register',$data);
 
 		}else{
 
@@ -94,5 +110,8 @@ class Auth extends CI_Controller {
 		$this->template->load('template/template_auth','auth/not_allowed');
 	}
 	
-	
+	public function tes(){
+		print_r($this->voucher_model->cekKodeVoucher('0039-4bc0-dfe6-eafd'));
+
+	}
 }
