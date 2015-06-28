@@ -26,7 +26,7 @@ class Home extends CI_Controller {
 			$this->authlibrary->check_login();
 			$this->authlibrary->check_role('members');
 			
-			$this->template->load('template/template_main','dashboard');
+			$this->template->load('template/template_main','member/dashboard');
 		}else{
 
 
