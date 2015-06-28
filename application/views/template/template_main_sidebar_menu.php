@@ -50,17 +50,17 @@
 
             <li class="header">MANAJEMEN KONTEN</li>
             <li>
-              <a href="<?= base_url(); ?>">
+              <a href="<?= base_url(); ?>admin/contents/homepage">
                 <i class="fa fa-dashboard"></i> <span>Homepage</span>
               </a>
             </li>
             <li>
-              <a href="<?= base_url(); ?>admin/pengumuman">
+              <a href="<?= base_url(); ?>admin/contents/halaman">
                 <i class="fa fa-dashboard"></i> <span>Halaman</span>
               </a>
             </li>
             <li>
-              <a href="<?= base_url(); ?>admin/pengumuman">
+              <a href="<?= base_url(); ?>admin/contents/artikel">
                 <i class="fa fa-dashboard"></i> <span>Artikel</span>
               </a>
             </li>

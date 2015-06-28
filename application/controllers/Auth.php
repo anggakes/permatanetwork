@@ -111,7 +111,7 @@ class Auth extends CI_Controller {
 	}
 	
 	public function tes(){
-		print_r($this->voucher_model->cekKodeVoucher('0039-4bc0-dfe6-eafd'));
+		print_r(password_hash('admin',PASSWORD_BCRYPT));
 
 	}
 }
