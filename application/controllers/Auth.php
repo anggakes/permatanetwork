@@ -125,10 +125,12 @@ class Auth extends CI_Controller {
 	}
 
 	public function not_allowed(){
+		
 		$this->template->load('template/template_auth','auth/not_allowed');
 	}
 	
 	public function tes(){
+
 		print_r($this->member_model->hash_password("first"));
 
 	}

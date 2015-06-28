@@ -29,19 +29,30 @@ class Pengumuman extends CI_Controller {
     public function index()
     {	
     	$crud = new grocery_CRUD;
-        $crud->set_table('belajar');
-        $crud->where('nama','isa');
-        $crud->fields('enum','date','nama');
+        $crud->set_table('pengumuman');
+        $crud->columns('judul','isi','created_at','updated_at','expired_at');
+        $crud->unset_export();
+        $crud->unset_print();
+        $crud->unset_texteditor('isi');
+        $crud->change_field_type('created_at','invisible');
+		$crud->change_field_type('updated_at','invisible');
+        $crud->callback_before_insert(array($this,"_timestamp"));
 
-        $crud->callback_before_insert(array($this,"_createnama"));   
        
-        $this->template->load('template/template_main','belajar',$crud->render());
+       
+        $this->template->load('template/template_main','admin/pengumuman',$crud->render());
 
     }
 
-    public function _createnama($data){
+  /*  public function _createnama($data){
+         $crud->callback_before_insert(array($this,"_createnama"));   
         $data['nama'] ='isa';
         return $data;
+    }*/
+
+    public function _timestamp($data){
+    	$data['created_at']=date('Y-m-j H:i:s');
+    	return $data;
     }
 
 }
