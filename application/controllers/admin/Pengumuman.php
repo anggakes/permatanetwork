@@ -33,6 +33,7 @@ class Pengumuman extends CI_Controller {
         $crud->columns('judul','isi','created_at','updated_at','expired_at');
         $crud->unset_export();
         $crud->unset_print();
+        $crud->unset_texteditor('isi');
         $crud->change_field_type('created_at','invisible');
 		$crud->change_field_type('updated_at','invisible');
         $crud->callback_before_insert(array($this,"_timestamp"));
