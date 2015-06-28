@@ -6,6 +6,7 @@
 $sistem['app_url']			= 'http://localhost/permatanetwork/';
 $sistem['host']				= 'localhost';
 $sistem['site_name']		= 'Permata Network';
+$sistem['filemanager_url']  = '/permatanetwork/';
 
 
 /* codeigniter */

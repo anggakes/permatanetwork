@@ -131,7 +131,7 @@ class Auth extends CI_Controller {
 	
 	public function tes(){
 
-		print_r($this->member_model->hash_password("first"));
+		print_r($this->member_model->hash_password("admin"));
 
 	}
 }
