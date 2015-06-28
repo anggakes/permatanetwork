@@ -2,17 +2,11 @@
 
 /* Berisi semua config sistem development*/
 
-$sistem['base_url'] 		= 'http://localhost/permatanetwork/';
-$sistem['app_url']			= 'http://localhost/permatanetwork/app/';
+
+$sistem['app_url']			= 'http://localhost/permatanetwork/';
 $sistem['host']				= 'localhost';
 $sistem['site_name']		= 'Permata Network';
 
-
-
-/* wordpress */
-$sistem['wp_db_name'] 		= 'pn_wp';
-$sistem['wp_db_user'] 		= 'root';
-$sistem['wp_db_password'] 	= '';
 
 /* codeigniter */
 $sistem['ci_db_name']			= 'pn_app';
