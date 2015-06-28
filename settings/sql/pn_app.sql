@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 28 Jun 2015 pada 10.12
--- Versi Server: 5.6.20
--- PHP Version: 5.5.15
+-- Generation Time: Jun 28, 2015 at 03:37 PM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
@@ -36,24 +36,24 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `super_admin` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bonus_conf`
+-- Table structure for table `bonus_conf`
 --
 
 CREATE TABLE IF NOT EXISTS `bonus_conf` (
 `id` int(10) unsigned NOT NULL,
   `opt` varchar(255) NOT NULL,
   `value` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bonus_level_conf`
+-- Table structure for table `bonus_level_conf`
 --
 
 CREATE TABLE IF NOT EXISTS `bonus_level_conf` (
@@ -61,12 +61,12 @@ CREATE TABLE IF NOT EXISTS `bonus_level_conf` (
   `tipe` int(11) NOT NULL,
   `level` int(11) NOT NULL,
   `persen` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `captcha`
+-- Table structure for table `captcha`
 --
 
 CREATE TABLE IF NOT EXISTS `captcha` (
@@ -74,10 +74,10 @@ CREATE TABLE IF NOT EXISTS `captcha` (
   `captcha_time` int(10) unsigned DEFAULT NULL,
   `ip_address` varchar(16) DEFAULT NULL,
   `word` varchar(20) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
+) ENGINE=MyISAM AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `captcha`
+-- Dumping data for table `captcha`
 --
 
 INSERT INTO `captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUES
@@ -95,12 +95,28 @@ INSERT INTO `captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUE
 (35, 1435470400, '::1', '8SZJMKBO'),
 (34, 1435469587, '::1', 'gX5i35fQ'),
 (33, 1435468797, '::1', 'UHGj7JYf'),
-(32, 1435468716, '::1', 'aM1E2K05');
+(32, 1435468716, '::1', 'aM1E2K05'),
+(47, 1435479555, '::1', 'H7JByGCP'),
+(48, 1435479692, '::1', 'ZQ0XX0PJ'),
+(49, 1435479758, '::1', 'NJKA12MA'),
+(50, 1435480022, '::1', 'nRua0sia'),
+(51, 1435480087, '::1', 'UVDAe2V7'),
+(52, 1435480129, '::1', 'TuovTVWA'),
+(53, 1435480184, '::1', 'i5f1n6zB'),
+(54, 1435480187, '::1', 'zuTLd1Uk'),
+(55, 1435480266, '::1', 'YtesQRKj'),
+(56, 1435480268, '::1', 'O6mwDk8D'),
+(57, 1435480330, '::1', 'GNDStXDr'),
+(58, 1435480332, '::1', 'GhHhRe7e'),
+(59, 1435480379, '::1', 'fFaUr19z'),
+(60, 1435480381, '::1', '39VOshLT'),
+(61, 1435480438, '::1', 'wLbmg74R'),
+(62, 1435480440, '::1', 'BXAdQmrM');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contents`
+-- Table structure for table `contents`
 --
 
 CREATE TABLE IF NOT EXISTS `contents` (
@@ -111,12 +127,12 @@ CREATE TABLE IF NOT EXISTS `contents` (
   `slug` varchar(255) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `konfirmasi_pendaftaran`
+-- Table structure for table `konfirmasi_pendaftaran`
 --
 
 CREATE TABLE IF NOT EXISTS `konfirmasi_pendaftaran` (
@@ -124,12 +140,12 @@ CREATE TABLE IF NOT EXISTS `konfirmasi_pendaftaran` (
   `id_member` int(10) unsigned NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `members`
+-- Table structure for table `members`
 --
 
 CREATE TABLE IF NOT EXISTS `members` (
@@ -143,19 +159,26 @@ CREATE TABLE IF NOT EXISTS `members` (
   `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `referral_code` varchar(10) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `members`
+-- Dumping data for table `members`
 --
 
 INSERT INTO `members` (`id`, `code`, `email`, `username`, `password`, `updated_at`, `created_at`, `last_login`, `referral_code`, `status`) VALUES
-(1, 'L4PR01D', 'first@first.com', 'first', '$2y$10$vzgcMQvzSyFoEtWJ39AhGev1C9.aJsg88IjfY4xhH4Y/a0OGrNhl6', '2015-06-28 07:58:52', '2015-06-27 17:00:00', '2015-06-28 02:58:52', '', 0);
+(1, 'L4PR01D', 'first@first.com', 'first', '$2y$10$vzgcMQvzSyFoEtWJ39AhGev1C9.aJsg88IjfY4xhH4Y/a0OGrNhl6', '2015-06-28 08:35:14', '2015-06-27 17:00:00', '2015-06-28 02:58:52', '', 1),
+(2, '73DD48C', 'isa1@isa.com', 'isa1', '$2y$10$Uybk0xk6If58kmrnMuxRuOECj1KJby8LXNP3N1EE8R3Q6WRaz3XKW', '2015-06-28 08:35:18', '2015-06-28 08:28:30', '0000-00-00 00:00:00', 'L4PR01D', 1),
+(3, 'CFB3350', 'isa2@isa.com', 'isa2', '$2y$10$jWvO.K12nVb6zTaZvnZ4Ke9Yzag4ibGucfyVHYtubFBFgVrdwiPyW', '2015-06-28 08:35:20', '2015-06-28 08:29:39', '0000-00-00 00:00:00', '73DD48C', 1),
+(4, 'B5E4C8A', 'isa3@isa.com', 'isa3', '$2y$10$nqe0bf/5ZjFo9fUcD8ziiOtFbU8Clbq4D5rxNKBB6f2AuDdfrl2Za', '2015-06-28 08:35:23', '2015-06-28 08:31:02', '0000-00-00 00:00:00', 'CFB3350', 1),
+(5, '4539A08', 'isa4@isa.com', 'isa4', '$2y$10$1rJoRWxZfOTeC8nn41Ae..QFZHrtjNy0NJCi3wUBjrzkSChqiJkPS', '2015-06-28 08:35:25', '2015-06-28 08:32:07', '0000-00-00 00:00:00', 'B5E4C8A', 1),
+(6, '05AA10F', 'isa5@isa.com', 'isa5', '$2y$10$FpQwLsCUQEdU7Wp3QCqFJe/QfiR9tkKu8pr50XwTYWeSiw4FJHX1m', '2015-06-28 08:35:27', '2015-06-28 08:32:57', '0000-00-00 00:00:00', '4539A08', 1),
+(7, '88DDC5A', 'isa6@isa.com', 'isa6', '$2y$10$FSWONV0E9SBs9594wXdjWu.cL4hHwP7uQiaJHw.aFaUhYTX/714I2', '2015-06-28 08:35:30', '2015-06-28 08:33:55', '0000-00-00 00:00:00', '05AA10F', 1),
+(8, '083BF11', 'isa7@isa.com', 'isa7', '$2y$10$oCfzbxRwMikgMKXMNBsLzeUREBDw8GwrwpOWant/R/89NDsIMUraK', '2015-06-28 08:37:01', '2015-06-28 08:34:46', '2015-06-28 08:36:37', '88DDC5A', 2);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengumuman`
+-- Table structure for table `pengumuman`
 --
 
 CREATE TABLE IF NOT EXISTS `pengumuman` (
@@ -165,12 +188,12 @@ CREATE TABLE IF NOT EXISTS `pengumuman` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `expired_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `profile`
+-- Table structure for table `profile`
 --
 
 CREATE TABLE IF NOT EXISTS `profile` (
@@ -184,32 +207,38 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `kode_pos` varchar(255) NOT NULL,
   `no_hp` varchar(255) NOT NULL,
   `no_rekening` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `profile`
+-- Dumping data for table `profile`
 --
 
 INSERT INTO `profile` (`id`, `id_member`, `nama`, `tanggal_lahir`, `alamat`, `kota`, `provinsi`, `kode_pos`, `no_hp`, `no_rekening`) VALUES
-(1, 1, 'Angga Kesuma', '1992-11-01', 'jl. sukakarya No.2227 palembang', 'Palembang', 'sumatera selatan', '30152', '089661147512', '019283978891923');
+(1, 1, 'Angga Kesuma', '1992-11-01', 'jl. sukakarya No.2227 palembang', 'Palembang', 'sumatera selatan', '30152', '089661147512', '019283978891923'),
+(2, 2, 'isa1', '2015-06-03', 'isa1', 'isa1', 'isa1', '7868', '708998', '323223'),
+(3, 3, 'isa2', '2015-06-05', 'isa2', 'isa2', 'isa2', '2', '3', '3'),
+(4, 4, 'e', '2015-06-19', 'e', 'e', 'e', 'e', 'e', 'e'),
+(5, 5, 'isa4', '2015-06-06', 's', 's', 's', '2', '2', '2'),
+(6, 6, '2', '2015-05-26', '2', '2', '3', '3', '3', '2'),
+(7, 7, '2', '2015-06-02', '3', '3', '3', '3', '3', '3'),
+(8, 8, 'isa7', '2015-06-11', '2', '2', '21', '2', '2', '2');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `voucher`
+-- Table structure for table `voucher`
 --
 
 CREATE TABLE IF NOT EXISTS `voucher` (
 `id` int(10) unsigned NOT NULL,
   `nomor` varchar(19) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2041 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2041 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `voucher`
+-- Dumping data for table `voucher`
 --
 
 INSERT INTO `voucher` (`id`, `nomor`) VALUES
-(2014, '0051-f0f7-d70b-d83f'),
 (1246, '0069-1bc7-58ac-cad6'),
 (1813, '009b-0999-71d3-df16'),
 (1477, '00a7-1b99-18a7-3ccf'),
@@ -1208,19 +1237,19 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `wallet`
+-- Table structure for table `wallet`
 --
 
 CREATE TABLE IF NOT EXISTS `wallet` (
 `id` int(10) unsigned NOT NULL,
   `id_member` int(10) unsigned NOT NULL,
   `balance` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `wallet_logs`
+-- Table structure for table `wallet_logs`
 --
 
 CREATE TABLE IF NOT EXISTS `wallet_logs` (
@@ -1229,7 +1258,7 @@ CREATE TABLE IF NOT EXISTS `wallet_logs` (
   `type` varchar(255) NOT NULL,
   `message` varchar(255) NOT NULL,
   `amount` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -1330,7 +1359,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `captcha`
 --
 ALTER TABLE `captcha`
-MODIFY `captcha_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
+MODIFY `captcha_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=63;
 --
 -- AUTO_INCREMENT for table `contents`
 --
@@ -1345,7 +1374,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `pengumuman`
 --
@@ -1355,7 +1384,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `voucher`
 --
