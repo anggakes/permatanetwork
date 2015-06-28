@@ -11,10 +11,12 @@ class Home extends CI_Controller {
 	{
 	    parent::__construct();
 
+
         $this->load->library('template');
         $this->load->library('session');
         $this->load->model('member_model');
 	    $this->load->library('authlibrary',$this->params);
+
 	    
 	}//
 
@@ -42,8 +44,9 @@ class Home extends CI_Controller {
 			}
 			
 		}else{
+			$this->load->model('content_model');
 
-			$data['homepage'] = "asas";
+			$data['homepage'] = $this->content_model->getHomePage()->isi;
 			$this->template->load('template/template_auth','home',$data);
 		}
 
