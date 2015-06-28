@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2015 at 12:07 PM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: 28 Jun 2015 pada 10.12
+-- Versi Server: 5.6.20
+-- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
@@ -36,24 +36,24 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `super_admin` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bonus_conf`
+-- Struktur dari tabel `bonus_conf`
 --
 
 CREATE TABLE IF NOT EXISTS `bonus_conf` (
 `id` int(10) unsigned NOT NULL,
   `opt` varchar(255) NOT NULL,
   `value` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bonus_level_conf`
+-- Struktur dari tabel `bonus_level_conf`
 --
 
 CREATE TABLE IF NOT EXISTS `bonus_level_conf` (
@@ -61,12 +61,12 @@ CREATE TABLE IF NOT EXISTS `bonus_level_conf` (
   `tipe` int(11) NOT NULL,
   `level` int(11) NOT NULL,
   `persen` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `captcha`
+-- Struktur dari tabel `captcha`
 --
 
 CREATE TABLE IF NOT EXISTS `captcha` (
@@ -74,48 +74,33 @@ CREATE TABLE IF NOT EXISTS `captcha` (
   `captcha_time` int(10) unsigned DEFAULT NULL,
   `ip_address` varchar(16) DEFAULT NULL,
   `word` varchar(20) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
 
 --
--- Dumping data for table `captcha`
+-- Dumping data untuk tabel `captcha`
 --
 
 INSERT INTO `captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUES
-(11, 1435293828, '::1', 'w2SzSWIZ'),
-(2, 1435293565, '::1', 'kz7oA9Hg'),
-(3, 1435293590, '::1', '0NsLrTup'),
-(4, 1435293634, '::1', 'IjFoUUYW'),
-(5, 1435293638, '::1', 'frQP74uu'),
-(6, 1435293701, '::1', 'ZSCshx1z'),
-(7, 1435293714, '::1', '2yhv3jWe'),
-(8, 1435293724, '::1', 'INNh3qha'),
-(9, 1435293792, '::1', '1VU97NKa'),
-(10, 1435293817, '::1', 'dyOOaoMf'),
-(12, 1435293884, '::1', 'YnDDx1WR'),
-(13, 1435293886, '::1', 'YM5RWRZV'),
-(14, 1435293894, '::1', 'RTmB6oGb'),
-(15, 1435293897, '::1', 'LLtezWgH'),
-(16, 1435293899, '::1', '99DtJZIT'),
-(17, 1435293935, '::1', 'o7ulZqAE'),
-(18, 1435293938, '::1', 'CwGBAh6l'),
-(19, 1435294088, '::1', '4VmcTCjB'),
-(20, 1435294283, '::1', '0u5V2u0V'),
-(21, 1435294289, '::1', 'UbmI7apJ'),
-(22, 1435294300, '::1', '5K0DIFXp'),
-(23, 1435294887, '::1', 's0NoDXmz'),
-(24, 1435294910, '::1', 'w2SwjHaw'),
-(25, 1435295270, '::1', 'uY4TdtzT'),
-(26, 1435295278, '::1', 'WTOIztat'),
-(27, 1435298919, '::1', 'rFjypg3q'),
-(28, 1435298929, '::1', 'nnbuvQ5w'),
-(29, 1435298949, '::1', 'rA7WSURb'),
-(30, 1435298971, '::1', 'cKgrITBL'),
-(31, 1435298989, '::1', 'NeFJlfZn');
+(46, 1435471582, '::1', '93OJffuE'),
+(45, 1435471340, '::1', 'legTCm1S'),
+(44, 1435471337, '::1', 'AOvoSJTM'),
+(43, 1435471331, '::1', 'J5oCqsSY'),
+(42, 1435471314, '::1', 'ofzwETnk'),
+(41, 1435471298, '::1', 'VY3nCaLK'),
+(40, 1435471230, '::1', 'nioMpkyZ'),
+(39, 1435471013, '::1', '0Bwwfpbm'),
+(38, 1435471010, '::1', 'ezd3WIkv'),
+(37, 1435470686, '::1', 'nny7ZcWU'),
+(36, 1435470655, '::1', '987bZZsR'),
+(35, 1435470400, '::1', '8SZJMKBO'),
+(34, 1435469587, '::1', 'gX5i35fQ'),
+(33, 1435468797, '::1', 'UHGj7JYf'),
+(32, 1435468716, '::1', 'aM1E2K05');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contents`
+-- Struktur dari tabel `contents`
 --
 
 CREATE TABLE IF NOT EXISTS `contents` (
@@ -126,12 +111,12 @@ CREATE TABLE IF NOT EXISTS `contents` (
   `slug` varchar(255) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `konfirmasi_pendaftaran`
+-- Struktur dari tabel `konfirmasi_pendaftaran`
 --
 
 CREATE TABLE IF NOT EXISTS `konfirmasi_pendaftaran` (
@@ -139,12 +124,12 @@ CREATE TABLE IF NOT EXISTS `konfirmasi_pendaftaran` (
   `id_member` int(10) unsigned NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `members`
+-- Struktur dari tabel `members`
 --
 
 CREATE TABLE IF NOT EXISTS `members` (
@@ -158,12 +143,19 @@ CREATE TABLE IF NOT EXISTS `members` (
   `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `referral_code` varchar(10) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data untuk tabel `members`
+--
+
+INSERT INTO `members` (`id`, `code`, `email`, `username`, `password`, `updated_at`, `created_at`, `last_login`, `referral_code`, `status`) VALUES
+(1, 'L4PR01D', 'first@first.com', 'first', '$2y$10$vzgcMQvzSyFoEtWJ39AhGev1C9.aJsg88IjfY4xhH4Y/a0OGrNhl6', '2015-06-28 07:58:52', '2015-06-27 17:00:00', '2015-06-28 02:58:52', '', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengumuman`
+-- Struktur dari tabel `pengumuman`
 --
 
 CREATE TABLE IF NOT EXISTS `pengumuman` (
@@ -173,40 +165,47 @@ CREATE TABLE IF NOT EXISTS `pengumuman` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `expired_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profile`
+-- Struktur dari tabel `profile`
 --
 
 CREATE TABLE IF NOT EXISTS `profile` (
 `id` int(10) unsigned NOT NULL,
   `id_member` int(10) unsigned NOT NULL,
   `nama` varchar(255) NOT NULL,
-  `tanggal_lahir` varchar(255) NOT NULL,
+  `tanggal_lahir` date NOT NULL,
   `alamat` varchar(255) NOT NULL,
   `kota` varchar(255) NOT NULL,
   `provinsi` varchar(255) NOT NULL,
   `kode_pos` varchar(255) NOT NULL,
   `no_hp` varchar(255) NOT NULL,
   `no_rekening` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data untuk tabel `profile`
+--
+
+INSERT INTO `profile` (`id`, `id_member`, `nama`, `tanggal_lahir`, `alamat`, `kota`, `provinsi`, `kode_pos`, `no_hp`, `no_rekening`) VALUES
+(1, 1, 'Angga Kesuma', '1992-11-01', 'jl. sukakarya No.2227 palembang', 'Palembang', 'sumatera selatan', '30152', '089661147512', '019283978891923');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `voucher`
+-- Struktur dari tabel `voucher`
 --
 
 CREATE TABLE IF NOT EXISTS `voucher` (
 `id` int(10) unsigned NOT NULL,
   `nomor` varchar(19) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2041 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2041 ;
 
 --
--- Dumping data for table `voucher`
+-- Dumping data untuk tabel `voucher`
 --
 
 INSERT INTO `voucher` (`id`, `nomor`) VALUES
@@ -641,7 +640,6 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (1774, '6af1-8c5f-2472-004a'),
 (1557, '6b5f-279c-67b2-9d33'),
 (1798, '6bc7-e4f7-df5c-cf9f'),
-(1043, '6bf3-bec5-e81e-d813'),
 (1351, '6c24-aa50-35b6-d48c'),
 (1103, '6c4c-ffc7-e341-05af'),
 (1326, '6c74-b865-fe05-32df'),
@@ -749,7 +747,6 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (1232, '8713-c149-dd90-2714'),
 (1537, '8717-6de2-7723-5b58'),
 (1627, '872d-37d1-abea-3225'),
-(1041, '8758-785c-8a14-14b2'),
 (1882, '87cd-deff-51cb-8b23'),
 (1212, '87cf-8c97-10e7-04b6'),
 (1517, '8804-3737-5a68-a7d0'),
@@ -772,7 +769,6 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (1217, '8b1b-9351-cd8c-4ab5'),
 (1380, '8b27-0580-3459-21dc'),
 (1907, '8bd0-71e2-fb00-9090'),
-(1042, '8bd2-3a17-0176-e26d'),
 (1230, '8ce1-be57-a801-0f64'),
 (1546, '8d0a-57a6-0c8f-b660'),
 (1751, '8d1e-d14f-4c35-a4e7'),
@@ -1212,19 +1208,19 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wallet`
+-- Struktur dari tabel `wallet`
 --
 
 CREATE TABLE IF NOT EXISTS `wallet` (
 `id` int(10) unsigned NOT NULL,
   `id_member` int(10) unsigned NOT NULL,
   `balance` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wallet_logs`
+-- Struktur dari tabel `wallet_logs`
 --
 
 CREATE TABLE IF NOT EXISTS `wallet_logs` (
@@ -1233,7 +1229,7 @@ CREATE TABLE IF NOT EXISTS `wallet_logs` (
   `type` varchar(255) NOT NULL,
   `message` varchar(255) NOT NULL,
   `amount` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Indexes for dumped tables
@@ -1334,7 +1330,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `captcha`
 --
 ALTER TABLE `captcha`
-MODIFY `captcha_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+MODIFY `captcha_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT for table `contents`
 --
@@ -1349,7 +1345,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `pengumuman`
 --
@@ -1359,7 +1355,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `voucher`
 --
