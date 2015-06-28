@@ -2,7 +2,27 @@
    <script type="text/javascript" src="<?= base_url() ?>theme/jssor-slider/jssor.js"></script>
     <script type="text/javascript" src="<?= base_url() ?>theme/jssor-slider/jssor.slider.js"></script>
     <script type="text/javascript" src="<?= base_url() ?>theme/jssor-slider/config.js"></script>
+<style>
+     .captionOrange, .captionBlack
+        {
+            color: #fff;
+            font-size: 20px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 4px;
+        }
 
+         .captionOrange
+        {
+            background: #c0c0c0;
+            background-color: rgba(242, 242, 242, 0.6);
+            width:200px;
+            height: 200px;
+        }
+        .captionOrange h4 {
+            color:blue;
+        }
+</style>
    <!-- Jssor Slider Begin -->
     <!-- To move inline styles to css file/block, please specify a class name for each element. -->  
     <div id="slider1_container" style="position: relative; width: 100%px;
@@ -25,11 +45,17 @@
             overflow: hidden;">
             <div>
                 <img u="image" src="<?= base_url() ?>theme/jssor-slider/img/01.jpg" />
-                
+                  <div u=caption t="CLIP|LR" du="1500" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:200px; height:200px;"> 
+                <h4>Manfaat Kecubung</h4>
+                Touch swipe and responsive<br> javascript image slider
+                </div>
             </div>
             <div> 
                 <img u="image" src="<?= base_url() ?>theme/jssor-slider/img/02.jpg" />
-                
+                <div u=caption t="CLIP|LR" du="1500" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:200px; height:200px;"> 
+                <h4>Manfaat Kecubung</h4>
+                Touch swipe and responsive<br> javascript image slider
+                </div>
             </div>
            
 
