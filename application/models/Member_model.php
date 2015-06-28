@@ -15,7 +15,7 @@ class Member_model extends CI_Model
 		$this->load->database();
 		$this->load->model('member_model');
 		$this->load->model('wallet_model');
-		$this->load->library('bonuslibrary');
+		
 	}
 
 	public function register(){

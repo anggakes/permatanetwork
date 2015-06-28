@@ -43,8 +43,8 @@ class Home extends CI_Controller {
 			
 		}else{
 
-
-			$this->template->load('template/template_auth','home');
+			$data['homepage'] = "asas";
+			$this->template->load('template/template_auth','home',$data);
 		}
 
 	}

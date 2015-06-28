@@ -1,4 +1,5 @@
-
+<div class='row'>
+<div class='col-md-6'>
 
 <h3 class='col-sm-11'>Admin Login</h3>
     <div class='clearfix'></div>
@@ -29,3 +30,5 @@
   <div class='clearfix'></div>
   <br>
                           </form>
+</div>
+</div>

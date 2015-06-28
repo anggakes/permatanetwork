@@ -6,7 +6,7 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     
     <!-- Bootstrap 3.3.4 -->
-    <link href="<?= base_url() ?>theme/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
+    <link href="<?= base_url() ?>theme/bootstrap/css/paper-bootstrap.min.css" rel="stylesheet" type="text/css" />    
     <!-- FontAwesome 4.3.0 -->
     <link href="<?= base_url() ?>theme/plugins/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons 2.0.0 -->
@@ -21,41 +21,41 @@
     
      <!-- jQuery 2.1.4 -->
     <script src="<?= base_url() ?>theme/plugins/jQuery/jQuery-2.1.4.min.js"></script>
- 
+  
+  <style type="text/css">
+  .navbar{
+    box-shadow: none;
+    border-top:1px solid #c0c0c0;
+    border-bottom:1px solid #c0c0c0;
+    
+  }
 
-    <style type="text/css">
-    .navbar-no-bg {background: none;
-        color:white;
-        border:0;
-    }
-    .navbar-brand{
-      color:#fff;
-    }
-    .text{
-      background:white;
-      margin-top: 50px;
-      margin-bottom: 50px;
-      -webkit-box-shadow: -9px 11px 5px 0px rgba(0,0,0,0.75);
-      -moz-box-shadow: -9px 11px 5px 0px rgba(0,0,0,0.75);
-      box-shadow: -9px 11px 5px 0px rgba(0,0,0,0.75);
-      border-radius: 10px 10px 10px 10px;
-      -moz-border-radius: 10px 10px 10px 10px;
-      -webkit-border-radius: 10px 10px 10px 10px;
-      border: 0px solid #000000;
-    }
-    .text h3{
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-    }
-    label{
-      font-weight: normal;
-    }
-    </style>
+  h2 {
+    font:normal normal normal 31px/1.1em caudex,serif;
+  }
+
+  .container{
+    width:900px;
+  }
+
+  .nav li {
+    margin-left: 60px;
+  }
+
+  footer{
+    margin :20px auto;
+    border-top:1px solid #c0c0c0;
+    padding:20px 10px;
+  }
+
+  </style>
 
   </head>
   <body class="">
+  <div class='container'>
     <!-- Top menu -->
-    <nav class="navbar navbar-inverse navbar-no-bg" role="navigation" >
+    <center><h2 style='color:blue'>Permata Network</h2><h5>Kesuksesan nyata dari permata network</h5></center>
+    <nav class="navbar navbar-default" role="navigation" >
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-1">
@@ -64,34 +64,34 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html" style='color:white'>VoltusFx</a>
+          <a class="navbar-brand" href="index.html"><i class='fa fa-home'></i></a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-    
+
+        <ul class="nav navbar-nav">
+            <li><a href="#">PRODUK</a></li>
+            <li><a href="#">REGISTRASI</a></li>
+            <li><a href="#">LOGIN</a></li>
+            <li><a href="#">KONTAK</a></li>
+            <li><a href="#">TENTANG KAMI</a></li>
+        </ul>
       </div>
     </nav>
 
+
+
         <!-- Top content -->
-        <div class="top-content">
-          
-            <div class="inner-bg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3 text">
-                        
+       
 
                           <?= $contents ?>  
-                        
-
-                        </div>
-                       
-                    </div>
-                </div>
-            </div>
-            
+                      
+    <footer class='row'>
+        <div class='col-md-12'>
+          Footer
         </div>
+    </footer>      
 
-
+   </div>
 
       <!-- jQuery UI 1.11.2 -->
     <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
@@ -108,25 +108,7 @@
      <!-- FastClick full screen background -->
     <script src="<?= base_url() ?>theme/plugins/backstretch/jquery.backstretch.min.js"></script>
 
-    <script type="text/javascript">
-    $(document).ready(function(){
-
-    /*
-        Fullscreen background
-    */
-    $.backstretch("<?= base_url() ?>theme/img/backgrounds/1.jpg");
-    
-    $('#top-navbar-1').on('shown.bs.collapse', function(){
-      $.backstretch("resize");
-    });
-    $('#top-navbar-1').on('hidden.bs.collapse', function(){
-      $.backstretch("resize");
-    });
-
-
-    });
-
-    </script>
+   
     
   </body>
 </html>

@@ -21,7 +21,7 @@ class CaptchaLibrary {
 
         public function make_captcha(){
 
-                $vals = array(
+        $vals = array(
 
         'img_path'       => './captcha/',
         'img_url'    => base_url().'captcha/',

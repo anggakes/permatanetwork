@@ -1,5 +1,5 @@
-
-
+<div class='row'>
+<div class='col-md-6'>
 <h3 class='col-sm-8'><strong>Member</strong> <small>Registration Form</small></h3>
     
     <a href="<?= base_url() ?>auth/login" class='btn btn-link pull-right'> Sudah Punya Akun ?</a>
@@ -78,7 +78,7 @@
     <div style='color:red'><?= form_error('profile[no_rekening]') ?></div>
   </div>
   <?php echo $cap_img; ?>
-  <input type="text" name="captcha" />
+  <input type="text" name="captcha" placeholder='captcha..'/>
   <div style='color:red'><?= form_error('captcha') ?></div>
    <div class="checkbox">
     <label>
@@ -94,3 +94,6 @@
   <div class='clearfix'></div>
   <br>
                           </form>
+
+</div>
+</div>
