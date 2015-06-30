@@ -56,8 +56,38 @@ class Konfirmasi extends CI_Controller {
 	}
 
 	public function statusAktif(){
+
 		$user = unserialize($_SESSION['login_user']);
-		//$user->activation(1);
+		$pesan ='';
+		$sukses = false;
+
+		$this->db->trans_start();
+		if($user->cekSelesaiTransfer()){
+				
+			$data = array(
+				"id_member" => $user->attributes('id'),
+				"keterangan" => "Aktifasi selesai transfer referral",
+				"created_at" => date('Y-m-j H:i:s'),
+				"tahap_aktivasi" => "transfer" //tahap aktifasi jadi transfer
+			);
+			
+			$user->activation(1); // 2 adalah status member menjadi transfer 
+			$this->db->insert("activation_member_logs",$data); // catat logs
+			
+			$_SESSION['login_user'] = serialize($this->member_model->getData($user->attributes('username')));
+			$pesan = "Selamat anda sudah dapat menikmati income dari downline anda";
+			$sukses = true;
+		}
+		else{
+			$pesan = "Maaf nda belum mentransfer semuanya";
+
+		}
+		$this->db->trans_complete();
+
+		$this->session->set_flashdata('sukses', $sukses);
+		$this->session->set_flashdata('message', $pesan);
+		redirect("/");
+		
 	}
 	
 	
