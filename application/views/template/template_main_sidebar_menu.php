@@ -1,20 +1,20 @@
 <?php $user = unserialize($_SESSION['login_user']); ?>
 
 <?php if ($_SESSION['login_role'] == "members") : ?> 
+
+         
           <ul class="sidebar-menu">
+             <li class="header">MAIN NAVIGATION</li>
                   <li>
                     <a href="<?= base_url(); ?>">
                       <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                     </a>
                   </li>
           <?php if($user->isActive()) : ?>
-                
-                  <li class="header">MAIN NAVIGATION</li>
-                  
-                  
+
                   <li class="">
-                    <a href="<?= base_url(); ?>downline">
-                      <i class="fa fa-sitemap"></i> <span>Downline Chart</span>
+                    <a href="<?= base_url(); ?>transfer/verifikasi">
+                      <i class="fa fa-money"></i> <span>Verifikasi Transfer</span>
                     </a>
                   </li>
                   <li class="">

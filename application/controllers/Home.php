@@ -47,7 +47,7 @@ class Home extends CI_Controller {
 			$this->load->model('content_model');
 
 			$data['homepage'] = $this->content_model->getHomePage()->isi;
-			$this->template->load('template/template_auth','home',$data);
+			$this->template->load('template/template_web','home',$data);
 		}
 
 	}

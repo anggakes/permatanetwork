@@ -8,11 +8,12 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Best Opportunity System | Dashboard</title>
+    <title>Permata Network | Dashboard</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     
     <!-- Bootstrap 3.3.4 -->
     <link href="<?= base_url() ?>theme/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />    
+ 
     <!-- FontAwesome 4.3.0 -->
     <link href="<?= base_url() ?>theme/plugins/font-awesome/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons 2.0.0 -->
@@ -21,7 +22,7 @@
     <link href="<?= base_url() ?>theme/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
-    <link href="<?= base_url() ?>theme/dist/css/skin-black-light.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url() ?>theme/dist/css/skin-purple.css" rel="stylesheet" type="text/css" />
     <!-- iCheck -->
     <link href="<?= base_url() ?>theme/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
        <!-- Date Picker -->
@@ -58,7 +59,7 @@
     </style>
  
   </head>
-  <body class="skin-black-light sidebar-mini layout-boxed">
+  <body class="skin-purple sidebar-mini layout-boxed">
     <div class="wrapper">
       
       <header class="main-header">
@@ -67,7 +68,7 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>BO</b></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Voltus</b>Fx</span>
+          <span class="logo-lg"><b>Permata</b>Network</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -156,10 +157,10 @@
       <!-- Left side column. contains the logo and sidebar -->
       <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
+    <section class="sidebar">
           <!-- Sidebar user panel -->
 <?php if ($_SESSION['login_role'] == "members") : ?> 
-          <div class="user-panel" style='background:#f4f4f4'>
+          <div class="user-panel" style='background:#000'>
             <h5 style='color:#c0c0c0'>Kode Member :</h5>
             <h2 style='text-align:center;color:#c0c0c0'><?= $user->attributes('code') ?></h2>
           </div>

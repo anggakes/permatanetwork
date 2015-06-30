@@ -1,11 +1,26 @@
-<div class='row'>
-<div class='col-md-8'>
+<style type="text/css">
+  h4{
+    display:block;
+    height:30px;
+    background-image: -webkit-linear-gradient(#ededed, #ededed 38%, #dedede);
+text-shadow: 0 1px 0 rgb(240, 240, 240);
+box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.75);
+    text-align: center;
+    padding:5px;
+    border-radius: 10 10px 0px 0px;
+-moz-border-radius: 10px 10px 0px 0px;
+-webkit-border-radius: 10px 10px 0px 0px;
+color:#444;
+  }
+</style>
+
 <h3 class='col-sm-8'><strong>Member</strong> <small>Registration Form</small></h3>
     
     <a href="<?= base_url() ?>auth/login" class='btn btn-link pull-right'> Sudah Punya Akun ?</a>
-
-    <form role="form" action="<?= base_url() ?>auth/daftar" method="post" class="col-sm-11" id='form-registrasi'>
+<div class='clearfix'></div>
+  <form role="form" action="<?= base_url() ?>auth/daftar" method="post" class="col-sm-11" id='form-registrasi'>
     <div class="form-group">
+<h4>Akun </h4>
     <label for="exampleInputEmail1">Username</label>
     <input type="text" name='member[username]' value = "<?= set_value('member[username]')?>" class="form-control" id="" placeholder="Username..">
     <div style='color:red'><?= form_error('member[username]') ?></div>
@@ -29,19 +44,15 @@
 </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Kode Referal</label>
-    <input type="text" name='member[referral_code]' value = "<?= set_value('member[referral_code]')?>" class="form-control" id="" placeholder=" Kode Referal..">
+    <input type="text" name='member[referral_code]' value = "<?= set_value('member[referral_code]')?>" class="form-control" id="" placeholder=" Kode Referal.:C67TY8I">
     <div style='color:red'><?= form_error('member[referral_code]') ?></div>
   </div>
  <hr>
+ <h4>Biodata </h4>
 <div class="form-group">
     <label for="exampleInputPassword1">Nama Lengkap</label>
     <input type="text" name='profile[nama]' value = "<?= set_value('profile[nama]')?>" class="form-control" id="" placeholder=" Nama Lengkap Anda..">
     <div style='color:red'><?= form_error('profile[nama]') ?></div>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Tanggal Lahir</label>
-    <input type="date" name='profile[tanggal_lahir]' value = "<?= set_value('profile[tanggal_lahir]')?>" class="form-control" id="" placeholder=" Tanggal Lahir">
-    <div style='color:red'><?= form_error('profile[tanggal_lahir]') ?></div>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Alamat</label>
@@ -72,10 +83,22 @@
     <input type="text" name='profile[no_hp]' value = "<?= set_value('profile[no_hp]')?>" class="form-control" id="" placeholder=" Nomor Yang Bisa Dihubungi..">
     <div style='color:red'><?= form_error('profile[no_hp]') ?></div>
   </div>
+
+  <h4>Informasi Rekening </h4>
+    <div class="form-group">
+    <label for="exampleInputPassword1">Nama Bank</label>
+    <input type="text" name='profile[nama_bank]' value = "<?= set_value('profile[nama_bank]')?>" class="form-control" id="" placeholder=" Nama Bank">
+    <div style='color:red'><?= form_error('profile[nama_bank]') ?></div>
+  </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Nomor Rekening</label>
     <input type="text" name='profile[no_rekening]' value = "<?= set_value('profile[no_rekening]')?>" class="form-control" id="" placeholder=" Nomor Rekening..">
     <div style='color:red'><?= form_error('profile[no_rekening]') ?></div>
+  </div>
+      <div class="form-group">
+    <label for="exampleInputPassword1">Nama Rekening</label>
+    <input type="text" name='profile[nama_rekening]' value = "<?= set_value('profile[nama_rekening]')?>" class="form-control" id="" placeholder=" a.n Rekening Anda">
+    <div style='color:red'><?= form_error('profile[nama_rekening]') ?></div>
   </div>
   <?php echo $cap_img; ?>
   <input type="text" name="captcha" placeholder='captcha..'/>
@@ -95,5 +118,3 @@
   <br>
                           </form>
 
-</div>
-</div>

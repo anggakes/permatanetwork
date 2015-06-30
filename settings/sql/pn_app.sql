@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 29, 2015 at 12:08 AM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: 30 Jun 2015 pada 10.56
+-- Versi Server: 5.6.20
+-- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `activation_member_logs`
+--
+
+CREATE TABLE IF NOT EXISTS `activation_member_logs` (
+`id` int(10) unsigned NOT NULL,
+  `id_member` int(10) unsigned NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tahap_aktivasi` enum('voucher','transfer') NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+
+--
+-- Dumping data untuk tabel `activation_member_logs`
+--
+
+INSERT INTO `activation_member_logs` (`id`, `id_member`, `keterangan`, `created_at`, `tahap_aktivasi`) VALUES
+(14, 8, 'Aktivasi dengan Voucher 22a1-f69f-0973-d199', '2015-06-30 03:13:55', 'voucher');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
@@ -36,44 +57,19 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `super_admin` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id`, `email`, `username`, `nama`, `password`, `updated_at`, `created_at`, `last_login`, `super_admin`) VALUES
-(1, 'admin@admin', 'admin', 'admin', '$2y$10$T44VIlj2nuZg8ZWsCAzZhevADpzQ2RwUq5N6redAtwNWwia7P8ZNC', '2015-06-28 16:02:20', '2015-06-27 17:00:00', '2015-06-28 11:02:20', 1);
+(1, 'admin@admin', 'admin', 'admin', '$2y$10$T44VIlj2nuZg8ZWsCAzZhevADpzQ2RwUq5N6redAtwNWwia7P8ZNC', '2015-06-30 08:19:39', '2015-06-27 17:00:00', '2015-06-30 03:19:39', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bonus_conf`
---
-
-CREATE TABLE IF NOT EXISTS `bonus_conf` (
-`id` int(10) unsigned NOT NULL,
-  `opt` varchar(255) NOT NULL,
-  `value` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bonus_level_conf`
---
-
-CREATE TABLE IF NOT EXISTS `bonus_level_conf` (
-`id` int(10) unsigned NOT NULL,
-  `tipe` int(11) NOT NULL,
-  `level` int(11) NOT NULL,
-  `persen` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `captcha`
+-- Struktur dari tabel `captcha`
 --
 
 CREATE TABLE IF NOT EXISTS `captcha` (
@@ -81,10 +77,10 @@ CREATE TABLE IF NOT EXISTS `captcha` (
   `captcha_time` int(10) unsigned DEFAULT NULL,
   `ip_address` varchar(16) DEFAULT NULL,
   `word` varchar(20) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=121 ;
 
 --
--- Dumping data for table `captcha`
+-- Dumping data untuk tabel `captcha`
 --
 
 INSERT INTO `captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUES
@@ -122,12 +118,66 @@ INSERT INTO `captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUE
 (63, 1435508120, '::1', '494a1hfX'),
 (64, 1435508183, '::1', 'pErWWohN'),
 (65, 1435508288, '::1', 'oVz8OhlO'),
-(66, 1435508290, '::1', '7H4lGCVR');
+(66, 1435508290, '::1', '7H4lGCVR'),
+(67, 1435515561, '::1', 'X1L27HLJ'),
+(68, 1435515779, '::1', 'rglCARV9'),
+(69, 1435516068, '::1', 'GsFPPd7b'),
+(70, 1435529382, '::1', 'TUkKQX44'),
+(71, 1435530220, '::1', 'JC6ODcfy'),
+(72, 1435530262, '::1', 'yLyWQ4GC'),
+(73, 1435530274, '::1', 'QQ7YdEdg'),
+(74, 1435530297, '::1', 'RvKCIPwy'),
+(75, 1435530309, '::1', 'hgOUZw0w'),
+(76, 1435615590, '::1', 'YieyKdnO'),
+(77, 1435615874, '::1', 'QnkKwuWn'),
+(78, 1435615941, '::1', 'DPwFzVAa'),
+(79, 1435615971, '::1', 'rn7814Vj'),
+(80, 1435615984, '::1', 'NztbMWel'),
+(81, 1435616007, '::1', 'LNcnprzP'),
+(82, 1435616027, '::1', 'Fl3D0CGM'),
+(83, 1435616067, '::1', 'hJB9iW2F'),
+(84, 1435616097, '::1', 'pMi77ad3'),
+(85, 1435616195, '::1', 'r6AQgMG5'),
+(86, 1435616250, '::1', '1yAgDXGm'),
+(87, 1435616262, '::1', 'nCboGOXi'),
+(88, 1435616279, '::1', 'ssN8bMCz'),
+(89, 1435616382, '::1', 'H2sf6cvj'),
+(90, 1435616477, '::1', 'AzY3hFpY'),
+(91, 1435616505, '::1', 'v5NgCcVa'),
+(92, 1435616548, '::1', 'oaSJsGo1'),
+(93, 1435616561, '::1', 'yVznVCFV'),
+(94, 1435616585, '::1', 'ITngRPrF'),
+(95, 1435616776, '::1', '5golJDEM'),
+(96, 1435619022, '::1', 'Vna47O48'),
+(97, 1435619038, '::1', 'UPntGN74'),
+(98, 1435619091, '::1', 'jKIDHPSF'),
+(99, 1435619899, '::1', '8phbL6cM'),
+(100, 1435620100, '::1', 'X4oo9x24'),
+(101, 1435620671, '::1', 'PQoAH8rP'),
+(102, 1435621076, '::1', 'Iat0l2Ye'),
+(103, 1435621149, '::1', 'WaitfIeh'),
+(104, 1435621230, '::1', 'TT6KxTjx'),
+(105, 1435621299, '::1', '7DEzlNJj'),
+(106, 1435621378, '::1', 'aj1c09AX'),
+(107, 1435621494, '::1', '3p4YEwIs'),
+(108, 1435621552, '::1', '2fXoU7pt'),
+(109, 1435621577, '::1', 'oohM6oHI'),
+(110, 1435621598, '::1', 'dQjR9Fld'),
+(111, 1435621753, '::1', 'fMW6KZv5'),
+(112, 1435621827, '::1', 'h2KQ7iuX'),
+(113, 1435621862, '::1', '8crXewwn'),
+(114, 1435621931, '::1', 'YQCvBxWj'),
+(115, 1435621962, '::1', 'rPouLW2k'),
+(116, 1435622008, '::1', 'oiwxq068'),
+(117, 1435622049, '::1', 'bsZX4AsL'),
+(118, 1435622762, '::1', 'ouYBs7XC'),
+(119, 1435622865, '::1', 'tpktjgZo'),
+(120, 1435637740, '::1', 't6O4a67h');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contents`
+-- Struktur dari tabel `contents`
 --
 
 CREATE TABLE IF NOT EXISTS `contents` (
@@ -138,32 +188,19 @@ CREATE TABLE IF NOT EXISTS `contents` (
   `slug` varchar(255) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `contents`
+-- Dumping data untuk tabel `contents`
 --
 
 INSERT INTO `contents` (`id`, `judul`, `isi`, `jenis`, `slug`, `updated_at`, `created_at`) VALUES
-(1, 'homepage', '<h2 class="font_2" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-weight: normal; font-stretch: normal; font-size: 24px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); text-align: justify; background: transparent;">\r\n	<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;"><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-weight: bold; background: transparent;">Apa itu Batu Kecubung?</span></span></h2>\r\n<p>\r\n	&nbsp;</p>\r\n<p style="text-align: justify;">\r\n	<span style="color: rgb(89, 89, 89); font-size: 18px; font-family: raleway, sans-serif; text-align: justify; background-color: transparent;">Batu Kecubung adalah nama pasaran untuk batu permata jenis Amethyst.&nbsp;Nama Amethyst sendiri berasal dari kata Yunani &ldquo;Amethystos&rdquo; yang artinya &ldquo;Tidak Mabuk&rdquo;, karena sering digunakan sebagai jimat untuk melindungi diri dari keracunan. Sejak batu Kecubung dijadikan penangkal terhadap mabuk, banyak gelas anggur yang kemudian menggunakan ukiran batu Kecubung pada desainnya. Sampai dengan hari ini, batu Kecubung berwarna ungu adalah simbol ketenangan.</span></p>\r\n<p class="font_8" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-stretch: normal; font-size: 14px; font-family: raleway, sans-serif; color: rgb(48, 48, 48); text-align: justify; background: transparent;">\r\n	&nbsp;</p>\r\n<p class="font_7" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-stretch: normal; font-size: 18px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); text-align: justify; background: transparent;">\r\n	<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Batu kecubung dipercaya memiliki sifat yang membawa stabilitas, perdamaian, keseimbangan, keberanian, kekuatan internal, ketulusan, dan ketenangan.</span></p>\r\n<p class="font_7" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-stretch: normal; font-size: 18px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); text-align: justify; background: transparent;">\r\n	<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Batu ini juga diyakini efektif mengobati masalah kesehatan yang berhubungan dengan gejala kecanduan, sakit kepala, insomnia, artritis, nyeri, masalah sistem peredaran darah, dan penyembuhan secara umum.</span></p>\r\n<p class="font_7" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-stretch: normal; font-size: 18px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); text-align: justify; background: transparent;">\r\n	<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Dengan mengacu pada asal kata Yunani, batu kecubung dianggap sebagai batu yang bisa mencegah dan mengobati mabuk alkohol dan jenis kecanduan lain.</span></p>\r\n<p class="font_7" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-stretch: normal; font-size: 18px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); text-align: justify; background: transparent;">\r\n	<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Oleh karena itu, batu kecubung bertindak sebagai kekuatan stabilisasi bagi mereka yang berusaha untuk mengatasi perilaku adiktif.</span></p>\r\n<p class="font_7" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-stretch: normal; font-size: 18px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); background: transparent;">\r\n	&nbsp;</p>\r\n<p class="font_7" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-stretch: normal; font-size: 18px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); background: transparent;">\r\n	&nbsp;</p>\r\n<h2 class="font_2" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-weight: normal; font-stretch: normal; font-size: 24px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); background: transparent;">\r\n	<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;"><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-weight: bold; background: transparent;">Manfaat Batu Kecubung</span></span></h2>\r\n<p style="text-align: justify;">\r\n	<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;"><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-weight: bold; background: transparent;"><img alt="" src="http://localhost/permatanetwork/source/1.jpg" style="width: 257px; height: 220px; float: left; margin: 10px 30px;" /></span></span><span style="color: rgb(48, 48, 48); font-family: raleway, sans-serif; font-size: 18px; text-align: justify;">Khasiat batu kecubung &ndash; Kecubung atau Amethyst merupakan jenis batu mulia populer didunia dengan warna umum ungu berkilau, merah muda dan kebiruan. Batu permata ini di Indonesia lebih dikenal dengan sebutan batu kecubung ungu dan dipercaya memiliki khasiat. Sedangkan harga nya bisa ratusan sampai puluhan juta rupiah untuk jenis batu terbaik.</span></p>\r\n<p style="text-align: justify;">\r\n	<span style="color: rgb(48, 48, 48); font-family: raleway, sans-serif; font-size: 18px; text-align: justify;">Batu Amethyst (kecubung) merupakan batuan mineral kuarsa atau jenis mineral berstruktur kristal heksagonal terbuat dari silika (silikon dioksida) dengan tingkat kekerasan hingga 7 mohs. Keunikan warna pada batu permata ini menimbulkan daya tarik tersendiri dan tidak dimiliki jenis batu mulia lainnya.</span></p>\r\n<p style="text-align: justify;">\r\n	<span style="color: rgb(48, 48, 48); font-family: raleway, sans-serif; font-size: 18px; text-align: justify;">Terkait mitos yang berkembang, batu ini juga dianggap sebagai batu kelahiran Februari dalam zodiak. Sebutan pada batu ini juga tidak lepas dengan mitos yang berkembang pada zamat itu dan dikenal dengan istilah&lsquo;amethyst&rsquo; asal kata Yunani &lsquo;amethystos&rsquo; yang berarti obat untuk mencegah mabuk.Sehingga batu ini dipercaya bisa membawa keberuntungan bagi pemiliknya terutama mereka yang punya kelahiran bulan Februari. Pada zaman dulu batu ini banyak dipakai kalangan raja-raja, pangeran dan puteri kerjaan sebagai pembangkit aura baik untuk kecantikan atau untuk menambah kewibawaan.</span></p>\r\n', 2, 'homepage-1', '2015-06-28 17:05:58', '2015-06-28 17:05:58');
+(1, 'homepage', '<h2 class="font_2" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-weight: normal; font-size: 24px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); text-align: center; background: transparent;">\r\n	<img alt="" src="http://permatanetwork.com/ag/0/source/a4868e_93abe2a6402a40e198c1f57e3a1f9eda.jpg" style="width: 150px; height: 150px;" />&nbsp; &nbsp;<img alt="" src="http://permatanetwork.com/ag/0/source/a4868e_8f4dcdeae9ec47a9a622e713b1dd2503.jpg" style="width: 150px; height: 150px;" />&nbsp; &nbsp;<img alt="" src="http://localhost/permatanetwork/source/a4868e_112a0e1e33fe439ea1b160b78b337e7c.jpg" style="width: 150px; height: 150px;" />&nbsp; &nbsp;<img alt="" src="http://permatanetwork.com/ag/0/source/a4868e_23779e3f9cab48fba7290bd40ec7a362.jpg" style="width: 150px; height: 150px;" />&nbsp; &nbsp;&nbsp; &nbsp;</h2>\r\n<hr />\r\n<h2 class="font_2" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-weight: normal; font-stretch: normal; font-size: 24px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); text-align: justify; background: transparent;">\r\n	<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;"><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-weight: bold; background: transparent;">Apa itu Batu Kecubung?</span></span></h2>\r\n<p>\r\n	&nbsp;</p>\r\n<p style="text-align: justify;">\r\n	<span style="color: rgb(89, 89, 89); font-size: 18px; font-family: raleway, sans-serif; text-align: justify; background-color: transparent;">Batu Kecubung adalah nama pasaran untuk batu permata jenis Amethyst.&nbsp;Nama Amethyst sendiri berasal dari kata Yunani &ldquo;Amethystos&rdquo; yang artinya &ldquo;Tidak Mabuk&rdquo;, karena sering digunakan sebagai jimat untuk melindungi diri dari keracunan. Sejak batu Kecubung dijadikan penangkal terhadap mabuk, banyak gelas anggur yang kemudian menggunakan ukiran batu Kecubung pada desainnya. Sampai dengan hari ini, batu Kecubung berwarna ungu adalah simbol ketenangan.</span></p>\r\n<p class="font_8" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-stretch: normal; font-size: 14px; font-family: raleway, sans-serif; color: rgb(48, 48, 48); text-align: justify; background: transparent;">\r\n	&nbsp;</p>\r\n<p class="font_7" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-stretch: normal; font-size: 18px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); text-align: justify; background: transparent;">\r\n	<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Batu kecubung dipercaya memiliki sifat yang membawa stabilitas, perdamaian, keseimbangan, keberanian, kekuatan internal, ketulusan, dan ketenangan.</span></p>\r\n<p class="font_7" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-stretch: normal; font-size: 18px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); text-align: justify; background: transparent;">\r\n	<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Batu ini juga diyakini efektif mengobati masalah kesehatan yang berhubungan dengan gejala kecanduan, sakit kepala, insomnia, artritis, nyeri, masalah sistem peredaran darah, dan penyembuhan secara umum.</span></p>\r\n<p class="font_7" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-stretch: normal; font-size: 18px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); text-align: justify; background: transparent;">\r\n	<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Dengan mengacu pada asal kata Yunani, batu kecubung dianggap sebagai batu yang bisa mencegah dan mengobati mabuk alkohol dan jenis kecanduan lain.</span></p>\r\n<p class="font_7" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-stretch: normal; font-size: 18px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); text-align: justify; background: transparent;">\r\n	<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;">Oleh karena itu, batu kecubung bertindak sebagai kekuatan stabilisasi bagi mereka yang berusaha untuk mengatasi perilaku adiktif.</span></p>\r\n<p class="font_7" style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-stretch: normal; font-size: 18px; font-family: raleway, sans-serif; color: rgb(89, 89, 89); text-align: justify; background: transparent;">\r\n	&nbsp;</p>\r\n<p style="text-align: justify;">\r\n	<span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; background: transparent;"><span style="margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: baseline; font-weight: bold; background: transparent;"><img alt="" src="http://cisenterprise.co.id/ag/permatanetwork/source/1.jpg" style="width: 257px; height: 220px; float: left; margin: 10px 30px;" /></span></span><span style="color: rgb(48, 48, 48); font-family: raleway, sans-serif; font-size: 18px; text-align: justify;">Khasiat batu kecubung &ndash; Kecubung atau Amethyst merupakan jenis batu mulia populer didunia dengan warna umum ungu berkilau, merah muda dan kebiruan. Batu permata ini di Indonesia lebih dikenal dengan sebutan batu kecubung ungu dan dipercaya memiliki khasiat. Sedangkan harga nya bisa ratusan sampai puluhan juta rupiah untuk jenis batu terbaik.</span></p>\r\n<p style="text-align: justify;">\r\n	<span style="color: rgb(48, 48, 48); font-family: raleway, sans-serif; font-size: 18px; text-align: justify;">Batu Amethyst (kecubung) merupakan batuan mineral kuarsa atau jenis mineral berstruktur kristal heksagonal terbuat dari silika (silikon dioksida) dengan tingkat kekerasan hingga 7 mohs. Keunikan warna pada batu permata ini menimbulkan daya tarik tersendiri dan tidak dimiliki jenis batu mulia lainnya.</span></p>\r\n<p style="text-align: justify;">\r\n	<span style="color: rgb(48, 48, 48); font-family: raleway, sans-serif; font-size: 18px; text-align: justify;">Terkait mitos yang berkembang, batu ini juga dianggap sebagai batu kelahiran Februari dalam zodiak. Sebutan pada batu ini juga tidak lepas dengan mitos yang berkembang pada zamat itu dan dikenal dengan istilah&lsquo;amethyst&rsquo; asal kata Yunani &lsquo;amethystos&rsquo; yang berarti obat untuk mencegah mabuk.Sehingga batu ini dipercaya bisa membawa keberuntungan bagi pemiliknya terutama mereka yang punya kelahiran bulan Februari. Pada zaman dulu batu ini banyak dipakai kalangan raja-raja, pangeran dan puteri kerjaan sebagai pembangkit aura baik untuk kecantikan atau untuk menambah kewibawaan.</span></p>\r\n', 2, 'homepage', '2015-06-30 08:54:28', '2015-06-30 03:54:28');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `konfirmasi_pendaftaran`
---
-
-CREATE TABLE IF NOT EXISTS `konfirmasi_pendaftaran` (
-`id` int(10) unsigned NOT NULL,
-  `id_member` int(10) unsigned NOT NULL,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `members`
+-- Struktur dari tabel `members`
 --
 
 CREATE TABLE IF NOT EXISTS `members` (
@@ -177,26 +214,26 @@ CREATE TABLE IF NOT EXISTS `members` (
   `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `referral_code` varchar(10) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `members`
+-- Dumping data untuk tabel `members`
 --
 
 INSERT INTO `members` (`id`, `code`, `email`, `username`, `password`, `updated_at`, `created_at`, `last_login`, `referral_code`, `status`) VALUES
-(1, 'L4PR01D', 'first@first.com', 'first', '$2y$10$vzgcMQvzSyFoEtWJ39AhGev1C9.aJsg88IjfY4xhH4Y/a0OGrNhl6', '2015-06-28 08:35:14', '2015-06-27 17:00:00', '2015-06-28 02:58:52', '', 1),
+(1, 'L4PR01D', 'first@first.com', 'first', '$2y$10$vzgcMQvzSyFoEtWJ39AhGev1C9.aJsg88IjfY4xhH4Y/a0OGrNhl6', '2015-06-30 05:26:22', '2015-06-27 17:00:00', '2015-06-30 00:26:22', '', 1),
 (2, '73DD48C', 'isa1@isa.com', 'isa1', '$2y$10$Uybk0xk6If58kmrnMuxRuOECj1KJby8LXNP3N1EE8R3Q6WRaz3XKW', '2015-06-28 08:35:18', '2015-06-28 08:28:30', '0000-00-00 00:00:00', 'L4PR01D', 1),
 (3, 'CFB3350', 'isa2@isa.com', 'isa2', '$2y$10$jWvO.K12nVb6zTaZvnZ4Ke9Yzag4ibGucfyVHYtubFBFgVrdwiPyW', '2015-06-28 08:35:20', '2015-06-28 08:29:39', '0000-00-00 00:00:00', '73DD48C', 1),
 (4, 'B5E4C8A', 'isa3@isa.com', 'isa3', '$2y$10$nqe0bf/5ZjFo9fUcD8ziiOtFbU8Clbq4D5rxNKBB6f2AuDdfrl2Za', '2015-06-28 08:35:23', '2015-06-28 08:31:02', '0000-00-00 00:00:00', 'CFB3350', 1),
 (5, '4539A08', 'isa4@isa.com', 'isa4', '$2y$10$1rJoRWxZfOTeC8nn41Ae..QFZHrtjNy0NJCi3wUBjrzkSChqiJkPS', '2015-06-28 08:35:25', '2015-06-28 08:32:07', '0000-00-00 00:00:00', 'B5E4C8A', 1),
 (6, '05AA10F', 'isa5@isa.com', 'isa5', '$2y$10$FpQwLsCUQEdU7Wp3QCqFJe/QfiR9tkKu8pr50XwTYWeSiw4FJHX1m', '2015-06-28 08:35:27', '2015-06-28 08:32:57', '0000-00-00 00:00:00', '4539A08', 1),
 (7, '88DDC5A', 'isa6@isa.com', 'isa6', '$2y$10$FSWONV0E9SBs9594wXdjWu.cL4hHwP7uQiaJHw.aFaUhYTX/714I2', '2015-06-28 08:35:30', '2015-06-28 08:33:55', '0000-00-00 00:00:00', '05AA10F', 1),
-(8, '083BF11', 'isa7@isa.com', 'isa7', '$2y$10$oCfzbxRwMikgMKXMNBsLzeUREBDw8GwrwpOWant/R/89NDsIMUraK', '2015-06-28 08:37:01', '2015-06-28 08:34:46', '2015-06-28 08:36:37', '88DDC5A', 2);
+(8, '083BF11', 'isa7@isa.com', 'isa7', '$2y$10$oCfzbxRwMikgMKXMNBsLzeUREBDw8GwrwpOWant/R/89NDsIMUraK', '2015-06-30 08:13:55', '2015-06-28 08:34:46', '2015-06-30 03:12:42', '88DDC5A', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengumuman`
+-- Struktur dari tabel `pengumuman`
 --
 
 CREATE TABLE IF NOT EXISTS `pengumuman` (
@@ -206,62 +243,153 @@ CREATE TABLE IF NOT EXISTS `pengumuman` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `expired_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profile`
+-- Struktur dari tabel `profile`
 --
 
 CREATE TABLE IF NOT EXISTS `profile` (
 `id` int(10) unsigned NOT NULL,
   `id_member` int(10) unsigned NOT NULL,
   `nama` varchar(255) NOT NULL,
-  `tanggal_lahir` date NOT NULL,
   `alamat` varchar(255) NOT NULL,
   `kota` varchar(255) NOT NULL,
   `provinsi` varchar(255) NOT NULL,
   `kode_pos` varchar(255) NOT NULL,
   `no_hp` varchar(255) NOT NULL,
-  `no_rekening` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `nama_bank` varchar(255) NOT NULL,
+  `no_rekening` varchar(255) NOT NULL,
+  `nama_rekening` varchar(255) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `profile`
+-- Dumping data untuk tabel `profile`
 --
 
-INSERT INTO `profile` (`id`, `id_member`, `nama`, `tanggal_lahir`, `alamat`, `kota`, `provinsi`, `kode_pos`, `no_hp`, `no_rekening`) VALUES
-(1, 1, 'Angga Kesuma', '1992-11-01', 'jl. sukakarya No.2227 palembang', 'Palembang', 'sumatera selatan', '30152', '089661147512', '019283978891923'),
-(2, 2, 'isa1', '2015-06-03', 'isa1', 'isa1', 'isa1', '7868', '708998', '323223'),
-(3, 3, 'isa2', '2015-06-05', 'isa2', 'isa2', 'isa2', '2', '3', '3'),
-(4, 4, 'e', '2015-06-19', 'e', 'e', 'e', 'e', 'e', 'e'),
-(5, 5, 'isa4', '2015-06-06', 's', 's', 's', '2', '2', '2'),
-(6, 6, '2', '2015-05-26', '2', '2', '3', '3', '3', '2'),
-(7, 7, '2', '2015-06-02', '3', '3', '3', '3', '3', '3'),
-(8, 8, 'isa7', '2015-06-11', '2', '2', '21', '2', '2', '2');
+INSERT INTO `profile` (`id`, `id_member`, `nama`, `alamat`, `kota`, `provinsi`, `kode_pos`, `no_hp`, `nama_bank`, `no_rekening`, `nama_rekening`) VALUES
+(1, 1, 'Angga Kesuma', 'jl. sukakarya No.2227 palembang', 'Palembang', 'sumatera selatan', '30152', '089661147512', '', '019283978891923', ''),
+(2, 2, 'isa1', 'isa1', 'isa1', 'isa1', '7868', '708998', '', '323223', ''),
+(3, 3, 'isa2', 'isa2', 'isa2', 'isa2', '2', '3', '', '3', ''),
+(4, 4, 'e', 'e', 'e', 'e', 'e', 'e', '', 'e', ''),
+(5, 5, 'isa4', 's', 's', 's', '2', '2', '', '2', ''),
+(6, 6, '2', '2', '2', '3', '3', '3', '', '2', ''),
+(7, 7, '2', '3', '3', '3', '3', '3', '', '3', ''),
+(8, 8, 'isa7', '2', '2', '21', '2', '2', '', '2', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transfer_referral`
+-- Struktur dari tabel `transfer_referral`
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral` (
 `id` int(10) unsigned NOT NULL,
   `id_member` int(10) unsigned NOT NULL,
   `id_referral` int(10) unsigned NOT NULL,
-  `status` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `status_transfer` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `transfered_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `confirmation_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=62 ;
+
+--
+-- Dumping data untuk tabel `transfer_referral`
+--
+
+INSERT INTO `transfer_referral` (`id`, `id_member`, `id_referral`, `amount`, `status_transfer`, `updated_at`, `created_at`, `transfered_at`, `confirmation_at`) VALUES
+(56, 8, 7, 150000, 0, '2015-06-30 03:13:55', '2015-06-30 03:13:55', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(57, 8, 6, 100000, 0, '2015-06-30 03:13:55', '2015-06-30 03:13:55', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(58, 8, 5, 100000, 0, '2015-06-30 03:13:55', '2015-06-30 03:13:55', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(59, 8, 4, 100000, 0, '2015-06-30 03:13:55', '2015-06-30 03:13:55', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(60, 8, 3, 100000, 0, '2015-06-30 03:13:55', '2015-06-30 03:13:55', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(61, 8, 1, 100000, 0, '2015-06-30 03:13:55', '2015-06-30 03:13:55', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transfer_referral_msg`
+-- Struktur dari tabel `transfer_referral_bukti`
+--
+
+CREATE TABLE IF NOT EXISTS `transfer_referral_bukti` (
+`id` int(10) unsigned NOT NULL,
+  `id_transfer_referral` int(10) unsigned NOT NULL,
+  `nama_bank_penerima` varchar(255) NOT NULL,
+  `nama_rekening_penerima` varchar(255) NOT NULL,
+  `no_rekening_penerima` varchar(255) NOT NULL,
+  `nama_bank_pengirim` varchar(255) NOT NULL,
+  `nama_rekening_pengirim` varchar(255) NOT NULL,
+  `no_rekening_pengirim` varchar(255) NOT NULL,
+  `bukti_transfer` varchar(255) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `transfer_referral_cancel`
+--
+
+CREATE TABLE IF NOT EXISTS `transfer_referral_cancel` (
+`id` int(10) unsigned NOT NULL,
+  `id_transfer_referral` int(10) unsigned NOT NULL,
+  `msg` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `transfer_referral_conf`
+--
+
+CREATE TABLE IF NOT EXISTS `transfer_referral_conf` (
+`id` int(10) unsigned NOT NULL,
+  `downline` int(11) NOT NULL,
+  `max_income` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data untuk tabel `transfer_referral_conf`
+--
+
+INSERT INTO `transfer_referral_conf` (`id`, `downline`, `max_income`) VALUES
+(1, 1, 2000000),
+(2, 2, 3000000),
+(3, 3, 4000000),
+(4, 4, 5000000);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `transfer_referral_conf_amount`
+--
+
+CREATE TABLE IF NOT EXISTS `transfer_referral_conf_amount` (
+`id` int(10) unsigned NOT NULL,
+  `level` int(11) NOT NULL,
+  `value` int(11) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Dumping data untuk tabel `transfer_referral_conf_amount`
+--
+
+INSERT INTO `transfer_referral_conf_amount` (`id`, `level`, `value`) VALUES
+(1, 1, 150000),
+(2, 2, 100000),
+(3, 3, 100000),
+(4, 4, 100000),
+(5, 5, 100000),
+(6, 6, 100000),
+(7, 7, 100000);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `transfer_referral_msg`
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_msg` (
@@ -270,21 +398,21 @@ CREATE TABLE IF NOT EXISTS `transfer_referral_msg` (
   `msg` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `voucher`
+-- Struktur dari tabel `voucher`
 --
 
 CREATE TABLE IF NOT EXISTS `voucher` (
 `id` int(10) unsigned NOT NULL,
   `nomor` varchar(19) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2041 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2041 ;
 
 --
--- Dumping data for table `voucher`
+-- Dumping data untuk tabel `voucher`
 --
 
 INSERT INTO `voucher` (`id`, `nomor`) VALUES
@@ -417,7 +545,6 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (1838, '2171-58d1-639b-1012'),
 (2031, '21ab-bb82-f859-5aa7'),
 (1196, '226b-f2f4-aaaa-1348'),
-(1052, '22a1-f69f-0973-d199'),
 (2009, '22db-873d-0c92-07a6'),
 (1252, '2333-6766-1f6d-1273'),
 (1954, '2345-42b7-9148-e0ca'),
@@ -483,7 +610,6 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (1278, '337c-bc97-076b-2b6a'),
 (1105, '33a0-5ecf-ccda-fbf1'),
 (1633, '33cd-59ed-6fa9-1cef'),
-(1044, '33cf-6920-7b2d-0b0a'),
 (1355, '3453-dd62-9e7c-ddce'),
 (1211, '3497-5e9e-56df-53e6'),
 (1194, '34c0-4938-dfa5-575f'),
@@ -529,7 +655,6 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (1129, '3fa1-6d0a-ac73-a462'),
 (1514, '3fb5-506d-91f9-0879'),
 (1780, '3fc9-f184-7537-de96'),
-(1049, '400a-85dc-bbeb-cb4e'),
 (1856, '4151-e90e-abae-c910'),
 (1116, '4171-6730-ca0e-ecfc'),
 (1577, '4187-01f3-da31-1118'),
@@ -608,7 +733,6 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (1454, '546c-b293-c2b6-30ec'),
 (1833, '5483-0595-b65c-c94d'),
 (1322, '54b9-f7f7-bb69-ee33'),
-(1047, '54c8-f1e8-14b3-b02d'),
 (1692, '54e1-dfc2-5bfc-189c'),
 (1451, '5516-e8b1-84a1-1863'),
 (1657, '5529-f094-ca04-800d'),
@@ -622,7 +746,6 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (1846, '57a0-1da9-4304-9260'),
 (1108, '57f5-ae01-a8ef-a1b3'),
 (1053, '5805-c13d-bd93-9dc2'),
-(1046, '5861-2b47-2cf5-8178'),
 (1091, '586b-319c-f66b-b44c'),
 (1321, '5878-09f1-d954-473d'),
 (1726, '587d-8eb2-536d-ac3f'),
@@ -829,7 +952,6 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (1212, '87cf-8c97-10e7-04b6'),
 (1517, '8804-3737-5a68-a7d0'),
 (1497, '881e-dfcc-373a-7bee'),
-(1050, '8856-93ae-9754-bdb7'),
 (1596, '88b8-d108-cde2-2edd'),
 (1710, '88dc-1f5a-1fe9-8d71'),
 (1750, '88eb-f1d0-a453-7a42'),
@@ -942,7 +1064,6 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (1959, 'a3ef-bff9-d5d6-e6d0'),
 (1428, 'a471-0f48-ee49-5b5d'),
 (1737, 'a507-bcbc-3b9a-2b98'),
-(1045, 'a59d-219f-dcad-53c5'),
 (1837, 'a5cc-ada6-f03c-f775'),
 (1207, 'a70d-22cc-7213-a898'),
 (1988, 'a7e1-c691-efee-ca1f'),
@@ -984,7 +1105,6 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (1429, 'af03-9413-09e1-940f'),
 (1158, 'afa7-d480-fb4f-4b29'),
 (1295, 'aff0-e651-a7de-266f'),
-(1048, 'b049-a966-19c1-a2e7'),
 (1696, 'b05b-4d5f-7e67-8a3e'),
 (1253, 'b0c5-d306-dc3b-5cd6'),
 (1616, 'b11e-2fe9-a542-ef00'),
@@ -1272,7 +1392,6 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (1741, 'fb71-4f8c-ef04-7a03'),
 (1524, 'fb8b-96c8-8cba-2060'),
 (1257, 'fc04-c80a-b79b-46ad'),
-(1051, 'fd26-2f9f-b38b-3bac'),
 (1243, 'fd41-b00c-7f58-0266'),
 (1222, 'fd4f-7b11-39ee-50bd'),
 (1063, 'fd94-ba4a-8661-bdae'),
@@ -1286,49 +1405,56 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wallet`
+-- Struktur dari tabel `wallet`
 --
 
 CREATE TABLE IF NOT EXISTS `wallet` (
 `id` int(10) unsigned NOT NULL,
   `id_member` int(10) unsigned NOT NULL,
   `balance` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data untuk tabel `wallet`
+--
+
+INSERT INTO `wallet` (`id`, `id_member`, `balance`) VALUES
+(1, 1, 0),
+(2, 2, 3000000),
+(3, 3, 0),
+(4, 4, 0),
+(5, 5, 0),
+(6, 6, 0),
+(7, 7, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wallet_logs`
+-- Struktur dari tabel `wallet_logs`
 --
 
 CREATE TABLE IF NOT EXISTS `wallet_logs` (
 `id` int(10) unsigned NOT NULL,
-  `id_wallet` int(10) unsigned NOT NULL,
+  `id_member` int(10) unsigned NOT NULL,
   `type` varchar(255) NOT NULL,
   `message` varchar(255) NOT NULL,
   `amount` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `activation_member_logs`
+--
+ALTER TABLE `activation_member_logs`
+ ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `bonus_conf`
---
-ALTER TABLE `bonus_conf`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `bonus_level_conf`
---
-ALTER TABLE `bonus_level_conf`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -1341,12 +1467,6 @@ ALTER TABLE `captcha`
 -- Indexes for table `contents`
 --
 ALTER TABLE `contents`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `konfirmasi_pendaftaran`
---
-ALTER TABLE `konfirmasi_pendaftaran`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -1371,6 +1491,30 @@ ALTER TABLE `profile`
 -- Indexes for table `transfer_referral`
 --
 ALTER TABLE `transfer_referral`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transfer_referral_bukti`
+--
+ALTER TABLE `transfer_referral_bukti`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transfer_referral_cancel`
+--
+ALTER TABLE `transfer_referral_cancel`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transfer_referral_conf`
+--
+ALTER TABLE `transfer_referral_conf`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transfer_referral_conf_amount`
+--
+ALTER TABLE `transfer_referral_conf_amount`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -1402,35 +1546,25 @@ ALTER TABLE `wallet_logs`
 --
 
 --
+-- AUTO_INCREMENT for table `activation_member_logs`
+--
+ALTER TABLE `activation_member_logs`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+--
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `bonus_conf`
---
-ALTER TABLE `bonus_conf`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `bonus_level_conf`
---
-ALTER TABLE `bonus_level_conf`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `captcha`
 --
 ALTER TABLE `captcha`
-MODIFY `captcha_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=67;
+MODIFY `captcha_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=121;
 --
 -- AUTO_INCREMENT for table `contents`
 --
 ALTER TABLE `contents`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `konfirmasi_pendaftaran`
---
-ALTER TABLE `konfirmasi_pendaftaran`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `members`
 --
@@ -1450,7 +1584,27 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 -- AUTO_INCREMENT for table `transfer_referral`
 --
 ALTER TABLE `transfer_referral`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=62;
+--
+-- AUTO_INCREMENT for table `transfer_referral_bukti`
+--
+ALTER TABLE `transfer_referral_bukti`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `transfer_referral_cancel`
+--
+ALTER TABLE `transfer_referral_cancel`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `transfer_referral_conf`
+--
+ALTER TABLE `transfer_referral_conf`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `transfer_referral_conf_amount`
+--
+ALTER TABLE `transfer_referral_conf_amount`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `transfer_referral_msg`
 --
@@ -1465,7 +1619,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2041;
 -- AUTO_INCREMENT for table `wallet`
 --
 ALTER TABLE `wallet`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `wallet_logs`
 --

@@ -1,5 +1,4 @@
-<div class='row'>
-<div class='col-md-6'>
+
 <center>
 <h3 >Pendaftaran Berhasil</h3>
     <div class='clearfix'></div>
@@ -12,5 +11,3 @@ Pendaftaran berhasil silahkan login
 Kemudian lakukan aktifasi akun <br><br>
 </center>
 
-</div>
-</div>

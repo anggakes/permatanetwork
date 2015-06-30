@@ -15,6 +15,7 @@ class Member_model extends CI_Model
 		$this->load->database();
 		$this->load->model('member_model');
 		$this->load->model('wallet_model');
+		$this->load->library('transferreferrallibrary');
 		
 	}
 
@@ -164,6 +165,49 @@ class Member_model extends CI_Model
 		return $downline_obj;
 	}
 
+	public function countDownline(){
+		return $this->recursiveCountDownline($this->getDownline());
+	}
+
+	private function recursiveCountDownline($listOfItems){	
+		$jumlah = 0;
+      	foreach ($listOfItems as $item) {
+          $jumlah ++;
+          if ($item->hasDownline()) {
+             $jumlah += $this->recursiveCountDownline($item->getDownline()); // here is the recursion
+          }
+      	}
+      	return $jumlah;
+	}
+
+
+	public function getBalance(){
+		return $this->wallet_model->getBalance($this);
+	}
+
+	/*
+	Transfer referral 
+	*/
+
+	public function cariReferralTransfer(){
+
+		return $this->transferreferrallibrary->cariReferral(serialize($this));
+	}
+
+	public function getDataAllTransfer(){
+
+		return $this->transferreferrallibrary->getDataAll($this->attributes('id'));
+	}
+
+	public function getDataAllVerifikasiTransfer(){
+
+		return $this->transferreferrallibrary->getDataAllVerifikasi($this->attributes('id'));
+	}
+
+	public function cekSudahTransferSemua(){
+		
+	}
+
 	/*
 	* Membuat chart downline
 	* 1 user memiliki null atau banyak downline
@@ -238,11 +282,6 @@ class Member_model extends CI_Model
 	                'rules' => 'required'
 	        ),
 	        array(
-	                'field' => 'profile[tanggal_lahir]',
-	                'label' => 'Tanggal Lahir',
-	                'rules' => 'required'
-	        ),
-	        array(
 	                'field' => 'profile[alamat]',
 	                'label' => 'Alamat',
 	                'rules' => 'required'
@@ -270,6 +309,19 @@ class Member_model extends CI_Model
 	         array(
 	                'field' => 'profile[no_rekening]',
 	                'label' => 'Nomor Rekening',
+	                'rules' => 'required'
+	        ),
+	           array(
+	                'field' => 'profile[nama_bank]',
+	                'label' => 'Nama Bank',
+	                'rules' => 'required'
+	        ),  array(
+	                'field' => 'profile[no_rekening]',
+	                'label' => 'Nomor Rekening',
+	                'rules' => 'required'
+	        ),  array(
+	                'field' => 'profile[nama_rekening]',
+	                'label' => 'Nama Rekening',
 	                'rules' => 'required'
 	        ),
 	       

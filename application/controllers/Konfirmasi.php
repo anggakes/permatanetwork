@@ -14,6 +14,9 @@ class Konfirmasi extends CI_Controller {
         $this->load->model('member_model');
 	    $this->load->library('authlibrary',$this->params);
 	    $this->load->model('voucher_model');
+
+	    $this->authlibrary->check_login();
+		$this->authlibrary->check_role('members');
 	    
 	}//
 
@@ -22,16 +25,23 @@ class Konfirmasi extends CI_Controller {
 		$pesan ='';
 		$sukses = false;
 
-		$this->authlibrary->check_login();
-		$this->authlibrary->check_role('members');
-
 		$this->db->trans_start();
 		if($this->voucher_model->cekKodeVoucher($this->input->post('kode_voucher'))){
 			$user = unserialize($_SESSION['login_user']);
-			$user->activation(2);
-
+			
+			$data = array(
+				"id_member" => $user->attributes('id'),
+				"keterangan" => "Aktivasi dengan Voucher ".$this->input->post('kode_voucher'),
+				"created_at" => date('Y-m-j H:i:s'),
+				"tahap_aktivasi" => "voucher" //tahap aktifasi jadi transfer
+			);
+			
+			$user->activation(2); // 2 adalah status member menjadi transfer 
+			$this->db->insert("activation_member_logs",$data); // catat logs
+			$user->cariReferralTransfer(); // cari referral yang akan di transfer
+			
 			$_SESSION['login_user'] = serialize($this->member_model->getData($user->attributes('username')));
-			$pesan = "Selamat Anda. Kode Voucher berhasil.";
+			$pesan = "Selamat Anda berhasil. Kode Voucher benar.";
 			$sukses = true;
 		}
 		else{
@@ -47,7 +57,7 @@ class Konfirmasi extends CI_Controller {
 
 	public function statusAktif(){
 		$user = unserialize($_SESSION['login_user']);
-		$user->activation(1);
+		//$user->activation(1);
 	}
 	
 	

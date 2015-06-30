@@ -7,25 +7,62 @@ if(isset($_SESSION['message'])):
 <?php endif; ?>
 <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Transfer </h3>
-              <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>
-              </div>
+              <h3 class="box-title">Daftar Member yang wajib Anda Transfer :  </h3>
+              
+                <a href='<?= base_url()?>konfirmasi/statusaktif' class='btn btn-danger pull-right'>Lapor <br> Selesai Transfer</a>              
+  <div class='clearfix'></div>
+             
             </div>
             <div class="box-body" style="display: block;">
 
 
-                   <form role="form" class='col-md-4 col-md-offset-4' action ="<?= base_url('konfirmasi/statustransfer') ?>" method='post'>
-                    <!-- textarea -->
-                    <div class="form-group">
-                      <label>Kode Voucher</label>
-                      <input type='text' name='kode_voucher' required class="form-control" rows="3" placeholder="contoh: 312k-sdsj-12kk-3kwi">
-                    </div>
 
-                    <button type="submit" class="btn btn-primary"><i class='fa fa-send'></i> Kirim</button>
-                 
-                  </form></center>
+
+<div class='row'>
+<?php foreach ($user->getDataAllTransfer() as $r): ?>
+
+<?php
+  $status = "belum di transfer";
+  
+  if($r->status_transfer == 1){
+      $status = "menunggu konfirmasi";
+  }elseif($r->status_transfer == 2){
+      $status = "selesai";
+  }
+
+?>
+
+
+<div class='col-md-6' >
+  <div class='com-md-12' style=''>
+    <dl class="dl-horizontal" style='margin-left:10px'>
+       <dt>Nama Lengkap :</dt><dd><?= $r->nama?></dd>
+       <dt>Kontak :</dt><dd><?= $r->no_hp?></dd>
+        <dt>Email :</dt><dd><?= $r->email?></dd>
+         <dt>Alamat :</dt><dd><?= $r->alamat?></dd>
+
+          <dt>Nama Bank :</dt><dd><?= $r->nama_bank?></dd>
+           <dt>No Rekening :</dt><dd><?= $r->no_rekening?></dd>
+            <dt>Atas Nama Rekening :</dt><dd><?= $r->nama_rekening?></dd>
+            <dt>Yang harus ditransfer :</dt><dd><?= $r->amount?></dd>
+   <dt>Status :</dt><dd><?= $status?></dd>
+    </dl>
+  </div>
+  <a href='<?= base_url("transfer/konfirmasi/".$r->id_transfer) ?>' class='btn btn-
+     <?= ($r->status_transfer==0) ? "btn-success" : "" ?>
+   pull-right'>
+    <?= ($r->status_transfer==0) ? "Konfirmasi" : "Riwayat" ?>
+   Transfer</a>
+  <div class='clearfix'></div>
+             <hr>
+</div>
+
+<?php endforeach; ?>
+</div>
+
+
+
+
                 
             </div><!-- /.box-body -->
           

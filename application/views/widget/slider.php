@@ -46,15 +46,29 @@
             <div>
                 <img u="image" src="<?= base_url() ?>theme/jssor-slider/img/01.jpg" />
                   <div u=caption t="CLIP|LR" du="1500" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:200px; height:200px;"> 
-                <h4>Manfaat Kecubung</h4>
-                Touch swipe and responsive<br> javascript image slider
+                <h4>Batu Kecubung Aura</h4>
+                Sarana Praktis Meningkatkan Pesona, Kewibawaan dan Keberuntungan.
                 </div>
             </div>
             <div> 
                 <img u="image" src="<?= base_url() ?>theme/jssor-slider/img/02.jpg" />
                 <div u=caption t="CLIP|LR" du="1500" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:200px; height:200px;"> 
-                <h4>Manfaat Kecubung</h4>
-                Touch swipe and responsive<br> javascript image slider
+                 <h4>Batu Kecubung Aura</h4>
+                Menyimpan energi positif yang berada pada tempat-tempat suci.
+                </div>
+            </div>
+            <div> 
+                <img u="image" src="<?= base_url() ?>theme/jssor-slider/img/03.jpg" />
+                <div u=caption t="CLIP|LR" du="1500" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:200px; height:200px;"> 
+                <h4>Batu Kecubung Aura</h4>
+                Bermanfaat sebagai penunjang kesuksesan dan kebahagiaan.
+                </div>
+            </div>
+			<div> 
+                <img u="image" src="<?= base_url() ?>theme/jssor-slider/img/04.jpg" />
+                <div u=caption t="CLIP|LR" du="1500" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:200px; height:200px;"> 
+                <h4>Batu Kecubung Aura</h4>
+                Memancarkan gelombang energi positif ke alam semesta.
                 </div>
             </div>
            
