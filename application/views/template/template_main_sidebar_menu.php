@@ -69,7 +69,7 @@
               </a>
             </li>
             <li>
-              <a href="<?= base_url(); ?>">
+              <a href="<?= base_url(); ?>admin/contents/slider">
                 <i class="fa fa-dashboard"></i> <span>Slide Show</span>
               </a>
             </li>

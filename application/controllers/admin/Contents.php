@@ -21,6 +21,7 @@ class Contents extends CI_Controller {
         $this->load->library('template');
 	    $this->load->library('authlibrary',$this->params);
 	    $this->load->library('grocery_CRUD');
+        $this->load->library('image_CRUD');
 
         // untuk mengecek login belum, jika belum di redirect ke login
         $this->authlibrary->check_login();
@@ -111,4 +112,28 @@ class Contents extends CI_Controller {
         return $slug;  
     }
  
+    public function slider(){
+
+         $image_crud = new image_CRUD();
+         $image_crud->set_table('sliders');
+         $image_crud->set_url_field('image_url');
+         $image_crud->set_title_field('caption');
+         $image_crud->set_ordering_field('order')
+        ->set_image_path('assets/uploads/sliders');
+         $output = $image_crud->render();
+
+         /*$crud = new grocery_CRUD;
+         $crud->set_table('sliders');
+         $crud->unset_columns('image_url','order');
+         $crud->unset_delete();
+         $crud->unset_add();
+         $crud->unset_read();
+         $output2 = $crud->render();
+         
+         $data['output1'] = $output;
+         $data['output2'] = $output2;
+         */
+
+         $this->template->load('template/template_main','admin/contents',$output);
+    }
 }

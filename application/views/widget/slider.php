@@ -43,6 +43,7 @@
         <!-- Slides Container --> 
         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 980px; height: 380px;
             overflow: hidden;">
+            
             <div>
                 <img u="image" src="<?= base_url() ?>theme/jssor-slider/img/01.jpg" />
                   <div u=caption t="CLIP|LR" du="1500" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:200px; height:200px;"> 

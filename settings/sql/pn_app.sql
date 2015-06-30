@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 30 Jun 2015 pada 10.56
--- Versi Server: 5.6.20
--- PHP Version: 5.5.15
+-- Generation Time: Jul 01, 2015 at 01:09 AM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `activation_member_logs`
+-- Table structure for table `activation_member_logs`
 --
 
 CREATE TABLE IF NOT EXISTS `activation_member_logs` (
@@ -32,10 +32,10 @@ CREATE TABLE IF NOT EXISTS `activation_member_logs` (
   `keterangan` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `tahap_aktivasi` enum('voucher','transfer') NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `activation_member_logs`
+-- Dumping data for table `activation_member_logs`
 --
 
 INSERT INTO `activation_member_logs` (`id`, `id_member`, `keterangan`, `created_at`, `tahap_aktivasi`) VALUES
@@ -44,7 +44,7 @@ INSERT INTO `activation_member_logs` (`id`, `id_member`, `keterangan`, `created_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
@@ -57,10 +57,10 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `super_admin` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id`, `email`, `username`, `nama`, `password`, `updated_at`, `created_at`, `last_login`, `super_admin`) VALUES
@@ -69,7 +69,7 @@ INSERT INTO `admin` (`id`, `email`, `username`, `nama`, `password`, `updated_at`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `captcha`
+-- Table structure for table `captcha`
 --
 
 CREATE TABLE IF NOT EXISTS `captcha` (
@@ -77,10 +77,10 @@ CREATE TABLE IF NOT EXISTS `captcha` (
   `captcha_time` int(10) unsigned DEFAULT NULL,
   `ip_address` varchar(16) DEFAULT NULL,
   `word` varchar(20) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=121 ;
+) ENGINE=MyISAM AUTO_INCREMENT=121 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `captcha`
+-- Dumping data for table `captcha`
 --
 
 INSERT INTO `captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUES
@@ -177,7 +177,7 @@ INSERT INTO `captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `contents`
+-- Table structure for table `contents`
 --
 
 CREATE TABLE IF NOT EXISTS `contents` (
@@ -188,10 +188,10 @@ CREATE TABLE IF NOT EXISTS `contents` (
   `slug` varchar(255) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `contents`
+-- Dumping data for table `contents`
 --
 
 INSERT INTO `contents` (`id`, `judul`, `isi`, `jenis`, `slug`, `updated_at`, `created_at`) VALUES
@@ -200,7 +200,7 @@ INSERT INTO `contents` (`id`, `judul`, `isi`, `jenis`, `slug`, `updated_at`, `cr
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `members`
+-- Table structure for table `members`
 --
 
 CREATE TABLE IF NOT EXISTS `members` (
@@ -214,10 +214,10 @@ CREATE TABLE IF NOT EXISTS `members` (
   `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `referral_code` varchar(10) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `members`
+-- Dumping data for table `members`
 --
 
 INSERT INTO `members` (`id`, `code`, `email`, `username`, `password`, `updated_at`, `created_at`, `last_login`, `referral_code`, `status`) VALUES
@@ -233,7 +233,7 @@ INSERT INTO `members` (`id`, `code`, `email`, `username`, `password`, `updated_a
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengumuman`
+-- Table structure for table `pengumuman`
 --
 
 CREATE TABLE IF NOT EXISTS `pengumuman` (
@@ -243,12 +243,12 @@ CREATE TABLE IF NOT EXISTS `pengumuman` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `expired_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `profile`
+-- Table structure for table `profile`
 --
 
 CREATE TABLE IF NOT EXISTS `profile` (
@@ -263,10 +263,10 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `nama_bank` varchar(255) NOT NULL,
   `no_rekening` varchar(255) NOT NULL,
   `nama_rekening` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `profile`
+-- Dumping data for table `profile`
 --
 
 INSERT INTO `profile` (`id`, `id_member`, `nama`, `alamat`, `kota`, `provinsi`, `kode_pos`, `no_hp`, `nama_bank`, `no_rekening`, `nama_rekening`) VALUES
@@ -282,7 +282,31 @@ INSERT INTO `profile` (`id`, `id_member`, `nama`, `alamat`, `kota`, `provinsi`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transfer_referral`
+-- Table structure for table `sliders`
+--
+
+CREATE TABLE IF NOT EXISTS `sliders` (
+`id` int(10) unsigned NOT NULL,
+  `image_url` varchar(255) NOT NULL,
+  `caption` varchar(255) NOT NULL,
+  `isi` varchar(255) NOT NULL,
+  `order` int(10) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sliders`
+--
+
+INSERT INTO `sliders` (`id`, `image_url`, `caption`, `isi`, `order`) VALUES
+(5, '18849-01.jpg', 'Batu Kecubung Aura', 'Sarana Praktis Meningkatkan Pesona, Kewibawaan dan Keberuntungan.', 1),
+(6, '71e0e-02.jpg', 'Batu Kecubung Aura', 'Menyimpan energi positif yang berada pada tempat-tempat suci.', 2),
+(7, '9bdf8-03.jpg', 'Batu Kecubung Aura', 'Bermanfaat sebagai penunjang kesuksesan dan kebahagiaan.', 3),
+(8, 'f01b3-04.jpg', 'Batu Kecubung Aura', 'Memancarkan gelombang energi positif ke alam semesta.', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transfer_referral`
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral` (
@@ -295,10 +319,10 @@ CREATE TABLE IF NOT EXISTS `transfer_referral` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `transfered_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `confirmation_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=62 ;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `transfer_referral`
+-- Dumping data for table `transfer_referral`
 --
 
 INSERT INTO `transfer_referral` (`id`, `id_member`, `id_referral`, `amount`, `status_transfer`, `updated_at`, `created_at`, `transfered_at`, `confirmation_at`) VALUES
@@ -312,7 +336,7 @@ INSERT INTO `transfer_referral` (`id`, `id_member`, `id_referral`, `amount`, `st
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transfer_referral_bukti`
+-- Table structure for table `transfer_referral_bukti`
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_bukti` (
@@ -325,34 +349,34 @@ CREATE TABLE IF NOT EXISTS `transfer_referral_bukti` (
   `nama_rekening_pengirim` varchar(255) NOT NULL,
   `no_rekening_pengirim` varchar(255) NOT NULL,
   `bukti_transfer` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transfer_referral_cancel`
+-- Table structure for table `transfer_referral_cancel`
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_cancel` (
 `id` int(10) unsigned NOT NULL,
   `id_transfer_referral` int(10) unsigned NOT NULL,
   `msg` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transfer_referral_conf`
+-- Table structure for table `transfer_referral_conf`
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_conf` (
 `id` int(10) unsigned NOT NULL,
   `downline` int(11) NOT NULL,
   `max_income` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `transfer_referral_conf`
+-- Dumping data for table `transfer_referral_conf`
 --
 
 INSERT INTO `transfer_referral_conf` (`id`, `downline`, `max_income`) VALUES
@@ -364,17 +388,17 @@ INSERT INTO `transfer_referral_conf` (`id`, `downline`, `max_income`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transfer_referral_conf_amount`
+-- Table structure for table `transfer_referral_conf_amount`
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_conf_amount` (
 `id` int(10) unsigned NOT NULL,
   `level` int(11) NOT NULL,
   `value` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `transfer_referral_conf_amount`
+-- Dumping data for table `transfer_referral_conf_amount`
 --
 
 INSERT INTO `transfer_referral_conf_amount` (`id`, `level`, `value`) VALUES
@@ -389,7 +413,7 @@ INSERT INTO `transfer_referral_conf_amount` (`id`, `level`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transfer_referral_msg`
+-- Table structure for table `transfer_referral_msg`
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_msg` (
@@ -398,21 +422,21 @@ CREATE TABLE IF NOT EXISTS `transfer_referral_msg` (
   `msg` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `voucher`
+-- Table structure for table `voucher`
 --
 
 CREATE TABLE IF NOT EXISTS `voucher` (
 `id` int(10) unsigned NOT NULL,
   `nomor` varchar(19) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2041 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2041 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `voucher`
+-- Dumping data for table `voucher`
 --
 
 INSERT INTO `voucher` (`id`, `nomor`) VALUES
@@ -1405,17 +1429,17 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `wallet`
+-- Table structure for table `wallet`
 --
 
 CREATE TABLE IF NOT EXISTS `wallet` (
 `id` int(10) unsigned NOT NULL,
   `id_member` int(10) unsigned NOT NULL,
   `balance` int(10) unsigned NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `wallet`
+-- Dumping data for table `wallet`
 --
 
 INSERT INTO `wallet` (`id`, `id_member`, `balance`) VALUES
@@ -1430,7 +1454,7 @@ INSERT INTO `wallet` (`id`, `id_member`, `balance`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `wallet_logs`
+-- Table structure for table `wallet_logs`
 --
 
 CREATE TABLE IF NOT EXISTS `wallet_logs` (
@@ -1439,7 +1463,7 @@ CREATE TABLE IF NOT EXISTS `wallet_logs` (
   `type` varchar(255) NOT NULL,
   `message` varchar(255) NOT NULL,
   `amount` int(10) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables
@@ -1485,6 +1509,12 @@ ALTER TABLE `pengumuman`
 -- Indexes for table `profile`
 --
 ALTER TABLE `profile`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sliders`
+--
+ALTER TABLE `sliders`
  ADD PRIMARY KEY (`id`);
 
 --
@@ -1579,6 +1609,11 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `sliders`
+--
+ALTER TABLE `sliders`
 MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `transfer_referral`
