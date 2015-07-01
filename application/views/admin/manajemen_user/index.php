@@ -13,6 +13,7 @@ endif;
               <div class="box-tools pull-right">
                <a href='<?= base_url() ?>admin/manajemenmember'> Semua</a> |
                <a href='<?= base_url() ?>admin/manajemenmember?status=1'> Aktif</a> | 
+               <a href='<?= base_url() ?>admin/manajemenmember?status=2'> Transfer</a> | 
                <a href='<?= base_url() ?>admin/manajemenmember?status=0'> Tidak Aktif</a> | 
                <a href='<?= base_url() ?>admin/manajemenmember?status=-1'> Banned</a>
               </div>

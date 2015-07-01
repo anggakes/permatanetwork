@@ -76,8 +76,10 @@
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
           </a> -->
+        
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+               
 
               <!-- Notifications: style can be found in dropdown.less -->
               <li class="dropdown notifications-menu">
@@ -163,6 +165,13 @@
           <div class="user-panel" style='background:#000'>
             <h5 style='color:#c0c0c0'>Kode Member :</h5>
             <h2 style='text-align:center;color:#c0c0c0'><?= $user->attributes('code') ?></h2>
+<?php if($user->attributes('status') == 2): ?>
+<hr>
+            <h5 style='color:#c0c0c0'>Waktu Transfer :</h5>
+            <h3 style='text-align:center;color:#c0c0c0' id='clock'></h3>
+<?php endif; ?>
+
+              
           </div>
 <?php endif; ?>
           <!-- sidebar menu: : style can be found in sidebar.less -->
@@ -226,7 +235,15 @@
     <!-- AdminLTE App -->
     <script src="<?= base_url() ?>theme/dist/js/app.min.js" type="text/javascript"></script>    
 
+    <?php if($user->attributes('status') == 2): ?>
+    <!-- Countdown -->
+    <script type="text/javascript" src="<?= base_url() ?>theme/jquery-countdown/jquery.countdown.min.js"></script>
 
-    
+    <script type="text/javascript">
+        $('#clock').countdown("<?= date('Y/m/d h:i:s',strtotime($user->attributes('limited_transfer_at'))) ?>", function(event) {
+          $(this).html(event.strftime('%D Hari %H:%M:%S'));
+        });
+    </script>
+    <?php endif; ?>
   </body>
 </html>

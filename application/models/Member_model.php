@@ -70,12 +70,42 @@ class Member_model extends CI_Model
 		// update status member
 		// 0 => tidak aktif, 1=> aktif, 2=>transfer, -1=>banned
 		$this->db->set('status',$status);
+
+		if($status == 1){
+			
+			$this->db->set('activation_at',date('Y-m-j H:i:s'));
+
+		}else if($status == 2){
+
+			$waktu_transfer = date('Y-m-j H:i:s',strtotime(date('Y-m-j H:i:s').'+ 36 hours'));
+			$this->db->set('limited_transfer_at',$waktu_transfer);
+		}
+
 		$this->db->where('id', $this->attributes('id'));
 		$this->db->update('members');
+
+		if($status == 2){
+			
+			$this->setAutomaticBlock($waktu_transfer);
+		}
 
 		$this->db->trans_complete();
 
 		return $this->db->trans_status();
+	}
+
+	public function setAutomaticBlock($waktu_transfer){
+
+		// set timer menggunakan mysql event
+
+		$query = "CREATE EVENT banned_".$this->attributes('id')."
+			    ON SCHEDULE AT FROM_UNIXTIME(".strtotime($waktu_transfer).")
+			    DO
+			      BEGIN
+			        UPDATE members SET status = '-1' WHERE id = ".$this->attributes('id').";
+			      END";
+
+		return $this->db->query($query);
 	}
 
 	public function toogleStatus(){
@@ -204,8 +234,9 @@ class Member_model extends CI_Model
 		return $this->transferreferrallibrary->getDataAllVerifikasi($this->attributes('id'));
 	}
 
-	public function cekSudahTransferSemua(){
-		
+	public function cekSelesaiTransfer(){
+
+		return $this->transferreferrallibrary->cekSelesaiTransfer($this->attributes('id'));
 	}
 
 	/*

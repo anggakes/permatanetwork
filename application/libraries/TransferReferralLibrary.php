@@ -116,6 +116,18 @@ class TransferReferralLibrary {
             return $this->db->trans_status();
         }
 
+        public function cekSelesaiTransfer($id_member){
+            $sipp = true;
+            $all = $this->db->query("SELECT status_transfer FROM transfer_referral WHERE id_member = '$id_member'")->result();
+            foreach ($all as $key => $value) {
+                if($value->status_transfer != 2){
+                    $sipp = false;
+                }
+            }
+
+            return $sipp;
+        }
+
         public function getDataAll($id_member){
 
                 $all   = $this->db->query(" SELECT transfer_referral.id as id_transfer, transfer_referral.*,members.*, profile.* FROM transfer_referral JOIN members ON members.id = transfer_referral.id_referral JOIN profile ON members.id = profile.id_member WHERE transfer_referral.id_member = '$id_member'")->result();
