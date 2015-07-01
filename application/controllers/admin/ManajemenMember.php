@@ -76,6 +76,7 @@ class ManajemenMember extends CI_Controller {
 
 	private function _setStatus($status){
 
+
 		if($status==1){
 
 			return "<span class='label label-success'>Aktif</span>";
@@ -88,6 +89,9 @@ class ManajemenMember extends CI_Controller {
 
 			return "<span class='label label-danger'>Banned</span>";
 
+		}else if($status == 2){
+
+			return "<span class='label label-default'>Transfer</span>";
 		}
 	}
 
@@ -98,6 +102,8 @@ class ManajemenMember extends CI_Controller {
 
 
 	private function _aksi($id, $status){
+
+		$button ='';
 
 		if($status==1){
 
