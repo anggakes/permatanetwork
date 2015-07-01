@@ -76,7 +76,8 @@ class Member_model extends CI_Model
 			$this->db->set('activation_at',date('Y-m-j H:i:s'));
 
 		}else if($status == 2){
-			$waktu_transfer = date('Y-m-j H:i:s',strtotime(date('Y-m-j H:i:s').'+ 36 hours');
+
+			$waktu_transfer = date('Y-m-j H:i:s',strtotime(date('Y-m-j H:i:s').'+ 36 hours'));
 			$this->db->set('limited_transfer_at',$waktu_transfer);
 		}
 
