@@ -83,8 +83,12 @@ class Member_model extends CI_Model
 
 		$this->db->where('id', $this->attributes('id'));
 		$this->db->update('members');
+		
+		if($status == 1){
 
-		if($status == 2){
+			$this->deleteAutomaticBlock($waktu_transfer);
+
+		}else if($status == 2){
 			
 			$this->setAutomaticBlock($waktu_transfer);
 		}
@@ -98,12 +102,16 @@ class Member_model extends CI_Model
 
 		// set timer menggunakan mysql event
 
-		$query = "CREATE EVENT banned_".$this->attributes('id')."
-			    ON SCHEDULE AT FROM_UNIXTIME(".strtotime($waktu_transfer).")
-			    DO
-			      BEGIN
-			        UPDATE members SET status = '-1' WHERE id = ".$this->attributes('id').";
-			      END";
+		$query = "CREATE EVENT banned_".$this->attributes('id')." ON SCHEDULE AT '".$waktu_transfer."'  ON COMPLETION NOT PRESERVE ENABLE DO UPDATE members SET status = -1 WHERE id = ".$this->attributes('id')."";
+
+		return $this->db->query($query);
+	}
+
+	public function deleteAutomaticBlock($waktu_transfer){
+
+		// delete timer menggunakan mysql event
+
+		$query = "DROP EVENT IF EXISTS banned_".$this->attributes('id')."";
 
 		return $this->db->query($query);
 	}
