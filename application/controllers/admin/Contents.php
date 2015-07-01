@@ -122,18 +122,6 @@ class Contents extends CI_Controller {
         ->set_image_path('assets/uploads/sliders');
          $output = $image_crud->render();
 
-         /*$crud = new grocery_CRUD;
-         $crud->set_table('sliders');
-         $crud->unset_columns('image_url','order');
-         $crud->unset_delete();
-         $crud->unset_add();
-         $crud->unset_read();
-         $output2 = $crud->render();
-         
-         $data['output1'] = $output;
-         $data['output2'] = $output2;
-         */
-
          $this->template->load('template/template_main','admin/contents',$output);
     }
 }
