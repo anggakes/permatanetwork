@@ -34,5 +34,9 @@ class Admin_model extends CI_Model
 		}
 	}
 
-
+	public function hash_password($password) {
+		
+		
+		return password_hash($password, PASSWORD_BCRYPT);
+	}
 }

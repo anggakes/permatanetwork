@@ -51,8 +51,8 @@ class Contents extends CI_Controller {
         $crud=$this->master();
         $crud->where('jenis',0);
         
-        
         $output = $crud->render();
+        $output->title='Kelola Artikel';
         $this->template->load('template/template_main','admin/contents',$output);
     }
 
@@ -62,8 +62,9 @@ class Contents extends CI_Controller {
         $crud=$this->master();
         $crud->where('jenis',1);
         
-        
         $output = $crud->render();
+        $output->title='Kelola Halaman';
+
         $this->template->load('template/template_main','admin/contents',$output);
 
     }
@@ -78,6 +79,7 @@ class Contents extends CI_Controller {
         $crud->unset_read();
         
         $output = $crud->render();
+        $output->title='Kelola Homepage';
         $this->template->load('template/template_main','admin/contents',$output);
         
     }
@@ -118,9 +120,10 @@ class Contents extends CI_Controller {
          $image_crud->set_table('sliders');
          $image_crud->set_url_field('image_url');
          $image_crud->set_title_field('caption');
-         $image_crud->set_ordering_field('order')
+         $image_crud->set_ordering_field('urutan')
         ->set_image_path('assets/uploads/sliders');
          $output = $image_crud->render();
+         $output->title='Kelola Slide Show';
 
          $this->template->load('template/template_main','admin/contents',$output);
     }

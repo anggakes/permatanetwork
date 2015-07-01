@@ -43,35 +43,17 @@
         <!-- Slides Container --> 
         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 980px; height: 380px;
             overflow: hidden;">
-            
+            <?php for($i=0;$i<4;$i++) :?>
+
             <div>
-                <img u="image" src="<?= base_url() ?>theme/jssor-slider/img/01.jpg" />
+                <img u="image" src="<?= base_url() ?>assets/uploads/sliders/<?= $slider[$i]->image_url; ?>"/>
                   <div u=caption t="CLIP|LR" du="1500" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:200px; height:200px;"> 
                 <h4>Batu Kecubung Aura</h4>
-                Sarana Praktis Meningkatkan Pesona, Kewibawaan dan Keberuntungan.
+                <?= $slider[$i]->caption; ?>
                 </div>
             </div>
-            <div> 
-                <img u="image" src="<?= base_url() ?>theme/jssor-slider/img/02.jpg" />
-                <div u=caption t="CLIP|LR" du="1500" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:200px; height:200px;"> 
-                 <h4>Batu Kecubung Aura</h4>
-                Menyimpan energi positif yang berada pada tempat-tempat suci.
-                </div>
-            </div>
-            <div> 
-                <img u="image" src="<?= base_url() ?>theme/jssor-slider/img/03.jpg" />
-                <div u=caption t="CLIP|LR" du="1500" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:200px; height:200px;"> 
-                <h4>Batu Kecubung Aura</h4>
-                Bermanfaat sebagai penunjang kesuksesan dan kebahagiaan.
-                </div>
-            </div>
-			<div> 
-                <img u="image" src="<?= base_url() ?>theme/jssor-slider/img/04.jpg" />
-                <div u=caption t="CLIP|LR" du="1500" class="captionOrange"  style="position:absolute; left:20px; top: 30px; width:200px; height:200px;"> 
-                <h4>Batu Kecubung Aura</h4>
-                Memancarkan gelombang energi positif ke alam semesta.
-                </div>
-            </div>
+
+            <?php endfor; ?>
            
 
           

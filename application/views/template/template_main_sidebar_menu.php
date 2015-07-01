@@ -72,7 +72,7 @@
             <?php if($user->attributes('super_admin')): ?>
             <li class="header">SUPER ADMIN</li>
                 <li>
-                  <a href="<?= base_url(); ?>">
+                  <a href="<?= base_url(); ?>admin/manajemenadmin">
                     <i class="fa fa-user-secret"></i> <span>Manajemen Admin</span>
                   </a>
                 </li>
