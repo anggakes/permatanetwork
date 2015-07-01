@@ -79,7 +79,7 @@ class Konfirmasi extends CI_Controller {
 			$sukses = true;
 		}
 		else{
-			$pesan = "Maaf nda belum mentransfer semuanya";
+			$pesan = "Maaf status transfer anda belum di verifikasi semua, Harap tunggu verifikasi member lainnya";
 
 		}
 		$this->db->trans_complete();

@@ -16,7 +16,7 @@ class Home extends CI_Controller {
         $this->load->library('session');
         $this->load->model('member_model');
 	    $this->load->library('authlibrary',$this->params);
-
+	    $this->load->library('transferreferrallibrary');
 	    
 	}//
 
@@ -32,6 +32,7 @@ class Home extends CI_Controller {
 			
 			if($user->attributes('status') == 1){
 
+				$data['verifikasi'] = $this->transferreferrallibrary->getDataAllVerifikasi($user->attributes('id')," AND status_transfer = 1");
 				$this->template->load('template/template_main','member/home/dashboard',$data);	
 			}
 			else if($user->attributes('status') == 2){

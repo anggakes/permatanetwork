@@ -17,7 +17,10 @@ class Transfer extends CI_Controller {
         $this->load->model('member_model');
 	    $this->load->library('authlibrary',$this->params);
 	    $this->load->library('form_validation'); 
-	    $this->load->library('transferreferrallibrary');  
+	    $this->load->library('transferreferrallibrary');
+
+	    $this->authlibrary->check_login();
+		$this->authlibrary->check_role('members');  
 	    
 	}//
 
@@ -46,7 +49,7 @@ class Transfer extends CI_Controller {
 			{
 				$this->session->set_flashdata('message',$this->upload->display_errors());
 				$this->session->set_flashdata('sukses', false);
-				redirect(base_url()."konfirmasi/".$id_transfer);
+				redirect(base_url()."transfer/konfirmasi/".$id_transfer);
 			}
 			else
 			{

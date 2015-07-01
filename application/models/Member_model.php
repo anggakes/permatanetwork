@@ -42,7 +42,7 @@ class Member_model extends CI_Model
 			$data_profile['id_member'] 	= $id_member;
 		$this->db->insert('profile',$data_profile);	
 		// buat dompet dulu om ! 
-		$this->wallet_model->create($this);
+		$this->wallet_model->create($id_member);
 
 		$this->db->trans_complete();
 
@@ -223,9 +223,16 @@ class Member_model extends CI_Model
 		return $this->wallet_model->getBalance($this);
 	}
 
+
+
 	/*
 	Transfer referral 
 	*/
+
+	public function getMaxIncome(){
+		
+		return $this->transferreferrallibrary->getMaxIncome(count($this->getDownline()));
+	}
 
 	public function cariReferralTransfer(){
 
