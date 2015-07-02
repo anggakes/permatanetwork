@@ -6,25 +6,27 @@
           <ul class="sidebar-menu">
              <li class="header">MAIN NAVIGATION</li>
              
-               
+          <?php if($user->attributes('status') == 2) : ?>
                   <li>
                     <a href="<?= base_url(); ?>">
-                      <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                      <i class="fa fa-send"></i> <span>Data Transfer</span>
                     </a>
                   </li>
+          <?php endif; ?>
+
           <?php if($user->isActive()) : ?>
 
+                  <li>
+                    <a href="<?= base_url(); ?>">
+                      <i class="fa fa-line-chart"></i> <span>Stat Member</span>
+                    </a>
+                  </li>
                   <li class="">
                     <a href="<?= base_url(); ?>transfer/verifikasi">
                       <i class="fa fa-money"></i> <span>Verifikasi Transfer</span>
                     </a>
                   </li>
-                  <li class="">
-                    <a href="<?= base_url(); ?>">
-                      <i class="fa fa-book"></i> <span>Panduan</span>
-                    </a>
-                    
-                  </li>
+                 
                  
                 
           <?php endif; ?>
@@ -35,7 +37,7 @@
             <li class="header">MAIN NAVIGATION</li>
             <li>
               <a href="<?= base_url(); ?>">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                <i class="fa fa-line-chart"></i> <span>Stat Sistem</span>
               </a>
             </li>
              <li>

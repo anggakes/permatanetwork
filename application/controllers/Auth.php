@@ -16,6 +16,7 @@ class Auth extends CI_Controller {
 	{
 	    parent::__construct();
 
+	    $this->load->database();
         $this->load->library('form_validation');
         $this->load->library('template');
         $this->load->library('session');
@@ -129,9 +130,21 @@ class Auth extends CI_Controller {
 		$this->template->load('template/template_auth','auth/not_allowed');
 	}
 	
+	
+	public function get_referral_code($usernameOrRefcode){
+		if($usernameOrRefcode != ''){
+			$data = $this->db->query("SELECT members.username,members.code as codex, profile.* FROM members JOIN profile ON members.id = profile.id_member WHERE username = '$usernameOrRefcode' OR code = '$usernameOrRefcode' ")->row();
+		
+			echo json_encode($data);
+
+		}
+	}
+
 	public function tes($val){
 
 		print_r($this->member_model->hash_password($val));
 
 	}
+
+
 }

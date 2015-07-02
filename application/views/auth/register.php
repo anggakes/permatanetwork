@@ -12,6 +12,14 @@ box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.7
 -webkit-border-radius: 10px 10px 0px 0px;
 color:#444;
   }
+
+  #dataReferral{
+    border:1px dashed #c0c0c0;
+    padding:10px;
+    display:none;
+    margin:10px 0px;
+
+  }
 </style>
 
 <h3 class='col-sm-8'><strong>Member</strong> <small>Registration Form</small></h3>
@@ -43,9 +51,12 @@ color:#444;
   </div>
 </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">Kode Referal</label>
-    <input type="text" name='member[referral_code]' value = "<?= set_value('member[referral_code]')?>" class="form-control" id="" placeholder=" Kode Referal.:C67TY8I">
+    
+    <label for="exampleInputPassword1">Kode Referal Atau Username</label>
+    <input  type="text" name='member[referral_code]' value = "<?= set_value('member[referral_code]')?>" class="form-control" id="usernameOrRefcode" placeholder=" Kode Referal.:C67TY8I">
     <div style='color:red'><?= form_error('member[referral_code]') ?></div>
+    <br>
+    <div id='dataReferral' ></div>
   </div>
  <hr>
  <h4>Biodata </h4>
@@ -118,3 +129,40 @@ color:#444;
   <br>
                           </form>
 
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+    
+// kalo ada waktu perbaiki request jika selesai ngetik aja
+
+    $("#usernameOrRefcode").keyup(function(){
+        if($("#usernameOrRefcode").val()==''){
+            $('#dataReferral').hide();
+        }
+        var usernameOrRefcode = $("#usernameOrRefcode").val();
+        $.ajax({
+            url: "<?= base_url()?>auth/get_referral_code/"+usernameOrRefcode,
+        })
+        .done(function( d ) {
+            var data = jQuery.parseJSON(d);
+            if(data.length != 0) {
+             
+              $('#dataReferral').show();
+              var nama = "<b>Nama </b>         : "+data.nama+"<br>";
+              var username = "<b>Username </b>     : "+data.username+"<br>";
+              var kode = "<b>kode Referral</b> : "+data.codex+"<br>";
+
+              var dataReferral = nama+username+kode;
+
+              $('#dataReferral').html(dataReferral);
+              $('#usernameOrRefcode').val(data.codex);
+
+            }
+        });    
+
+    });
+    
+});
+
+</script>
