@@ -288,7 +288,18 @@ class Member_model extends CI_Model
 	        array(
 	                'field' => 'member[username]',
 	                'label' => 'Username',
-	                'rules' => 'required|is_unique[members.username]'
+	                'rules' => array('required',
+	                				array(
+	                						'member_unique_validation',
+	                						 function($str)
+					                        {
+					                                $cek = $this->db->query("SELECT count(*) as valid FROM members WHERE username='$str'")->row();
+					                                return ($cek->valid<1) ? true :false;
+					                        }
+					                )
+        						),
+	                'errors' => array('member_unique_validation'=>'Username Sudah Terdaftar')
+	                		
 	        ),
 	        array(
 	                'field' => 'member[password]',
@@ -320,7 +331,17 @@ class Member_model extends CI_Model
 	        array(
 	                'field' => 'member[email]',
 	                'label' => 'Email',
-	                'rules' => 'required|is_unique[members.email]'
+	                'rules' => array('required',
+	                				array(
+	                						'email_unique_validation',
+	                						 function($str)
+					                        {
+					                                $cek = $this->db->query("SELECT count(*) as valid FROM members WHERE email='$str'")->row();
+					                                return ($cek->valid<1) ? true :false;
+					                        }
+					                )
+        						),
+	                'errors' => array('email_unique_validation'=>'Alamat Email Sudah Terdaftar')
 	        ),
 	        array(
 	                'field' => 'profile[nama]',

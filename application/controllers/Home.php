@@ -33,6 +33,7 @@ class Home extends CI_Controller {
 			if($user->attributes('status') == 1){
 
 				$data['verifikasi'] = $this->transferreferrallibrary->getDataAllVerifikasi($user->attributes('id')," AND status_transfer = 1");
+				$data['title']="Statistik Member";
 				$this->template->load('template/template_main','member/home/dashboard',$data);	
 			}
 			else if($user->attributes('status') == 2){
