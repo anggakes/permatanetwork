@@ -8,7 +8,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Permata Network | Dashboard</title>
+    <title>Permata Network | 1 Juta Kecubung</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     
     <!-- Bootstrap 3.3.4 -->
@@ -167,8 +167,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            Dashboard
-            <small>Control panel</small>
+           <?= @$title ?>
           </h1>
           <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>

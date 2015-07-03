@@ -38,9 +38,10 @@ class Pengumuman extends CI_Controller {
 		$crud->change_field_type('updated_at','invisible');
         $crud->callback_before_insert(array($this,"_timestamp"));
 
+        $output = $crud->render();
+        $output->title='Kelola Pengumuman';
        
-       
-        $this->template->load('template/template_main','admin/pengumuman',$crud->render());
+        $this->template->load('template/template_main','admin/pengumuman',$output);
 
     }
 

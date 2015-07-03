@@ -20,7 +20,8 @@ class Voucher extends CI_Controller {
         $this->load->library('template');
 	    $this->load->library('authlibrary',$this->params);
 	    $this->load->library('grocery_CRUD');
-
+	    $this->load->model('voucher_model');
+	    $this->load->library('session');
 	    	    // untuk mengecek login belum, jika belum di redirect ke login
 		$this->authlibrary->check_login();
 		$this->authlibrary->check_role('admin');
@@ -33,8 +34,21 @@ class Voucher extends CI_Controller {
         $crud->columns('nomor');
         $crud->display_as('nomor', 'Kode Voucher');
         $crud->unset_operations();       
-       
-        $this->template->load('template/template_main','admin/voucher',$crud->render());
 
+        $output=$crud->render();
+        $output->title='Data Voucher';
+       
+        $this->template->load('template/template_main','admin/voucher',$output);
+
+    }
+
+    public function generateVoucher(){
+    	$generate=$this->voucher_model->createKodeVoucher();
+
+    	if($generate){
+    		$this->session->set_flashdata('message','Voucher berhasil di generate');
+    		$this->session->set_flashdata('sukses',true);
+    		redirect(base_url()."admin/voucher");
+    	}
     }
 }

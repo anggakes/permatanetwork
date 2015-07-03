@@ -25,7 +25,8 @@ class ManajemenMember extends CI_Controller {
 	public function index()
 	{	
 		$data['status'] = '';
-
+		$data['title'] = "Kelola Data Member";
+		
 		if(null !== $this->input->get('status')){
 			
 			$data['status'] = $this->input->get('status');
