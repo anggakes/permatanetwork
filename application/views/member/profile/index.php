@@ -40,14 +40,12 @@
 <dl class="dl-horizontal">
                     <dt>Nama Lengkap</dt>
                     <dd><?= $user->profile('nama') ?></dd>
-                    <dt>Tanggal Lahir</dt>
-                    <dd><?= $user->profile('tanggal_lahir') ?></dd>
+                   
                     <dt>Alamat Lengkap</dt>
                     <dd><?= $user->profile('alamat'). 
-                            " <br>Kota : ".  $user->profile('kota').
-                            " <br>Provinsi : ". $user->profile('provinsi').
-                            " <br>Negara : ". $user->profile('negara').
-                            " <br>Kode Pos :". $user->profile('kode_pos') 
+                            " <br><b>Kota</b> : ".  $user->profile('kota').
+                            " <br><b>Provinsi</b> : ". $user->profile('provinsi').
+                            " <br><b>Kode Pos</b> :". $user->profile('kode_pos') 
                     ?></dd>
                     <dt>Nomor Handphone</dt>
                     <dd><?= $user->profile('no_hp') ?></dd>
@@ -60,8 +58,11 @@
               </div>
             </div>
     <div class='box-footer'>
-
-
+      <div class='pull-right'>
+      <a href="<?= base_url("profile/downline/".$user->attributes('username'))?>" class='btn btn-default' data-toggle="modal" data-target="#myModal">Downline</a>
+       <a href="<?= base_url("profile/upline/".$user->attributes('username'))?>" class='btn btn-default' data-toggle="modal" data-target="#myModal">Upline</a>
+     
+    </div>
     </div>             
          
 
@@ -75,9 +76,7 @@
 <div class="box box-danger">
             <div class="box-header with-border">
               <h3 class="box-title">Stat</h3>
-              <div class="box-tools pull-right">
-              <span class='label label-success'>Status : Aktif</span>  
-              </div>
+              
             </div>
            
             <div class="box-body"  id='main' >
@@ -87,6 +86,10 @@
             <h3 style='text-align:center;color:#c0c0c0'><?= $user->attributes('code') ?></h3>
           </div>
 
+          <div class="user-panel" style=''>
+            <h5 style=''>Status Member :</h5>
+            <h3 style='text-align:center;'><div class='label label-success'><i class='fa fa-check'></i> Aktif</div></h3>
+          </div>
             </div><!-- /.box-body -->   
 
           </div>
@@ -96,49 +99,7 @@
 
 
 
-<!-- orgchart -->
- <ul id="chart" style='display:none'>
-      <li>
-        <!-- Referral -->
-        <?php if($user->hasReferral()) : ?>
-            <adjunct>
-              <a href='<?= base_url() ?>profile/<?= $user->getReferral()->attributes('username') ?>'><?= $user->getReferral()->profile('nama') ?></a>
-            </adjunct> 
-        <?php endif;?>
 
-        <em><a href='<?= base_url() ?>profile/<?= $user->attributes('username') ?>'><?= $user->profile('nama') ?></a></em> 
-        <!-- Downline -->
-           <?php 
-              if($user->hasDownline()){
-                drawChartDownline($user->getDownline());
-              } 
-           ?>
-      
-      </li>
-</ul>
-<!-- end orgchart -->
-<style type="text/css">
-            .orgChart{
-              overflow: scroll;
-              height: 400px;
-            }
-</style>
-
-<div class="box ">
-            <div class="box-header with-border">
-              <h3 class="box-title">Downline</h3>
-              <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>
-              </div>
-            </div>
-           
-            <div class="box-body"  id='downline'  >
-
-
-            </div><!-- /.box-body -->
-            
-          </div>
 
 
 <link rel="stylesheet" href="<?= base_url() ?>theme/plugins/jquery-orgchart/jquery.orgchart.css"/>

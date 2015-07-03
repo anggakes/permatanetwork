@@ -12,7 +12,7 @@ if(isset($_SESSION['message'])):
 <div class='box-header'><h4>Daftar Transfer untuk diverifikasi</h4></div>
 <div class='box-body'>
 
-<table class='table table-bordered table-striped'>
+<table class='table table-bordered table-striped' id='datatable'>
 <thead style='background:#EEFFBA;text-align: center;font-weight: bold'>
 <tr>
 <td>Nama</td>
@@ -60,3 +60,10 @@ if(isset($_SESSION['message'])):
 
 </div>
 </div>
+
+ <script type="text/javascript">
+      $(function () {
+
+         $("#datatable").dataTable(); 
+      });
+    </script>

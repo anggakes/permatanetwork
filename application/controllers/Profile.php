@@ -16,14 +16,27 @@ class Profile extends CI_Controller {
 	    
 	}//
 
-	public function index($username)
+	public function index()
 	{	
 
+		$username = $this->uri->segment(2);
+
+		if(isset($username)){
+			$data['user'] = serialize($this->member_model->getData($username));
+		}else{
+			$data['user'] = $_SESSION['login_user'];
+		}
 		$this->authlibrary->check_login();
+		$this->template->load('template/template_main','member/profile/index',$data);
 		
+	}
+
+	public function downline($username){
+
 		$data['user'] = serialize($this->member_model->getData($username));
-		$this->template->load('template/template_main','member/profile',$data);
 		
+		$this->authlibrary->check_login();
+		$this->load->view('member/profile/downline',$data);
 	}
 	
 	

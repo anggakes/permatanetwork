@@ -25,13 +25,7 @@
     <link href="<?= base_url() ?>theme/dist/css/skin-purple.css" rel="stylesheet" type="text/css" />
     <!-- iCheck -->
     <link href="<?= base_url() ?>theme/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
-       <!-- Date Picker -->
-    <link href="<?= base_url() ?>theme/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
-    <!-- Daterange picker -->
-    <link href="<?= base_url() ?>theme/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
-    <!-- bootstrap wysihtml5 - text editor -->
-    <link href="<?= base_url() ?>theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
-
+   
         <!-- DATA TABLES -->
     <link href="<?= base_url() ?>theme/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
 
@@ -194,19 +188,22 @@
       
     </div><!-- ./wrapper -->
 
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+              loading...
+            </div>
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->
 
     <script>
       $.widget.bridge('uibutton', $.ui.button);
     </script>
     <!-- Bootstrap 3.3.2 JS -->
     <script src="<?= base_url() ?>theme/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>    
-    <!-- daterangepicker -->
-    <script src="<?= base_url() ?>theme/https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js" type="text/javascript"></script>
-    <script src="<?= base_url() ?>theme/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
-    <!-- datepicker -->
-    <script src="<?= base_url() ?>theme/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
-    <!-- Bootstrap WYSIHTML5 -->
-    <script src="<?= base_url() ?>theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
     <!-- Slimscroll -->
     <script src="<?= base_url() ?>theme/plugins/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
     <!-- FastClick -->
@@ -222,7 +219,25 @@
         $('#clock').countdown("<?= date('Y/m/d h:i:s',strtotime($user->attributes('limited_transfer_at'))) ?>", function(event) {
           $(this).html(event.strftime('%D Hari %H:%M:%S'));
         });
+        
     </script>
+
     <?php endif; ?>
+
+    <script type="text/javascript">
+
+        function refreshModal(loading){
+
+          $(document.body).on('hidden.bs.modal', function () {
+              $('.modal-content').html("<div class='modal-body'>"+loading+"</div>");
+              $('#myModal').removeData('bs.modal')
+          });
+        }
+
+
+        /* refresh modal u can change the text with img */
+        refreshModal("Loading..");
+
+    </script>
   </body>
 </html>
