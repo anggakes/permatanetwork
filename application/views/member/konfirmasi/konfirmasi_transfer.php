@@ -14,9 +14,9 @@
 
     
     <div class="form-group">
-    <label for="exampleInputEmail1">Nama Bank Penerima</label> 
-    <input type="text" name='nama_bank_penerima' class="form-control" id="" placeholder="Nama Bank Penerima" value= "<?= $referral->profile('nama_bank'); ?>" >
-    <div style='color:red'><?= form_error('nama_bank_penerima') ?></div>
+    <label for="exampleInputPassword1">Nama Bank Penerima</label>
+    <?php echo form_dropdown('nama_bank_penerima',$bank,$referral->profile('nama_bank'),'class=form-control') ?>
+    <div style='color:red'><?= form_error('profile[nama_bank]') ?></div>
     </div>
 
         <div class="form-group">
@@ -47,22 +47,22 @@
             <div class="box-body" style="display: block;">
 
 
-    
-   
-        <div class="form-group">
-    <label for="exampleInputEmail1">Nama Bank Pengirim</label> 
-    <input type="text" name='nama_bank_pengirim' class="form-control" id="" placeholder="Username atau Email.." value= "<?= $user->profile('nama_bank'); ?>">
-    <div style='color:red'><?= form_error('nama_bank_pengirim') ?></div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Nama Bank Pengirim</label>
+      <?php echo form_dropdown('nama_bank_pengirim',$bank,$user->profile('nama_bank'),'class=form-control') ?>
+      <div style='color:red'><?= form_error('nama_bank_pengirim') ?></div>
     </div>
-        <div class="form-group">
-    <label for="exampleInputEmail1">Nama Rekening Pengirim</label> 
-    <input type="text" name='nama_rekening_pengirim' class="form-control" id="" placeholder="Username atau Email.." value= "<?= $user->profile('nama_rekening'); ?>">
-    <div style='color:red'><?= form_error('nama_rekening_pengirim') ?></div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">Nama Rekening Pengirim</label> 
+      <input type="text" name='nama_rekening_pengirim' class="form-control" id="" placeholder="Username atau Email.." value= "<?= $user->profile('nama_rekening'); ?>">
+      <div style='color:red'><?= form_error('nama_rekening_pengirim') ?></div>
     </div>
-        <div class="form-group">
-    <label for="exampleInputEmail1">Nomor Rekening Pengirim</label> 
-    <input type="text" name='no_rekening_pengirim' class="form-control" id="" placeholder="Username atau Email.." value= "<?= $user->profile('no_rekening'); ?>">
-    <div style='color:red'><?= form_error('no_rekening_pengirim') ?></div>
+        
+    <div class="form-group">
+      <label for="exampleInputEmail1">Nomor Rekening Pengirim</label> 
+      <input type="text" name='no_rekening_pengirim' class="form-control" id="" placeholder="Username atau Email.." value= "<?= $user->profile('no_rekening'); ?>">
+      <div style='color:red'><?= form_error('no_rekening_pengirim') ?></div>
     </div>
   
   <div class='clearfix'></div>
