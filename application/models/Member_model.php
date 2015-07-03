@@ -102,7 +102,7 @@ class Member_model extends CI_Model
 
 		// set timer menggunakan mysql event
 
-		$query = "CREATE EVENT banned_".$this->attributes('id')." ON SCHEDULE AT '".$waktu_transfer."'  ON COMPLETION NOT PRESERVE ENABLE DO UPDATE members SET status = -1 WHERE id = ".$this->attributes('id')."";
+		$query = "CREATE EVENT IF NOT EXISTS banned_".$this->attributes('id')." ON SCHEDULE AT '".$waktu_transfer."'  ON COMPLETION NOT PRESERVE ENABLE DO UPDATE members SET status = -1 WHERE id = ".$this->attributes('id')."";
 
 		return $this->db->query($query);
 	}
@@ -159,6 +159,10 @@ class Member_model extends CI_Model
 			if($this->getReferral()->attributes('status') == 1){
 
 				return true;
+			}
+			else{
+
+				return false;
 			}
 		}
 		else{
@@ -321,12 +325,12 @@ class Member_model extends CI_Model
 					                        function($str)
 					                        {
 					                                
-					                                $cek = $this->db->query("SELECT count(*) as valid FROM members WHERE code='$str'")->row();
+					                                $cek = $this->db->query("SELECT count(*) as valid FROM members WHERE code='$str' AND status = 1")->row();
 					                                return ($cek->valid>0) ? true :false;
 					                        }
 					                )
         						),
-	                'errors' => array('referral_code_validation'=>'Kode Refferal yang anda masukkan tidak valid')        
+	                'errors' => array('referral_code_validation'=>'Kode Refferal yang anda masukkan tidak valid atau Tidak Aktif')        
 	        ),
 	        array(
 	                'field' => 'member[email]',

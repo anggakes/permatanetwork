@@ -28,6 +28,7 @@ class TransferReferralLibrary {
         }
 
         public function cariReferral($member){
+            
                 $member = unserialize($member);
 
                 $this->memenuhiSyarat(serialize($member), $member->attributes('id'));

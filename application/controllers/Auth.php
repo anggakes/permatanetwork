@@ -136,7 +136,7 @@ class Auth extends CI_Controller {
 	
 	public function get_referral_code($usernameOrRefcode){
 		if($usernameOrRefcode != ''){
-			$data = $this->db->query("SELECT members.username,members.code as codex, profile.* FROM members JOIN profile ON members.id = profile.id_member WHERE username = '$usernameOrRefcode' OR code = '$usernameOrRefcode' ")->row();
+			$data = $this->db->query("SELECT members.status as status_member,members.username,members.code as codex, profile.* FROM members JOIN profile ON members.id = profile.id_member WHERE username = '$usernameOrRefcode' OR code = '$usernameOrRefcode' ")->row();
 		
 			echo json_encode($data);
 

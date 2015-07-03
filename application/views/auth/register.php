@@ -149,11 +149,19 @@ $(document).ready(function(){
             if(data.length != 0) {
              
               $('#dataReferral').show();
+              var stat;
               var nama = "<b>Nama </b>         : "+data.nama+"<br>";
               var username = "<b>Username </b>     : "+data.username+"<br>";
               var kode = "<b>kode Referral</b> : "+data.codex+"<br>";
+              
+              if(data.status_member == 1){
+                stat = "Aktif";
+              }else{
+                stat = "Tidak Aktif";
+              }
+              var status = "<b>Status</b> : "+stat+"<br>";
 
-              var dataReferral = nama+username+kode;
+              var dataReferral = nama+username+kode+status;
 
               $('#dataReferral').html(dataReferral);
               $('#usernameOrRefcode').val(data.codex);
