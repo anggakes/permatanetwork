@@ -33,6 +33,8 @@ if(isset($_SESSION['message'])):
       $status = "menunggu konfirmasi";
   }elseif($v->status_transfer == 2){
       $status = "selesai";
+  }elseif($v->status_transfer == -1){
+      $status = "Ditolak";
   }
 
 ?>
@@ -44,8 +46,11 @@ if(isset($_SESSION['message'])):
 <td><?= $v->alamat ?></td>
 <td><?= $status ?></td>
 <td>
-	<?php if($v->status_transfer == 1): ?>
+	<?php if($v->status_transfer == 1 ): ?>
 	<a href="<?= base_url('transfer/verifikasi/'.$v->id_transfer)?>"> Verifikasi </a>
+	<?php endif; ?>
+	<?php if($v->status_transfer == -1 OR $v->status_transfer == 2 ): ?>
+	<a href="<?= base_url('transfer/verifikasi/'.$v->id_transfer)?>"> Riwayat </a>
 	<?php endif; ?>
 </td>
 </tr>

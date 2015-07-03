@@ -94,6 +94,11 @@ class Transfer extends CI_Controller {
 		if($user->attributes('id') == $transfer->data->id_referral){
 
 			$transfer->confirmed($id_transfer, $user, $transfer->data->amount);
+			$this->session->set_flashdata('message',"Verifikasi berhasil");
+			$this->session->set_flashdata('sukses', true);
+		}else{
+			$this->session->set_flashdata('message',"Verifikasi gagal");
+			$this->session->set_flashdata('sukses', false);
 		}
 
 		redirect(base_url()."transfer/verifikasi");
@@ -106,7 +111,12 @@ class Transfer extends CI_Controller {
 
 		if($user->attributes('id') == $transfer->data->id_referral){
 
-			$transfer->cancel();
+			$transfer->cancel($this->input->post('msg'));
+			$this->session->set_flashdata('message',"Penolakan berhasil Disimpan");
+			$this->session->set_flashdata('sukses', true);
+		}else {
+			$this->session->set_flashdata('message',"Penolakan gagal");
+			$this->session->set_flashdata('sukses', false);
 		}
 
 		redirect(base_url()."transfer/verifikasi");

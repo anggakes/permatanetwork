@@ -5,6 +5,7 @@ if(isset($_SESSION['message'])):
 <?= $_SESSION['message']?>
 </div>
 <?php endif; ?>
+
 <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Daftar Member yang wajib Anda Transfer :  </h3>
@@ -28,6 +29,8 @@ if(isset($_SESSION['message'])):
       $status = "menunggu konfirmasi";
   }elseif($r->status_transfer == 2){
       $status = "selesai";
+  }elseif($r->status_transfer == -1){
+      $status = "Ditolak";
   }
 
 ?>

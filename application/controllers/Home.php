@@ -42,6 +42,10 @@ class Home extends CI_Controller {
 			else if($user->attributes('status') == 0){
 
 				$this->template->load('template/template_main','member/home/inactive',$data);
+
+			}else if($user->attributes('status') == -1){
+
+				$this->template->load('template/template_main','member/home/banned',$data);
 			}
 			
 		}else{

@@ -98,9 +98,11 @@ class TransferReferralLibrary {
             return $this->db->trans_status();
         }
 
-         public function cancel($id_transfer, $msg){
+         public function cancel($msg){
 
             $this->db->trans_start();
+                $id_transfer = $this->data->id_transfer;
+
                 $this->db->where('id',$id_transfer);
                 $this->db->set('status_transfer',-1);
                 $this->db->set('confirmation_at', date('Y-m-j H:i:s'));
@@ -114,6 +116,12 @@ class TransferReferralLibrary {
             $this->db->trans_complete();
 
             return $this->db->trans_status();
+        }
+
+        public function getCancelMassage(){
+            $msg = $this->db->query("SELECT msg FROM transfer_referral_cancel WHERE id_transfer_referral = '".$this->data->id_transfer."'")->row();
+            
+            return (count($msg)>0) ? $msg->msg: '';
         }
 
         public function cekSelesaiTransfer($id_member){
@@ -144,7 +152,7 @@ class TransferReferralLibrary {
         public function getData($val, $by='id'){
                 $data = $this
                 ->db
-                ->query("SELECT * FROM ".$this->table." WHERE $by='$val' ")->row();
+                ->query("SELECT ".$this->table.".id as id_transfer, ".$this->table.".* FROM ".$this->table." WHERE $by='$val' ")->row();
                 $this->data = $data;
 
                 return $this;
