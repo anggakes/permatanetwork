@@ -67,6 +67,9 @@ class Auth extends CI_Controller {
 		// Form validation 
 		if ($this->form_validation->run() == FALSE){
 				$data['cap_img'] = $this->captchalibrary->make_captcha();
+				$bank = $this->db->query("SELECT * FROM bank")->result();
+				$data['bank'] = object_to_array($bank,'nama_bank');
+
 
 				$this->template->load('template/template_auth','auth/register',$data);
 

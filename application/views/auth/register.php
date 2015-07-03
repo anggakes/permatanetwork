@@ -98,7 +98,7 @@ color:#444;
   <h4>Informasi Rekening </h4>
     <div class="form-group">
     <label for="exampleInputPassword1">Nama Bank</label>
-    <input type="text" name='profile[nama_bank]' value = "<?= set_value('profile[nama_bank]')?>" class="form-control" id="" placeholder=" Nama Bank">
+    <?php echo form_dropdown('profile[nama_bank]',$bank,set_value('profile[nama_bank]'),'class=form-control') ?>
     <div style='color:red'><?= form_error('profile[nama_bank]') ?></div>
   </div>
   <div class="form-group">

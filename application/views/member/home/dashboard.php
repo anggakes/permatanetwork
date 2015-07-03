@@ -27,6 +27,7 @@ if(isset($_SESSION['message'])):
               </div><!-- /.info-box -->
             </div>
 <div class="col-md-4">
+              <a href ="<?= base_url() ?>profile/<?= $user->attributes('username') ?>">
               <div class="info-box">
                 <span class="info-box-icon bg-green"><i class="fa fa-sitemap"></i></span>
                 <div class="info-box-content">
@@ -34,8 +35,8 @@ if(isset($_SESSION['message'])):
                   <span class="info-box-number"><?= $user->countDownline() ?> Orang</span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
+              </a>
             </div>
-
 </div> <!-- END ROW -->
 
 <div class='row'>
