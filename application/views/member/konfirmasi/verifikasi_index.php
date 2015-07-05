@@ -50,7 +50,7 @@ if(isset($_SESSION['message'])):
 	<a href="<?= base_url('transfer/verifikasi/'.$v->id_transfer)?>"> Verifikasi </a>
 	<?php endif; ?>
 	<?php if($v->status_transfer == -1 OR $v->status_transfer == 2 ): ?>
-	<a href="<?= base_url('transfer/verifikasi/'.$v->id_transfer)?>"> Riwayat </a>
+	<a href="<?= base_url('transfer/riwayat/'.$v->id_transfer)?>"> Riwayat </a>
 	<?php endif; ?>
 </td>
 </tr>

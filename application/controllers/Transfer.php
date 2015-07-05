@@ -41,7 +41,7 @@ class Transfer extends CI_Controller {
 				$bank = $this->db->query("SELECT * FROM bank")->result();
 				$data['bank'] = object_to_array($bank,'nama_bank');
 
-				$this->template->load('template/template_main','member/konfirmasi/index',$data);
+				$this->template->load('template/template_main','member/konfirmasi/konfirmasi_transfer',$data);
 
 		}else{
 
@@ -68,6 +68,15 @@ class Transfer extends CI_Controller {
 			}
 		}//end else
 		
+	}
+
+	public function riwayat($id_transfer){
+		
+		$transfer = $this->transferreferrallibrary->getData($id_transfer);
+		$data['transfer'] = $transfer;
+		
+		$this->template->load('template/template_main','member/konfirmasi/riwayat_transfer',$data);
+
 	}
 
 	public function verifikasi(){

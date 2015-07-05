@@ -1,3 +1,14 @@
+
+<?php 
+if(isset($_SESSION['message'])):
+?>
+<div class='alert alert-<?= ($_SESSION['sukses']) ? 'success' : 'danger'?>'>
+<?= $_SESSION['message']?>
+</div>
+<?php endif; ?>
+
+
+
 <div class='box'>
 <div class='box-header'>
 	<h4>Informasi Transfer</h4>
@@ -6,7 +17,9 @@
 
 <?php 
 $upload_dir = base_url()."konfirmasi_transfer/"; 
-$dataBukti = $transfer->getBukti_transfer();
+$db = $transfer->getBukti_transfer();
+
+foreach ($db as $dataBukti):
 ?>
 
 <div class='col-md-6'>
@@ -37,6 +50,14 @@ $dataBukti = $transfer->getBukti_transfer();
 </tbody>
 </table>
 
+
+</div>
+<div class='col-md-6'>
+	<img src="<?= $upload_dir.$dataBukti->bukti_transfer ?>" width='100%'  />
+</div>
+
+<?php endforeach; ?>
+<!-- Button confirmation -->
 <div class='clearfix'></div><br>
 <?php 
 $pesanCancel = $transfer->getCancelMassage();
@@ -48,9 +69,9 @@ if($pesanCancel != ''): ?>
 <?php endif; ?>
 
 <?php if($transfer->data->id_referral == $user->attributes('id') and $transfer->data->status_transfer == "1"): ?>
-<div id='batal' style="display:none">
+<div id='batal' class='row' style="display:none">
 
-<form role="form" action="<?= base_url("transfer/verifikasi_batal/".$transfer->data->id) ?>" method="post"  class='row' id='form-registrasi' >
+<form role="form" action="<?= base_url("transfer/verifikasi_batal/".$transfer->data->id) ?>" method="post"  class='col-md-12' id='form-registrasi' >
   <div class="form-group">
     <label for="exampleInputEmail1">Alasan Tolak</label> 
     <input type="text" name='msg' class="form-control" id="" placeholder="Alasan anda menolak verifikasi"  >
@@ -70,12 +91,6 @@ if($pesanCancel != ''): ?>
 <a href="#!" class='btn btn-danger pull-right' style='margin-right:5px' id='btn_batal'>Tolak</a>
 </div>
 <?php endif; ?>
-
-
-</div>
-<div class='col-md-6'>
-	<img src="<?= $upload_dir.$dataBukti->bukti_transfer ?>" width='100%'  />
-</div>
 
 </div></div>
 

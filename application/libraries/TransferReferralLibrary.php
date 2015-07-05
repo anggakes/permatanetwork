@@ -42,30 +42,35 @@ class TransferReferralLibrary {
                 // batas transfer 7, masih statis.
                 if($member->hasReferral() and $level <= $this->getMaxLevel()){
                         $referral = $member->getReferral();
-                        $max_income = $this->getMaxIncome(count($referral->getDownline()));
-                        if($max_income>0){
-                                 $balance = $referral->getBalance();
-                                 if($balance<$max_income){
-                                         $this->transfer_member[] = array(
-                                                "id_member"     => $id_member,
-                                                "id_referral"   => $referral->attributes("id"),
-                                                "amount"        => $this->getValue($level),
-                                                "status_transfer"     => 0,
-                                                "updated_at"    =>  date('Y-m-j H:i:s'),
-                                                "created_at"    =>  date('Y-m-j H:i:s'),
-                                        );
-                                         $level++;
-                                 }
-                        }else{
-                                $this->transfer_member[] = array(
-                                                "id_member"     => $id_member,
-                                                "id_referral"   => $referral->attributes("id"),
-                                                "amount"        => $this->getValue($level),
-                                                "status_transfer"    => 0,
-                                                "updated_at"    =>  date('Y-m-j H:i:s'),
-                                                "created_at"    =>  date('Y-m-j H:i:s'),
-                                        );
-                                $level++;
+                        
+                        
+                        if($referral->attributes('status') == 1){ //cek apakah referral aktif
+                          
+                          $max_income = $this->getMaxIncome(count($referral->getDownline()));
+                          if($max_income>0){
+                                     $balance = $referral->getBalance();
+                                     if($balance<$max_income){
+                                             $this->transfer_member[] = array(
+                                                    "id_member"     => $id_member,
+                                                    "id_referral"   => $referral->attributes("id"),
+                                                    "amount"        => $this->getValue($level),
+                                                    "status_transfer"     => 0,
+                                                    "updated_at"    =>  date('Y-m-j H:i:s'),
+                                                    "created_at"    =>  date('Y-m-j H:i:s'),
+                                            );
+                                             $level++;
+                                     }
+                            }else{
+                                    $this->transfer_member[] = array(
+                                                    "id_member"     => $id_member,
+                                                    "id_referral"   => $referral->attributes("id"),
+                                                    "amount"        => $this->getValue($level),
+                                                    "status_transfer"    => 0,
+                                                    "updated_at"    =>  date('Y-m-j H:i:s'),
+                                                    "created_at"    =>  date('Y-m-j H:i:s'),
+                                            );
+                                    $level++;
+                            }
                         }
 
                         $this->memenuhiSyarat(serialize($referral),$id_member, $level);
@@ -164,7 +169,7 @@ class TransferReferralLibrary {
             return  $this->db
                 ->query("SELECT * FROM transfer_referral_bukti 
                             WHERE id_transfer_referral='".$this->data->id."'")
-                ->row();
+                ->result();
         }
 
 // Massage transfer 

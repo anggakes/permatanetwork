@@ -20,7 +20,7 @@ if(isset($_SESSION['message'])):
 
 
 <div class='row'>
-<?php foreach ($user->getDataAllTransfer() as $r): ?>
+<?php foreach ($user->getDataAllTransfer() as $key =>$r): ?>
 
 <?php
   $status = "belum di transfer";
@@ -51,14 +51,23 @@ if(isset($_SESSION['message'])):
    <dt>Status :</dt><dd><?= $status?></dd>
     </dl>
   </div>
-  <a href='<?= base_url("transfer/konfirmasi/".$r->id_transfer) ?>' class='btn btn-
-     <?= ($r->status_transfer==0) ? "btn-success" : "" ?>
-   pull-right'>
-    <?= ($r->status_transfer==0) ? "Konfirmasi" : "Riwayat" ?>
-   Transfer</a>
+<?php if($r->status_transfer == 0): ?>
+   <a href='<?= base_url("transfer/konfirmasi/".$r->id_transfer) ?>' class='btn btn-success pull-right'>
+    Konfirmasi Transfer</a>
+
+<?php else: ?>
+   <a href='<?= base_url("transfer/konfirmasi/".$r->id_transfer) ?>' class='btn btn-success pull-right'>
+    Konfirmasi Ulang <br> Transfer</a>
+  <a href='<?= base_url("transfer/riwayat/".$r->id_transfer) ?>' class='btn  pull-right'>
+    Riwayat Transfer</a>
+   
+<?php endif; ?>
+  
   <div class='clearfix'></div>
              <hr>
 </div>
+
+
 
 <?php endforeach; ?>
 </div>

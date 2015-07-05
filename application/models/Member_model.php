@@ -156,14 +156,9 @@ class Member_model extends CI_Model
 
 		if($this->attributes("referral_code") !== '') {
 			
-			if($this->getReferral()->attributes('status') == 1){
-
+			
 				return true;
-			}
-			else{
-
-				return false;
-			}
+			
 		}
 		else{
 

@@ -1,3 +1,12 @@
+<?php 
+if(isset($_SESSION['message'])):
+?>
+<div class='alert alert-<?= ($_SESSION['sukses']) ? 'success' : 'danger'?>'>
+<?= $_SESSION['message']?>
+</div>
+<?php endif; ?>
+
+
 
 <form role="form" action="<?= base_url("transfer/konfirmasi/".$id_transfer) ?>" method="post"  class='row' id='form-registrasi'  enctype="multipart/form-data">
 <div class="col-md-12">
@@ -74,7 +83,7 @@
           </div>
 
 </div><!-- END col 6-->
-
+<div class='clearfix'></div>
     <div class="form-group">
     <label for="exampleInputEmail1">Bukti pengiriman</label> 
     <input type="file" name='userfile' class="form-control" id="" placeholder="Bukti transfer bank..">
