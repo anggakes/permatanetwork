@@ -84,7 +84,6 @@ class TransferReferralLibrary {
                 
                 $this->db->where('id',$id_transfer);
                 $this->db->set('status_transfer',1);
-                $this->db->set('transfered_at', date('Y-m-j H:i:s'));
                 $this->db->update($this->table);
             $this->db->trans_complete();
 
@@ -104,18 +103,17 @@ class TransferReferralLibrary {
             return $this->db->trans_status();
         }
 
-         public function cancel($msg){
+         public function cancel($msg, $id_bukti){
 
             $this->db->trans_start();
                 $id_transfer = $this->data->id_transfer;
 
                 $this->db->where('id',$id_transfer);
                 $this->db->set('status_transfer',-1);
-                $this->db->set('confirmation_at', date('Y-m-j H:i:s'));
                 $this->db->update($this->table);
 
                 $this->db->insert("transfer_referral_cancel", array(
-                        'id_transfer_referral' => $id_transfer,
+                        'id_transfer_referral_bukti' => $id_bukti,
                         'msg' => $msg
                     ));
 
@@ -124,8 +122,8 @@ class TransferReferralLibrary {
             return $this->db->trans_status();
         }
 
-        public function getCancelMassage(){
-            $msg = $this->db->query("SELECT msg FROM transfer_referral_cancel WHERE id_transfer_referral = '".$this->data->id_transfer."'")->row();
+        public function getCancelMassage($id_bukti){
+            $msg = $this->db->query("SELECT msg FROM transfer_referral_cancel WHERE id_transfer_referral_bukti= '".$id_bukti."'")->row();
             
             return (count($msg)>0) ? $msg->msg: '';
         }

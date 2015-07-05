@@ -85,10 +85,16 @@ if(isset($_SESSION['message'])):
 </div><!-- END col 6-->
 <div class='clearfix'></div>
     <div class="form-group">
-    <label for="exampleInputEmail1">Bukti pengiriman</label> 
+    <label for="exampleInputEmail1">Tanggal Transfer</label> 
+    <input type="date" name='transfered_at' class="form-control" id="" placeholder="Tanggal Transfer">
+    <div style='color:red'><?= form_error('transfered_at') ?></div>
+    </div>
+    <div class="form-group">
+    <label for="exampleInputEmail1">Bukti Transfer</label> 
     <input type="file" name='userfile' class="form-control" id="" placeholder="Bukti transfer bank..">
     <div style='color:red'><?= form_error('usernameOrEmail') ?></div>
     </div>
+
   
   <div class="form-group">
   <button type="submit" class="btn btn-danger pull-right">Kirim Konfirmasi </button>

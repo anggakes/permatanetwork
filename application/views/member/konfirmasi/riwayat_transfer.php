@@ -23,6 +23,7 @@ foreach ($db as $dataBukti):
 ?>
 
 <div class='col-md-6'>
+	Tanggal Transfer : <?= $dataBukti->transfered_at ?><br><br>
 <table class="table table-bordered table-striped ">
 <thead>
 <tr>
@@ -50,17 +51,11 @@ foreach ($db as $dataBukti):
 </tbody>
 </table>
 
+<div class='clearfix'></div>
 
-</div>
-<div class='col-md-6'>
-	<img src="<?= $upload_dir.$dataBukti->bukti_transfer ?>" width='100%'  />
-</div>
-
-<?php endforeach; ?>
-<!-- Button confirmation -->
-<div class='clearfix'></div><br>
+<br>
 <?php 
-$pesanCancel = $transfer->getCancelMassage();
+$pesanCancel = $transfer->getCancelMassage($dataBukti->id);
 if($pesanCancel != ''): ?>
 <div class='pesan' style='border:1px solid #c0c0c0; padding:10px'>
 <h4 style="color:red">Pesan Penolakan : </h4>
@@ -68,10 +63,21 @@ if($pesanCancel != ''): ?>
 </div>
 <?php endif; ?>
 
+</div>
+<div class='col-md-6' style='border:1px dashed #c0c0c0;min-height: 300px'>
+	<img src="<?= $upload_dir.$dataBukti->bukti_transfer ?>"  height:'300px' width='100%'  />
+</div>
+<div class='clearfix'></div><hr>
+<?php endforeach; ?>
+<!-- Button confirmation -->
+
+<!-- Cancel message --> 
+
+
 <?php if($transfer->data->id_referral == $user->attributes('id') and $transfer->data->status_transfer == "1"): ?>
 <div id='batal' class='row' style="display:none">
 
-<form role="form" action="<?= base_url("transfer/verifikasi_batal/".$transfer->data->id) ?>" method="post"  class='col-md-12' id='form-registrasi' >
+<form role="form" action="<?= base_url("transfer/verifikasi_batal/".$transfer->data->id."/".$dataBukti->id) ?>" method="post"  class='col-md-12' id='form-registrasi' >
   <div class="form-group">
     <label for="exampleInputEmail1">Alasan Tolak</label> 
     <input type="text" name='msg' class="form-control" id="" placeholder="Alasan anda menolak verifikasi"  >
@@ -91,6 +97,8 @@ if($pesanCancel != ''): ?>
 <a href="#!" class='btn btn-danger pull-right' style='margin-right:5px' id='btn_batal'>Tolak</a>
 </div>
 <?php endif; ?>
+
+<!-- END Cancel message --> 
 
 </div></div>
 

@@ -74,6 +74,9 @@ class Transfer extends CI_Controller {
 		
 		$transfer = $this->transferreferrallibrary->getData($id_transfer);
 		$data['transfer'] = $transfer;
+		$data['id_transfer'] = $id_transfer;
+		$data['user'] = unserialize($_SESSION['login_user']);
+		$data['referral'] = $this->member_model->getData($transfer->data->id_referral,'id');
 		
 		$this->template->load('template/template_main','member/konfirmasi/riwayat_transfer',$data);
 
@@ -91,7 +94,7 @@ class Transfer extends CI_Controller {
 			$data['member'] = unserialize($_SESSION['login_user']);
 			$data['referral'] = $this->member_model->getData($transfer->data->id_referral,'id');
 
-			$this->template->load('template/template_main','member/konfirmasi/index',$data);
+			$this->template->load('template/template_main','member/konfirmasi/riwayat_transfer',$data);
 		}else{
 			
 			$this->template->load('template/template_main','member/konfirmasi/verifikasi_index',$data);
@@ -116,14 +119,17 @@ class Transfer extends CI_Controller {
 		redirect(base_url()."transfer/verifikasi");
 	}
 
-	public function verifikasi_batal($id_transfer){
-
+	public function verifikasi_batal(){
+		$id_transfer = $this->uri->segment(3);
+		$id_bukti = $this->uri->segment(4);
+		
 		$user = unserialize($_SESSION['login_user']);
 		$transfer = $this->transferreferrallibrary->getData($id_transfer);
 
 		if($user->attributes('id') == $transfer->data->id_referral){
 
-			$transfer->cancel($this->input->post('msg'));
+			$transfer->cancel($this->input->post('msg'), $id_bukti);
+
 			$this->session->set_flashdata('message',"Penolakan berhasil Disimpan");
 			$this->session->set_flashdata('sukses', true);
 		}else {

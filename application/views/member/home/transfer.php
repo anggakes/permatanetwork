@@ -56,8 +56,11 @@ if(isset($_SESSION['message'])):
     Konfirmasi Transfer</a>
 
 <?php else: ?>
-   <a href='<?= base_url("transfer/konfirmasi/".$r->id_transfer) ?>' class='btn btn-success pull-right'>
+
+  <?php if($r->status_transfer == -1): ?>
+   <a href='<?= base_url("transfer/konfirmasi/".$r->id_transfer) ?>' class='btn btn-info pull-right'>
     Konfirmasi Ulang <br> Transfer</a>
+  <?php endif; ?>
   <a href='<?= base_url("transfer/riwayat/".$r->id_transfer) ?>' class='btn  pull-right'>
     Riwayat Transfer</a>
    
@@ -66,7 +69,7 @@ if(isset($_SESSION['message'])):
   <div class='clearfix'></div>
              <hr>
 </div>
-
+<?= ($key%2!=0) ? "<div class='clearfix'></div>" : ""?>
 
 
 <?php endforeach; ?>
