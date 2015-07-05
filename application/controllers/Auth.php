@@ -137,7 +137,9 @@ class Auth extends CI_Controller {
 	public function get_referral_code($usernameOrRefcode){
 		if($usernameOrRefcode != ''){
 			$data = $this->db->query("SELECT members.status as status_member,members.username,members.code as codex, profile.* FROM members JOIN profile ON members.id = profile.id_member WHERE username = '$usernameOrRefcode' OR code = '$usernameOrRefcode' ")->row();
-		
+			$alamat_foto = ($data->foto != '') ? $data->foto : "default.png";
+			$data->foto = "<img src='".base_url()."foto_profil/$alamat_foto' class='img-circle' style='width:80px' />";
+
 			echo json_encode($data);
 
 		}

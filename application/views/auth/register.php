@@ -56,7 +56,14 @@ color:#444;
     <input  type="text" name='member[referral_code]' value = "<?= (isset($kode_referral))? $kode_referral : set_value('member[referral_code]')?>" class="form-control" id="usernameOrRefcode" placeholder=" Kode Referal.:C67TY8I">
     <div style='color:red'><?= form_error('member[referral_code]') ?></div>
     <br>
-    <div id='dataReferral' ></div>
+    <div id='dataReferral' class='row'>
+        <div id='foto' class='col-md-4'>
+
+        </div>
+        <div id='dataReferralProfile' class='col-md-8' >
+
+        </div>
+    </div>
   </div>
  <hr>
  <h4>Biodata </h4>
@@ -157,7 +164,8 @@ $(document).ready(function(){
               var nama = "<b>Nama </b>         : "+data.nama+"<br>";
               var username = "<b>Username </b>     : "+data.username+"<br>";
               var kode = "<b>kode Referral</b> : "+data.codex+"<br>";
-              
+              var foto = data.foto;
+
               if(data.status_member == 1){
                 stat = "Aktif";
               }else{
@@ -167,7 +175,8 @@ $(document).ready(function(){
 
               var dataReferral = nama+username+kode+status;
 
-              $('#dataReferral').html(dataReferral);
+              $('#dataReferralProfile').html(dataReferral);
+              $('#foto').html(foto);
               $('#usernameOrRefcode').val(data.codex);
 
             }

@@ -2,20 +2,6 @@
 
   $user = unserialize($user);
 
-  function drawChartDownline ($listOfItems) {
-      echo "<ul>";
-      foreach ($listOfItems as $item) {
-          echo "<li> 
-          <a href='".base_url()."profile/".$item->attributes('username')."'>".$item->profile('nama')."</a>";
-
-          if ($item->hasDownline()) {
-              drawChartDownline($item->getDownline()); // here is the recursion
-          }
-          echo "</li>";
-      }
-      echo "</ul>";
-  }
-
 ?>
 
 
@@ -35,7 +21,7 @@
  <!-- Sidebar user panel -->
         
             <div class='row'>  
-              <img src="<?= base_url() ?>theme/dist/img/default.png" class="col-md-2 img-circle" alt="User Image" />
+              <img src="<?= base_url() ?>foto_profil/<?= ($user->profile('foto') != '')? $user->profile('foto')  :"default.png"?>" class="col-md-2 img-circle" alt="User Image" />
               <div class='col-md-10'>
 <dl class="dl-horizontal">
                     <dt>Nama Lengkap</dt>
@@ -88,7 +74,16 @@
 
           <div class="user-panel" style=''>
             <h5 style=''>Status Member :</h5>
-            <h3 style='text-align:center;'><div class='label label-success'><i class='fa fa-check'></i> Aktif</div></h3>
+            <?php if($user->attributes('status') == 1){?>
+              <h3 style='text-align:center;'><div class='label label-success'><i class='fa fa-check'></i> Aktif</div></h3>
+            <?php }elseif($user->attributes('status') == 0) {?>
+              <h3 style='text-align:center;'><div class='label label-default'><i class='fa fa-check'></i>Belum Aktif</div></h3>
+            <?php }elseif($user->attributes('status') == 2) {?>
+              <h3 style='text-align:center;'><div class='label label-info'><i class='fa fa-check'></i>Melakukan Transfer</div></h3>
+            <?php }elseif($user->attributes('status') == -1) {?>
+            <h3 style='text-align:center;'><div class='label label-danger'><i class='fa fa-check'></i> Banned</div></h3>
+            
+            <?php } ?>
           </div>
             </div><!-- /.box-body -->   
 
@@ -102,15 +97,3 @@
 
 
 
-<link rel="stylesheet" href="<?= base_url() ?>theme/plugins/jquery-orgchart/jquery.orgchart.css"/>
-<script src="<?= base_url() ?>theme/plugins/jquery-orgchart/jquery.orgchart.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-
-  var org =  $("#chart").orgChart({container: $("#downline")});
-
-
-    
-});
-
-</script>

@@ -55,6 +55,8 @@
         </div> <!-- /.modal-content -->
     </div> <!-- /.modal-dialog -->
 
+<link rel="stylesheet" href="<?= base_url() ?>theme/plugins/jquery-orgchart/jquery.orgchart.css"/>
+<script src="<?= base_url() ?>theme/plugins/jquery-orgchart/jquery.orgchart.js"></script>
 
 
 <script type="text/javascript">

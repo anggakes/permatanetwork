@@ -55,4 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 //routes untuk profile user
 $route['profile/(:any)'] = 'profile/index/$1';
+$route['profile/edit'] = 'profile/edit';
+$route['profile/upload_foto'] = 'profile/upload_foto';
+
 

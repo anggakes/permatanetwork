@@ -83,13 +83,15 @@
                 <span class="hidden-xs">
                   <?php echo($user->profile('nama')) ?>
                 </span>
-                <img src="<?= base_url() ?>theme/dist/img/default.png" class="user-image" alt="User Image"/>
+                <img src="<?= base_url() ?>foto_profil/<?= ($user->profile('foto') != '')? $user->profile('foto')  :"default.png"?>" class="user-image" alt="User Image"/>
                 
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-                    <img src="<?= base_url() ?>theme/dist/img/default.png" class="img-circle" alt="User Image" />
+                    
+                    <img src="<?= base_url() ?>foto_profil/<?= ($user->profile('foto') != '')? $user->profile('foto')  :"default.png"?>" class="img-circle" alt="User Image" />
+                    
                     <p>
                         
                         <?php 
@@ -111,7 +113,7 @@
                   <!-- Menu Footer-->
                   <li class="user-footer">
                     <div class="pull-left">
-                      <a href="#" class="btn btn-default btn-flat">Edit Profil</a>
+                      <a href="<?= base_url('profile/edit'); ?>" class="btn btn-default btn-flat">Edit Profil</a>
                     </div>
                     <div class="pull-right">
                       <a href="<?= base_url('profile/'.$user->attributes('username')) ?>" class="btn btn-default btn-flat">Lihat Profil</a>
