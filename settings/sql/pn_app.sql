@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2015 at 05:25 PM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: 05 Jul 2015 pada 18.17
+-- Versi Server: 5.6.20
+-- PHP Version: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `activation_member_logs`
+-- Struktur dari tabel `activation_member_logs`
 --
 
 CREATE TABLE IF NOT EXISTS `activation_member_logs` (
@@ -32,21 +32,23 @@ CREATE TABLE IF NOT EXISTS `activation_member_logs` (
   `keterangan` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `tahap_aktivasi` enum('voucher','transfer') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
--- Dumping data for table `activation_member_logs`
+-- Dumping data untuk tabel `activation_member_logs`
 --
 
 INSERT INTO `activation_member_logs` (`id`, `id_member`, `keterangan`, `created_at`, `tahap_aktivasi`) VALUES
 (16, 8, 'Aktivasi dengan Voucher b971-80bd-6b97-4f4d', '2015-07-01 08:14:34', 'voucher'),
 (17, 8, 'Aktifasi selesai transfer referral', '2015-07-01 09:02:02', 'transfer'),
-(18, 10, 'Aktivasi dengan Voucher 0069-1bc7-58ac-cad6', '2015-07-01 09:09:23', 'voucher');
+(18, 10, 'Aktivasi dengan Voucher 0069-1bc7-58ac-cad6', '2015-07-01 09:09:23', 'voucher'),
+(19, 11, 'Aktivasi dengan Voucher fb43-5340-8ab3-4464', '2015-07-03 23:34:30', 'voucher'),
+(20, 12, 'Aktivasi dengan Voucher 2a84-f763-39ca-93bb', '2015-07-05 14:20:08', 'voucher');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Struktur dari tabel `admin`
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
@@ -59,10 +61,10 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `super_admin` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `admin`
+-- Dumping data untuk tabel `admin`
 --
 
 INSERT INTO `admin` (`id`, `email`, `username`, `nama`, `password`, `updated_at`, `created_at`, `last_login`, `super_admin`) VALUES
@@ -73,16 +75,16 @@ INSERT INTO `admin` (`id`, `email`, `username`, `nama`, `password`, `updated_at`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `bank`
+-- Struktur dari tabel `bank`
 --
 
 CREATE TABLE IF NOT EXISTS `bank` (
 `id` int(10) unsigned NOT NULL,
   `nama_bank` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `bank`
+-- Dumping data untuk tabel `bank`
 --
 
 INSERT INTO `bank` (`id`, `nama_bank`) VALUES
@@ -101,7 +103,7 @@ INSERT INTO `bank` (`id`, `nama_bank`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `captcha`
+-- Struktur dari tabel `captcha`
 --
 
 CREATE TABLE IF NOT EXISTS `captcha` (
@@ -109,10 +111,10 @@ CREATE TABLE IF NOT EXISTS `captcha` (
   `captcha_time` int(10) unsigned DEFAULT NULL,
   `ip_address` varchar(16) DEFAULT NULL,
   `word` varchar(20) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=159 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=200 ;
 
 --
--- Dumping data for table `captcha`
+-- Dumping data untuk tabel `captcha`
 --
 
 INSERT INTO `captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUES
@@ -242,12 +244,53 @@ INSERT INTO `captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUE
 (155, 1435918228, '::1', 'AoOWaYNs'),
 (156, 1435918259, '::1', '3cVyOt8X'),
 (157, 1435918282, '::1', 'nPm7C17W'),
-(158, 1435918294, '::1', '51nhzCmN');
+(158, 1435918294, '::1', '51nhzCmN'),
+(159, 1435966384, '::1', 'MpcX22Ir'),
+(160, 1436077388, '::1', 'j2gjX6Qd'),
+(161, 1436077396, '::1', 'wOKwfbLH'),
+(162, 1436077549, '::1', '1Im2xM6f'),
+(163, 1436077554, '::1', '4OacRGU5'),
+(164, 1436077564, '::1', 'DEYYo5yq'),
+(165, 1436077672, '::1', 'qTZ6hntk'),
+(166, 1436077677, '::1', 'U2LYep3p'),
+(167, 1436077776, '::1', 'ST7WziV0'),
+(168, 1436077874, '::1', 'nj2ZZseC'),
+(169, 1436077889, '::1', 'Vha5Uptx'),
+(170, 1436088413, '::1', 'Jn99TBp1'),
+(171, 1436088415, '::1', '1Jm1VI0q'),
+(172, 1436088775, '::1', 'd3xYV62W'),
+(173, 1436088784, '::1', 'Vynl3gez'),
+(174, 1436089042, '::1', 'cBG5FXs5'),
+(175, 1436089105, '::1', '9ZalscHK'),
+(176, 1436089170, '::1', 'XCESCmR6'),
+(177, 1436089207, '::1', 'OATuts48'),
+(178, 1436089234, '::1', 'i0wZYhlr'),
+(179, 1436089246, '::1', '6eVOHANF'),
+(180, 1436089303, '::1', 'gfd5gAPb'),
+(181, 1436089326, '::1', 'UgVS96L5'),
+(182, 1436089367, '::1', 'mknAJUnj'),
+(183, 1436089382, '::1', 'xqLMujZn'),
+(184, 1436089511, '::1', '0h1L3uCW'),
+(185, 1436089529, '::1', '9eGMPJ16'),
+(186, 1436103342, '::1', 'r52d60RB'),
+(187, 1436103625, '::1', 'mbSrozdC'),
+(188, 1436103895, '::1', 'TKatlxdL'),
+(189, 1436104359, '::1', 'UHRevGyW'),
+(190, 1436104500, '::1', 'GcVIwm4q'),
+(191, 1436104529, '::1', '5CbDZeur'),
+(192, 1436104551, '::1', 'N0Aj1fdW'),
+(193, 1436104555, '::1', 'NrNN7J42'),
+(194, 1436104964, '::1', 'QyQhjDOd'),
+(195, 1436105090, '::1', 'TjK7RLzn'),
+(196, 1436105269, '::1', '9nQnLm6L'),
+(197, 1436105316, '::1', 'N5B9kR2U'),
+(198, 1436105344, '::1', 'nqof6pWM'),
+(199, 1436105732, '::1', 'a4yGSEfz');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `contents`
+-- Struktur dari tabel `contents`
 --
 
 CREATE TABLE IF NOT EXISTS `contents` (
@@ -258,10 +301,10 @@ CREATE TABLE IF NOT EXISTS `contents` (
   `slug` varchar(255) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `contents`
+-- Dumping data untuk tabel `contents`
 --
 
 INSERT INTO `contents` (`id`, `judul`, `isi`, `jenis`, `slug`, `updated_at`, `created_at`) VALUES
@@ -270,7 +313,7 @@ INSERT INTO `contents` (`id`, `judul`, `isi`, `jenis`, `slug`, `updated_at`, `cr
 -- --------------------------------------------------------
 
 --
--- Table structure for table `members`
+-- Struktur dari tabel `members`
 --
 
 CREATE TABLE IF NOT EXISTS `members` (
@@ -286,27 +329,29 @@ CREATE TABLE IF NOT EXISTS `members` (
   `activation_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `referral_code` varchar(10) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `members`
+-- Dumping data untuk tabel `members`
 --
 
 INSERT INTO `members` (`id`, `code`, `email`, `username`, `password`, `updated_at`, `created_at`, `last_login`, `limited_transfer_at`, `activation_at`, `referral_code`, `status`) VALUES
 (1, 'L4PR01D', 'first@first.com', 'first', '$2y$10$vzgcMQvzSyFoEtWJ39AhGev1C9.aJsg88IjfY4xhH4Y/a0OGrNhl6', '2015-07-01 08:58:44', '2015-06-27 17:00:00', '2015-07-01 08:58:44', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 1),
-(2, '73DD48C', 'isa1@isa.com', 'isa1', '$2y$10$Uybk0xk6If58kmrnMuxRuOECj1KJby8LXNP3N1EE8R3Q6WRaz3XKW', '2015-07-03 08:23:58', '2015-06-28 08:28:30', '2015-07-03 08:23:58', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'L4PR01D', 1),
-(3, 'CFB3350', 'isa2@isa.com', 'isa2', '$2y$10$jWvO.K12nVb6zTaZvnZ4Ke9Yzag4ibGucfyVHYtubFBFgVrdwiPyW', '2015-07-01 09:00:13', '2015-06-28 08:29:39', '2015-07-01 09:00:13', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '73DD48C', 1),
-(4, 'B5E4C8A', 'isa3@isa.com', 'isa3', '$2y$10$nqe0bf/5ZjFo9fUcD8ziiOtFbU8Clbq4D5rxNKBB6f2AuDdfrl2Za', '2015-07-03 08:39:59', '2015-06-28 08:31:02', '2015-07-03 08:39:59', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'CFB3350', 1),
+(2, '73DD48C', 'isa1@isa.com', 'isa', '$2y$10$Uybk0xk6If58kmrnMuxRuOECj1KJby8LXNP3N1EE8R3Q6WRaz3XKW', '2015-07-05 14:24:25', '2015-06-28 08:28:30', '2015-07-05 14:24:25', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'L4PR01D', 1),
+(3, 'CFB3350', 'isa2@isa.com', 'isa2', '$2y$10$jWvO.K12nVb6zTaZvnZ4Ke9Yzag4ibGucfyVHYtubFBFgVrdwiPyW', '2015-07-05 14:25:39', '2015-06-28 08:29:39', '2015-07-05 14:25:39', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '73DD48C', 1),
+(4, 'B5E4C8A', 'isa3@isa.com', 'isa3', '$2y$10$nqe0bf/5ZjFo9fUcD8ziiOtFbU8Clbq4D5rxNKBB6f2AuDdfrl2Za', '2015-07-05 13:42:27', '2015-06-28 08:31:02', '2015-07-03 08:39:59', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'CFB3350', -1),
 (5, '4539A08', 'isa4@isa.com', 'isa4', '$2y$10$1rJoRWxZfOTeC8nn41Ae..QFZHrtjNy0NJCi3wUBjrzkSChqiJkPS', '2015-07-01 09:00:52', '2015-06-28 08:32:07', '2015-07-01 09:00:52', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'B5E4C8A', 1),
 (6, '05AA10F', 'isa5@isa.com', 'isa5', '$2y$10$FpQwLsCUQEdU7Wp3QCqFJe/QfiR9tkKu8pr50XwTYWeSiw4FJHX1m', '2015-07-01 09:01:13', '2015-06-28 08:32:57', '2015-07-01 09:01:13', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '4539A08', 1),
-(7, '88DDC5A', 'isa6@isa.com', 'isa6', '$2y$10$FSWONV0E9SBs9594wXdjWu.cL4hHwP7uQiaJHw.aFaUhYTX/714I2', '2015-07-01 09:01:32', '2015-06-28 08:33:55', '2015-07-01 09:01:32', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '05AA10F', 1),
-(8, '083BF11', 'isa7@isa.com', 'isa7', '$2y$10$oCfzbxRwMikgMKXMNBsLzeUREBDw8GwrwpOWant/R/89NDsIMUraK', '2015-07-03 10:14:12', '2015-06-28 08:34:46', '2015-07-03 10:14:12', '2015-07-02 20:14:34', '2015-07-01 09:02:02', '88DDC5A', 1),
-(10, 'A23174A', 'isa8@isa.com', 'isa8', '$2y$10$fHRjTsdJV1Qe.cMYrTeHvuSr8L5V9NH3BpnIKJZCgoHus.Hsu.WmC', '2015-07-03 10:12:14', '2015-07-01 09:08:48', '2015-07-03 10:12:14', '2015-07-02 21:09:23', '0000-00-00 00:00:00', '083BF11', -1);
+(7, '88DDC5A', 'isa6@isa.com', 'isa6', '$2y$10$FSWONV0E9SBs9594wXdjWu.cL4hHwP7uQiaJHw.aFaUhYTX/714I2', '2015-07-05 14:54:22', '2015-06-28 08:33:55', '2015-07-05 14:54:22', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '05AA10F', 1),
+(8, '083BF11', 'isa7@isa.com', 'isa7', '$2y$10$oCfzbxRwMikgMKXMNBsLzeUREBDw8GwrwpOWant/R/89NDsIMUraK', '2015-07-04 00:28:07', '2015-06-28 08:34:46', '2015-07-04 00:28:07', '2015-07-02 20:14:34', '2015-07-01 09:02:02', '88DDC5A', 1),
+(10, 'A23174A', 'isa8@isa.com', 'isa8', '$2y$10$fHRjTsdJV1Qe.cMYrTeHvuSr8L5V9NH3BpnIKJZCgoHus.Hsu.WmC', '2015-07-03 23:32:16', '2015-07-01 09:08:48', '2015-07-03 23:32:16', '2015-07-02 21:09:23', '0000-00-00 00:00:00', '083BF11', -1),
+(11, 'DDA5019', 'isa00@asa.com', 'isa00', '$2y$10$rtRGXnFEpMZsOYk7ewaZ9u1IpqZhLjXUiaz97tG0M.CRetOVQ7pq6', '2015-07-05 15:22:19', '2015-07-03 23:33:54', '2015-07-05 15:22:19', '2015-07-05 11:34:30', '0000-00-00 00:00:00', '083BF11', 2),
+(12, '22CFEF9', 'isa10@isa10.com', 'isa10', '$2y$10$mSNFHaGUQw.RSmtJpzRIi./zzfOLzoNQnhgnhRDGeY1afkGXEajUq', '2015-07-05 15:20:51', '2015-07-05 14:19:43', '2015-07-05 15:20:51', '2015-07-07 02:20:08', '0000-00-00 00:00:00', '05AA10F', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengumuman`
+-- Struktur dari tabel `pengumuman`
 --
 
 CREATE TABLE IF NOT EXISTS `pengumuman` (
@@ -316,12 +361,12 @@ CREATE TABLE IF NOT EXISTS `pengumuman` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `expired_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `profile`
+-- Struktur dari tabel `profile`
 --
 
 CREATE TABLE IF NOT EXISTS `profile` (
@@ -335,28 +380,31 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `no_hp` varchar(255) NOT NULL,
   `nama_bank` varchar(255) NOT NULL,
   `no_rekening` varchar(255) NOT NULL,
-  `nama_rekening` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `nama_rekening` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
--- Dumping data for table `profile`
+-- Dumping data untuk tabel `profile`
 --
 
-INSERT INTO `profile` (`id`, `id_member`, `nama`, `alamat`, `kota`, `provinsi`, `kode_pos`, `no_hp`, `nama_bank`, `no_rekening`, `nama_rekening`) VALUES
-(1, 1, 'Angga Kesuma', 'jl. sukakarya No.2227 palembang', 'Palembang', 'sumatera selatan', '30152', '089661147512', '', '019283978891923', ''),
-(2, 2, 'isa1', 'isa1', 'isa1', 'isa1', '7868', '708998', '', '323223', ''),
-(3, 3, 'isa2', 'isa2', 'isa2', 'isa2', '2', '3', '', '3', ''),
-(4, 4, 'isa3', 'e', 'e', 'e', 'e', 'e', '', 'e', ''),
-(5, 5, 'isa4', 's', 's', 's', '2', '2', '', '2', ''),
-(6, 6, 'isa5', '2', '2', '3', '3', '3', '', '2', ''),
-(7, 7, 'isa6', '3', '3', '3', '3', '3', '', '3', ''),
-(8, 8, 'isa7', '2', '2', '21', '2', '2', '', '2', ''),
-(10, 10, 'isa8', 'isa', 'isa', 'isa', '5', '5', 'Bni', '930242', 'isa8');
+INSERT INTO `profile` (`id`, `id_member`, `nama`, `alamat`, `kota`, `provinsi`, `kode_pos`, `no_hp`, `nama_bank`, `no_rekening`, `nama_rekening`, `foto`) VALUES
+(1, 1, 'Angga Kesuma', 'jl. sukakarya No.2227 palembang', 'Palembang', 'sumatera selatan', '30152', '089661147512', '', '019283978891923', '', ''),
+(2, 2, 'isa1', 'isa1', 'isa1', 'isa1', '7868', '708998', '', '323223', '', ''),
+(3, 3, 'isa2', 'isa2', 'isa2', 'isa2', '2', '3', '', '3', '', ''),
+(4, 4, 'isa3', 'e', 'e', 'e', 'e', 'e', '', 'e', '', ''),
+(5, 5, 'isa4', 's', 's', 's', '2', '2', '', '2', '', ''),
+(6, 6, 'isa5', '2', '2', '3', '3', '3', '', '2', '', ''),
+(7, 7, 'isa6', '3', '3', '3', '3', '3', '', '3', '', 'isa6.jpg'),
+(8, 8, 'isa7', '2', '2', '21', '2', '2', 'BNI', '2', 'nana', ''),
+(10, 10, 'isa8', 'isa', 'isa', 'isa', '5', '5', 'Bni', '930242', 'isa8', ''),
+(11, 11, 'angga kesuma', 'kalsdk', 'lk', 'laksd', 'llk', 'lk', 'Bank CIMB Niaga', '012391293', 'isa00', ''),
+(12, 12, 'isa10', 'isa10', 'isa10', 'isa10', 'isa10', 'isa10', 'Bank Mandiri', '01293109310293', 'isa10', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sliders`
+-- Struktur dari tabel `sliders`
 --
 
 CREATE TABLE IF NOT EXISTS `sliders` (
@@ -364,10 +412,10 @@ CREATE TABLE IF NOT EXISTS `sliders` (
   `image_url` varchar(255) NOT NULL,
   `caption` varchar(255) NOT NULL,
   `urutan` int(10) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `sliders`
+-- Dumping data untuk tabel `sliders`
 --
 
 INSERT INTO `sliders` (`id`, `image_url`, `caption`, `urutan`) VALUES
@@ -379,7 +427,7 @@ INSERT INTO `sliders` (`id`, `image_url`, `caption`, `urutan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transfer_referral`
+-- Struktur dari tabel `transfer_referral`
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral` (
@@ -387,36 +435,46 @@ CREATE TABLE IF NOT EXISTS `transfer_referral` (
   `id_member` int(10) unsigned NOT NULL,
   `id_referral` int(10) unsigned NOT NULL,
   `amount` int(11) NOT NULL,
+  `unique_transfer` int(11) unsigned NOT NULL,
   `status_transfer` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `transfered_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `confirmation_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=91 ;
 
 --
--- Dumping data for table `transfer_referral`
+-- Dumping data untuk tabel `transfer_referral`
 --
 
-INSERT INTO `transfer_referral` (`id`, `id_member`, `id_referral`, `amount`, `status_transfer`, `updated_at`, `created_at`, `transfered_at`, `confirmation_at`) VALUES
-(68, 8, 7, 150000, 2, '2015-07-01 09:01:40', '2015-07-01 08:14:34', '2015-07-01 08:57:33', '2015-07-01 09:01:40'),
-(69, 8, 6, 100000, 2, '2015-07-01 09:01:22', '2015-07-01 08:14:34', '2015-07-01 08:56:10', '2015-07-01 09:01:22'),
-(70, 8, 5, 100000, 2, '2015-07-01 09:01:03', '2015-07-01 08:14:34', '2015-07-01 08:55:34', '2015-07-01 09:01:03'),
-(71, 8, 4, 100000, 2, '2015-07-01 09:00:43', '2015-07-01 08:14:34', '2015-07-01 08:54:52', '2015-07-01 09:00:43'),
-(72, 8, 3, 100000, 2, '2015-07-01 09:00:25', '2015-07-01 08:14:34', '2015-07-01 08:54:07', '2015-07-01 09:00:25'),
-(73, 8, 1, 100000, 2, '2015-07-01 08:59:07', '2015-07-01 08:14:34', '2015-07-01 08:51:16', '2015-07-01 08:59:07'),
-(74, 10, 8, 150000, 1, '2015-07-01 09:11:29', '2015-07-01 09:09:23', '2015-07-01 09:11:29', '0000-00-00 00:00:00'),
-(75, 10, 7, 100000, 1, '2015-07-02 22:06:36', '2015-07-01 09:09:23', '2015-07-02 22:06:36', '0000-00-00 00:00:00'),
-(76, 10, 6, 100000, 1, '2015-07-02 23:36:42', '2015-07-01 09:09:23', '2015-07-02 23:36:42', '0000-00-00 00:00:00'),
-(77, 10, 5, 100000, 0, '2015-07-01 09:09:23', '2015-07-01 09:09:23', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(78, 10, 4, 100000, 0, '2015-07-01 09:09:23', '2015-07-01 09:09:23', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(79, 10, 3, 100000, 0, '2015-07-01 09:09:23', '2015-07-01 09:09:23', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(80, 10, 1, 100000, 0, '2015-07-01 09:09:23', '2015-07-01 09:09:23', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `transfer_referral` (`id`, `id_member`, `id_referral`, `amount`, `unique_transfer`, `status_transfer`, `updated_at`, `created_at`, `confirmation_at`) VALUES
+(68, 8, 7, 150000, 0, 2, '2015-07-01 09:01:40', '2015-07-01 08:14:34', '2015-07-01 09:01:40'),
+(69, 8, 6, 100000, 0, 2, '2015-07-01 09:01:22', '2015-07-01 08:14:34', '2015-07-01 09:01:22'),
+(70, 8, 5, 100000, 0, 2, '2015-07-01 09:01:03', '2015-07-01 08:14:34', '2015-07-01 09:01:03'),
+(71, 8, 4, 100000, 0, 2, '2015-07-01 09:00:43', '2015-07-01 08:14:34', '2015-07-01 09:00:43'),
+(72, 8, 3, 100000, 0, 2, '2015-07-01 09:00:25', '2015-07-01 08:14:34', '2015-07-01 09:00:25'),
+(73, 8, 1, 100000, 0, 2, '2015-07-01 08:59:07', '2015-07-01 08:14:34', '2015-07-01 08:59:07'),
+(74, 10, 8, 150000, 0, 1, '2015-07-01 09:11:29', '2015-07-01 09:09:23', '0000-00-00 00:00:00'),
+(75, 10, 7, 100000, 0, 1, '2015-07-02 22:06:36', '2015-07-01 09:09:23', '0000-00-00 00:00:00'),
+(76, 10, 6, 100000, 0, 1, '2015-07-02 23:36:42', '2015-07-01 09:09:23', '0000-00-00 00:00:00'),
+(77, 10, 5, 100000, 0, 0, '2015-07-01 09:09:23', '2015-07-01 09:09:23', '0000-00-00 00:00:00'),
+(78, 10, 4, 100000, 0, 0, '2015-07-01 09:09:23', '2015-07-01 09:09:23', '0000-00-00 00:00:00'),
+(79, 10, 3, 100000, 0, 0, '2015-07-01 09:09:23', '2015-07-01 09:09:23', '0000-00-00 00:00:00'),
+(80, 10, 1, 100000, 0, 0, '2015-07-01 09:09:23', '2015-07-01 09:09:23', '0000-00-00 00:00:00'),
+(81, 11, 8, 150000, 0, 1, '2015-07-05 03:01:31', '2015-07-03 23:34:30', '2015-07-04 00:29:40'),
+(82, 11, 7, 100000, 0, 1, '2015-07-05 05:33:20', '2015-07-03 23:34:30', '0000-00-00 00:00:00'),
+(83, 11, 6, 100000, 0, 0, '2015-07-03 23:34:30', '2015-07-03 23:34:30', '0000-00-00 00:00:00'),
+(84, 11, 5, 100000, 0, 0, '2015-07-03 23:34:30', '2015-07-03 23:34:30', '0000-00-00 00:00:00'),
+(85, 11, 4, 100000, 0, 0, '2015-07-03 23:34:30', '2015-07-03 23:34:30', '0000-00-00 00:00:00'),
+(86, 11, 3, 100000, 0, 0, '2015-07-03 23:34:30', '2015-07-03 23:34:30', '0000-00-00 00:00:00'),
+(87, 11, 1, 100000, 0, 0, '2015-07-03 23:34:30', '2015-07-03 23:34:30', '0000-00-00 00:00:00'),
+(88, 12, 6, 150000, 0, 0, '2015-07-05 14:20:08', '2015-07-05 14:20:08', '0000-00-00 00:00:00'),
+(89, 12, 5, 100000, 0, 0, '2015-07-05 14:20:08', '2015-07-05 14:20:08', '0000-00-00 00:00:00'),
+(90, 12, 1, 100000, 0, 0, '2015-07-05 14:20:08', '2015-07-05 14:20:08', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transfer_referral_bukti`
+-- Struktur dari tabel `transfer_referral_bukti`
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_bukti` (
@@ -428,50 +486,64 @@ CREATE TABLE IF NOT EXISTS `transfer_referral_bukti` (
   `nama_bank_pengirim` varchar(255) NOT NULL,
   `nama_rekening_pengirim` varchar(255) NOT NULL,
   `no_rekening_pengirim` varchar(255) NOT NULL,
-  `bukti_transfer` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
+  `bukti_transfer` varchar(255) NOT NULL,
+  `transfered_at` date NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
--- Dumping data for table `transfer_referral_bukti`
+-- Dumping data untuk tabel `transfer_referral_bukti`
 --
 
-INSERT INTO `transfer_referral_bukti` (`id`, `id_transfer_referral`, `nama_bank_penerima`, `nama_rekening_penerima`, `no_rekening_penerima`, `nama_bank_pengirim`, `nama_rekening_pengirim`, `no_rekening_pengirim`, `bukti_transfer`) VALUES
-(14, 73, 'we', 'erer', '019283978891923', 'er', 'ere', '2', '2015-07-1_15-51-16_73.jpg'),
-(15, 72, 'sds', 'sdss', '3', 'sdsd', 'sdsd', '2', '2015-07-1_15-54-07_72.png'),
-(16, 71, 'mdsdq', 'dsknf', 'e', 'nmdsn', 'lmlen', '2', '2015-07-1_15-54-52_71.jpg'),
-(17, 70, 'sdfd', 'fdfdd', '2', 'dfdfd', 'fdfdfd', '2', '2015-07-1_15-55-34_70.jpg'),
-(18, 69, 'fdfd', 'dfdfd', '2', 'dfdf', 'dff', '2', '2015-07-1_15-56-10_69.jpg'),
-(19, 68, 'dfdfFSF', 'FEFEF', '3', 'RER', 'RWRER', '2', '2015-07-1_15-57-33_68.jpg'),
-(20, 74, 'fdddf', 'wfwf', '3', 'Bni', 'isa8', '930242', '2015-07-1_16-11-29_74.jpg'),
-(21, 75, 'BNI', 'erer', '3', 'DANAMON', 'isa8', '930242', '2015-07-3_05-06-36_75.png'),
-(22, 76, 'BANK SUMSEL', 'ddfd', '2', 'DANAMON', 'isa8', '930242', '2015-07-3_06-36-42_76.png');
+INSERT INTO `transfer_referral_bukti` (`id`, `id_transfer_referral`, `nama_bank_penerima`, `nama_rekening_penerima`, `no_rekening_penerima`, `nama_bank_pengirim`, `nama_rekening_pengirim`, `no_rekening_pengirim`, `bukti_transfer`, `transfered_at`) VALUES
+(14, 73, 'we', 'erer', '019283978891923', 'er', 'ere', '2', '2015-07-1_15-51-16_73.jpg', '0000-00-00'),
+(15, 72, 'sds', 'sdss', '3', 'sdsd', 'sdsd', '2', '2015-07-1_15-54-07_72.png', '0000-00-00'),
+(16, 71, 'mdsdq', 'dsknf', 'e', 'nmdsn', 'lmlen', '2', '2015-07-1_15-54-52_71.jpg', '0000-00-00'),
+(17, 70, 'sdfd', 'fdfdd', '2', 'dfdfd', 'fdfdfd', '2', '2015-07-1_15-55-34_70.jpg', '0000-00-00'),
+(18, 69, 'fdfd', 'dfdfd', '2', 'dfdf', 'dff', '2', '2015-07-1_15-56-10_69.jpg', '0000-00-00'),
+(19, 68, 'dfdfFSF', 'FEFEF', '3', 'RER', 'RWRER', '2', '2015-07-1_15-57-33_68.jpg', '0000-00-00'),
+(20, 74, 'fdddf', 'wfwf', '3', 'Bni', 'isa8', '930242', '2015-07-1_16-11-29_74.jpg', '0000-00-00'),
+(21, 75, 'BNI', 'erer', '3', 'DANAMON', 'isa8', '930242', '2015-07-3_05-06-36_75.png', '0000-00-00'),
+(22, 76, 'BANK SUMSEL', 'ddfd', '2', 'DANAMON', 'isa8', '930242', '2015-07-3_06-36-42_76.png', '0000-00-00'),
+(23, 81, 'BNI', 'nana', '2', 'Bank CIMB Niaga', 'isa00', '012391293', '2015-07-4_07-16-22_81.JPG', '0000-00-00'),
+(24, 81, 'BNI', 'nana', '2', 'Bank CIMB Niaga', 'isa00', '012391293', '2015-07-5_10-01-31_81.png', '0000-00-00'),
+(25, 81, 'BNI', 'nana', '2', 'Bank CIMB Niaga', 'isa00', '012391293', '2015-07-5_11-15-07_81.jpg', '2015-07-17'),
+(26, 82, 'BCA', 'asdad', '3', 'Bank CIMB Niaga', 'isa00', '012391293', '2015-07-5_12-27-15_82.jpg', '2015-07-03'),
+(27, 82, 'BCA', 'asasd', '3', 'Bank CIMB Niaga', 'isa00', '012391293', '2015-07-5_12-33-20_82.jpg', '2015-07-12');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transfer_referral_cancel`
+-- Struktur dari tabel `transfer_referral_cancel`
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_cancel` (
 `id` int(10) unsigned NOT NULL,
-  `id_transfer_referral` int(10) unsigned NOT NULL,
+  `id_transfer_referral_bukti` int(10) unsigned NOT NULL,
   `msg` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data untuk tabel `transfer_referral_cancel`
+--
+
+INSERT INTO `transfer_referral_cancel` (`id`, `id_transfer_referral_bukti`, `msg`) VALUES
+(1, 23, 'saya tidak yakin saja beheheh'),
+(2, 26, 'asas');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transfer_referral_conf`
+-- Struktur dari tabel `transfer_referral_conf`
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_conf` (
 `id` int(10) unsigned NOT NULL,
   `downline` int(11) NOT NULL,
   `max_income` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Dumping data for table `transfer_referral_conf`
+-- Dumping data untuk tabel `transfer_referral_conf`
 --
 
 INSERT INTO `transfer_referral_conf` (`id`, `downline`, `max_income`) VALUES
@@ -483,17 +555,17 @@ INSERT INTO `transfer_referral_conf` (`id`, `downline`, `max_income`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transfer_referral_conf_amount`
+-- Struktur dari tabel `transfer_referral_conf_amount`
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_conf_amount` (
 `id` int(10) unsigned NOT NULL,
   `level` int(11) NOT NULL,
   `value` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Dumping data for table `transfer_referral_conf_amount`
+-- Dumping data untuk tabel `transfer_referral_conf_amount`
 --
 
 INSERT INTO `transfer_referral_conf_amount` (`id`, `level`, `value`) VALUES
@@ -508,7 +580,7 @@ INSERT INTO `transfer_referral_conf_amount` (`id`, `level`, `value`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transfer_referral_msg`
+-- Struktur dari tabel `transfer_referral_msg`
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_msg` (
@@ -517,21 +589,21 @@ CREATE TABLE IF NOT EXISTS `transfer_referral_msg` (
   `msg` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `voucher`
+-- Struktur dari tabel `voucher`
 --
 
 CREATE TABLE IF NOT EXISTS `voucher` (
 `id` int(10) unsigned NOT NULL,
   `nomor` varchar(19) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3041 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3041 ;
 
 --
--- Dumping data for table `voucher`
+-- Dumping data untuk tabel `voucher`
 --
 
 INSERT INTO `voucher` (`id`, `nomor`) VALUES
@@ -693,7 +765,6 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (2633, '2973-74b0-da77-0416'),
 (2617, '2a20-6ece-57c4-66c4'),
 (2166, '2a67-43f2-6850-8e3a'),
-(2042, '2a84-f763-39ca-93bb'),
 (2699, '2a9a-80f9-43f3-8d72'),
 (2374, '2aa5-90c4-141a-61dd'),
 (2941, '2ac4-372f-f852-e6dd'),
@@ -1517,7 +1588,6 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (2344, 'fa8c-c4e8-99b1-a3b8'),
 (2118, 'faaa-fbb7-39cb-81ab'),
 (2490, 'fb1c-d169-5938-c758'),
-(2041, 'fb43-5340-8ab3-4464'),
 (2829, 'fbcd-1c13-ef76-53fd'),
 (2758, 'fbec-68ed-a6be-e897'),
 (2290, 'fd41-1da2-37f8-8595'),
@@ -1539,17 +1609,17 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wallet`
+-- Struktur dari tabel `wallet`
 --
 
 CREATE TABLE IF NOT EXISTS `wallet` (
 `id` int(10) unsigned NOT NULL,
   `id_member` int(10) unsigned NOT NULL,
   `balance` int(10) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
--- Dumping data for table `wallet`
+-- Dumping data untuk tabel `wallet`
 --
 
 INSERT INTO `wallet` (`id`, `id_member`, `balance`) VALUES
@@ -1561,12 +1631,14 @@ INSERT INTO `wallet` (`id`, `id_member`, `balance`) VALUES
 (6, 6, 100000),
 (7, 7, 150000),
 (8, 10, 0),
-(9, 8, 0);
+(9, 8, 0),
+(10, 11, 0),
+(11, 12, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wallet_logs`
+-- Struktur dari tabel `wallet_logs`
 --
 
 CREATE TABLE IF NOT EXISTS `wallet_logs` (
@@ -1575,10 +1647,10 @@ CREATE TABLE IF NOT EXISTS `wallet_logs` (
   `type` varchar(255) NOT NULL,
   `message` varchar(255) NOT NULL,
   `amount` int(10) unsigned NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
--- Dumping data for table `wallet_logs`
+-- Dumping data untuk tabel `wallet_logs`
 --
 
 INSERT INTO `wallet_logs` (`id`, `id_member`, `type`, `message`, `amount`) VALUES
@@ -1588,7 +1660,9 @@ INSERT INTO `wallet_logs` (`id`, `id_member`, `type`, `message`, `amount`) VALUE
 (5, 5, 'deposit', 'deposit referral Rp. 100000', 100000),
 (6, 6, 'deposit', 'deposit referral Rp. 100000', 100000),
 (7, 7, 'deposit', 'deposit referral Rp. 150000', 150000),
-(8, 10, 'created', 'Pembuatan wallet', 0);
+(8, 10, 'created', 'Pembuatan wallet', 0),
+(9, 11, 'created', 'Pembuatan wallet', 0),
+(10, 12, 'created', 'Pembuatan wallet', 0);
 
 --
 -- Indexes for dumped tables
@@ -1710,7 +1784,7 @@ ALTER TABLE `wallet_logs`
 -- AUTO_INCREMENT for table `activation_member_logs`
 --
 ALTER TABLE `activation_member_logs`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `admin`
 --
@@ -1725,7 +1799,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 -- AUTO_INCREMENT for table `captcha`
 --
 ALTER TABLE `captcha`
-MODIFY `captcha_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=159;
+MODIFY `captcha_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=200;
 --
 -- AUTO_INCREMENT for table `contents`
 --
@@ -1735,7 +1809,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `pengumuman`
 --
@@ -1745,7 +1819,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `sliders`
 --
@@ -1755,17 +1829,17 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 -- AUTO_INCREMENT for table `transfer_referral`
 --
 ALTER TABLE `transfer_referral`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=81;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=91;
 --
 -- AUTO_INCREMENT for table `transfer_referral_bukti`
 --
 ALTER TABLE `transfer_referral_bukti`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `transfer_referral_cancel`
 --
 ALTER TABLE `transfer_referral_cancel`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `transfer_referral_conf`
 --
@@ -1790,12 +1864,12 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3041;
 -- AUTO_INCREMENT for table `wallet`
 --
 ALTER TABLE `wallet`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `wallet_logs`
 --
 ALTER TABLE `wallet_logs`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
