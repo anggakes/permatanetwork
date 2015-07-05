@@ -12,7 +12,7 @@ if(isset($_SESSION['message'])):
                 <span class="info-box-icon bg-aqua"><i class="fa fa-money"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Total Pendapatan</span>
-                  <span class="info-box-number">Rp. <?= $user->getBalance() ?></span>
+                  <span class="info-box-number">Rp. <?= rupiah($user->getBalance())?></span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div>
@@ -22,12 +22,12 @@ if(isset($_SESSION['message'])):
                 <span class="info-box-icon bg-red"><i class="fa fa-exclamation"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Maximum Pendapatan</span>
-                  <span class="info-box-number"><?= ($user->getMaxIncome() == '' OR $user->getMaxIncome() == 0 or $user->getMaxIncome() == 1) ? "belum ada" : "Rp. ".$user->getMaxIncome() ?></span>
+                  <span class="info-box-number"><?= ($user->getMaxIncome() == '' OR $user->getMaxIncome() == 0 or $user->getMaxIncome() == 1) ? "belum ada" : "Rp. ".rupiah($user->getMaxIncome()) ?></span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div>
 <div class="col-md-4">
-              <a href ="<?= base_url() ?>profile/<?= $user->attributes('username') ?>">
+              <a href ="<?= base_url("profile/downline/".$user->attributes('username'))?>" data-toggle="modal" data-target="#myModal">
               <div class="info-box">
                 <span class="info-box-icon bg-green"><i class="fa fa-sitemap"></i></span>
                 <div class="info-box-content">

@@ -52,6 +52,7 @@ class TransferReferralLibrary {
                                      if($balance<$max_income){
                                              $this->transfer_member[] = array(
                                                     "id_member"     => $id_member,
+                                                    'unique_transfer' => rand(100,999),
                                                     "id_referral"   => $referral->attributes("id"),
                                                     "amount"        => $this->getValue($level),
                                                     "status_transfer"     => 0,
@@ -66,6 +67,7 @@ class TransferReferralLibrary {
                                                     "id_referral"   => $referral->attributes("id"),
                                                     "amount"        => $this->getValue($level),
                                                     "status_transfer"    => 0,
+                                                    'unique_transfer' => rand(100,999),
                                                     "updated_at"    =>  date('Y-m-j H:i:s'),
                                                     "created_at"    =>  date('Y-m-j H:i:s'),
                                             );

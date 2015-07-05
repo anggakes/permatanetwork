@@ -66,7 +66,12 @@ if($pesanCancel != ''): ?>
 
 </div>
 <div class='col-md-6' style='border:1px dashed #c0c0c0;min-height: 300px'>
-	<img src="<?= $upload_dir.$dataBukti->bukti_transfer ?>"  height:'300px' width='100%'  />
+	<?php if($dataBukti->bukti_transfer != ''){ ?>
+  <img src="<?= $upload_dir.$dataBukti->bukti_transfer ?>"  height:'300px' width='100%'  />
+  <?php }else{?>
+  <br><br><br><br><br><br>
+  <center>Gambar tidak ada</center>
+  <?php } ?>
 </div>
 <div class='clearfix'></div><hr>
 <?php endforeach; ?>

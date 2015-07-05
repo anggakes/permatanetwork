@@ -47,25 +47,42 @@ class Transfer extends CI_Controller {
 
 			$file_name = date('Y-m-j_H-i-s')."_".$id_transfer;
 			$this->load->library('upload', $this->_upload_conf($file_name));
-			
-			if ( !$this->upload->do_upload())
-			{
-				$this->session->set_flashdata('message',$this->upload->display_errors());
-				$this->session->set_flashdata('sukses', false);
-				redirect(base_url()."transfer/konfirmasi/".$id_transfer);
-			}
-			else
-			{
-				$data_upload=$this->upload->data();
-				$file = $this->input->post();
-				$file['unique_transfer'] = rand(100,999);
-				$file['id_transfer_referral']= $id_transfer;
-				$file['bukti_transfer']= $file_name.$data_upload['file_ext'];
-				
-				$this->transferreferrallibrary->transfered($file, $id_transfer);
-				$this->session->set_flashdata('message',"Transfer berhasil harap tunggu verifikasi");
-				$this->session->set_flashdata('sukses', true);
-				redirect(base_url());
+		if(isset($_FILES['userfile']) && $_FILES['userfile']['size'] > 0){	
+					if ( !$this->upload->do_upload())
+					{
+						$this->session->set_flashdata('message',$this->upload->display_errors());
+						$this->session->set_flashdata('sukses', false);
+						redirect(base_url()."transfer/konfirmasi/".$id_transfer);
+					}
+					else
+					{
+						$data_upload=$this->upload->data();
+						$file = $this->input->post();
+						
+
+						$file['id_transfer_referral']= $id_transfer;
+						$file['transfered_at']= date("Y-m-d");
+						$file['bukti_transfer']= $file_name.$data_upload['file_ext'];
+						
+						$this->transferreferrallibrary->transfered($file, $id_transfer);
+						$this->session->set_flashdata('message',"Transfer berhasil harap tunggu verifikasi");
+						$this->session->set_flashdata('sukses', true);
+						redirect(base_url());
+					}
+			} 
+			else {
+			    // in here means no file was provided to upload
+			    // choose to ignore or let them know
+						$file = $this->input->post();
+						
+						$file['id_transfer_referral']= $id_transfer;
+						$file['transfered_at']= date("Y-m-d");
+						$file['bukti_transfer']= '';
+						
+						$this->transferreferrallibrary->transfered($file, $id_transfer);
+						$this->session->set_flashdata('message',"Transfer berhasil harap tunggu verifikasi");
+						$this->session->set_flashdata('sukses', true);
+						redirect(base_url());
 			}
 		}//end else
 		

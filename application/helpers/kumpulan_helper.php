@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if ( ! function_exists('element'))
+if ( ! function_exists('object_to_array'))
 {
 	function object_to_array($result,$field,$key=null){
 		$array = array();
@@ -15,5 +15,13 @@ if ( ! function_exists('element'))
 				}
 			}
 		return $array;
+	}
+}
+
+if ( ! function_exists('rupiah'))
+{
+	function rupiah($nilai){
+
+		return number_format($nilai,0,'.',',');
 	}
 }

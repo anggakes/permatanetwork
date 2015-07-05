@@ -46,8 +46,7 @@
     <div class='box-footer'>
       <div class='pull-right'>
       <a href="<?= base_url("profile/downline/".$user->attributes('username'))?>" class='btn btn-default' data-toggle="modal" data-target="#myModal">Downline</a>
-       <a href="<?= base_url("profile/upline/".$user->attributes('username'))?>" class='btn btn-default' data-toggle="modal" data-target="#myModal">Upline</a>
-     
+       
     </div>
     </div>             
          
