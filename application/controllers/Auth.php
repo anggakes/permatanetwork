@@ -70,7 +70,7 @@ class Auth extends CI_Controller {
 				$bank = $this->db->query("SELECT * FROM bank")->result();
 				$data['bank'] = object_to_array($bank,'nama_bank');
 
-
+				$data['kode_referral'] = $this->uri->segment(3);
 				$this->template->load('template/template_auth','auth/register',$data);
 
 		}else{

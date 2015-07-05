@@ -53,7 +53,7 @@ color:#444;
   <div class="form-group">
     
     <label for="exampleInputPassword1">Kode Referal Atau Username</label>
-    <input  type="text" name='member[referral_code]' value = "<?= set_value('member[referral_code]')?>" class="form-control" id="usernameOrRefcode" placeholder=" Kode Referal.:C67TY8I">
+    <input  type="text" name='member[referral_code]' value = "<?= (isset($kode_referral))? $kode_referral : set_value('member[referral_code]')?>" class="form-control" id="usernameOrRefcode" placeholder=" Kode Referal.:C67TY8I">
     <div style='color:red'><?= form_error('member[referral_code]') ?></div>
     <br>
     <div id='dataReferral' ></div>
@@ -137,6 +137,10 @@ $(document).ready(function(){
 // kalo ada waktu perbaiki request jika selesai ngetik aja
 
     $("#usernameOrRefcode").keyup(function(){
+           getReferral_code();
+    });
+
+    function getReferral_code(){
         if($("#usernameOrRefcode").val()==''){
             $('#dataReferral').hide();
         }
@@ -167,9 +171,11 @@ $(document).ready(function(){
               $('#usernameOrRefcode').val(data.codex);
 
             }
-        });    
+        }); 
+    }
 
-    });
+    <?= (isset($kode_referral)) ? "getReferral_code();" : '' ?>
+
     
 });
 
