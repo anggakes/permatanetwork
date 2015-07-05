@@ -37,7 +37,7 @@ if(isset($_SESSION['message'])):
 
 
 <div class='col-md-6' >
-  <div class='com-md-12' style=''>
+  <div class='col-md-12' style=''>
     <dl class="dl-horizontal" style='margin-left:10px'>
        <dt>Nama Lengkap :</dt><dd><?= $r->nama?></dd>
        <dt>Kontak :</dt><dd><?= $r->no_hp?></dd>
@@ -47,7 +47,7 @@ if(isset($_SESSION['message'])):
           <dt>Nama Bank :</dt><dd><?= $r->nama_bank?></dd>
            <dt>No Rekening :</dt><dd><?= $r->no_rekening?></dd>
             <dt>Atas Nama Rekening :</dt><dd><?= $r->nama_rekening?></dd>
-            <dt>Yang harus ditransfer :</dt><dd><?= $r->amount?></dd>
+            <dt>Yang harus ditransfer :</dt><dd><?= $r->amount+$r->unique_transfer?></dd>
    <dt>Status :</dt><dd><?= $status?></dd>
     </dl>
   </div>

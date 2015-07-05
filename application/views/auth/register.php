@@ -13,7 +13,7 @@ box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.7
 color:#444;
   }
 
-  #dataReferral{
+  #loading, #dataReferral{
     border:1px dashed #c0c0c0;
     padding:10px;
     display:none;
@@ -56,6 +56,7 @@ color:#444;
     <input  type="text" name='member[referral_code]' value = "<?= (isset($kode_referral))? $kode_referral : set_value('member[referral_code]')?>" class="form-control" id="usernameOrRefcode" placeholder=" Kode Referal.:C67TY8I">
     <div style='color:red'><?= form_error('member[referral_code]') ?></div>
     <br>
+    <div id='loading'> <center>loading</center></div>
     <div id='dataReferral' class='row'>
         <div id='foto' class='col-md-4'>
 
@@ -142,23 +143,71 @@ $(document).ready(function(){
 
     
 // kalo ada waktu perbaiki request jika selesai ngetik aja
+    //
+// $('#element').donetyping(callback[, timeout=1000])
+// Fires callback when a user has finished typing. This is determined by the time elapsed
+// since the last keystroke and timeout parameter or the blur event--whichever comes first.
+//   @callback: function to be called when even triggers
+//   @timeout:  (default=1000) timeout, in ms, to to wait before triggering event if not
+//              caused by blur.
+// Requires jQuery 1.7+
+//
+;(function($){
+    $.fn.extend({
+        donetyping: function(callback,timeout){
+            timeout = timeout || 1e3; // 1 second default timeout
+            var timeoutReference,
+                doneTyping = function(el){
+                    if (!timeoutReference) return;
+                    timeoutReference = null;
+                    callback.call(el);
+                };
+            return this.each(function(i,el){
+                var $el = $(el);
+                // Chrome Fix (Use keyup over keypress to detect backspace)
+                // thank you @palerdot
+                $el.is(':input') && $el.on('keyup keypress paste',function(e){
+                    // This catches the backspace button in chrome, but also prevents
+                    // the event from triggering too premptively. Without this line,
+                    // using tab/shift+tab will make the focused element fire the callback.
+                    if (e.type=='keyup' && e.keyCode!=8) return;
+                    
+                    // Check if timeout has been set. If it has, "reset" the clock and
+                    // start over again.
+                    if (timeoutReference) clearTimeout(timeoutReference);
+                    timeoutReference = setTimeout(function(){
+                        // if we made it here, our timeout has elapsed. Fire the
+                        // callback
+                        doneTyping(el);
+                    }, timeout);
+                }).on('blur',function(){
+                    // If we can, fire the event since we're leaving the field
+                    doneTyping(el);
+                });
+            });
+        }
+    });
+})(jQuery);
 
-    $("#usernameOrRefcode").keyup(function(){
+
+    $("#usernameOrRefcode").donetyping(function(){
            getReferral_code();
     });
 
+
     function getReferral_code(){
-        if($("#usernameOrRefcode").val()==''){
-            $('#dataReferral').hide();
-        }
+       
+        $('#dataReferral').hide();
+        $('#loading').show();
         var usernameOrRefcode = $("#usernameOrRefcode").val();
-        $.ajax({
+        if(usernameOrRefcode!=''){
+              $.ajax({
             url: "<?= base_url()?>auth/get_referral_code/"+usernameOrRefcode,
         })
         .done(function( d ) {
             var data = jQuery.parseJSON(d);
-            if(data.length != 0) {
-             
+            if(data.success == true) {
+              $('#loading').hide();
               $('#dataReferral').show();
               var stat;
               var nama = "<b>Nama </b>         : "+data.nama+"<br>";
@@ -179,8 +228,16 @@ $(document).ready(function(){
               $('#foto').html(foto);
               $('#usernameOrRefcode').val(data.codex);
 
+            }else{
+              $('#dataReferral').hide();
+              $('#loading').hide();
             }
         }); 
+        }else{
+          $('#dataReferral').hide();
+              $('#loading').hide();
+        }
+        
     }
 
     <?= (isset($kode_referral)) ? "getReferral_code();" : '' ?>

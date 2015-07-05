@@ -58,6 +58,7 @@ class Transfer extends CI_Controller {
 			{
 				$data_upload=$this->upload->data();
 				$file = $this->input->post();
+				$file['unique_transfer'] = rand(100,999);
 				$file['id_transfer_referral']= $id_transfer;
 				$file['bukti_transfer']= $file_name.$data_upload['file_ext'];
 				

@@ -8,10 +8,11 @@ if(isset($_SESSION['message'])):
 <?php endif; ?>
 
 
-
+<div class='row'>
+<div class='col-md-8'>
 <div class='box'>
 <div class='box-header'>
-	<h4>Informasi Transfer</h4>
+	<h4>Riwayat Konfirmasi</h4>
 </div>
 <div class="box-body" style="display: block;">
 
@@ -101,6 +102,44 @@ if($pesanCancel != ''): ?>
 <!-- END Cancel message --> 
 
 </div></div>
+
+</div>
+
+
+<div class='col-md-4'>
+<div class='box'>
+<div class='box-header'>
+	<h4>Informasi Transfer</h4>
+</div>
+<div class="box-body" style="display: block;">
+<?php
+  $status = "belum di transfer";
+  
+  if($transfer->data->status_transfer == 1){
+      $status = "menunggu konfirmasi";
+  }elseif($transfer->data->status_transfer == 2){
+      $status = "selesai";
+  }elseif($transfer->data->status_transfer == -1){
+      $status = "Ditolak";
+  }
+
+?>
+
+
+    <dl class="dl-horizontal" style='margin-left:10px'>
+
+   <dt>Yang harus ditransfer :</dt><dd><?= $transfer->data->amount+$transfer->data->unique_transfer?></dd>
+   <dt>Status :</dt><dd><?= $status?></dd>
+    </dl>
+
+
+</div></div>
+
+</div>
+
+
+
+</div>
 
 <script type="text/javascript">
 
