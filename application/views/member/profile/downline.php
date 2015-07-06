@@ -5,7 +5,7 @@
   function drawChartDownline ($listOfItems) {
       echo "<ul>";
       foreach ($listOfItems as $item) {
-          echo "<li> ".$item->profile('nama')."";
+          echo "<li> ".$item->profile('nama')." (".$item->attributes('username').")";
 
           if ($item->hasDownline()) {
               drawChartDownline($item->getDownline()); // here is the recursion

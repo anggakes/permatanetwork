@@ -81,7 +81,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <span class="hidden-xs">
-                  <?php echo($user->profile('nama')) ?>
+                  <?php echo($user->profile('nama')) ?> (<?php echo($user->attributes('username')) ?>)
                 </span>
                 <img src="<?= base_url() ?>foto_profil/<?= ($user->profile('foto') != '')? $user->profile('foto')  :"default.png"?>" class="user-image" alt="User Image"/>
                 

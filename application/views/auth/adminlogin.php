@@ -11,14 +11,14 @@
     <form role="form" action="<?= base_url() ?>admin/login" method="post" class="col-sm-11" id='form-registrasi'>
     <div class="form-group">
     <label for="exampleInputEmail1">Username atau Email</label> 
-    <input type="text" name='usernameOrEmail' class="form-control" id="" placeholder="Username atau Email..">
+    <input type="text" name='usernameOrEmail' class="form-control" id="" placeholder="Username atau Email.." required>
     <div style='color:red'><?= form_error('usernameOrEmail') ?></div>
     </div>
 
 
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label> 
-    <input type="password" name='password' class="form-control" id="" placeholder="Password..">
+    <input type="password" name='password' class="form-control" id="" placeholder="Password.." required>
     <div style='color:red'><?= form_error('password') ?></div>
   </div>
   

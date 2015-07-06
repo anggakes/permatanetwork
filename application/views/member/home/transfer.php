@@ -40,6 +40,7 @@ if(isset($_SESSION['message'])):
   <div class='col-md-12' style=''>
     <dl class="dl-horizontal" style='margin-left:10px'>
        <dt>Nama Lengkap :</dt><dd><?= $r->nama?></dd>
+       <dt>Username :</dt><dd><?= $r->username?></dd>
        <dt>Kontak :</dt><dd><?= $r->no_hp?></dd>
         <dt>Email :</dt><dd><?= $r->email?></dd>
          <dt>Alamat :</dt><dd><?= $r->alamat?></dd>
