@@ -177,9 +177,11 @@ class Member_model extends CI_Model
 	* mengecek apakah user memiliki downline
 	* 
 	*/
-	public function hasDownline(){
+	public function hasDownline($aktif = true){
 
-		$downline = $this->db->query("SELECT count(*) as banyak FROM members WHERE referral_code = '".$this->attributes('code')."' AND status = 1")->row();
+		$where = ($aktif) ? "AND status = 1" : "";
+
+		$downline = $this->db->query("SELECT count(*) as banyak FROM members WHERE referral_code = '".$this->attributes('code')."' $where")->row();
 
 		return ($downline->banyak > 0) ? true : false;
 	}
@@ -188,9 +190,11 @@ class Member_model extends CI_Model
 	* Mengembalikan object member_model sebagai referral user
 	* 1 user memiliki null atau banyak downline
 	*/
-	public function getDownline(){
+	public function getDownline($aktif = true){
 
-		$downline_data = $this->db->query("SELECT code FROM members WHERE referral_code = '".$this->attributes('code')."' AND status = 1")->result();
+		$where = ($aktif) ? "AND status = 1" : "";
+
+		$downline_data = $this->db->query("SELECT code FROM members WHERE referral_code = '".$this->attributes('code')."' $where")->result();
 
 		$downline_obj 	= array();
 

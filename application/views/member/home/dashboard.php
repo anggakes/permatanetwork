@@ -39,7 +39,7 @@ if(isset($_SESSION['message'])):
             </div>
 </div> <!-- END ROW -->
 
-<?php /*
+
 <div class='row'>
   <div class='col-md-6'>
 
@@ -65,7 +65,7 @@ if(isset($_SESSION['message'])):
 
 </div> <!-- End col-md-6 -->
 </div> <!-- End ROW-->
-*/ ?>
+
 
 
 <div class="box">
@@ -79,7 +79,7 @@ if(isset($_SESSION['message'])):
 
 
 <div class='row'>
-<?php foreach ( $verifikasi as $key =>$r): ?>
+<?php foreach ( $harus_transfer as $key =>$r): ?>
 
 <?php
   $status = "belum di transfer";

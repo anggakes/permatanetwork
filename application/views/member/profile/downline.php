@@ -5,10 +5,11 @@
   function drawChartDownline ($listOfItems) {
       echo "<ul>";
       foreach ($listOfItems as $item) {
-          echo "<li> ".$item->profile('nama')." (".$item->attributes('username').")";
+          $merah = ($item->attributes('status') != 1) ? "style='background:#FF9999'" : '';
+          echo "<li $merah> ".$item->profile('nama')." (".$item->attributes('username').")";
 
           if ($item->hasDownline()) {
-              drawChartDownline($item->getDownline()); // here is the recursion
+              drawChartDownline($item->getDownline(false)); // here is the recursion
           }
           echo "</li>";
       }
@@ -27,7 +28,7 @@
         <!-- Downline -->
            <?php 
               if($user->hasDownline()){
-                drawChartDownline($user->getDownline());
+                drawChartDownline($user->getDownline(false));
               } 
            ?>
       
