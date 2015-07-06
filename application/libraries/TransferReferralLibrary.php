@@ -190,7 +190,7 @@ class TransferReferralLibrary {
                         return (isset($data->max_income)) ? $data->max_income : 1;     
                 }
 
-                return 0;
+                return -1;
         }
 
         public function maxDownline(){

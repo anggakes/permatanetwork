@@ -22,7 +22,7 @@ if(isset($_SESSION['message'])):
                 <span class="info-box-icon bg-red"><i class="fa fa-exclamation"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Maximum Pendapatan</span>
-                  <span class="info-box-number"><?= ($user->getMaxIncome() == '' OR $user->getMaxIncome() == 0 or $user->getMaxIncome() == 1) ? "Maximal Income" : "Rp. ".rupiah($user->getMaxIncome()) ?></span>
+                  <span class="info-box-number"><?= ($user->getMaxIncome() == -1) ? "Maximal Income" : "Rp. ".rupiah($user->getMaxIncome()) ?></span>
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div>
@@ -115,7 +115,10 @@ if(isset($_SESSION['message'])):
     <dt>Waktu Transfer :</dt><dd class='clock'><?= date('Y/m/d h:i:s',strtotime($r->limited_transfer_at)) ?></dd>
     </dl>
   </div>
-  
+  <?php if($r->status_transfer >0){ ?>
+  <a href='<?= base_url("transfer/riwayat/".$r->id_transfer) ?>' class='btn  pull-right'>
+    Riwayat Transfer</a>
+  <?php } ?>
   <div class='clearfix'></div>
              <hr>
 </div>
