@@ -133,7 +133,7 @@ if($pesanCancel != ''): ?>
 
     <dl class="dl-horizontal" style='margin-left:10px'>
 
-   <dt>Yang harus ditransfer :</dt><dd><?= $transfer->data->amount+$transfer->data->unique_transfer?></dd>
+   <dt>Yang harus ditransfer :</dt><dd><?= rupiah($transfer->data->amount+$transfer->data->unique_transfer) ?></dd>
    <dt>Status :</dt><dd><?= $status?></dd>
     </dl>
 

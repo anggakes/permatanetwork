@@ -23,7 +23,7 @@
         <!-- Referral -->
        
 
-        <em><a href='<?= base_url() ?>profile/<?= $user->attributes('username') ?>'>Anda</a></em> 
+        <em>Anda</em> 
         <!-- Downline -->
            <?php 
               if($user->hasDownline()){

@@ -238,14 +238,14 @@ class Member_model extends CI_Model
 		return $this->transferreferrallibrary->cariReferral(serialize($this));
 	}
 
-	public function getDataAllTransfer(){
+	public function getDataAllTransfer($where = ''){
 
-		return $this->transferreferrallibrary->getDataAll($this->attributes('id'));
+		return $this->transferreferrallibrary->getDataAll($this->attributes('id'),$where);
 	}
 
-	public function getDataAllVerifikasiTransfer(){
+	public function getDataAllVerifikasiTransfer($where = ''){
 
-		return $this->transferreferrallibrary->getDataAllVerifikasi($this->attributes('id'));
+		return $this->transferreferrallibrary->getDataAllVerifikasi($this->attributes('id'),$where);
 	}
 
 	public function cekSelesaiTransfer(){

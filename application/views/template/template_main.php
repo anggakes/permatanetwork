@@ -212,10 +212,10 @@
     <script src='<?= base_url() ?>theme/plugins/fastclick/fastclick.min.js'></script>
     <!-- AdminLTE App -->
     <script src="<?= base_url() ?>theme/dist/js/app.min.js" type="text/javascript"></script>    
+        <!-- Countdown -->
+    <script type="text/javascript" src="<?= base_url() ?>theme/jquery-countdown/jquery.countdown.min.js"></script>
 
     <?php if($user->attributes('status') == 2): ?>
-    <!-- Countdown -->
-    <script type="text/javascript" src="<?= base_url() ?>theme/jquery-countdown/jquery.countdown.min.js"></script>
 
     <script type="text/javascript">
         $('#clock').countdown("<?= date('Y/m/d h:i:s',strtotime($user->attributes('limited_transfer_at'))) ?>", function(event) {

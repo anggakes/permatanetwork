@@ -15,10 +15,12 @@ if(isset($_SESSION['message'])):
 <table class='table table-bordered table-striped' id='datatable'>
 <thead style='background:#EEFFBA;text-align: center;font-weight: bold'>
 <tr>
+<td>Tanggal</td>
 <td>Nama</td>
 <td>Nomor HP</td>
 <td>Email</td>
 <td>Alamat</td>
+<td>Jumlah Transfer</td>
 <td>Status</td>
 <td>Aksi</td>
 </tr>
@@ -40,10 +42,12 @@ if(isset($_SESSION['message'])):
 ?>
 
 <tr>
+<td><?= $v->updated_at ?></td>
 <td><?= $v->nama ?></td>
 <td><?= $v->no_hp ?></td>
 <td><?= $v->email ?></td>
 <td><?= $v->alamat ?></td>
+<td>Rp. <?= rupiah($v->amount+$v->unique_transfer) ?></td>
 <td><?= $status ?></td>
 <td>
 	<?php if($v->status_transfer == 1 ): ?>

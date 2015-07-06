@@ -142,16 +142,16 @@ class TransferReferralLibrary {
             return $sipp;
         }
 
-        public function getDataAll($id_member){
+        public function getDataAll($id_member,$where){
 
-                $all   = $this->db->query(" SELECT transfer_referral.id as id_transfer, transfer_referral.*,members.*, profile.* FROM transfer_referral JOIN members ON members.id = transfer_referral.id_referral JOIN profile ON members.id = profile.id_member WHERE transfer_referral.id_member = '$id_member'")->result();
+                $all   = $this->db->query(" SELECT transfer_referral.id as id_transfer, transfer_referral.*,members.*, profile.* FROM transfer_referral JOIN members ON members.id = transfer_referral.id_referral JOIN profile ON members.id = profile.id_member WHERE transfer_referral.id_member = '$id_member' $where")->result();
                 return $all;
         }
 
 
         public function getDataAllVerifikasi($id_member, $where=''){
                 
-                $all   = $this->db->query(" SELECT transfer_referral.id as id_transfer, transfer_referral.*,members.*, profile.* FROM transfer_referral JOIN members ON members.id = transfer_referral.id_member JOIN profile ON members.id = profile.id_member WHERE transfer_referral.id_referral = '$id_member' $where ORDER BY transfer_referral.created_at desc")->result();
+                $all   = $this->db->query(" SELECT transfer_referral.id as id_transfer, transfer_referral.*,members.*, profile.* FROM transfer_referral JOIN members ON members.id = transfer_referral.id_member JOIN profile ON members.id = profile.id_member WHERE transfer_referral.id_referral = '$id_member' $where ORDER BY transfer_referral.updated_at desc")->result();
                 return $all;
         }
 
@@ -185,7 +185,7 @@ class TransferReferralLibrary {
 // configuration
         public function getMaxIncome($jumlah_downline){
 
-                if($jumlah_downline < $this->maxDownline()){
+                if($jumlah_downline <= $this->maxDownline()){
                    $data = $this->db->query("SELECT max_income FROM ".$this->table_conf." WHERE downline='$jumlah_downline'")->row();
                         return (isset($data->max_income)) ? $data->max_income : 1;     
                 }
