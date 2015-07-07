@@ -8,7 +8,7 @@
           $merah = ($item->attributes('status') != 1) ? "style='background:#FF9999'" : '';
           echo "<li $merah> ".$item->profile('nama')." (".$item->attributes('username').")";
 
-          if ($item->hasDownline()) {
+          if ($item->hasDownline(false)) {
               drawChartDownline($item->getDownline(false)); // here is the recursion
           }
           echo "</li>";

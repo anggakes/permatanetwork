@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2015 at 10:17 AM
--- Server version: 5.5.32-log
--- PHP Version: 5.4.16
+-- Generation Time: Jul 07, 2015 at 05:38 PM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `permata_sys`
 --
-CREATE DATABASE IF NOT EXISTS `permata_sys` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `permata_sys`;
 
 -- --------------------------------------------------------
 
@@ -29,13 +27,12 @@ USE `permata_sys`;
 --
 
 CREATE TABLE IF NOT EXISTS `activation_member_logs` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `id_member` int(10) unsigned NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `tahap_aktivasi` enum('voucher','transfer') NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=68 ;
+  `tahap_aktivasi` enum('voucher','transfer') NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `activation_member_logs`
@@ -85,7 +82,8 @@ INSERT INTO `activation_member_logs` (`id`, `id_member`, `keterangan`, `created_
 (64, 42, 'Aktivasi dengan Voucher 0922-e947-4909-fb88', '2015-07-05 22:19:29', 'voucher'),
 (65, 42, 'Aktifasi selesai transfer referral', '2015-07-05 23:11:16', 'transfer'),
 (66, 43, 'Aktivasi dengan Voucher 09f9-ce7f-b071-db31', '2015-07-05 23:24:40', 'voucher'),
-(67, 43, 'Aktifasi selesai transfer referral', '2015-07-06 08:11:44', 'transfer');
+(67, 43, 'Aktifasi selesai transfer referral', '2015-07-06 08:11:44', 'transfer'),
+(68, 44, 'Aktivasi dengan Voucher 0a3f-75a8-b46b-10d9', '2015-07-07 07:19:22', 'voucher');
 
 -- --------------------------------------------------------
 
@@ -94,7 +92,7 @@ INSERT INTO `activation_member_logs` (`id`, `id_member`, `keterangan`, `created_
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `nama` varchar(255) NOT NULL,
@@ -102,16 +100,15 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `last_login` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `super_admin` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `super_admin` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id`, `email`, `username`, `nama`, `password`, `updated_at`, `created_at`, `last_login`, `super_admin`) VALUES
-(1, 'admin@admin', 'admin', 'admin', '$2y$10$T44VIlj2nuZg8ZWsCAzZhevADpzQ2RwUq5N6redAtwNWwia7P8ZNC', '2015-07-03 07:16:54', '2015-06-27 17:00:00', '2015-07-03 07:16:54', 1);
+(1, 'admin@admin', 'admin', 'admin', '$2y$10$T44VIlj2nuZg8ZWsCAzZhevADpzQ2RwUq5N6redAtwNWwia7P8ZNC', '2015-07-07 07:44:09', '2015-06-27 17:00:00', '2015-07-07 07:44:09', 1);
 
 -- --------------------------------------------------------
 
@@ -120,10 +117,9 @@ INSERT INTO `admin` (`id`, `email`, `username`, `nama`, `password`, `updated_at`
 --
 
 CREATE TABLE IF NOT EXISTS `bank` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `nama_bank` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+`id` int(10) unsigned NOT NULL,
+  `nama_bank` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bank`
@@ -149,12 +145,11 @@ INSERT INTO `bank` (`id`, `nama_bank`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `captcha` (
-  `captcha_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`captcha_id` int(10) unsigned NOT NULL,
   `captcha_time` int(10) unsigned DEFAULT NULL,
   `ip_address` varchar(16) DEFAULT NULL,
-  `word` varchar(20) NOT NULL,
-  PRIMARY KEY (`captcha_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=297 ;
+  `word` varchar(20) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=301 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `captcha`
@@ -425,7 +420,11 @@ INSERT INTO `captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUE
 (293, 1436127919, '125.162.59.198', 'lK01U2bI'),
 (294, 1436127989, '125.162.59.198', 'kBYZf3UX'),
 (295, 1436133749, '125.162.59.198', 'a1tVD0rt'),
-(296, 1436137930, '125.162.59.198', 'K3Pfqbr6');
+(296, 1436137930, '125.162.59.198', 'K3Pfqbr6'),
+(297, 1436251012, '::1', 'A6t2R388'),
+(298, 1436252738, '::1', 'qYoLOCK2'),
+(299, 1436253305, '::1', 'liiFCKVx'),
+(300, 1436253515, '::1', 'NZq8m8Xq');
 
 -- --------------------------------------------------------
 
@@ -434,15 +433,14 @@ INSERT INTO `captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUE
 --
 
 CREATE TABLE IF NOT EXISTS `contents` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `judul` varchar(255) NOT NULL,
   `isi` text NOT NULL,
   `jenis` int(10) unsigned NOT NULL,
   `slug` varchar(255) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contents`
@@ -458,7 +456,7 @@ INSERT INTO `contents` (`id`, `judul`, `isi`, `jenis`, `slug`, `updated_at`, `cr
 --
 
 CREATE TABLE IF NOT EXISTS `members` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `code` varchar(10) NOT NULL,
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -470,57 +468,58 @@ CREATE TABLE IF NOT EXISTS `members` (
   `activation_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `referral_code` varchar(10) NOT NULL,
   `status` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `code` (`code`,`email`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
+  `dikirim` int(10) unsigned NOT NULL,
+  `remember_token` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `members`
 --
 
-INSERT INTO `members` (`id`, `code`, `email`, `username`, `password`, `updated_at`, `created_at`, `last_login`, `limited_transfer_at`, `activation_at`, `referral_code`, `status`) VALUES
-(1, 'L4PR01D', 'first@first.com', 'first', '$2y$10$vzgcMQvzSyFoEtWJ39AhGev1C9.aJsg88IjfY4xhH4Y/a0OGrNhl6', '2015-07-05 20:06:03', '2015-06-27 17:00:00', '2015-07-05 20:06:03', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 1),
-(2, '73DD48C', 'isa1@isa.com', 'isa1', '$2y$10$Uybk0xk6If58kmrnMuxRuOECj1KJby8LXNP3N1EE8R3Q6WRaz3XKW', '2015-07-03 16:00:05', '2015-06-28 08:28:30', '2015-07-03 16:00:05', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'L4PR01D', 1),
-(3, 'CFB3350', 'isa2@isa.com', 'isa2', '$2y$10$jWvO.K12nVb6zTaZvnZ4Ke9Yzag4ibGucfyVHYtubFBFgVrdwiPyW', '2015-07-03 15:04:07', '2015-06-28 08:29:39', '2015-07-03 15:04:07', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '73DD48C', 1),
-(4, 'B5E4C8A', 'isa3@isa.com', 'isa3', '$2y$10$nqe0bf/5ZjFo9fUcD8ziiOtFbU8Clbq4D5rxNKBB6f2AuDdfrl2Za', '2015-06-28 08:35:23', '2015-06-28 08:31:02', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'CFB3350', 1),
-(5, '4539A08', 'isa4@isa.com', 'isa4', '$2y$10$1rJoRWxZfOTeC8nn41Ae..QFZHrtjNy0NJCi3wUBjrzkSChqiJkPS', '2015-06-28 08:35:25', '2015-06-28 08:32:07', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'B5E4C8A', 1),
-(6, '05AA10F', 'isa5@isa.com', 'isa5', '$2y$10$FpQwLsCUQEdU7Wp3QCqFJe/QfiR9tkKu8pr50XwTYWeSiw4FJHX1m', '2015-07-05 17:38:31', '2015-06-28 08:32:57', '2015-07-05 17:38:31', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '4539A08', 1),
-(7, '88DDC5A', 'isa6@isa.com', 'isa6', '$2y$10$FSWONV0E9SBs9594wXdjWu.cL4hHwP7uQiaJHw.aFaUhYTX/714I2', '2015-07-05 16:40:40', '2015-06-28 08:33:55', '2015-07-05 16:40:40', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '05AA10F', 1),
-(8, '083BF11', 'isa7@isa.com', 'isa7', '$2y$10$oCfzbxRwMikgMKXMNBsLzeUREBDw8GwrwpOWant/R/89NDsIMUraK', '2015-07-05 17:34:25', '2015-06-28 08:34:46', '2015-07-05 17:34:25', '2015-07-02 20:14:34', '0000-00-00 00:00:00', '88DDC5A', -1),
-(10, 'ECA8A33', 'ronald99@gmail.com', 'Ronald', '$2y$10$dizi54bwId8LZSbDHFi1gectOfkJparY1hNEB03/95U5fzeX7Hw76', '2015-07-03 15:00:51', '2015-07-01 15:57:34', '2015-07-03 15:00:51', '2015-07-03 04:05:03', '0000-00-00 00:00:00', '88DDC5A', -1),
-(11, '084161C', 'hermansemesta@gmail.com', 'semestatest', '$2y$10$Ehh0xS0ZItVviHW1DEwZ8eUtEJUh31T.QyIBk.oGdOfV1SZB2ldpa', '2015-07-05 08:45:39', '2015-07-02 11:43:15', '2015-07-05 08:42:20', '2015-07-06 06:04:48', '2015-07-05 08:45:39', '083BF11', 1),
-(12, '26107E6', 'mymiracle89@yahoo.com', 'untungsukses', '$2y$10$ZtxkmmDLKD2WJKjNjkKOau.G1Yb2v792Xub3E9pLOlsPd/sB1kp4e', '2015-07-02 11:50:38', '2015-07-02 11:50:20', '2015-07-02 11:50:38', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '083BF11', 0),
-(13, '9B1C470', 'riki1181@gmail.com', 'Riki', '$2y$10$9tPN1RXhykbyJ2MWZOkg7.WqjGuMXxH0qwFz31w1E66HJxhU/xB/S', '2015-07-05 04:11:38', '2015-07-03 16:09:42', '2015-07-03 16:16:41', '2015-07-05 04:11:38', '0000-00-00 00:00:00', 'L4PR01D', -1),
-(14, '22CFEF9', 'isa10@isa.com', 'isa10', '$2y$10$ZGLw8RoDdAHXMENKtJVaY.7sg6DCyKPJ.2yBvO4V14asMmCzNqtam', '2015-07-05 04:37:08', '2015-07-03 16:24:53', '2015-07-03 16:30:56', '2015-07-05 04:37:08', '0000-00-00 00:00:00', 'L4PR01D', -1),
-(15, 'F8305E0', 'isa11@isa.com', 'isa11', '$2y$10$n/J4o2M.QzoSpZwBa76MV.8RJN1tPWF7QweXGAkTkELCfIQvlFC9e', '2015-07-05 04:39:01', '2015-07-03 16:38:40', '2015-07-03 16:38:51', '2015-07-05 04:39:01', '0000-00-00 00:00:00', 'L4PR01D', -1),
-(16, '40EC8BB', 'isa12@isa.com', 'isa12', '$2y$10$CUIW7Gsjo.xInDlkX6vhgOnMBRWdPkKgNbN8X32V8euTEtRcMBZ7q', '2015-07-05 04:43:53', '2015-07-03 16:42:44', '2015-07-03 16:47:13', '2015-07-05 04:43:53', '0000-00-00 00:00:00', '88DDC5A', -1),
-(17, '69150DB', 'dino@yahoo.com', 'Dino', '$2y$10$dmz8KfTDDEzs3J0zttZmZ.a0oStwMEzfpTjD8urgkqGkJQTzX0X6q', '2015-07-05 17:52:02', '2015-07-03 16:47:15', '2015-07-05 17:52:02', '2015-07-05 04:48:08', '2015-07-03 17:01:08', 'L4PR01D', 1),
-(18, '9F221EC', 'isa13@isa.com', 'isa13', '$2y$10$aiSYi5dpYamu/EHlG26ERueHDQ5zzuJbCYBbok2iX3cvSUCBnKNee', '2015-07-05 04:50:18', '2015-07-03 16:49:47', '2015-07-03 16:50:02', '2015-07-05 04:50:18', '0000-00-00 00:00:00', '083BF11', -1),
-(19, '36FCB78', 'hermansemesta2@gmail.com', 'sejahtera', '$2y$10$7zDwjHsMUZ9w/FmK9RgnN.69sia6CBpZlPDv6DckrzBJbkgVLnMaC', '2015-07-05 21:00:24', '2015-07-04 09:01:41', '2015-07-05 21:00:24', '2015-07-06 21:02:55', '2015-07-05 09:10:25', 'L4PR01D', 1),
-(20, '5472CA8', 'hermansemesta5@gmail.com', 'sejahtera2', '$2y$10$teR1hs9WchQqloGFipcs4Ov4ZldEGuOc4IuPIyEK.u1vYqwoUvdVC', '2015-07-05 21:15:23', '2015-07-05 09:34:07', '2015-07-05 21:15:23', '2015-07-06 21:35:11', '2015-07-05 09:55:24', '36FCB78', 1),
-(21, 'F211054', 'herman3@gmail.com', 'sejahtera3', '$2y$10$GI1cTJuLwzQ0MrjTjZuII.Cve4/AnccjBn8nFZz6z2JbMtL6kG/gi', '2015-07-05 22:57:10', '2015-07-05 10:14:59', '2015-07-05 22:57:10', '2015-07-06 22:15:44', '2015-07-05 10:20:39', '5472CA8', 1),
-(22, '0FE6B2F', 'herman4@gmail.com', 'sejahtera4', '$2y$10$bOEyFyMdb9MXgIxzuSj4m.Qd0fQguqcfMsZgBtNdrsUeRW0Vj9E8G', '2015-07-06 08:06:04', '2015-07-05 10:24:25', '2015-07-06 08:06:04', '2015-07-06 22:25:22', '0000-00-00 00:00:00', 'F211054', 1),
-(23, '8BFD71A', 'herman5@gmail.com', 'permata5', '$2y$10$tzHshZmXeiuY7R3OPRdvZ.LEOxwHxQw1KpMjkHCEqEA8N9tv0Yt7q', '2015-07-06 08:06:30', '2015-07-05 10:35:04', '2015-07-06 08:06:30', '2015-07-06 22:50:46', '0000-00-00 00:00:00', '0FE6B2F', 1),
-(24, 'AD02348', 'test@yahoo.com', 'test2', '$2y$10$aY4gpTS7Uc03YRhS6ZGxY./p/sZtd.4SfWASPWY0tOm3aIUPkH0Tu', '2015-07-05 11:03:32', '2015-07-05 10:56:12', '2015-07-05 11:03:13', '2015-07-06 23:01:02', '0000-00-00 00:00:00', '0FE6B2F', 1),
-(25, '3DC67F8', 'sponsor2@gmail.com', 'sponsor2', '$2y$10$icJpOoNE.0.pGGcfNmYEbO6HJ/8piGllnuSvhFM4WrKSye6MjNS5y', '2015-07-05 11:04:18', '2015-07-05 11:02:57', '2015-07-05 11:03:15', '2015-07-06 23:04:18', '0000-00-00 00:00:00', '36FCB78', 2),
-(26, '857A549', 'sponsor3@gmail.com', 'sponsor3', '$2y$10$erj0nVemc0E2d6F87wMvuuocXCfYB2rcvpIotFSpHaXl/3U3LW8Ue', '2015-07-05 18:42:11', '2015-07-05 11:08:41', '2015-07-05 18:42:11', '2015-07-06 23:10:24', '2015-07-05 18:03:23', '36FCB78', 1),
-(27, '2931A45', 'isa14@isa.com', 'isa14', '$2y$10$J5t.d0LsHZLiebZqNMpbo.iTyLt4rpm28GT/7fIiO1MbIQUZtPrp2', '2015-07-05 17:30:10', '2015-07-05 16:37:49', '2015-07-05 17:30:10', '2015-07-07 04:38:45', '0000-00-00 00:00:00', '88DDC5A', 2),
-(28, 'A9F0E61', 'second@gmail.com', 'second', '$2y$10$IpN./cUMk7vtTFwOfd2rbOSibFMgkmqH6kCgXgo4mpTT1N512o8X6', '2015-07-05 17:50:56', '2015-07-05 16:44:48', '2015-07-05 17:50:56', '2015-07-07 04:45:38', '2015-07-05 17:29:36', 'L4PR01D', 1),
-(29, '3FF1C62', 'isa15@isa.com', 'isa15', '$2y$10$dKQYC3Zs9YU7ZBbmLSBbC.OiUUxknL7CPF4r9uMBhYwwp/8AY4vKu', '2015-07-05 17:32:14', '2015-07-05 17:26:42', '2015-07-05 17:32:14', '2015-07-07 05:29:10', '0000-00-00 00:00:00', 'B5E4C8A', 2),
-(30, 'DD5C8BF', 'third@gmail.com', 'third', '$2y$10$C/BsByHtWryrq9mqP2kRNuFVNqdjrVyfOGQ1P8iHAygEitEDIN38m', '2015-07-05 18:00:16', '2015-07-05 17:31:01', '2015-07-05 18:00:16', '2015-07-07 05:31:32', '2015-07-05 17:42:44', 'A9F0E61', 1),
-(31, '933B1DE', 'samping2@gmail.com', 'samping2', '$2y$10$TDdFB6IkzDL3qxTOYl4Fl.4M2uU94RmLxUrXZVHYF7L4HRrSlrnfi', '2015-07-05 18:08:34', '2015-07-05 18:05:23', '2015-07-05 18:06:11', '2015-07-07 06:08:34', '0000-00-00 00:00:00', '36FCB78', 2),
-(32, '308F84A', 'samping3@gmail.com', 'samping3', '$2y$10$wUa55.dTvNId5Jrm73mvxeF.OzzBG0WPDU/LQLYXYGQ3UwEtY8n5O', '2015-07-05 18:39:19', '2015-07-05 18:12:55', '2015-07-05 18:39:19', '2015-07-07 06:21:40', '0000-00-00 00:00:00', '36FCB78', 2),
-(33, 'C06FB8D', 'samping4@gmail.com', 'samping4', '$2y$10$UVaBfhoyzh4cHnefRa72BeDomMgIrY7X15kpdgKeFgkVugH7T/5W2', '2015-07-05 18:19:42', '2015-07-05 18:19:42', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '36FCB78', 0),
-(34, '6901394', 'sponsorke3@gmail.com', 'sponsorke3', '$2y$10$I8A37CQzio68kubLga9z6.L.1GUzD7A56iPmBXa0JT9vwZENBrHiu', '2015-07-05 18:44:33', '2015-07-05 18:44:10', '2015-07-05 18:44:21', '2015-07-07 06:44:33', '0000-00-00 00:00:00', '36FCB78', 2),
-(35, 'C0759F2', 'fourth@gmail.com', 'fourth', '$2y$10$TzjC2ImfsWbIK2J/X5rMBeinaNz9USKWk.IgELbBAliHA7kAkUOFO', '2015-07-05 20:05:45', '2015-07-05 19:01:51', '2015-07-05 20:05:45', '2015-07-07 07:02:54', '0000-00-00 00:00:00', 'DD5C8BF', 2),
-(36, '8CD4A38', 'herman6@gmail.com', 'herman6', '$2y$10$CICIa2fYFnkCgjUhnBNRn.1oNOpvb2FsoUDz6EQI3upmJvH5f67Ce', '2015-07-06 08:08:29', '2015-07-05 19:05:15', '2015-07-06 08:08:29', '2015-07-07 07:13:47', '2015-07-05 19:35:03', '0FE6B2F', 1),
-(37, 'E9B2CE2', 'herman7@gmail.com', 'herman7', '$2y$10$nGHP76XuwUsCw/RdbHKCmOlnKT6wLVGddt9ZuXcVL2COGf5BEDwSW', '2015-07-06 08:08:44', '2015-07-05 19:35:57', '2015-07-06 08:08:44', '2015-07-07 07:40:07', '2015-07-05 19:47:33', '8CD4A38', 1),
-(38, '52BE6D0', 'herman8@gmail.com', 'herman8', '$2y$10$IFMh4/iOUm11e0iwuXibwu0Wtjbsluy2pS.wkWoWDrgOPXsfDhg0G', '2015-07-06 08:09:06', '2015-07-05 19:48:55', '2015-07-06 08:09:06', '2015-07-07 07:50:26', '2015-07-05 20:12:17', 'E9B2CE2', 1),
-(39, 'B827CE5', 'sfirst@gmail.com', 'sfirst', '$2y$10$wTRz99xbUBtstBZDCr95P.OgYB/upHmQbz4KK8SATrpoX8DoEotU.', '2015-07-05 19:58:45', '2015-07-05 19:56:17', '2015-07-05 19:58:45', '2015-07-07 07:56:37', '2015-07-05 19:58:02', 'L4PR01D', 1),
-(40, 'FFABE97', 'herman9@gmail.com', 'herman9', '$2y$10$ulEl7Xu4DoHj7QmsC2oRO.8aAXNmCsCxsrDZQM99FZW9Xr78WiLe6', '2015-07-06 08:09:27', '2015-07-05 20:15:45', '2015-07-06 08:09:27', '2015-07-07 08:16:21', '2015-07-05 20:26:07', '52BE6D0', 1),
-(41, 'B159C03', 'herman10@gmail.com', 'herman10', '$2y$10$ZxOsh1UbLCes8Rju6FsHPOrx3Wxa1Mon1JvLBlxEiSJLkVHJsOG2m', '2015-07-06 08:10:19', '2015-07-05 20:27:03', '2015-07-06 08:10:19', '2015-07-07 08:27:29', '2015-07-05 22:00:29', 'FFABE97', 1),
-(42, '054AAFF', 'herman11@gmail.com', 'herman11', '$2y$10$arNO448EaEQTXmLsFEizSelnBUxYVHjj75MKvSQjsK.TuHJJwgJt2', '2015-07-06 08:11:05', '2015-07-05 22:03:18', '2015-07-06 08:11:05', '2015-07-07 10:19:29', '2015-07-05 23:11:16', 'B159C03', 1),
-(43, '96BE509', 'herman12@gmail.com', 'herman12', '$2y$10$Ig2qtC3qiO2pWq1wcgMTLOujP8A5uwQPIOAAWcGhr5jRxxW2D713m', '2015-07-06 08:11:44', '2015-07-05 23:13:08', '2015-07-06 08:11:32', '2015-07-07 11:24:40', '2015-07-06 08:11:44', '054AAFF', 1);
+INSERT INTO `members` (`id`, `code`, `email`, `username`, `password`, `updated_at`, `created_at`, `last_login`, `limited_transfer_at`, `activation_at`, `referral_code`, `status`, `dikirim`, `remember_token`) VALUES
+(1, 'L4PR01D', 'first@first.com', 'first', '$2y$10$vzgcMQvzSyFoEtWJ39AhGev1C9.aJsg88IjfY4xhH4Y/a0OGrNhl6', '2015-07-07 10:17:40', '2015-06-27 17:00:00', '2015-07-07 10:17:40', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', 1, 0, ''),
+(2, '73DD48C', 'isa1@isa.com', 'isa1', '$2y$10$Uybk0xk6If58kmrnMuxRuOECj1KJby8LXNP3N1EE8R3Q6WRaz3XKW', '2015-07-07 09:13:39', '2015-06-28 08:28:30', '2015-07-03 16:00:05', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'L4PR01D', 1, 0, ''),
+(3, 'CFB3350', 'isa2@isa.com', 'isa2', '$2y$10$jWvO.K12nVb6zTaZvnZ4Ke9Yzag4ibGucfyVHYtubFBFgVrdwiPyW', '2015-07-07 09:13:39', '2015-06-28 08:29:39', '2015-07-03 15:04:07', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '73DD48C', 1, 0, ''),
+(4, 'B5E4C8A', 'isa3@isa.com', 'isa3', '$2y$10$nqe0bf/5ZjFo9fUcD8ziiOtFbU8Clbq4D5rxNKBB6f2AuDdfrl2Za', '2015-07-07 09:13:39', '2015-06-28 08:31:02', '2015-07-06 08:45:22', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'CFB3350', 1, 0, ''),
+(5, '4539A08', 'isa4@isa.com', 'isa4', '$2y$10$1rJoRWxZfOTeC8nn41Ae..QFZHrtjNy0NJCi3wUBjrzkSChqiJkPS', '2015-07-07 09:13:39', '2015-06-28 08:32:07', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'B5E4C8A', 1, 0, ''),
+(6, '05AA10F', 'isa5@isa.com', 'isa5', '$2y$10$FpQwLsCUQEdU7Wp3QCqFJe/QfiR9tkKu8pr50XwTYWeSiw4FJHX1m', '2015-07-07 09:13:39', '2015-06-28 08:32:57', '2015-07-06 15:07:08', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '4539A08', 1, 0, ''),
+(7, '88DDC5A', 'isa6@isa.com', 'isa6', '$2y$10$FSWONV0E9SBs9594wXdjWu.cL4hHwP7uQiaJHw.aFaUhYTX/714I2', '2015-07-07 09:13:39', '2015-06-28 08:33:55', '2015-07-07 06:29:40', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '05AA10F', 1, 0, ''),
+(8, '083BF11', 'isa7@isa.com', 'isa7', '$2y$10$oCfzbxRwMikgMKXMNBsLzeUREBDw8GwrwpOWant/R/89NDsIMUraK', '2015-07-07 09:13:39', '2015-06-28 08:34:46', '2015-07-05 17:34:25', '2015-07-02 20:14:34', '0000-00-00 00:00:00', '88DDC5A', -1, 0, ''),
+(10, 'ECA8A33', 'ronald99@gmail.com', 'Ronald', '$2y$10$dizi54bwId8LZSbDHFi1gectOfkJparY1hNEB03/95U5fzeX7Hw76', '2015-07-07 09:13:39', '2015-07-01 15:57:34', '2015-07-03 15:00:51', '2015-07-03 04:05:03', '0000-00-00 00:00:00', '88DDC5A', -1, 0, ''),
+(11, '084161C', 'hermansemesta@gmail.com', 'semestatest', '$2y$10$Ehh0xS0ZItVviHW1DEwZ8eUtEJUh31T.QyIBk.oGdOfV1SZB2ldpa', '2015-07-07 09:13:39', '2015-07-02 11:43:15', '2015-07-05 08:42:20', '2015-07-06 06:04:48', '2015-07-05 08:45:39', '083BF11', 1, 0, ''),
+(12, '26107E6', 'mymiracle89@yahoo.com', 'untungsukses', '$2y$10$ZtxkmmDLKD2WJKjNjkKOau.G1Yb2v792Xub3E9pLOlsPd/sB1kp4e', '2015-07-07 09:13:39', '2015-07-02 11:50:20', '2015-07-02 11:50:38', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '083BF11', 0, 0, ''),
+(13, '9B1C470', 'riki1181@gmail.com', 'Riki', '$2y$10$9tPN1RXhykbyJ2MWZOkg7.WqjGuMXxH0qwFz31w1E66HJxhU/xB/S', '2015-07-07 09:13:39', '2015-07-03 16:09:42', '2015-07-03 16:16:41', '2015-07-05 04:11:38', '0000-00-00 00:00:00', 'L4PR01D', -1, 0, ''),
+(14, '22CFEF9', 'isa10@isa.com', 'isa10', '$2y$10$ZGLw8RoDdAHXMENKtJVaY.7sg6DCyKPJ.2yBvO4V14asMmCzNqtam', '2015-07-07 09:13:39', '2015-07-03 16:24:53', '2015-07-03 16:30:56', '2015-07-05 04:37:08', '0000-00-00 00:00:00', 'L4PR01D', -1, 0, ''),
+(15, 'F8305E0', 'isa11@isa.com', 'isa11', '$2y$10$n/J4o2M.QzoSpZwBa76MV.8RJN1tPWF7QweXGAkTkELCfIQvlFC9e', '2015-07-07 09:13:39', '2015-07-03 16:38:40', '2015-07-03 16:38:51', '2015-07-05 04:39:01', '0000-00-00 00:00:00', 'L4PR01D', -1, 0, ''),
+(16, '40EC8BB', 'isa12@isa.com', 'isa12', '$2y$10$CUIW7Gsjo.xInDlkX6vhgOnMBRWdPkKgNbN8X32V8euTEtRcMBZ7q', '2015-07-07 09:15:05', '2015-07-03 16:42:44', '2015-07-03 16:47:13', '2015-07-05 04:43:53', '0000-00-00 00:00:00', '88DDC5A', -1, 1, ''),
+(17, '69150DB', 'dino@yahoo.com', 'Dino', '$2y$10$dmz8KfTDDEzs3J0zttZmZ.a0oStwMEzfpTjD8urgkqGkJQTzX0X6q', '2015-07-07 09:13:39', '2015-07-03 16:47:15', '2015-07-05 17:52:02', '2015-07-05 04:48:08', '2015-07-03 17:01:08', 'L4PR01D', 1, 0, ''),
+(18, '9F221EC', 'isa13@isa.com', 'isa13', '$2y$10$aiSYi5dpYamu/EHlG26ERueHDQ5zzuJbCYBbok2iX3cvSUCBnKNee', '2015-07-07 09:13:39', '2015-07-03 16:49:47', '2015-07-03 16:50:02', '2015-07-05 04:50:18', '0000-00-00 00:00:00', '083BF11', -1, 0, ''),
+(19, '36FCB78', 'hermansemesta2@gmail.com', 'sejahtera', '$2y$10$7zDwjHsMUZ9w/FmK9RgnN.69sia6CBpZlPDv6DckrzBJbkgVLnMaC', '2015-07-07 09:13:39', '2015-07-04 09:01:41', '2015-07-05 21:00:24', '2015-07-06 21:02:55', '2015-07-05 09:10:25', 'L4PR01D', 1, 0, ''),
+(20, '5472CA8', 'hermansemesta5@gmail.com', 'sejahtera2', '$2y$10$teR1hs9WchQqloGFipcs4Ov4ZldEGuOc4IuPIyEK.u1vYqwoUvdVC', '2015-07-07 09:13:39', '2015-07-05 09:34:07', '2015-07-05 21:15:23', '2015-07-06 21:35:11', '2015-07-05 09:55:24', '36FCB78', 1, 0, ''),
+(21, 'F211054', 'herman3@gmail.com', 'sejahtera3', '$2y$10$GI1cTJuLwzQ0MrjTjZuII.Cve4/AnccjBn8nFZz6z2JbMtL6kG/gi', '2015-07-07 09:13:39', '2015-07-05 10:14:59', '2015-07-05 22:57:10', '2015-07-06 22:15:44', '2015-07-05 10:20:39', '5472CA8', 1, 0, ''),
+(22, '0FE6B2F', 'herman4@gmail.com', 'sejahtera4', '$2y$10$bOEyFyMdb9MXgIxzuSj4m.Qd0fQguqcfMsZgBtNdrsUeRW0Vj9E8G', '2015-07-07 10:28:36', '2015-07-05 10:24:25', '2015-07-06 08:06:04', '2015-07-06 22:25:22', '0000-00-00 00:00:00', 'F211054', -1, 0, ''),
+(23, '8BFD71A', 'herman5@gmail.com', 'permata5', '$2y$10$tzHshZmXeiuY7R3OPRdvZ.LEOxwHxQw1KpMjkHCEqEA8N9tv0Yt7q', '2015-07-07 09:13:39', '2015-07-05 10:35:04', '2015-07-06 08:06:30', '2015-07-06 22:50:46', '0000-00-00 00:00:00', '0FE6B2F', 1, 0, ''),
+(24, 'AD02348', 'test@yahoo.com', 'test2', '$2y$10$aY4gpTS7Uc03YRhS6ZGxY./p/sZtd.4SfWASPWY0tOm3aIUPkH0Tu', '2015-07-07 09:13:39', '2015-07-05 10:56:12', '2015-07-05 11:03:13', '2015-07-06 23:01:02', '0000-00-00 00:00:00', '0FE6B2F', 1, 0, ''),
+(25, '3DC67F8', 'sponsor2@gmail.com', 'sponsor2', '$2y$10$icJpOoNE.0.pGGcfNmYEbO6HJ/8piGllnuSvhFM4WrKSye6MjNS5y', '2015-07-07 09:13:39', '2015-07-05 11:02:57', '2015-07-05 11:03:15', '2015-07-06 23:04:18', '0000-00-00 00:00:00', '36FCB78', 2, 0, ''),
+(26, '857A549', 'sponsor3@gmail.com', 'sponsor3', '$2y$10$erj0nVemc0E2d6F87wMvuuocXCfYB2rcvpIotFSpHaXl/3U3LW8Ue', '2015-07-07 09:13:39', '2015-07-05 11:08:41', '2015-07-05 18:42:11', '2015-07-06 23:10:24', '2015-07-05 18:03:23', '36FCB78', 1, 0, ''),
+(27, '2931A45', 'isa14@isa.com', 'isa14', '$2y$10$J5t.d0LsHZLiebZqNMpbo.iTyLt4rpm28GT/7fIiO1MbIQUZtPrp2', '2015-07-07 09:13:39', '2015-07-05 16:37:49', '2015-07-06 08:38:21', '2015-07-07 04:38:45', '0000-00-00 00:00:00', '88DDC5A', 2, 0, ''),
+(28, 'A9F0E61', 'second@gmail.com', 'second', '$2y$10$IpN./cUMk7vtTFwOfd2rbOSibFMgkmqH6kCgXgo4mpTT1N512o8X6', '2015-07-07 09:13:39', '2015-07-05 16:44:48', '2015-07-05 17:50:56', '2015-07-07 04:45:38', '2015-07-05 17:29:36', 'L4PR01D', 1, 0, ''),
+(29, '3FF1C62', 'isa15@isa.com', 'isa15', '$2y$10$dKQYC3Zs9YU7ZBbmLSBbC.OiUUxknL7CPF4r9uMBhYwwp/8AY4vKu', '2015-07-07 09:13:39', '2015-07-05 17:26:42', '2015-07-05 17:32:14', '2015-07-07 05:29:10', '0000-00-00 00:00:00', 'B5E4C8A', 2, 0, ''),
+(30, 'DD5C8BF', 'third@gmail.com', 'third', '$2y$10$C/BsByHtWryrq9mqP2kRNuFVNqdjrVyfOGQ1P8iHAygEitEDIN38m', '2015-07-07 09:13:39', '2015-07-05 17:31:01', '2015-07-05 18:00:16', '2015-07-07 05:31:32', '2015-07-05 17:42:44', 'A9F0E61', 1, 0, ''),
+(31, '933B1DE', 'samping2@gmail.com', 'samping2', '$2y$10$TDdFB6IkzDL3qxTOYl4Fl.4M2uU94RmLxUrXZVHYF7L4HRrSlrnfi', '2015-07-07 09:13:39', '2015-07-05 18:05:23', '2015-07-05 18:06:11', '2015-07-07 06:08:34', '0000-00-00 00:00:00', '36FCB78', 2, 0, ''),
+(32, '308F84A', 'samping3@gmail.com', 'samping3', '$2y$10$wUa55.dTvNId5Jrm73mvxeF.OzzBG0WPDU/LQLYXYGQ3UwEtY8n5O', '2015-07-07 09:13:39', '2015-07-05 18:12:55', '2015-07-05 18:39:19', '2015-07-07 06:21:40', '0000-00-00 00:00:00', '36FCB78', 2, 0, ''),
+(33, 'C06FB8D', 'samping4@gmail.com', 'samping4', '$2y$10$UVaBfhoyzh4cHnefRa72BeDomMgIrY7X15kpdgKeFgkVugH7T/5W2', '2015-07-07 09:13:39', '2015-07-05 18:19:42', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '36FCB78', 0, 0, ''),
+(34, '6901394', 'sponsorke3@gmail.com', 'sponsorke3', '$2y$10$I8A37CQzio68kubLga9z6.L.1GUzD7A56iPmBXa0JT9vwZENBrHiu', '2015-07-07 09:13:39', '2015-07-05 18:44:10', '2015-07-05 18:44:21', '2015-07-07 06:44:33', '0000-00-00 00:00:00', '36FCB78', 2, 0, ''),
+(35, 'C0759F2', 'fourth@gmail.com', 'fourth', '$2y$10$TzjC2ImfsWbIK2J/X5rMBeinaNz9USKWk.IgELbBAliHA7kAkUOFO', '2015-07-07 09:13:39', '2015-07-05 19:01:51', '2015-07-05 20:05:45', '2015-07-07 07:02:54', '0000-00-00 00:00:00', 'DD5C8BF', 2, 0, ''),
+(36, '8CD4A38', 'herman6@gmail.com', 'herman6', '$2y$10$CICIa2fYFnkCgjUhnBNRn.1oNOpvb2FsoUDz6EQI3upmJvH5f67Ce', '2015-07-07 09:13:39', '2015-07-05 19:05:15', '2015-07-06 08:08:29', '2015-07-07 07:13:47', '2015-07-05 19:35:03', '0FE6B2F', 1, 0, ''),
+(37, 'E9B2CE2', 'herman7@gmail.com', 'herman7', '$2y$10$nGHP76XuwUsCw/RdbHKCmOlnKT6wLVGddt9ZuXcVL2COGf5BEDwSW', '2015-07-07 09:13:39', '2015-07-05 19:35:57', '2015-07-06 08:08:44', '2015-07-07 07:40:07', '2015-07-05 19:47:33', '8CD4A38', 1, 0, ''),
+(38, '52BE6D0', 'herman8@gmail.com', 'herman8', '$2y$10$IFMh4/iOUm11e0iwuXibwu0Wtjbsluy2pS.wkWoWDrgOPXsfDhg0G', '2015-07-07 09:13:39', '2015-07-05 19:48:55', '2015-07-06 08:09:06', '2015-07-07 07:50:26', '2015-07-05 20:12:17', 'E9B2CE2', 1, 0, ''),
+(39, 'B827CE5', 'sfirst@gmail.com', 'sfirst', '$2y$10$wTRz99xbUBtstBZDCr95P.OgYB/upHmQbz4KK8SATrpoX8DoEotU.', '2015-07-07 09:13:39', '2015-07-05 19:56:17', '2015-07-05 19:58:45', '2015-07-07 07:56:37', '2015-07-05 19:58:02', 'L4PR01D', 1, 0, ''),
+(40, 'FFABE97', 'herman9@gmail.com', 'herman9', '$2y$10$ulEl7Xu4DoHj7QmsC2oRO.8aAXNmCsCxsrDZQM99FZW9Xr78WiLe6', '2015-07-07 09:13:39', '2015-07-05 20:15:45', '2015-07-06 08:09:27', '2015-07-07 08:16:21', '2015-07-05 20:26:07', '52BE6D0', 1, 0, ''),
+(41, 'B159C03', 'herman10@gmail.com', 'herman10', '$2y$10$ZxOsh1UbLCes8Rju6FsHPOrx3Wxa1Mon1JvLBlxEiSJLkVHJsOG2m', '2015-07-07 09:13:39', '2015-07-05 20:27:03', '2015-07-06 08:10:19', '2015-07-07 08:27:29', '2015-07-05 22:00:29', 'FFABE97', 1, 0, ''),
+(42, '054AAFF', 'herman11@gmail.com', 'herman11', '$2y$10$arNO448EaEQTXmLsFEizSelnBUxYVHjj75MKvSQjsK.TuHJJwgJt2', '2015-07-07 09:13:39', '2015-07-05 22:03:18', '2015-07-06 08:11:05', '2015-07-07 10:19:29', '2015-07-05 23:11:16', 'B159C03', 1, 0, ''),
+(43, '96BE509', 'herman12@gmail.com', 'herman12', '$2y$10$Ig2qtC3qiO2pWq1wcgMTLOujP8A5uwQPIOAAWcGhr5jRxxW2D713m', '2015-07-07 09:13:39', '2015-07-05 23:13:08', '2015-07-06 08:11:32', '2015-07-07 11:24:40', '2015-07-06 08:11:44', '054AAFF', 1, 0, ''),
+(44, '4E522A9', 'isa16@isa.com', 'isa16', '$2y$10$rY71sZYvjlA1edlBd.8iE.MjaivPJMpyGgkSEu1cjnvkUzSrmrDRe', '2015-07-07 09:13:39', '2015-07-07 07:17:27', '2015-07-07 07:18:59', '2015-07-08 19:19:22', '0000-00-00 00:00:00', '73DD48C', 2, 0, '');
 
 -- --------------------------------------------------------
 
@@ -529,14 +528,13 @@ INSERT INTO `members` (`id`, `code`, `email`, `username`, `password`, `updated_a
 --
 
 CREATE TABLE IF NOT EXISTS `pengumuman` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `judul` varchar(255) NOT NULL,
   `isi` text NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `expired_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `expired_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -545,7 +543,7 @@ CREATE TABLE IF NOT EXISTS `pengumuman` (
 --
 
 CREATE TABLE IF NOT EXISTS `profile` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `id_member` int(10) unsigned NOT NULL,
   `nama` varchar(255) NOT NULL,
   `alamat` varchar(255) NOT NULL,
@@ -556,9 +554,8 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `nama_bank` varchar(255) NOT NULL,
   `no_rekening` varchar(255) NOT NULL,
   `nama_rekening` varchar(255) NOT NULL,
-  `foto` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
+  `foto` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `profile`
@@ -606,7 +603,8 @@ INSERT INTO `profile` (`id`, `id_member`, `nama`, `alamat`, `kota`, `provinsi`, 
 (39, 40, 'herman9', 'padang', 'padang', 'padang', '2333', '9030', 'BCA', '3424', 'herman9', ''),
 (40, 41, 'herman10', 'padang', 'padang', 'padang', '2333', '93993', 'BCA', '93993', 'herman10', ''),
 (41, 42, 'herman11', 'padang', 'padang', 'padang', '25000', '081266291899', 'BCA', '3342', 'herman11', ''),
-(42, 43, 'herman12', 'padang', 'padang', 'padang', '2333', '09393', 'BCA', '3424', 'herman12', '');
+(42, 43, 'herman12', 'padang', 'padang', 'padang', '2333', '09393', 'BCA', '3424', 'herman12', ''),
+(43, 44, 'Isa16', 'isa16', 'isa16', 'isa16', '434343', '434343544', 'Bank Panin', '4334934395', '5445454', '');
 
 -- --------------------------------------------------------
 
@@ -618,8 +616,7 @@ CREATE TABLE IF NOT EXISTS `sliders` (
   `id` int(10) unsigned NOT NULL,
   `image_url` varchar(255) NOT NULL,
   `caption` varchar(255) NOT NULL,
-  `urutan` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
+  `urutan` int(10) unsigned NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -639,7 +636,7 @@ INSERT INTO `sliders` (`id`, `image_url`, `caption`, `urutan`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `id_member` int(10) unsigned NOT NULL,
   `id_referral` int(10) unsigned NOT NULL,
   `amount` int(11) NOT NULL,
@@ -647,9 +644,8 @@ CREATE TABLE IF NOT EXISTS `transfer_referral` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `confirmation_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `unique_transfer` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=169 ;
+  `unique_transfer` int(10) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transfer_referral`
@@ -756,7 +752,8 @@ INSERT INTO `transfer_referral` (`id`, `id_member`, `id_referral`, `amount`, `st
 (165, 43, 38, 100000, 2, '2015-07-06 08:09:14', '2015-07-05 23:24:40', '2015-07-06 08:09:14', 632),
 (166, 43, 37, 100000, 2, '2015-07-06 08:08:52', '2015-07-05 23:24:40', '2015-07-06 08:08:52', 868),
 (167, 43, 36, 100000, 2, '2015-07-06 08:06:58', '2015-07-05 23:24:40', '2015-07-06 08:06:58', 640),
-(168, 43, 22, 100000, 2, '2015-07-06 08:06:15', '2015-07-05 23:24:40', '2015-07-06 08:06:15', 900);
+(168, 43, 22, 100000, 2, '2015-07-06 08:06:15', '2015-07-05 23:24:40', '2015-07-06 08:06:15', 900),
+(169, 44, 1, 150000, 0, '2015-07-07 07:19:22', '2015-07-07 07:19:22', '0000-00-00 00:00:00', 360);
 
 -- --------------------------------------------------------
 
@@ -765,7 +762,7 @@ INSERT INTO `transfer_referral` (`id`, `id_member`, `id_referral`, `amount`, `st
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_bukti` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `id_transfer_referral` int(10) unsigned NOT NULL,
   `nama_bank_penerima` varchar(255) NOT NULL,
   `nama_rekening_penerima` varchar(255) NOT NULL,
@@ -774,9 +771,8 @@ CREATE TABLE IF NOT EXISTS `transfer_referral_bukti` (
   `nama_rekening_pengirim` varchar(255) NOT NULL,
   `no_rekening_pengirim` varchar(255) NOT NULL,
   `bukti_transfer` varchar(255) NOT NULL,
-  `transfered_at` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=95 ;
+  `transfered_at` date NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transfer_referral_bukti`
@@ -872,11 +868,10 @@ INSERT INTO `transfer_referral_bukti` (`id`, `id_transfer_referral`, `nama_bank_
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_cancel` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `id_transfer_referral_bukti` int(10) unsigned NOT NULL,
-  `msg` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `msg` varchar(255) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transfer_referral_cancel`
@@ -897,11 +892,10 @@ INSERT INTO `transfer_referral_cancel` (`id`, `id_transfer_referral_bukti`, `msg
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_conf` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `downline` int(11) NOT NULL,
-  `max_income` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `max_income` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transfer_referral_conf`
@@ -921,11 +915,10 @@ INSERT INTO `transfer_referral_conf` (`id`, `downline`, `max_income`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_conf_amount` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `level` int(11) NOT NULL,
-  `value` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+  `value` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transfer_referral_conf_amount`
@@ -947,13 +940,12 @@ INSERT INTO `transfer_referral_conf_amount` (`id`, `level`, `value`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `transfer_referral_msg` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `id_transfer_referral` int(10) unsigned NOT NULL,
   `msg` int(11) NOT NULL,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -962,11 +954,9 @@ CREATE TABLE IF NOT EXISTS `transfer_referral_msg` (
 --
 
 CREATE TABLE IF NOT EXISTS `voucher` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `nomor` varchar(19) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `nomor` (`nomor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2041 ;
+`id` int(10) unsigned NOT NULL,
+  `nomor` varchar(19) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2041 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `voucher`
@@ -975,7 +965,6 @@ CREATE TABLE IF NOT EXISTS `voucher` (
 INSERT INTO `voucher` (`id`, `nomor`) VALUES
 (1433, '0698-da95-d98b-d1dc'),
 (1663, '0a17-8599-3a23-e7c9'),
-(1879, '0a3f-75a8-b46b-10d9'),
 (1315, '0a72-dbb1-c70d-3182'),
 (1082, '0b2b-0e19-1c9e-e0fd'),
 (1525, '0b2d-03e1-f5b5-1e9b'),
@@ -1924,11 +1913,10 @@ INSERT INTO `voucher` (`id`, `nomor`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `wallet` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `id_member` int(10) unsigned NOT NULL,
-  `balance` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
+  `balance` int(10) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `wallet`
@@ -1976,7 +1964,8 @@ INSERT INTO `wallet` (`id`, `id_member`, `balance`) VALUES
 (39, 40, 350000),
 (40, 41, 250000),
 (41, 42, 150000),
-(42, 43, 0);
+(42, 43, 0),
+(43, 44, 0);
 
 -- --------------------------------------------------------
 
@@ -1985,13 +1974,12 @@ INSERT INTO `wallet` (`id`, `id_member`, `balance`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `wallet_logs` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `id_member` int(10) unsigned NOT NULL,
   `type` varchar(255) NOT NULL,
   `message` varchar(255) NOT NULL,
-  `amount` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=108 ;
+  `amount` int(10) unsigned NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `wallet_logs`
@@ -2103,23 +2091,225 @@ INSERT INTO `wallet_logs` (`id`, `id_member`, `type`, `message`, `amount`) VALUE
 (104, 38, 'deposit', 'deposit referral Rp. 100000', 100000),
 (105, 40, 'deposit', 'deposit referral Rp. 100000', 100000),
 (106, 41, 'deposit', 'deposit referral Rp. 100000', 100000),
-(107, 42, 'deposit', 'deposit referral Rp. 150000', 150000);
+(107, 42, 'deposit', 'deposit referral Rp. 150000', 150000),
+(108, 44, 'created', 'Pembuatan wallet', 0);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `activation_member_logs`
+--
+ALTER TABLE `activation_member_logs`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bank`
+--
+ALTER TABLE `bank`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `captcha`
+--
+ALTER TABLE `captcha`
+ ADD PRIMARY KEY (`captcha_id`);
+
+--
+-- Indexes for table `contents`
+--
+ALTER TABLE `contents`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `members`
+--
+ALTER TABLE `members`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `code` (`code`,`email`);
+
+--
+-- Indexes for table `pengumuman`
+--
+ALTER TABLE `pengumuman`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `profile`
+--
+ALTER TABLE `profile`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sliders`
+--
+ALTER TABLE `sliders`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transfer_referral`
+--
+ALTER TABLE `transfer_referral`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transfer_referral_bukti`
+--
+ALTER TABLE `transfer_referral_bukti`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transfer_referral_cancel`
+--
+ALTER TABLE `transfer_referral_cancel`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transfer_referral_conf`
+--
+ALTER TABLE `transfer_referral_conf`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transfer_referral_conf_amount`
+--
+ALTER TABLE `transfer_referral_conf_amount`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `transfer_referral_msg`
+--
+ALTER TABLE `transfer_referral_msg`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `voucher`
+--
+ALTER TABLE `voucher`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `nomor` (`nomor`);
+
+--
+-- Indexes for table `wallet`
+--
+ALTER TABLE `wallet`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `wallet_logs`
+--
+ALTER TABLE `wallet_logs`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `activation_member_logs`
+--
+ALTER TABLE `activation_member_logs`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=69;
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `bank`
+--
+ALTER TABLE `bank`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `captcha`
+--
+ALTER TABLE `captcha`
+MODIFY `captcha_id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=301;
+--
+-- AUTO_INCREMENT for table `contents`
+--
+ALTER TABLE `contents`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `members`
+--
+ALTER TABLE `members`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=45;
+--
+-- AUTO_INCREMENT for table `pengumuman`
+--
+ALTER TABLE `pengumuman`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `profile`
+--
+ALTER TABLE `profile`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
+--
+-- AUTO_INCREMENT for table `transfer_referral`
+--
+ALTER TABLE `transfer_referral`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=170;
+--
+-- AUTO_INCREMENT for table `transfer_referral_bukti`
+--
+ALTER TABLE `transfer_referral_bukti`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=95;
+--
+-- AUTO_INCREMENT for table `transfer_referral_cancel`
+--
+ALTER TABLE `transfer_referral_cancel`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `transfer_referral_conf`
+--
+ALTER TABLE `transfer_referral_conf`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `transfer_referral_conf_amount`
+--
+ALTER TABLE `transfer_referral_conf_amount`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `transfer_referral_msg`
+--
+ALTER TABLE `transfer_referral_msg`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `voucher`
+--
+ALTER TABLE `voucher`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2041;
+--
+-- AUTO_INCREMENT for table `wallet`
+--
+ALTER TABLE `wallet`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=44;
+--
+-- AUTO_INCREMENT for table `wallet_logs`
+--
+ALTER TABLE `wallet_logs`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=109;
 DELIMITER $$
 --
 -- Events
 --
-CREATE DEFINER=`angga`@`localhost` EVENT `banned_24` ON SCHEDULE AT '2015-07-07 05:56:52' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE members SET status = -1 WHERE id = 24$$
+CREATE DEFINER=`angga`@`localhost` EVENT `banned_24` ON SCHEDULE AT '2015-07-07 05:56:52' ON COMPLETION NOT PRESERVE DISABLE DO UPDATE members SET status = -1 WHERE id = 24$$
 
-CREATE DEFINER=`angga`@`localhost` EVENT `banned_25` ON SCHEDULE AT '2015-07-07 06:04:18' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE members SET status = -1 WHERE id = 25$$
+CREATE DEFINER=`angga`@`localhost` EVENT `banned_25` ON SCHEDULE AT '2015-07-07 06:04:18' ON COMPLETION NOT PRESERVE DISABLE DO UPDATE members SET status = -1 WHERE id = 25$$
 
 CREATE DEFINER=`angga`@`localhost` EVENT `banned_31` ON SCHEDULE AT '2015-07-07 13:08:34' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE members SET status = -1 WHERE id = 31$$
 
 CREATE DEFINER=`angga`@`localhost` EVENT `banned_27` ON SCHEDULE AT '2015-07-07 11:38:45' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE members SET status = -1 WHERE id = 27$$
 
-CREATE DEFINER=`angga`@`localhost` EVENT `banned_22` ON SCHEDULE AT '2015-07-07 05:25:22' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE members SET status = -1 WHERE id = 22$$
+CREATE DEFINER=`angga`@`localhost` EVENT `banned_22` ON SCHEDULE AT '2015-07-07 05:25:22' ON COMPLETION NOT PRESERVE DISABLE DO UPDATE members SET status = -1 WHERE id = 22$$
 
-CREATE DEFINER=`angga`@`localhost` EVENT `banned_23` ON SCHEDULE AT '2015-07-07 05:36:39' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE members SET status = -1 WHERE id = 23$$
+CREATE DEFINER=`angga`@`localhost` EVENT `banned_23` ON SCHEDULE AT '2015-07-07 05:36:39' ON COMPLETION NOT PRESERVE DISABLE DO UPDATE members SET status = -1 WHERE id = 23$$
 
 CREATE DEFINER=`angga`@`localhost` EVENT `banned_32` ON SCHEDULE AT '2015-07-07 13:21:40' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE members SET status = -1 WHERE id = 32$$
 
@@ -2128,6 +2318,8 @@ CREATE DEFINER=`angga`@`localhost` EVENT `banned_29` ON SCHEDULE AT '2015-07-07 
 CREATE DEFINER=`angga`@`localhost` EVENT `banned_34` ON SCHEDULE AT '2015-07-07 13:44:33' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE members SET status = -1 WHERE id = 34$$
 
 CREATE DEFINER=`angga`@`localhost` EVENT `banned_35` ON SCHEDULE AT '2015-07-07 14:02:54' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE members SET status = -1 WHERE id = 35$$
+
+CREATE DEFINER=`root`@`localhost` EVENT `banned_44` ON SCHEDULE AT '2015-07-09 02:19:22' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE members SET status = -1 WHERE id = 44$$
 
 DELIMITER ;
 
