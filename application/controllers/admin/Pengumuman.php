@@ -30,7 +30,7 @@ class Pengumuman extends CI_Controller {
     {	
     	$crud = new grocery_CRUD;
         $crud->set_table('pengumuman');
-        $crud->columns('judul','isi','created_at','updated_at','expired_at');
+        $crud->columns('isi','created_at','updated_at','status');
         $crud->unset_export();
         $crud->unset_print();
         $crud->unset_texteditor('isi');

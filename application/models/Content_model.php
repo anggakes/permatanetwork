@@ -27,4 +27,7 @@ class Content_model extends CI_Model
 	public function getHalaman(){
 		return $this->db->query('SELECT * from contents WHERE jenis=1')->result();
 	}
+	public function getBerita(){
+		return $this->db->query('SELECT * from contents WHERE jenis=0')->result();
+	}
 }

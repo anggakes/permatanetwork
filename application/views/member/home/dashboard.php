@@ -1,10 +1,10 @@
 <div class='marquee row' style='margin:10px 0px;background:white;padding:15px;'>
   <?php
-    $pengumuman = '';
+    $pengumuman = "<i class='fa fa-star'></i> ";
     foreach ($pengumumans as $p){
-      $pengumuman .= $p->isi." | ";
+      $pengumuman .= $p->isi." <i class='fa fa-star'></i> ";
     }
-    $pengumuman = substr($pengumuman,0,-2);
+
   ?>
         <b> Pengumuman : </b> <marquee class='col-md-12' style='font-size:12pt'><?= $pengumuman ?></marquee></div>
         <div class='clearfix'></div>
@@ -54,7 +54,7 @@ if(isset($_SESSION['message'])):
 
 <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Menunggu Konfirmasi Transfer</h3>
+              <h3 class="box-title"><i class='fa fa-check'></i> Menunggu Konfirmasi Transfer</h3>
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
                 <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>
@@ -82,14 +82,18 @@ if(isset($_SESSION['message'])):
 
 <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Berita</h3>
+              <h3 class="box-title"><i class='fa fa-newspaper-o'></i> Berita</h3>
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
                 <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>
               </div>
             </div>
             <div class="box-body" style="display: block;min-height:180px">
-              
+              <ul>
+              <?php  foreach ($beritas as $berita) {?>
+                  <li><a href="<?= base_url('content/view/'.$berita->slug)?>"><?= $berita->judul?></a></li>
+              <?php } ?>
+            </ul>
             </div><!-- /.box-body -->
           
 </div>
@@ -101,7 +105,7 @@ if(isset($_SESSION['message'])):
 
 <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Member Yang Harus Transfer :  </h3>
+              <h3 class="box-title"><i class='fa fa-exclamation'></i> Member Yang Harus Transfer :  </h3>
              
             </div>
             <div class="box-body" style="display: block;">
