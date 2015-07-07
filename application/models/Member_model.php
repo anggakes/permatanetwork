@@ -79,7 +79,7 @@ class Member_model extends CI_Model
 		if($status == 1){
 			
 			//cek jika downline ny sudah lebih dari 5 kesamping
-			$referral = $this->checkAndMoveMember($this->getData($this->attributes('referral_code'),'code')));
+			$referral = $this->checkAndMoveMember($this->getData($this->attributes('referral_code'),'code'));
 			$referral_code = $referral->attributes('code');
 			$this->db->set('referral_code',$referral_code);
 
