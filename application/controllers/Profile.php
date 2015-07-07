@@ -13,7 +13,7 @@ class Profile extends CI_Controller {
         $this->load->library('session');
         $this->load->model('member_model');
 	    $this->load->library('authlibrary',$this->params);
-	    
+	    $this->authlibrary->check_login();
 	}//
 
 	public function index()

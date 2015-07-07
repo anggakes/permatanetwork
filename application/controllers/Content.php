@@ -13,6 +13,7 @@ class Content extends CI_Controller {
         $this->load->library('session');
         $this->load->database();
 	    $this->load->library('authlibrary',$this->params);
+	    $this->authlibrary->check_login();
 	    
 	}//
 

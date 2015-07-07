@@ -45,7 +45,7 @@
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li>
-              <a href="<?= base_url(); ?>">
+              <a href="<?= base_url(); ?>admin/home">
                 <i class="fa fa-line-chart"></i> <span>Stat Sistem</span>
               </a>
             </li>

@@ -80,6 +80,8 @@ class TransferReferralLibrary {
         }
 
         public function transfered($data, $id_transfer){
+            $transfer = $this->getData($id_transfer);
+            
 
             $this->db->trans_start();
                 $this->db->insert('transfer_referral_bukti',$data);
@@ -87,12 +89,21 @@ class TransferReferralLibrary {
                 $this->db->where('id',$id_transfer);
                 $this->db->set('status_transfer',1);
                 $this->db->update($this->table);
+
+                $id_pengirim = $transfer->data->id_member;
+                $id_penerima = $transfer->data->id_referral;
+                /* ditambah 12 jam */
+                $waktu_transfer = date('Y-m-j H:i:s',strtotime(date('Y-m-j H:i:s').'+ 12 hours'));
+                $this->setAutomaticConfirm($id_pengirim,$id_penerima,$id_transfer,$waktu_transfer);
+            
             $this->db->trans_complete();
 
             return $this->db->trans_status();
         }
 
         public function confirmed($id_transfer, $member, $amount){
+            $transfer = $this->getData($id_transfer);
+
             $this->db->trans_start();
                 $this->wallet_model->deposit($member, $amount, "deposit referral Rp. $amount");
 
@@ -100,10 +111,35 @@ class TransferReferralLibrary {
                 $this->db->set('status_transfer',2);
                 $this->db->set('confirmation_at', date('Y-m-j H:i:s'));
                 $this->db->update($this->table);
+
+                $id_pengirim = $transfer->data->id_member;
+                $id_penerima = $transfer->data->id_referral;
+
+                $this->deleteAutomaticConfirm($id_pengirim, $id_penerima);
+
             $this->db->trans_complete();
 
             return $this->db->trans_status();
         }
+
+    public function setAutomaticConfirm($id_pengirim, $id_penerima, $id_transfer, $waktu_transfer){
+
+        // set timer menggunakan mysql event
+
+        $query = "CREATE EVENT IF NOT EXISTS transfer_".$id_pengirim."_".$id_penerima." ON SCHEDULE AT '".$waktu_transfer."'  ON COMPLETION NOT PRESERVE ENABLE DO UPDATE transfer_referral SET status_transfer = 2 WHERE id = ".$id_transfer."";
+
+        return $this->db->query($query);
+    }
+
+    public function deleteAutomaticConfirm($id_pengirim, $id_penerima){
+
+        // delete timer menggunakan mysql event
+
+        $query = "DROP EVENT IF EXISTS transfer_".$id_pengirim."_".$id_penerima."";
+
+        return $this->db->query($query);
+    }   
+
 
          public function cancel($msg, $id_bukti){
 
@@ -118,7 +154,7 @@ class TransferReferralLibrary {
                         'id_transfer_referral_bukti' => $id_bukti,
                         'msg' => $msg
                     ));
-
+                $this->deleteAutomaticConfirm($id_pengirim, $id_penerima);
             $this->db->trans_complete();
 
             return $this->db->trans_status();

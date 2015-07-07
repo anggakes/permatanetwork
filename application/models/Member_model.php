@@ -1,5 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+ini_set("memory_limit","16M");
 class Member_model extends CI_Model
 {
 
@@ -84,10 +84,10 @@ class Member_model extends CI_Model
 
 		if($status == 1){
 			
-			//cek jika downline ny sudah lebih dari 5 kesamping
+			/*//cek jika downline ny sudah lebih dari 5 kesamping
 			$referral = $this->checkAndMoveMember($this->getData($this->attributes('referral_code'),'code'));
 			$referral_code = $referral->attributes('code');
-			$this->db->set('referral_code',$referral_code);
+			$this->db->set('referral_code',$referral_code);*/
 
 			$this->db->set('activation_at',date('Y-m-j H:i:s'));
 
@@ -102,7 +102,7 @@ class Member_model extends CI_Model
 		
 		if($status == 1){
 
-			$this->deleteAutomaticBlock($waktu_transfer);
+			$this->deleteAutomaticBlock();
 
 		}else if($status == 2){
 			
@@ -123,7 +123,7 @@ class Member_model extends CI_Model
 		return $this->db->query($query);
 	}
 
-	public function deleteAutomaticBlock($waktu_transfer){
+	public function deleteAutomaticBlock(){
 
 		// delete timer menggunakan mysql event
 

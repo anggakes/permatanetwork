@@ -67,15 +67,72 @@ if(isset($_SESSION['message'])):
         <div class="box box-danger">
             <div class="box-header with-border">
               <h3 class="box-title">Edit Account</h3>
-              <div class="box-tools pull-right">
-
-              </div>
+              <div class="box-tools pull-right">          </div>
             </div>
            
             <div class="box-body"  id='main'  >
-      
+      <table class='table table-striped'>
+        <tr>
+          <td>Username</td><td>:</td><td><?= $user->attributes('username') ?></td><td><i class='fa fa-edit'></i></td>
+        </tr>
+        <tr>
+          <td>Email</td><td>:</td><td><?= $user->attributes('email') ?></td><td><i class='fa fa-edit'></i></td>
+        </tr>
+        <tr>
+          <td>Password</td><td>:</td><td> *********** </td><td><i class='fa fa-edit'></i></td>
+        </tr>
+      </table>
+<hr>
+<form id='password' style='display:none'>
+          <div class="form-group col-sm-6">
+    <label for="exampleInputPassword1">Password Baru</label>
+    <input type="password" name='member[password]' class="form-control" id="" placeholder="Password.." required>
+    <div style='color:red'><?= form_error('member[password]') ?></div>
+  </div>
+  <div class="form-group col-sm-6">
+    <label for="exampleInputPassword1">Konfirmasi Password Baru</label>
+    <input type="password" name='member[repassword]' class="form-control" id="" placeholder=" Retype Password.." required>
+    <div style='color:red'><?= form_error('member[repassword]') ?></div>
+  </div>
+  <div class="form-group col-sm-6">
+    <label for="exampleInputPassword1">Username Lama</label>
+    <input type="tex" name='username' class="form-control" id="" placeholder="Password.." required>
+    <div style='color:red'><?= form_error('member[password]') ?></div>
+  </div>
+  <div class="form-group col-sm-6">
+    <label for="exampleInputPassword1">Password Lama</label>
+    <input type="password" name='password' class="form-control" id="" placeholder=" Retype Password.." required>
+    <div style='color:red'><?= form_error('member[repassword]') ?></div>
+  </div>
+   <div class="form-group">
+  <button type="submit" class="btn btn-danger pull-right">Ubah </button>
+
+  </div>
+      </form>
+  <form id='username' style='display:none'>
+  <div class="form-group col-sm-6">
+    <label for="exampleInputPassword1">Password Baru</label>
+    <input type="text" name='member[password]' class="form-control" id="" placeholder="Password.." required>
+    <div style='color:red'><?= form_error('member[password]') ?></div>
+  </div>
+  <div class="form-group col-sm-6">
+    <label for="exampleInputPassword1">Username Lama</label>
+    <input type="text" name='username' class="form-control" id="" placeholder="Password.." required>
+    <div style='color:red'><?= form_error('member[password]') ?></div>
+  </div>
+  <div class="form-group col-sm-6">
+    <label for="exampleInputPassword1">Password Lama</label>
+    <input type="password" name='password' class="form-control" id="" placeholder=" Retype Password.." required>
+    <div style='color:red'><?= form_error('member[repassword]') ?></div>
+  </div>
+   <div class="form-group">
+  <button type="submit" class="btn btn-danger pull-right">Ubah </button>
+
+  </div>
+      </form>
+
             </div><!-- /.box-body -->
-            
+      
     </div>
   </div><!-- /.col 6 -->
 
@@ -144,6 +201,7 @@ if(isset($_SESSION['message'])):
 
 
 </div>
+
 
 
 

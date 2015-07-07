@@ -43,7 +43,9 @@ if(isset($_SESSION['message'])):
        <dt>Username :</dt><dd><?= $r->username?></dd>
        <dt>Kontak :</dt><dd><?= $r->no_hp?></dd>
         <dt>Email :</dt><dd><?= $r->email?></dd>
-         <dt>Alamat :</dt><dd><?= $r->alamat?></dd>
+         <dt>Alamat :</dt><dd><?= $r->alamat?>
+         ,<b>Kota : </b><?= $r->kota ?> 
+         ,<b>Provinsi : </b><?= $r->provinsi ?></dd>
 
           <dt>Nama Bank :</dt><dd><?= $r->nama_bank?></dd>
            <dt>No Rekening :</dt><dd><?= $r->no_rekening?></dd>

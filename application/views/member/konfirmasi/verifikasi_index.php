@@ -46,7 +46,7 @@ if(isset($_SESSION['message'])):
 <td><?= $v->nama ?></td>
 <td><?= $v->no_hp ?></td>
 <td><?= $v->email ?></td>
-<td><?= $v->alamat ?></td>
+<td><?= $v->alamat ?>, Provinsi : <?= $v->provinsi ?>, Kota : <?= $v->kota ?></td>
 <td>Rp. <?= rupiah($v->amount+$v->unique_transfer) ?></td>
 <td><?= $status ?></td>
 <td>

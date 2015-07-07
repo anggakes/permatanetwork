@@ -112,12 +112,19 @@
                  
                   <!-- Menu Footer-->
                   <li class="user-footer">
+                    <?php if($_SESSION['login_role'] == "members"){?>
                     <div class="pull-left">
                       <a href="<?= base_url('profile/edit'); ?>" class="btn btn-default btn-flat">Edit Profil</a>
                     </div>
                     <div class="pull-right">
                       <a href="<?= base_url('profile/'.$user->attributes('username')) ?>" class="btn btn-default btn-flat">Lihat Profil</a>
                     </div>
+                    <?php } ?>
+                    <?php if($_SESSION['login_role'] == "admin"){?>
+                    <div class="pull-right">
+                      <a href="<?= base_url('admin/profile/'.$user->attributes('username')) ?>" class="btn btn-default btn-flat">Edit Profil</a>
+                    </div>
+                    <?php } ?>
                   </li>
                 </ul>
               </li>

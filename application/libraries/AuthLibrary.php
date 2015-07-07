@@ -204,14 +204,14 @@ class AuthLibrary {
 
             $result = $this->email
                 ->from('noreply@permatanetwork.com')   
-                ->to( $to->email)
+                ->to( $to)
                 ->subject($subject)
                 ->message($body);
             
             
             $result = $result->send();    
             
-            return $result();
+            return $result;
             exit;
         }
 
