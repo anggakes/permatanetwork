@@ -179,7 +179,7 @@ class AuthLibrary {
             <html xmlns='http://www.w3.org/1999/xhtml'>
             <head>
                 <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-                <title>'.htmlspecialchars($subject, ENT_QUOTES, $this->email->charset).'</title>
+                <title>".htmlspecialchars($subject, ENT_QUOTES, $this->email->charset)."</title>
                 <style type='text/css'>
                     body {
                         font-family: Arial, Verdana, Helvetica, sans-serif;

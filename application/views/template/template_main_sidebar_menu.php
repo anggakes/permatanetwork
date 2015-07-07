@@ -50,6 +50,11 @@
                 <i class="fa fa-dashboard"></i> <span>Voucher</span>
               </a>
             </li>
+            <li>
+              <a href="<?= base_url(); ?>admin/stokis">
+                <i class="fa fa-dashboard"></i> <span>Stokis</span>
+              </a>
+            </li>
             <li class="" ><a href="<?= base_url() ?>admin/manajemenmember"><i class="fa fa-circle-o"></i> Member</a></li>
               
             
