@@ -22,7 +22,7 @@ class AuthLibrary {
                 $this->load->library('session');
                 $this->load->model('member_model');
                 $this->load->model('admin_model');
-                 $this->load->model('email');
+                 $this->load->library('email');
                 $this->model = $params['model'];
         }
 
