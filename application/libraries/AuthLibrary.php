@@ -188,11 +188,14 @@ class AuthLibrary {
                 </style>
             </head>
             <body>
-            <h3>Anda telah berhasil bergabung bersama Permata Network</h3>
-            berikut ini adalah data akun anda :
-            username : $username <br>
-            username : $password <br>
-
+            <h2>Permata Network</h2>
+            <h3>Anda telah berhasil bergabung bersama Permata Network</h3><br>
+             <br>
+            berikut ini adalah data akun anda : <br>
+            Username : $username <br>
+            Password : $password <br>
+            <br>
+            <p>informasi lebih lanjut hubungi admin kami</p>
             <br>
             <hr>
             <br>
