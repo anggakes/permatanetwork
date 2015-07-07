@@ -15,6 +15,7 @@ class Home extends CI_Controller {
         $this->load->library('template');
         $this->load->library('session');
         $this->load->model('member_model');
+        $this->load->model('pengumuman_model');
 	    $this->load->library('authlibrary',$this->params);
 	    $this->load->library('transferreferrallibrary');
 	    
@@ -34,6 +35,8 @@ class Home extends CI_Controller {
 
 				$data['verifikasi'] = $this->transferreferrallibrary->getDataAllVerifikasi($user->attributes('id')," AND status_transfer = 1");
 				$data['harus_transfer'] = $this->transferreferrallibrary->getDataAllVerifikasi($user->attributes('id')," AND status_transfer <> 2 AND status_transfer <> 1 AND members.limited_transfer_at >= NOW()");
+				//ambil pengumuman
+				$data['pengumumans'] = $this->pengumuman_model->getPengumuman();
 
 				$data['title']="Statistik Member";
 				$this->template->load('template/template_main','member/home/dashboard',$data);	

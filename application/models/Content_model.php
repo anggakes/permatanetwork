@@ -23,4 +23,8 @@ class Content_model extends CI_Model
 
 		return $s;
 	}
+
+	public function getHalaman(){
+		return $this->db->query('SELECT * from contents WHERE jenis=1')->result();
+	}
 }

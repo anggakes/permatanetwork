@@ -1,3 +1,13 @@
+<div class='marquee row' style='margin:10px 0px;background:white;padding:15px;'>
+  <?php
+    $pengumuman = '';
+    foreach ($pengumumans as $p){
+      $pengumuman .= $p->isi." | ";
+    }
+    $pengumuman = substr($pengumuman,0,-2);
+  ?>
+        <b> Pengumuman : </b> <marquee class='col-md-12' style='font-size:12pt'><?= $pengumuman ?></marquee></div>
+        <div class='clearfix'></div>
 <?php 
 if(isset($_SESSION['message'])):
 ?>
@@ -72,7 +82,7 @@ if(isset($_SESSION['message'])):
 
 <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title">Artikel Berita</h3>
+              <h3 class="box-title">Berita</h3>
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
                 <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>

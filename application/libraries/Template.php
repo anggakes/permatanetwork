@@ -26,7 +26,8 @@ class Template {
 /* untuk menampilkan link halaman di menu */
 
         public function getHalaman(){
-        	$halaman = $this->db->query('SELECT * from contents WHERE jenis=1')->result();
+        	$this->load->model('content_model');
+        	$halaman = $this->content_model->getHalaman();
         	return $halaman;
         }
 }
