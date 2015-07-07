@@ -21,6 +21,7 @@ class Profile extends CI_Controller {
 
 		$username = $this->uri->segment(2);
 
+
 		if(isset($username)){
 			$data['user'] = serialize($this->member_model->getData($username));
 		}else{
@@ -42,6 +43,8 @@ class Profile extends CI_Controller {
 	public function edit(){
 		
 		$data['user'] = unserialize($_SESSION['login_user']);
+		$bank = $this->db->query("SELECT * FROM bank")->result();
+		$data['bank'] = object_to_array($bank,'nama_bank');
 
 		$this->authlibrary->check_login();
 		$this->template->load('template/template_main','member/profile/edit',$data);
@@ -75,6 +78,22 @@ class Profile extends CI_Controller {
 			}
 
 			redirect(base_url("profile/edit"));
+	}
+
+	public function update(){
+		
+		$user = unserialize($_SESSION['login_user']);
+
+		$data  = $this->input->post('profile');
+		$table = 'profile';
+		$id = $user->profile('id');
+
+		$this->session->set_flashdata('message',"Berhasil di Ubah");
+		$this->session->set_flashdata('sukses', true);
+		
+		$this->member_model->update($table, $data, $id);
+		$this->_refresh_session();
+		redirect(base_url("profile/edit"));
 	}
 
 	private function _refresh_session(){

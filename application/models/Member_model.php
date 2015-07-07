@@ -55,6 +55,12 @@ class Member_model extends CI_Model
 		
 	}
 
+	public function update($table, $data, $id){
+
+		$this->db->where('id',$id);
+		return $this->db->update($table, $data);
+	}
+
 	public function hasConfirmation(){
 
 		$confirmation = $this->db->query("SELECT count(id) as b FROM konfirmasi_pendaftaran WHERE id_member ='".$this->attributes('id')."'")->row();
