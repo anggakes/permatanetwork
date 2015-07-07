@@ -49,11 +49,23 @@
        
     </div>
     </div>             
-         
 
             </div><!-- /.box-body -->
+
             
           </div>
+          <div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Link Registrasi Untuk Member Baru Anda :</h3> <br>
+              <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
+                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body" style="display: block;">
+              <a href='<?= base_url("?ref=".$user->attributes('code'))?>'><?= "permatanetwork.com/?ref=".$user->attributes('username')?></a>
+            </div>
+</div>
 </div>
 
 <!-- Stat -->
@@ -87,6 +99,7 @@
             </div><!-- /.box-body -->   
 
           </div>
+
 </div>
 </div>
 

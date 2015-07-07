@@ -39,7 +39,6 @@ if(isset($_SESSION['message'])):
             </div>
 </div> <!-- END ROW -->
 
-
 <div class='row'>
   <div class='col-md-6'>
 
