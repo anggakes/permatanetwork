@@ -21,13 +21,18 @@ class Member_model extends CI_Model
 
 	public function register(){
 
+
+			//cek jika downline ny sudah lebih dari 5 kesamping
+		$referral = $this->checkAndMoveMember($this->getData($this->input->post('member[referral_code]'),'code'));
+		$referral_code = $referral->attributes('code');
+
 		$data_member 	= array(
 
 				'username'   	=> $this->input->post('member[username]'),
 				'code'		 	=> $this->generate_code($this->input->post('member[username]')),
 				'email'      	=> $this->input->post('member[email]'),
 				'password'   	=> $this->hash_password($this->input->post('member[password]')),
-				'referral_code' => $this->input->post('member[referral_code]'),
+				'referral_code' => $referral_code,
 				'created_at' => date('Y-m-j H:i:s'),
 				'updated_at' => date('Y-m-j H:i:s'),
 
@@ -73,6 +78,11 @@ class Member_model extends CI_Model
 
 		if($status == 1){
 			
+			//cek jika downline ny sudah lebih dari 5 kesamping
+			$referral = $this->checkAndMoveMember($this->getData($this->attributes('referral_code'),'code')));
+			$referral_code = $referral->attributes('code');
+			$this->db->set('referral_code',$referral_code);
+
 			$this->db->set('activation_at',date('Y-m-j H:i:s'));
 
 		}else if($status == 2){
@@ -114,7 +124,33 @@ class Member_model extends CI_Model
 		$query = "DROP EVENT IF EXISTS banned_".$this->attributes('id')."";
 
 		return $this->db->query($query);
+	}	
+
+	public function checkAndMoveMember($referral, $ketemu = false){
+
+		$batas = 5;
+
+		if(!$ketemu){
+			if(count($referral->getDownline())>= $batas){
+				$downline = $referral->getDownline();
+					foreach ($downline as $value) {
+							if(count($value->getDownline())<$batas){
+								$referral = $value;
+								$ketemu=true;
+								break;
+							}
+							else{
+
+								$referral = $this->checkAndMoveMember($value,$ketemu);
+							}
+					}
+			}
+		}
+
+		return $referral;
+
 	}
+
 
 	public function toogleStatus(){
 

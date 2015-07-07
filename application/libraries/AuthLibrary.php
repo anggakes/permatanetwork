@@ -22,6 +22,7 @@ class AuthLibrary {
                 $this->load->library('session');
                 $this->load->model('member_model');
                 $this->load->model('admin_model');
+                 $this->load->model('email');
                 $this->model = $params['model'];
         }
 
@@ -166,6 +167,52 @@ class AuthLibrary {
                 
                 return password_verify($password, $hash);
                 
+        }
+
+        public function sendRegistrationMail($to, $username, $password){
+          
+            $subject = 'Pendaftaran Permata Network';
+
+            // Get full html:
+            $body =
+            "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+            <html xmlns='http://www.w3.org/1999/xhtml'>
+            <head>
+                <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+                <title>'.htmlspecialchars($subject, ENT_QUOTES, $this->email->charset).'</title>
+                <style type='text/css'>
+                    body {
+                        font-family: Arial, Verdana, Helvetica, sans-serif;
+                        font-size: 16px;
+                    }
+                </style>
+            </head>
+            <body>
+            <h3>Anda telah berhasil bergabung bersama Permata Network</h3>
+            berikut ini adalah data akun anda :
+            username : $username <br>
+            username : $password <br>
+
+            <br>
+            <hr>
+            <br>
+            <a href='permatanetwork.com'>Permata Network</a>
+            </body>
+            </html>";
+            // Also, for getting full html you may use the following internal method:
+            //$body = $this->email->full_html($subject, $message);
+
+            $result = $this->email
+                ->from('noreply@permatanetwork.com')   
+                ->to( $to->email)
+                ->subject($subject)
+                ->message($body);
+            
+            
+            $result = $result->send();    
+            
+            return $result();
+            exit;
         }
 
 

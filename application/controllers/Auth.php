@@ -78,6 +78,7 @@ class Auth extends CI_Controller {
 				if($this->member_model->register() === false){
 					echo "terjadi error di server";
 				}else{
+					$this->authlibrary->sendRegistrationMail($this->input->post('member[email]'), $this->input->post('member[username]'), $this->input->post('member[password]'));
 					redirect(base_url()."auth/success");
 				}
 		}
@@ -152,11 +153,14 @@ class Auth extends CI_Controller {
 		}
 	}
 
-	public function tes($val){
+/*
+	public function tes(){
 
-		print_r($this->member_model->hash_password($val));
+		$referral = $this->member_model->checkAndMoveMember($this->member_model->getData("first"));
+		
+		print_r($referral->attributes('code'));
 
 	}
-
+*/
 
 }
