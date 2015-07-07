@@ -50,7 +50,9 @@ if(isset($_SESSION['message'])):
                 <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>
               </div>
             </div>
-            <div class="box-body" style="display: block;">
+            <div class="box-body" style="display: block;min-height:180px">
+              
+<?php if(count($verifikasi)>0){ ?>
               <ul>
             <?php foreach($verifikasi as $v) :?>
               <li>
@@ -58,6 +60,26 @@ if(isset($_SESSION['message'])):
               </li>
             <?php endforeach; ?>
           </ul>
+<?php }else{ ?>
+<center> Tidak ada </center>
+<?php } ?>
+            </div><!-- /.box-body -->
+          
+</div>
+
+</div> <!-- End col-md-6 -->
+<div class='col-md-6'>
+
+<div class="box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Artikel Berita</h3>
+              <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse"><i class="fa fa-minus"></i></button>
+                <button class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="" data-original-title="Remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body" style="display: block;min-height:180px">
+              
             </div><!-- /.box-body -->
           
 </div>

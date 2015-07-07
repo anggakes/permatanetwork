@@ -13,7 +13,7 @@ class Template {
 		public function load($template = '', $view = '' , $view_data = array(), $return = FALSE)
 		{               
 			// library url dan form sudah di autoload
-
+			$this->set('halaman', $this->getHalaman());
 			$this->set('contents', $this->load->view($view, $view_data, TRUE));		
 			return $this->load->view($template, $this->template_data, $return);
 		}
@@ -21,5 +21,12 @@ class Template {
 		public function __get($var)
         {
                 return get_instance()->$var;
+        }
+
+/* untuk menampilkan link halaman di menu */
+
+        public function getHalaman(){
+        	$halaman = $this->db->query('SELECT * from contents WHERE jenis=1')->result();
+        	return $halaman;
         }
 }

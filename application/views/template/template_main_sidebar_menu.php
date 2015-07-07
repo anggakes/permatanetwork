@@ -30,6 +30,15 @@
                  
                 
           <?php endif; ?>
+
+          <?php foreach ($halaman as $hal) { ?>
+            <li class="">
+                    <a href="<?= base_url('content/view/'.$hal->slug)?>" >
+                      <i class="fa fa-book"></i> <span><?= $hal->judul?></span>
+                    </a>
+            </li>
+          <?php } ?>
+
         </ul>
 <?php elseif($_SESSION['login_role'] == "admin"): ?>
 

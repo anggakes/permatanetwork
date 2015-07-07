@@ -216,6 +216,12 @@ class AuthLibrary {
         }
 
 
-        
-        
+        public function set_forget_password(){
+
+        }
+
+        public function get_forget_password(){
+
+        }
+       
 }
