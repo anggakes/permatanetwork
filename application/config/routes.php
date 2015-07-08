@@ -58,5 +58,7 @@ $route['profile/(:any)'] = 'profile/index/$1';
 $route['profile/edit'] = 'profile/edit';
 $route['profile/upload_foto'] = 'profile/upload_foto';
 $route['profile/update'] = 'profile/update';
+$route['profile/update_password'] = 'profile/update_password';
+$route['profile/update_akun/(:any)'] = 'profile/update_akun/$1';
 
 
