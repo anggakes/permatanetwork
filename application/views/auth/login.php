@@ -10,10 +10,10 @@
     <?php endif; ?>
     
 <?php 
-if(isset($_SESSION['message'])):
+if(isset($msg)):
 ?>
-<div class='alert alert-<?= ($_SESSION['sukses']) ? 'success' : 'danger'?>'>
-<?= $_SESSION['message']?>
+<div class='alert alert-success'>
+<?= $msg ?>
 </div>
 <?php endif; ?>
     

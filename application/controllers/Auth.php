@@ -93,6 +93,7 @@ class Auth extends CI_Controller {
 	public function login()
 	{	
 		
+		$data['msg'] = $this->input->get('msg');
 		$rules 		=  array(
 				array(
 	                'field' => 'usernameOrEmail',
@@ -110,7 +111,7 @@ class Auth extends CI_Controller {
 		// Form validation 
 		if ($this->form_validation->run() == FALSE){
 
-				$this->template->load('template/template_auth','auth/login');
+				$this->template->load('template/template_auth','auth/login', $data);
 
 		}else{
 

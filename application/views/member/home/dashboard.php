@@ -1,8 +1,8 @@
 <div class='marquee row' style='margin:10px 0px;background:white;padding:15px;'>
   <?php
-    $pengumuman = "<i class='fa fa-star'></i> ";
+    $pengumuman = " - ";
     foreach ($pengumumans as $p){
-      $pengumuman .= $p->isi." <i class='fa fa-star'></i> ";
+      $pengumuman .= $p->isi." - ";
     }
 
   ?>
@@ -105,7 +105,7 @@ if(isset($_SESSION['message'])):
 
 <div class="box">
             <div class="box-header with-border">
-              <h3 class="box-title"><i class='fa fa-exclamation'></i> Member Yang Harus Transfer :  </h3>
+              <h3 class="box-title"><i class='fa fa-exclamation-circle'></i> Member Yang Harus Transfer :  </h3>
              
             </div>
             <div class="box-body" style="display: block;">

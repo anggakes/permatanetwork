@@ -163,7 +163,7 @@ class AuthLibrary {
 
         }
 
-        private function verify_password_hash($password, $hash) {
+        public function verify_password_hash($password, $hash) {
                 
                 return password_verify($password, $hash);
                 
