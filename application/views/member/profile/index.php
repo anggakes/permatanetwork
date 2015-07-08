@@ -12,8 +12,9 @@
             <div class="box-header with-border">
               <h3 class="box-title">Profile</h3>
               <div class="box-tools pull-right">
+                <?php if ($_SESSION['login_role'] == "admin") : ?> 
                 <a class="btn aksi"><i class="fa fa-ban"> Block Member</i></a>
-
+                <?php endif; ?>
               </div>
             </div>
            
