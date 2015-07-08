@@ -9,6 +9,14 @@
       </div>
     <?php endif; ?>
     
+<?php 
+if(isset($_SESSION['message'])):
+?>
+<div class='alert alert-<?= ($_SESSION['sukses']) ? 'success' : 'danger'?>'>
+<?= $_SESSION['message']?>
+</div>
+<?php endif; ?>
+    
     <form role="form" action="<?= base_url() ?>auth/login" method="post" class="col-sm-11" id='form-registrasi'>
     <div class="form-group">
     <label for="exampleInputEmail1">Username atau Email</label> 
@@ -24,6 +32,7 @@
   </div>
   
   <div class="form-group">
+  <a href="<?= base_url()?>auth/forget_password"> Lupa Password ?</a>
   <button type="submit" class="btn btn-danger pull-right">Masuk </button>
   </div>
   <div class='clearfix'></div>

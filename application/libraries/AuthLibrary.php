@@ -171,7 +171,7 @@ class AuthLibrary {
 
         public function sendRegistrationMail($to, $username, $password){
           
-            $subject = 'Pendaftaran Permata Network';
+            $subject = 'Pendaftaran - Permata Network';
 
             // Get full html:
             $body =
@@ -189,13 +189,13 @@ class AuthLibrary {
             </head>
             <body>
             <h2>Permata Network</h2>
-            <h3>Anda telah berhasil bergabung bersama Permata Network</h3><br>
-             <br>
+            <h4>Anda telah berhasil bergabung bersama Permata Network</h4><br>
+            <p>
             berikut ini adalah data akun anda : <br>
             Username : $username <br>
             Password : $password <br>
             <br>
-            <p>informasi lebih lanjut hubungi admin kami</p>
+            harap di ingat dan di catat dengan baik, informasi lebih lanjut hubungi admin kami</p>
             <br>
             <hr>
             <br>
@@ -214,17 +214,118 @@ class AuthLibrary {
             
             $result = $result->send();    
             
-            return $result;
+            return true;
             exit;
         }
 
 
-        public function set_forget_password(){
+        public function set_forget_password($usernameOrEmail){
 
+            $this->db->select('id, username, email');
+            $this->db->from($this->model);
+            $this->db->where('username', $usernameOrEmail)->or_where('email',$usernameOrEmail);
+            $user = $this->db->get()->row();
+
+            if(count($user)>0){
+            $id_member = $user->id;
+            $username = $user->username;
+            $to = $user->email;
+
+            $salt = "$#&#YUHSYLAPROID";
+            $key = md5(md5(rand(100,999).$salt.rand(100,999)).$salt);
+            $expired_at = date('Y-m-j H:i:s',strtotime(date('Y-m-j H:i:s').'+ 12 hours'));
+            $passwordLink = "<a href=\"".base_url()."auth/proses_forget_password?k=" . $key . "&u=" . urlencode(base64_encode($id_member))."\">".base_url()."auth/proses_forget_password?k=" . $key . "&u=" . urlencode(base64_encode($id_member))."</a>";
+
+            $insert = $this->db->insert('forget_password',array(
+                    "id_member" => $id_member,
+                    "key" => $key,
+                    "expired_at" => $expired_at,
+                ));
+
+            if($insert){
+
+                    $subject = 'Reset Password - Permata Network';
+
+                    // Get full html:
+                    $body =
+                    "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+                    <html xmlns='http://www.w3.org/1999/xhtml'>
+                    <head>
+                        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+                        <title>".htmlspecialchars($subject, ENT_QUOTES, $this->email->charset)."</title>
+                        <style type='text/css'>
+                            body {
+                                font-family: Arial, Verdana, Helvetica, sans-serif;
+                                font-size: 16px;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                    <h2>Permata Network</h2>
+                    <h4>Anda ingin mereset password</h3><br>
+                    <p>
+                    Hai, $username <br>
+                    Jika anda yakin untuk mereset password harap klik / copy paste pada address bar link bawah ini : <br>
+                    ---------------------------------------------------- <br>
+                    <br>
+                    $passwordLink <br>
+                    <br>
+                    ---------------------------------------------------- <br>
+                    Jika bukan anda yang ingin melakukan reset password, harap abaikan saja email ini.
+                    <br>
+                    informasi lebih lanjut hubungi admin kami</p>
+                    <br>
+                    <hr>
+                    <br>
+                    <a href='permatanetwork.com'>Permata Network</a>
+                    </body>
+                    </html>";
+                    // Also, for getting full html you may use the following internal method:
+                    //$body = $this->email->full_html($subject, $message);
+
+            $result = $this->email
+                ->from('noreply@permatanetwork.com')   
+                ->to( $to)
+                ->subject($subject)
+                ->message($body);
+            
+            
+            $result = $result->send();
+            return true;
+            //return $result;
+            exit;
+
+            }
+        }
+            
+            return false;
+            
         }
 
-        public function get_forget_password(){
+//-------------------------------------------------------------------------
+        public function get_forget_password($k, $u, $newPassword){
+            
+            $id_member = urldecode(base64_decode($u));
+            $this->db->select('*');
+            $this->db->from($this->model);
+            $this->db->join("forget_password", "members.id = forget_password.id_member");
+            $this->db->where('forget_password.id_member', $id_member)->where('expired_at<',"NOW()");
+            $user = $this->db->get()->row();
 
+            if(count($user)>0){
+                $newPassword = $this->member_model->hash_password($newPassword);
+                $this->db->trans_start();
+                $this->db->where('id', $id_member);
+                $this->db->set("password",$newPassword);
+                $this->db->update($this->model);
+
+                $this->db->where('id_member',$id_member);
+                $this->db->delete('forget_password');
+                $this->db->trans_complete();
+                return true;
+            }
+
+            return false;
         }
        
 }

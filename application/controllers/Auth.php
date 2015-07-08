@@ -121,7 +121,7 @@ class Auth extends CI_Controller {
 				
 		}
 
-	}
+	} 
 
 	public function logout(){
 
@@ -151,6 +151,87 @@ class Auth extends CI_Controller {
 			echo json_encode($data);
 
 		}
+	}
+
+	public function forget_password(){
+		$rules 		=  array(
+				array(
+	                'field' => 'usernameOrEmail',
+	                'label' => 'Username',
+	                'rules' => 'required'
+		        ),
+			);
+		$this->form_validation->set_rules($rules);
+
+		// Form validation 
+		if ($this->form_validation->run() == FALSE){
+
+				$data['status'] = "kirim_token";
+				$this->template->load('template/template_auth','auth/forget_password',$data);
+
+		}else{
+
+				$usernameOrEmail 	= $this->input->post('usernameOrEmail');
+
+				if($this->authlibrary->set_forget_password($usernameOrEmail)){
+					$data['status'] = "sukses_kirim";
+					$this->template->load('template/template_auth','auth/forget_password',$data);
+				}else{
+					$data['status'] = "gagal_kirim";
+					$this->template->load('template/template_auth','auth/forget_password',$data);
+				}
+		}
+
+	}
+
+	public function proses_forget_password(){
+
+		$rules 		=  array(
+				 array(
+	                'field' => 'password',
+	                'label' => 'Password',
+	                'rules' => 'required',
+		        ),
+		        array(
+	                'field' => 'repassword',
+	                'label' => 'Password Confirmation',
+	                'rules' => 'required|matches[password]'
+	                
+	        	),
+			);
+
+
+
+		$this->form_validation->set_rules($rules);
+
+		$k = $this->input->get("k");
+		$u = $this->input->get("u");
+		// Form validation 
+		if ($this->form_validation->run() == FALSE){
+
+				$data['status'] = "proses";
+				$data['u'] = $u;
+				$data['k'] = $k;
+				$this->template->load('template/template_auth','auth/forget_password',$data);
+
+		}else{
+				
+
+				$newPassword 	= $this->input->post('password');
+
+				if($this->authlibrary->get_forget_password($k, $u, $newPassword)){
+
+					$data['status'] = "proses_ok";
+					$this->template->load('template/template_auth','auth/forget_password',$data);
+
+				}else{
+
+					$data['status'] = "proses_gagal";
+					$this->template->load('template/template_auth','auth/forget_password',$data);
+				}
+				
+		}
+
 	}
 
 /*
