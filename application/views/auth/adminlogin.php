@@ -1,4 +1,6 @@
 
+
+
 <h3 class='col-sm-11'>Admin Login</h3>
     <div class='clearfix'></div>
       
@@ -8,6 +10,13 @@
       </div>
     <?php endif; ?>
     
+    <?php if(isset($msg)):
+?>
+<div class='alert alert-success'>
+<?= $msg ?>
+</div>
+<?php endif; ?>
+
     <form role="form" action="<?= base_url() ?>admin/login" method="post" class="col-sm-11" id='form-registrasi'>
     <div class="form-group">
     <label for="exampleInputEmail1">Username atau Email</label> 

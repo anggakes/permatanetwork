@@ -22,7 +22,8 @@
     <link href="<?= base_url() ?>theme/dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
-    <link href="<?= base_url() ?>theme/dist/css/skin-purple.css" rel="stylesheet" type="text/css" />
+
+    <link href="<?= base_url() ?>theme/dist/css/_all-skins.min.css" rel="stylesheet" type="text/css" />
     <!-- iCheck -->
     <link href="<?= base_url() ?>theme/plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
    
@@ -53,7 +54,10 @@
     </style>
  
   </head>
-  <body class="skin-purple sidebar-mini layout-boxed">
+      <?php 
+      $theme = ($_SESSION['login_role'] == "admin") ? "skin-blue-light" : "skin-purple";
+    ?>
+  <body class="<?= $theme ?> sidebar-mini layout-boxed">
     <div class="wrapper">
       
       <header class="main-header">
@@ -62,7 +66,11 @@
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>BO</b></span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Permata</b>Network</span>
+          <span class="logo-lg"><b>Permata</b>Network
+            <?php if($_SESSION['login_role'] == "admin") { ?>
+            <sup style='color:red'>adm</sup>
+            <?php } ?>
+          </span> 
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
@@ -122,7 +130,7 @@
                     <?php } ?>
                     <?php if($_SESSION['login_role'] == "admin"){?>
                     <div class="pull-right">
-                      <a href="<?= base_url('admin/profile/'.$user->attributes('username')) ?>" class="btn btn-default btn-flat">Edit Profil</a>
+                      <a href="<?= base_url('admin/profileadmin/edit') ?>" class="btn btn-default btn-flat">Edit Profil</a>
                     </div>
                     <?php } ?>
                   </li>

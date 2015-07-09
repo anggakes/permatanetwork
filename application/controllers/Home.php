@@ -11,7 +11,7 @@ class Home extends CI_Controller {
 	{
 	    parent::__construct();
 
-
+	    $this->load->database();
         $this->load->library('template');
         $this->load->library('session');
         $this->load->model('member_model');
@@ -39,6 +39,7 @@ class Home extends CI_Controller {
 				//ambil pengumuman
 				$data['pengumumans'] = $this->pengumuman_model->getPengumuman();
 				$data['beritas'] = $this->content_model->getBerita();
+
 
 				$data['title']="Statistik Member";
 				$this->template->load('template/template_main','member/home/dashboard',$data);	

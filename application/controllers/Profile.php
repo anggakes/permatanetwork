@@ -16,6 +16,8 @@ class Profile extends CI_Controller {
 
 	    $this->load->library('authlibrary',$this->params);
 	    $this->authlibrary->check_login();
+	    $this->authlibrary->check_role('members');
+
 	}//
 
 	public function index()
@@ -29,7 +31,6 @@ class Profile extends CI_Controller {
 		}else{
 			$data['user'] = $_SESSION['login_user'];
 		}
-		$this->authlibrary->check_login();
 		$this->template->load('template/template_main','member/profile/index',$data);
 		
 	}

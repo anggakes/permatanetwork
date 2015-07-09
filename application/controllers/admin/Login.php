@@ -26,6 +26,7 @@ class Login extends CI_Controller {
 
 public function index()
 	{	
+		$data['msg'] = $this->input->get('msg');
 		
 		$rules 		=  array(
 				array(
@@ -44,7 +45,7 @@ public function index()
 		// Form validation 
 		if ($this->form_validation->run() == FALSE){
 
-				$this->template->load('template/template_auth','auth/adminlogin');
+				$this->template->load('template/template_auth','auth/adminlogin',$data);
 
 		}else{
 

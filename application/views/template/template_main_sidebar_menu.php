@@ -80,8 +80,8 @@
               </a>
             </li>
             <li>
-              <a href="<?= base_url(); ?>admin/contents/artikel">
-                <i class="fa fa-dashboard"></i> <span>Artikel</span>
+              <a href="<?= base_url(); ?>admin/contents/berita">
+                <i class="fa fa-dashboard"></i> <span>Berita</span>
               </a>
             </li>
             <li>

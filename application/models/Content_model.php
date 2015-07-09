@@ -28,6 +28,6 @@ class Content_model extends CI_Model
 		return $this->db->query('SELECT * from contents WHERE jenis=1')->result();
 	}
 	public function getBerita(){
-		return $this->db->query('SELECT * from contents WHERE jenis=0')->result();
+		return $this->db->query('SELECT * from contents WHERE jenis=0 limit 0,5')->result();
 	}
 }

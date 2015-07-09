@@ -45,14 +45,14 @@ class Contents extends CI_Controller {
         return $crud;
     }
 
-    public function artikel(){
+    public function Berita(){
 
         $this->jenis=0;
         $crud=$this->master();
         $crud->where('jenis',0);
         
         $output = $crud->render();
-        $output->title='Kelola Artikel';
+        $output->title='Kelola Berita';
         $this->template->load('template/template_main','admin/contents',$output);
     }
 

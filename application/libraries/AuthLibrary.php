@@ -72,6 +72,8 @@ class AuthLibrary {
         }
 
         public function logout() {
+
+                $redirect = ($_SESSION['login_role'] == "admin") ? $this->formLoginUrlAdmin : $this->formLoginUrl;
                 
                 if ($this->is_login()) {
                         
@@ -80,8 +82,8 @@ class AuthLibrary {
                         $this->session->unset_userdata('login_status');    
                         $this->session->unset_userdata('login_role');
                 } 
-
-                redirect(base_url().$this->formLoginUrl);
+              
+                redirect(base_url().$redirect);
                 
         }
 
