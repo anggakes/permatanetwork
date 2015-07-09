@@ -27,7 +27,7 @@ class ManajemenAdmin extends CI_Controller {
 		$crud = new grocery_CRUD;
         $crud->set_table('admin');
 
-        $crud->columns('nama','username','email','last_login');
+        $crud->columns('nama','username','email','last_login', 'super_admin');
         $crud->unset_export();
         $crud->unset_print();
         $crud->unset_read();
@@ -38,7 +38,7 @@ class ManajemenAdmin extends CI_Controller {
         $crud->change_field_type('created_at','invisible');
         $crud->change_field_type('updated_at','invisible');
         $crud->change_field_type('last_login','invisible');
-        $crud->change_field_type('super_admin','invisible');
+
 
         $output=$crud->render();
         $output->title='Kelola Admin';
@@ -47,7 +47,7 @@ class ManajemenAdmin extends CI_Controller {
 
 	 public function _timestamp($data){
         $data['created_at']=date('Y-m-j H:i:s');
-        $data['super_admin']=0;
+
         $data['password']=$this->admin_model->hash_password($data['password']);
         
         return $data;
