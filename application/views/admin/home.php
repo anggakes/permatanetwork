@@ -71,7 +71,7 @@
                   <span class="info-box-number"><?= $total_member ?></span>
                  
                   <span class="progress-description">
-                    <i class='fa fa-arrow-circle-o-right'></i> lihat member
+                    <a href='<?= base_url("admin/manajemenmember")?>' style='color:white'><i class='fa fa-arrow-circle-o-right'></i> lihat member</a>
                   </span>
                 </div><!-- /.info-box-content -->
               </div>
