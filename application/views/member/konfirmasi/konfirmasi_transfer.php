@@ -88,6 +88,7 @@ if(isset($_SESSION['message'])):
     <label for="exampleInputEmail1">Bukti Transfer</label> 
     <input type="file" name='userfile' class="form-control" id="" placeholder="Bukti transfer bank..">
     <div style='color:red'><?= form_error('usernameOrEmail') ?></div>
+    <div style='color:red'>*Maximum file size 1000 Kb</div>
     </div>
 
   

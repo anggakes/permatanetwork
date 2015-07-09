@@ -1,5 +1,5 @@
 
-
+<a class='pull-right' href="<?= base_url() ?>"><i class='fa fa-diamond'>Back To Homepage</i></a>
 <h3 class='col-sm-11'>Login</h3>
     <div class='clearfix'></div>
       

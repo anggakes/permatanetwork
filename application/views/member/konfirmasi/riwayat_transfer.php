@@ -99,7 +99,7 @@ if($pesanCancel != ''): ?>
 </div>
 <div class='clearfix'></div><br>
 <div id='group-konfirmasi'>
-<a href="<?= base_url('transfer/verifikasi_proses/'.$transfer->data->id)?>" class='btn btn-success pull-right'>Verifikasi</a>
+<a href="<?= base_url('transfer/verifikasi_proses/'.$transfer->data->id)?>" class='btn btn-success pull-right'>Konfirm</a>
 <a href="#!" class='btn btn-danger pull-right' style='margin-right:5px' id='btn_batal'>Tolak</a>
 </div>
 <?php endif; ?>
