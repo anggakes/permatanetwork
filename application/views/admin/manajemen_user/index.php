@@ -8,6 +8,15 @@ endif;
 ?>
 
 
+<?php 
+if(isset($_SESSION['message'])):
+?>
+<div class='alert alert-<?= ($_SESSION['sukses']) ? 'success' : 'danger'?>'>
+<?= $_SESSION['message']?>
+</div>
+<?php endif; ?>
+
+
 <div class="box ">
             
           <div class='box-header'>

@@ -6,6 +6,7 @@ class ManajemenMember extends CI_Controller {
 	protected $params = array('model'=>'admin');
 
 	
+	
 
 	public function __construct()
 	{
@@ -13,6 +14,7 @@ class ManajemenMember extends CI_Controller {
 	    $this->load->database();
         $this->load->library('template');
         $this->load->library('session');
+        $this->load->library('transferreferrallibrary');
         $this->load->model('member_model');
 	    $this->load->library('authlibrary',$this->params);
 
@@ -38,10 +40,13 @@ class ManajemenMember extends CI_Controller {
 
 	public function toogle($username){
 		
-		$redirectTo = (null !== $this->input->get('from')) ? $this->input->get('from') : base_url()."admin/manajemenmember";
+
+		$redirectTo = (null !== $this->input->get('from')) ? $this->input->get('from') : base_url()."profile/$username";
 
 		$user = $this->member_model->getData($username);
 		$user->toogleStatus();
+		$this->session->set_flashdata('message',"Status $username berhasil di ubah");
+		$this->session->set_flashdata('sukses', true);
 
 		redirect( $redirectTo );
 
@@ -75,6 +80,46 @@ class ManajemenMember extends CI_Controller {
 		echo json_encode($return);
 	}
 
+	public function riwayat_transfer($id_transfer){
+		
+		$transfer = $this->transferreferrallibrary->getData($id_transfer);
+		$user = unserialize($_SESSION['login_user']);
+		$referral = $this->member_model->getData($transfer->data->id_referral,'id');
+		 $data['breadcrumb'] = array(
+					array(
+						'link' => base_url('admin/manajemenmember'),
+						'nama' => "Manajemen Member",
+					),
+					array(
+						'link' => base_url('profile/'.$referral->attributes('username')."?admin"),
+						'nama' => $referral->attributes('username'),
+					),
+					array(
+						'link' => "",
+						'nama' => "Riwayat_transfer",
+					),
+		);
+		$data['transfer'] = $transfer;
+		$data['id_transfer'] = $id_transfer;
+		$data['user'] = $user;
+		$data['referral'] = $referral;
+		$data['u'] = $this->input->get('u');
+		$this->template->load('template/template_main','member/konfirmasi/riwayat_transfer',$data);
+	}
+
+	public function verifikasi_proses($id_transfer){
+
+		
+		$transfer = $this->transferreferrallibrary->getData($id_transfer);
+		$user = $this->member_model->getData($transfer->data->id_referral,"id");
+
+			$transfer->confirmed($id_transfer, $user, $transfer->data->amount);
+			$this->session->set_flashdata('message',"Verifikasi berhasil");
+			$this->session->set_flashdata('sukses', true);
+
+		redirect(base_url()."admin/manajemenmember");
+	}
+
 	private function _setStatus($status){
 
 
@@ -99,7 +144,7 @@ class ManajemenMember extends CI_Controller {
 
 	private function _aksi($username){
 			$button = "
-		<a href='".base_url()."profile/$username' class='aksi'><i class='fa fa-search'></i> Detail</a> 
+		<a href='".base_url()."profile/$username?admin' class='aksi'><i class='fa fa-search'></i> Detail</a> 
 		";
 
 	

@@ -1,6 +1,5 @@
 
 
-<a class='pull-right' href="<?= base_url() ?>"><i class='fa fa-diamond'>Back To Homepage</i></a>
 <h3 class='col-sm-11'>Admin Login</h3>
     <div class='clearfix'></div>
       
@@ -33,6 +32,7 @@
   
   <div class="form-group">
   <button type="submit" class="btn btn-danger pull-right">Masuk </button>
+ <a class='pull-right btn ' href="<?= base_url() ?>"><i class='fa fa-home'></i> Homepage</a>
   </div>
   <div class='clearfix'></div>
   <br>

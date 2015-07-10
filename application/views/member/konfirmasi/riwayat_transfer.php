@@ -9,6 +9,45 @@ if(isset($_SESSION['message'])):
 
 
 <div class='row'>
+
+<div class='col-md-4'>
+<div class='box'>
+<div class='box-header'>
+  <h4>Informasi Transfer</h4>
+</div>
+<div class="box-body" style="display: block;">
+<?php
+  $status = "Belum Melakukan Transfer";
+  
+  if($transfer->data->status_transfer == 1){
+      $status = "Menunggu Konfirmasi";
+  }elseif($transfer->data->status_transfer == 2){
+      $status = "Selesai";
+  }elseif($transfer->data->status_transfer == -1){
+      $status = "Pending";
+  }
+
+?>
+
+<table class='table'>
+    <tr>
+
+   <td><b>Jumlah :</b></td><td>Rp. <?= rupiah($transfer->data->amount+$transfer->data->unique_transfer) ?></td>
+   </tr>
+   <tr>
+   <td><b>Status :</b></td><td><?= $status?></td>
+    </tr>
+</table>
+<hr>
+<?php if($_SESSION['login_role']=="admin" AND unserialize($_SESSION['login_user'])->attributes('role') != 'stokis' and $transfer->data->status_transfer == "1") {?>
+<a href="<?= base_url('admin/manajemenmember/verifikasi_proses/'.$transfer->data->id."?u=$u")?>" class='btn btn-danger'> Bantu Konfirmasi</a>
+<?php } ?>
+</div></div>
+
+</div>
+
+
+
 <div class='col-md-8'>
 <div class='box'>
 <div class='box-header'>
@@ -111,36 +150,6 @@ if($pesanCancel != ''): ?>
 </div>
 
 
-<div class='col-md-4'>
-<div class='box'>
-<div class='box-header'>
-	<h4>Informasi Transfer</h4>
-</div>
-<div class="box-body" style="display: block;">
-<?php
-  $status = "Belum Melakukan Transfer";
-  
-  if($transfer->data->status_transfer == 1){
-      $status = "Menunggu Konfirmasi";
-  }elseif($transfer->data->status_transfer == 2){
-      $status = "Selesai";
-  }elseif($transfer->data->status_transfer == -1){
-      $status = "Pending";
-  }
-
-?>
-
-
-    <dl class="dl-horizontal" style='margin-left:10px'>
-
-   <dt>Yang harus ditransfer :</dt><dd><?= rupiah($transfer->data->amount+$transfer->data->unique_transfer) ?></dd>
-   <dt>Status :</dt><dd><?= $status?></dd>
-    </dl>
-
-
-</div></div>
-
-</div>
 
 
 

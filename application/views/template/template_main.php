@@ -183,8 +183,12 @@
            <br>
           </h1>
           <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Dashboard</li>
+            <?php if(isset($breadcrumb)){ 
+                foreach($breadcrumb as $b){
+              ?>
+
+            <li><a href="<?=@$b['link'] ?>"><?= @$b['icon']?> <?= @$b['nama']?> </a></li>
+            <?php } }?>
           </ol>
         </section>
 

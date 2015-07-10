@@ -25,6 +25,17 @@ class Profile extends CI_Controller {
 
 		$username = $this->uri->segment(2);
 
+		if( null !== $this->input->get('admin')){
+			$data['breadcrumb'] = array(
+			array(
+			'link' => base_url('admin/manajemenmember'),
+			'nama' => "Manajemen_Member"
+			),array(
+			'link' => "",
+			'nama' => "$username"
+			),
+			);
+		}
 
 		if(isset($username)){
 			$data['user'] = serialize($this->member_model->getData($username));
