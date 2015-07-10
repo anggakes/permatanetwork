@@ -34,7 +34,7 @@ if(isset($_SESSION['message'])):
 
          $("#datatable").dataTable({ 
           "order": [[ 4, "desc" ]],
-          "ajax": "<?= base_url()?>admin/stokis/datatable",
+          "ajax": "<?= base_url()?>admin/pengiriman/datatable",
           "scrollX": true 
         }); 
       });

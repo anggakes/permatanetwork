@@ -20,18 +20,9 @@ if(isset($_SESSION['message'])):
             </div>
             <div class="box-body" style="display: block;">
 
-
-    
     <div class="form-group">
-    <label for="exampleInputPassword1">Nama Bank Penerima</label>
-    <?php echo form_dropdown('nama_bank_penerima',$bank,$referral->profile('nama_bank'),'class=form-control disabled') ?>
-    <?php echo form_dropdown('nama_bank_penerima',$bank,$referral->profile('nama_bank'),'class=form-control style=display:none') ?>
-    <div style='color:red'><?= form_error('profile[nama_bank]') ?></div>
-    </div>
-
-        <div class="form-group">
-    <label for="exampleInputEmail1">Nama Rekening Penerima</label> 
-    <input type="text" name='nama_rekening_penerima' class="form-control" id="" placeholder="Username atau Email.." value= "<?= $referral->profile('nama_rekening'); ?>" readonly>
+    <label for="exampleInputEmail1">Alamat Penerima</label> 
+    <input type="text" name='alamat' class="form-control" id="" placeholder="Username atau Email.." value= "<?= $referral->profile('nama_rekening'); ?>" readonly>
     <div style='color:red'><?= form_error('nama_rekening_penerima') ?></div>
     </div>
         <div class="form-group">
