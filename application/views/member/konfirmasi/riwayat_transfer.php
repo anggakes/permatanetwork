@@ -118,14 +118,14 @@ if($pesanCancel != ''): ?>
 </div>
 <div class="box-body" style="display: block;">
 <?php
-  $status = "belum di transfer";
+  $status = "Belum Melakukan Transfer";
   
   if($transfer->data->status_transfer == 1){
-      $status = "menunggu konfirmasi";
+      $status = "Menunggu Konfirmasi";
   }elseif($transfer->data->status_transfer == 2){
-      $status = "selesai";
+      $status = "Selesai";
   }elseif($transfer->data->status_transfer == -1){
-      $status = "Ditolak";
+      $status = "Pending";
   }
 
 ?>

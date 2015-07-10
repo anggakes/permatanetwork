@@ -54,7 +54,7 @@
   <body class="">
   <div class='container'>
     <!-- Top menu -->
-    <center><h2 style='color:blue'><img src='<?= base_url() ?>theme/img/logo.png'/></h2><h5><p style="line-height: 150%"><b>Pertama di Indonesia! Real Bisnis MLM hanya dengan Modal 1juta<br>Dapatkan keuntungan diatas 9 Miliar, tercepat, terbesar incomenya!!<br>Serta memiliki marketing plan yang paling mudah dijalankan dgn Online ataupun Offline<br>Tunggu apa lagi, Segera bergabung bersama kita!!!</b></p></h5></center>
+    <center><h2 style='color:blue'><img src='<?= base_url() ?>theme/img/logo.png'/></h2><h5>Kesuksesan nyata dari permata network</h5></center>
     <nav class="navbar navbar-default" role="navigation" >
       <div class="container">
         <div class="navbar-header">

@@ -23,14 +23,14 @@ if(isset($_SESSION['message'])):
 <?php foreach ($user->getDataAllTransfer() as $key =>$r): ?>
 
 <?php
-  $status = "belum di transfer";
+  $status = "Belum Melakukan Transfer";
   
   if($r->status_transfer == 1){
-      $status = "menunggu konfirmasi";
+      $status = "Menunggu Konfirmasi";
   }elseif($r->status_transfer == 2){
-      $status = "selesai";
+      $status = "Selesai";
   }elseif($r->status_transfer == -1){
-      $status = "Ditolak";
+      $status = "Pending";
   }
 
 ?>
