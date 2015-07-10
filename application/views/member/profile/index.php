@@ -78,7 +78,7 @@ if(isset($_SESSION['message'])):
             </div>
 </div>
 
-<?php if($_SESSION['login_role']=="admin" AND unserialize($_SESSION['login_user'])->attributes('role') != 'stokis') {?>
+<?php if($_SESSION['login_role']=="admin" AND unserialize($_SESSION['login_user'])->attributes('role') != 2) {?>
 
 <div class="box box-danger">
             <div class="box-header with-border">
@@ -172,7 +172,7 @@ if(isset($_SESSION['message'])):
 
           </div>
 
-<?php if($_SESSION['login_role']=="admin" AND unserialize($_SESSION['login_user'])->attributes('role') != 'stokis') {?>
+<?php if($_SESSION['login_role']=="admin" AND unserialize($_SESSION['login_user'])->attributes('role') != 2) {?>
 
 <div class="box box-danger">
             <div class="box-header with-border">

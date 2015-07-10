@@ -43,14 +43,16 @@
 <?php elseif($_SESSION['login_role'] == "admin"): ?>
 
           <ul class="sidebar-menu">
-            <?php if( $user->isSuperAdmin() OR $user->isAdmin()) {?>
-             
             <li class="header">MENU UTAMA</li>
-            <li>
+             <li>
               <a href="<?= base_url(); ?>admin/home">
                 <i class="fa fa-line-chart"></i> <span>Stat Sistem</span>
               </a>
             </li>
+            <?php if( $user->isSuperAdmin() OR $user->isAdmin()) {?>
+             
+            
+           
              <li>
               <a href="<?= base_url(); ?>admin/pengumuman">
                 <i class="fa fa-dashboard"></i> <span>Pengumuman</span>

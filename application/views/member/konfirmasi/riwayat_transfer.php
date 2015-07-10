@@ -39,7 +39,7 @@ if(isset($_SESSION['message'])):
     </tr>
 </table>
 <hr>
-<?php if($_SESSION['login_role']=="admin" AND unserialize($_SESSION['login_user'])->attributes('role') != 'stokis' and $transfer->data->status_transfer == "1") {?>
+<?php if($_SESSION['login_role']=="admin" AND unserialize($_SESSION['login_user'])->attributes('role') != 2 and $transfer->data->status_transfer == 1) {?>
 <a href="<?= base_url('admin/manajemenmember/verifikasi_proses/'.$transfer->data->id."?u=$u")?>" class='btn btn-danger'> Bantu Konfirmasi</a>
 <?php } ?>
 </div></div>
