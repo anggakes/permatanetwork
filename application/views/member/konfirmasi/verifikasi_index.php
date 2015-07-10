@@ -11,8 +11,8 @@ if(isset($_SESSION['message'])):
 <div class='box'>
 <div class='box-header'><h4>Daftar Transfer untuk diverifikasi </h4>
 <div class="box-tools pull-right">
-<a class='btn btn-default' href='verifikasi'><i class='fa fa-check'></i>List Menunggu</a>
-<a class='btn btn-default' href='verifikasi?history'><i class='fa fa-check'></i>History</a>
+<a class='btn btn-default' href='verifikasi'><i class='fa fa-paper-plane'></i>List Menunggu</a>
+<a class='btn btn-default' href='verifikasi?history'><i class='fa fa-history'></i>History</a>
 </div>
 </div>
 <div class='box-body'>

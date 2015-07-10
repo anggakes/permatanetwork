@@ -43,7 +43,9 @@
 <?php elseif($_SESSION['login_role'] == "admin"): ?>
 
           <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
+            <?php if( $user->isSuperAdmin() OR $user->isAdmin()) {?>
+             
+            <li class="header">MENU UTAMA</li>
             <li>
               <a href="<?= base_url(); ?>admin/home">
                 <i class="fa fa-line-chart"></i> <span>Stat Sistem</span>
@@ -59,9 +61,19 @@
                 <i class="fa fa-key"></i> <span>Voucher</span>
               </a>
             </li>
-            
-            <li class="" ><a href="<?= base_url() ?>admin/manajemenmember"><i class="fa fa-circle-o"></i> Member</a></li>
+            <?php } ?>
+             <?php if($user->isStokis() OR $user->isSuperAdmin() OR $user->isAdmin()) {?>
+                  <li class="" ><a href="<?= base_url() ?>admin/manajemenmember"><i class="fa fa-circle-o"></i> Member</a></li>
 
+                  <li class="header">STOKIS</li> 
+                 <li>
+                  <a href="<?= base_url(); ?>admin/pengiriman">
+                    <i class="fa fa-truck"></i> <span>Pengiriman </span>
+                  </a>
+                </li>
+            <?php } ?> 
+            <?php if( $user->isSuperAdmin() OR $user->isAdmin()) {?>
+            
             <li class="header">MANAJEMEN KONTEN</li>
             <li>
               <a href="<?= base_url(); ?>admin/contents/homepage">
@@ -83,16 +95,7 @@
                 <i class="fa fa-circle-o"></i> <span>Slide Show</span>
               </a>
             </li>
-
-            <?php if($user->isStokis() OR $user->isSuperAdmin() OR $user->isAdmin()) {?>
-                  <li class="header">STOKIS</li> 
-                 <li>
-                  <a href="<?= base_url(); ?>admin/pengiriman">
-                    <i class="fa fa-truck"></i> <span>Pengiriman </span>
-                  </a>
-                </li>
-            <?php } ?> 
-
+            <?php } ?>
             <?php if($user->isSuperAdmin()): ?>
             <li class="header">SUPER ADMIN</li>
                 <li>
