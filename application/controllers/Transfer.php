@@ -114,7 +114,15 @@ class Transfer extends CI_Controller {
 
 			$this->template->load('template/template_main','member/konfirmasi/riwayat_transfer',$data);
 		}else{
-			
+			if(null !== $this->input->get('history')){
+			$data['judul']= 'Daftar Transfer yang Telah Diproses';
+			$data['sort']='desc';
+			$data['where'] = 'AND transfer_referral.status_transfer<>1 AND transfer_referral.status_transfer<>-1';
+			}else{
+				$data['sort']='asc';
+				$data['judul']= 'Daftar Transfer untuk Diverifikasi ';
+				$data['where'] = 'AND transfer_referral.status_transfer<>2 AND transfer_referral.status_transfer<>0';
+			}
 			$this->template->load('template/template_main','member/konfirmasi/verifikasi_index',$data);
 		}
 	}

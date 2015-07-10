@@ -9,9 +9,13 @@ if(isset($_SESSION['message'])):
 
 
 <div class='box'>
-<div class='box-header'><h4>Daftar Transfer untuk diverifikasi</h4></div>
+<div class='box-header'><h4>Daftar Transfer untuk diverifikasi </h4>
+<div class="box-tools pull-right">
+<a class='btn btn-default' href='verifikasi'><i class='fa fa-check'></i>List Menunggu</a>
+<a class='btn btn-default' href='verifikasi?history'><i class='fa fa-check'></i>History</a>
+</div>
+</div>
 <div class='box-body'>
-
 <table class='table table-bordered table-striped' id='datatable'>
 <thead style='background:#EEFFBA;text-align: center;font-weight: bold'>
 <tr>
@@ -26,17 +30,17 @@ if(isset($_SESSION['message'])):
 </tr>
 </thead>
 <tbody style='text-align:center'>
-<?php foreach($user->getDataAllVerifikasiTransfer() as $v): ?>
+<?php foreach($user->getDataAllVerifikasiTransfer($where) as $v): ?>
 
 <?php
-  $status = "belum di transfer";
+  $status = "Belum Melakukan Transfer";
   
   if($v->status_transfer == 1){
-      $status = "menunggu konfirmasi";
+      $status = "Menunggu Konfirmasi";
   }elseif($v->status_transfer == 2){
-      $status = "selesai";
+      $status = "Selesai";
   }elseif($v->status_transfer == -1){
-      $status = "Ditolak";
+      $status = "Pending";
   }
 
 ?>
@@ -68,6 +72,9 @@ if(isset($_SESSION['message'])):
  <script type="text/javascript">
       $(function () {
 
-         $("#datatable").dataTable(); 
+         $('#datatable').dataTable( {
+              "order": [[ 6, '<?= $sort ?>' ]]
+          } );
+
       });
     </script>

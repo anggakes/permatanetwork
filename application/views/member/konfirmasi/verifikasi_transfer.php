@@ -12,7 +12,7 @@ if(isset($_SESSION['message'])):
 	
 	if($transfer->data->status_transfer == 0){
 
-		"Belum di transfer"
+		"Belum Melakukan transfer"
 	}else{
 
 		include_once('riwayat_transfer.php');

@@ -32,7 +32,9 @@ if(isset($_SESSION['message'])):
                 <span class="info-box-icon bg-red"><i class="fa fa-exclamation"></i></span>
                 <div class="info-box-content">
                   <span class="info-box-text">Maximum Pendapatan</span>
+
                   <span class="info-box-number"><?= ($user->getMaxIncome() == -1) ? "10 M" : "Rp. ".rupiah($user->getMaxIncome()) ?></span>
+
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->
             </div>
@@ -117,14 +119,14 @@ if(isset($_SESSION['message'])):
 <?php foreach ( $harus_transfer as $key =>$r): ?>
 
 <?php
-  $status = "belum di transfer";
+  $status = "Belum Melakukan Transfer";
   
   if($r->status_transfer == 1){
-      $status = "menunggu konfirmasi";
+      $status = "Menunggu Konfirmasi";
   }elseif($r->status_transfer == 2){
-      $status = "selesai";
+      $status = "Selesai";
   }elseif($r->status_transfer == -1){
-      $status = "Ditolak";
+      $status = "Pending";
   }
 
 ?>

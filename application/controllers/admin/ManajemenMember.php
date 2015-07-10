@@ -15,7 +15,6 @@ class ManajemenMember extends CI_Controller {
         $this->load->library('session');
         $this->load->model('member_model');
 	    $this->load->library('authlibrary',$this->params);
-	    $this->load->library('grocery_CRUD');
 
 	    // untuk mengecek login belum, jika belum di redirect ke login
 		$this->authlibrary->check_login();
@@ -25,22 +24,16 @@ class ManajemenMember extends CI_Controller {
 
 	public function index()
 	{	
-		$crud = new grocery_CRUD;
-        $crud->set_table('profile');
- 		$crud->display_as('id_member', 'Member');
- 		$crud->unset_columns("foto");
- 		$crud->callback_column('id_member',array($this,'_email'));
-        $crud->unset_operations();       
+		$data['status'] = '';
+		$data['title'] = "Kelola Data Member";
+		
+		if(null !== $this->input->get('status')){
+			
+			$data['status'] = $this->input->get('status');
+		}
 
-        $output=$crud->render();
-        $output->title='Manajemen Member';
+		$this->template->load('template/template_main','admin/manajemen_user/index',$data);
 
-		$this->template->load('template/template_main','admin/manajemen_user/index',$output);
-
-	}
-
-	function _email($value, $row){
-			return $row->nama;
 	}
 
 	public function toogle($username){
@@ -69,8 +62,8 @@ class ManajemenMember extends CI_Controller {
 		foreach ($members as $key => $member) {
 			$i = 0;
 			$output[] = array(
-					$i++ => $this->_aksi($member->username, $member->status),
-					$i++ => $this->_cbUsername($member->username),
+					$i++ => $this->_aksi($member->username),
+					$i++ => $member->username,
 					$i++ => $member->email,
 					$i++ => $member->nama,
 					$i++ => $member->created_at,
@@ -103,36 +96,13 @@ class ManajemenMember extends CI_Controller {
 		}
 	}
 
-	private function _cbUsername($username){
 
-		return "<a href='".base_url()."profile/$username'>$username</a>";
-	}
-
-
-	private function _aksi($id, $status){
-
-		$button ='';
-
-		if($status==1){
-
+	private function _aksi($username){
 			$button = "
-		<a href='".base_url()."admin/manajemenmember/toogle/$id' class='aksi'><i class='fa fa-ban'></i> Banned</a> 
+		<a href='".base_url()."profile/$username' class='aksi'><i class='fa fa-search'></i> Detail</a> 
 		";
 
-		}elseif($status == 0){
-
-			$button = "
-		<a href='".base_url()."admin/manajemenmember/aktifasi/$id' class='aksi'><i class='fa  fa-check-square-o'></i> Aktifasi</a>
-		";
-
-		}elseif($status == -1){
-
-			$button = "
-		<a href='".base_url()."admin/manajemenmember/toogle/$id' class='aksi'><i class='fa fa-undo'></i> Unbanned</a>
-		";
-
-		}
-		
+	
 		return "<center>".$button."</center>";
 	}
 	
