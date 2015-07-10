@@ -31,7 +31,8 @@ class Voucher extends CI_Controller {
     {	
     	$crud = new grocery_CRUD;
         $crud->set_table('voucher');
-        $crud->columns('nomor');
+        $crud->where('status','0');
+        $crud->columns('nomor','created_at');
         $crud->display_as('nomor', 'Kode Voucher');
         $crud->unset_operations();       
 
@@ -42,8 +43,27 @@ class Voucher extends CI_Controller {
 
     }
 
+     public function histori()
+    {   
+        $crud = new grocery_CRUD;
+        $crud->set_table('voucher');
+        $crud->where('voucher.status','1');
+        $crud->columns('nomor','id_member','created_at',"used_at");
+        $crud->set_relation('id_member','members','username');
+        $crud->display_as('nomor', 'Kode Voucher');
+        $crud->display_as('id_member', 'Member');
+        $crud->unset_operations();       
+
+        $output=$crud->render();
+        $output->title='Data Voucher';
+       
+        $this->template->load('template/template_main','admin/voucher',$output);
+
+    }
+
     public function generateVoucher(){
-    	$generate=$this->voucher_model->createKodeVoucher();
+        $banyak = $this->input->post('banyak');
+    	$generate=$this->voucher_model->createKodeVoucher($banyak);
 
     	if($generate){
     		$this->session->set_flashdata('message','Voucher berhasil di generate');

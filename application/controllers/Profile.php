@@ -16,7 +16,7 @@ class Profile extends CI_Controller {
 
 	    $this->load->library('authlibrary',$this->params);
 	    $this->authlibrary->check_login();
-	    $this->authlibrary->check_role('members');
+	    
 
 	}//
 
@@ -29,6 +29,7 @@ class Profile extends CI_Controller {
 		if(isset($username)){
 			$data['user'] = serialize($this->member_model->getData($username));
 		}else{
+			$this->authlibrary->check_role('members');
 			$data['user'] = $_SESSION['login_user'];
 		}
 		$this->template->load('template/template_main','member/profile/index',$data);

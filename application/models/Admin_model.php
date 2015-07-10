@@ -22,6 +22,32 @@ class Admin_model extends CI_Model
 
 	}
 
+	public function isSuperAdmin(){
+		return ($this->attributes('role') == 1) ? true :false;
+	}
+
+	public function isStokis(){
+		return ($this->attributes('role') == 2) ? true :false;
+	}
+
+	public function isAdmin(){
+		return ($this->attributes('role') == 0) ? true :false;
+	}
+
+	public function getRole(){
+
+		$role = '';
+		if($this->attributes('role') == 1){
+			$role = "super admin";
+		}elseif($this->attributes('role') == 2){
+			$role = "stokis";
+		}elseif($this->attributes('role') == 1){
+			$role = "admin";
+		}
+
+		return $role;
+	}
+
 	public function attributes($property){
 
 		return (isset($this->attributes->$property)) ? $this->attributes->$property : '' ;

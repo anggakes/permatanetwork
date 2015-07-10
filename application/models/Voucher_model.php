@@ -14,18 +14,19 @@ class Voucher_model extends CI_Model
   
 	}
 
-	public function createKodeVoucher(){
-		
-		for($i=0;$i<1000;$i++){
+	public function createKodeVoucher($banyak=1){
+		$voucher = array();
+
+		for($i=0;$i<$banyak;$i++){
 		$kode=$this->generateRandomString().'-'.$this->generateRandomString().'-'.$this->generateRandomString().'-'.$this->generateRandomString();
-		
-		$vocher 	= array(
+		$vocher []	= array(
 				'nomor'   => $kode,
-			);
-   		$this->db->trans_start();
-		$this->db->insert('voucher',$vocher);
-   		$this->db->trans_complete();
+				'created_at' => date('Y-m-j H:i:s'),
+			);   		
    		}
+   		$this->db->trans_start();
+		$this->db->insert_batch('voucher',$vocher);
+   		$this->db->trans_complete();
 		return $this->db->trans_status();
 	}
 
@@ -35,12 +36,19 @@ class Voucher_model extends CI_Model
 		return $confirmation ;	
 	}
 
-	public function cekKodeVoucher($kode){
+	public function cekKodeVoucher($kode, $id_member){
 		$sql=$this->db->query("select COUNT(*) as count from voucher where nomor = '$kode'")->row();
 		
 		if($sql->count > 0){
-			$this->db->where('nomor',$kode);
-			return $this->db->delete('voucher');
+			$this->db->trans_start();
+				$this->db->where('nomor',$kode);
+				$this->db->update('voucher',array(
+					"id_member"=>$id_member,
+					"used_at"=>date('Y-m-j H:i:s'),
+					"status" => 1,
+					));
+			$this->db->trans_complete();
+		return $this->db->trans_status();
 		}else{
 			return false;
 		}

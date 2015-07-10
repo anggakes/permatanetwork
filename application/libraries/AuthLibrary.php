@@ -123,26 +123,29 @@ class AuthLibrary {
         }
 
         public function check_role($role){
-    
+            
+                        
                 if($this->is_role($role))
                 {
-
-                        return true;       
-                }else{
-                        redirect($this->not_allowed_view);
-                }      
+                    return true;
+                               
+                }
+                
+            redirect($this->not_allowed_view);
         }
 
         public function check_super_admin($role){
 
                 $user = unserialize($_SESSION['login_user']);
-                if($user->attributes('super_admin') == 1)
+                if($user->isSuperAdmin())
                 {
                         return true;       
                 }else{
                         redirect($this->not_allowed_view);
                 }      
         }
+
+
 
         public function resolve_user_login($usernameOrEmail, $password) {
                 

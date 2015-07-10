@@ -154,7 +154,10 @@ class TransferReferralLibrary {
                         'id_transfer_referral_bukti' => $id_bukti,
                         'msg' => $msg
                     ));
+                $id_pengirim = $this->data->id_member;
+                $id_penerima = $this->data->id_referral;
                 $this->deleteAutomaticConfirm($id_pengirim, $id_penerima);
+            
             $this->db->trans_complete();
 
             return $this->db->trans_status();

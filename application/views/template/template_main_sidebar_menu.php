@@ -56,41 +56,44 @@
             </li>
             <li>
               <a href="<?= base_url(); ?>admin/voucher">
-                <i class="fa fa-dashboard"></i> <span>Voucher</span>
+                <i class="fa fa-key"></i> <span>Voucher</span>
               </a>
             </li>
-            <li>
-              <a href="<?= base_url(); ?>admin/stokis">
-                <i class="fa fa-dashboard"></i> <span>Stokis</span>
-              </a>
-            </li>
-            <li class="" ><a href="<?= base_url() ?>admin/manajemenmember"><i class="fa fa-circle-o"></i> Member</a></li>
-              
             
+            <li class="" ><a href="<?= base_url() ?>admin/manajemenmember"><i class="fa fa-circle-o"></i> Member</a></li>
 
             <li class="header">MANAJEMEN KONTEN</li>
             <li>
               <a href="<?= base_url(); ?>admin/contents/homepage">
-                <i class="fa fa-dashboard"></i> <span>Homepage</span>
+                <i class="fa fa-circle-o"></i> <span>Homepage</span>
               </a>
             </li>
             <li>
               <a href="<?= base_url(); ?>admin/contents/halaman">
-                <i class="fa fa-dashboard"></i> <span>Halaman</span>
+                <i class="fa fa-circle-o"></i> <span>Halaman</span>
               </a>
             </li>
             <li>
               <a href="<?= base_url(); ?>admin/contents/berita">
-                <i class="fa fa-dashboard"></i> <span>Berita</span>
+                <i class="fa fa-circle-o"></i> <span>Berita</span>
               </a>
             </li>
             <li>
               <a href="<?= base_url(); ?>admin/contents/slider">
-                <i class="fa fa-dashboard"></i> <span>Slide Show</span>
+                <i class="fa fa-circle-o"></i> <span>Slide Show</span>
               </a>
             </li>
 
-            <?php if($user->attributes('super_admin')): ?>
+            <?php if($user->isStokis() OR $user->isSuperAdmin() OR $user->isAdmin()) {?>
+                  <li class="header">STOKIS</li> 
+                 <li>
+                  <a href="<?= base_url(); ?>admin/pengiriman">
+                    <i class="fa fa-truck"></i> <span>Pengiriman </span>
+                  </a>
+                </li>
+            <?php } ?> 
+
+            <?php if($user->isSuperAdmin()): ?>
             <li class="header">SUPER ADMIN</li>
                 <li>
                   <a href="<?= base_url(); ?>admin/manajemenadmin">
@@ -98,7 +101,8 @@
                   </a>
                 </li>
             <?php endif; ?>
-           
+            
+                      
           </ul>
 
 <?php endif; ?>

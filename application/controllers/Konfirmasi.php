@@ -24,10 +24,10 @@ class Konfirmasi extends CI_Controller {
 	{	
 		$pesan ='';
 		$sukses = false;
+		$user = unserialize($_SESSION['login_user']);
 
 		$this->db->trans_start();
-		if($this->voucher_model->cekKodeVoucher($this->input->post('kode_voucher'))){
-			$user = unserialize($_SESSION['login_user']);
+		if($this->voucher_model->cekKodeVoucher($this->input->post('kode_voucher'), $user->attributes('id'))){
 			
 			$data = array(
 				"id_member" => $user->attributes('id'),

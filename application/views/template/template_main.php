@@ -106,7 +106,7 @@
                         if ($_SESSION['login_role'] == "members") { 
                           echo $user->attributes('code'); 
                         }else{ 
-                          echo ($user->attributes('super_admin')==1) ? "Super Admin" : "Admin";
+                          echo $user->getRole();
                         }
                         ?> 
                         - 

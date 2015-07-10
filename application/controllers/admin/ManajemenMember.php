@@ -15,6 +15,7 @@ class ManajemenMember extends CI_Controller {
         $this->load->library('session');
         $this->load->model('member_model');
 	    $this->load->library('authlibrary',$this->params);
+	    $this->load->library('grocery_CRUD');
 
 	    // untuk mengecek login belum, jika belum di redirect ke login
 		$this->authlibrary->check_login();
@@ -24,16 +25,22 @@ class ManajemenMember extends CI_Controller {
 
 	public function index()
 	{	
-		$data['status'] = '';
-		$data['title'] = "Kelola Data Member";
-		
-		if(null !== $this->input->get('status')){
-			
-			$data['status'] = $this->input->get('status');
-		}
+		$crud = new grocery_CRUD;
+        $crud->set_table('profile');
+ 		$crud->display_as('id_member', 'Member');
+ 		$crud->unset_columns("foto");
+ 		$crud->callback_column('id_member',array($this,'_email'));
+        $crud->unset_operations();       
 
-		$this->template->load('template/template_main','admin/manajemen_user/index',$data);
+        $output=$crud->render();
+        $output->title='Manajemen Member';
 
+		$this->template->load('template/template_main','admin/manajemen_user/index',$output);
+
+	}
+
+	function _email($value, $row){
+			return $row->nama;
 	}
 
 	public function toogle($username){
