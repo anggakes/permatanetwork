@@ -1,6 +1,6 @@
 
 
-<a class='pull-right' href="<?= base_url() ?>"><i class='fa fa-diamond'>Back To Homepage</i></a>
+<a class='pull-right' href="<?= base_url() ?>"><i class='fa fa-home'>Back To Homepage</i></a>
 <h3 class='col-sm-11'>Admin Login</h3>
     <div class='clearfix'></div>
       

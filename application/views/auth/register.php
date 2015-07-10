@@ -21,7 +21,7 @@ color:#444;
 
   }
 </style>
-<a class='pull-right' href="<?= base_url() ?>"><i class='fa fa-diamond'>Back To Homepage</i></a>
+<a class='pull-right' href="<?= base_url() ?>"><i class='fa fa-home'>Back To Homepage</i></a>
 <br>
 <h3 class='col-sm-8'><strong>Member</strong> <small>Registration Form</small></h3>
     
