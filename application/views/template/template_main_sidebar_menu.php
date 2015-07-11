@@ -65,12 +65,17 @@
             </li>
             <?php } ?>
              <?php if($user->isStokis() OR $user->isSuperAdmin() OR $user->isAdmin()) {?>
-                  <li class="" ><a href="<?= base_url() ?>admin/manajemenmember"><i class="fa fa-circle-o"></i> Member</a></li>
+                  <li class="" ><a href="<?= base_url() ?>admin/manajemenmember"><i class="fa fa-users"></i> Member</a></li>
 
                   <li class="header">STOKIS</li> 
                  <li>
                   <a href="<?= base_url(); ?>admin/pengiriman">
                     <i class="fa fa-truck"></i> <span>Pengiriman </span>
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= base_url(); ?>admin/pengiriman/histori">
+                    <i class="fa fa-history"></i> <span>Histori Pengiriman </span>
                   </a>
                 </li>
             <?php } ?> 

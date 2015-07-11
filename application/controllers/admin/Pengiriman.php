@@ -30,7 +30,7 @@ class Pengiriman extends CI_Controller {
 	    public function index()
     {	
     	$data['status'] = '';
-		$data['title'] = "Data Pengiriman";
+		$data['title'] = "Daftar yang harus dikirim";
 		
 		if(null !== $this->input->get('status')){
 			
@@ -67,6 +67,7 @@ class Pengiriman extends CI_Controller {
 		$this->form_validation->set_rules($rule);
 
 		$data['users']=$this->member_model->getData($id,'id');
+		$data['title'] = "Form Pengiriman";
 
 		$this->template->load('template/template_main','admin/input_pengiriman',$data);
 	}
@@ -91,6 +92,11 @@ class Pengiriman extends CI_Controller {
         $this->db->trans_complete();
         $this->db->trans_status();
         redirect(base_url()."admin/pengiriman");
+	}
+
+	public function histori(){
+
+
 	}
 
 	private function _rule(){
