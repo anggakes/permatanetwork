@@ -70,12 +70,12 @@
                   <li class="header">STOKIS</li> 
                  <li>
                   <a href="<?= base_url(); ?>admin/pengiriman">
-                    <i class="fa fa-truck"></i> <span>Pengiriman </span>
+                    <i class="fa fa-truck"></i> <span>Pengiriman</span>
                   </a>
                 </li>
                 <li>
-                  <a href="<?= base_url(); ?>admin/pengiriman/histori">
-                    <i class="fa fa-history"></i> <span>Histori Pengiriman </span>
+                  <a href="<?= base_url(); ?>admin/pengiriman/history">
+                    <i class="fa fa-history"></i> <span>Histori Pengiriman</span>
                   </a>
                 </li>
             <?php } ?> 

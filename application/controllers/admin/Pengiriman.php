@@ -94,9 +94,21 @@ class Pengiriman extends CI_Controller {
         redirect(base_url()."admin/pengiriman");
 	}
 
-	public function histori(){
+	public function history(){
+		$crud = new grocery_CRUD;
+        $crud->set_table('pengiriman');
 
-
+       // $crud->columns('nama','username','email');
+        $crud->set_relation('id_member','members','username');
+        $crud->display_as('id_member','Username');
+        $crud->unset_export();
+        $crud->unset_print();
+        $crud->unset_add();
+        $crud->unset_delete();
+        $crud->unset_edit();
+        $output=$crud->render();
+        $output->title='History Pengiriman';
+        $this->template->load('template/template_main','admin/history_pengiriman',$output);
 	}
 
 	private function _rule(){
