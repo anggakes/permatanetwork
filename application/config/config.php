@@ -22,7 +22,7 @@ include('settings/settings.php');
 */
 
 $config['base_url'] = $sistem['app_url'];
-
+$config['root_url'] = $sistem['root_url'];
 /*
 |--------------------------------------------------------------------------
 | Index File

@@ -1,7 +1,7 @@
 <?php 
 
 
-
+$sistem['root_url']			= 'http://permatanetwork.com/';	
 $sistem['app_url']			= 'http://localhost/permatanetwork/';
 $sistem['host']				= 'localhost';
 $sistem['site_name']		= 'Permata Network';

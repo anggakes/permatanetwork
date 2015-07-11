@@ -74,7 +74,7 @@ if(isset($_SESSION['message'])):
               </div>
             </div>
             <div class="box-body" style="display: block;">
-              <a href='<?= base_url("?ref=".$user->attributes('code'))?>'><?= "permatanetwork.com/?ref=".$user->attributes('username')?></a>
+              <a href='<?= $this->config->item('root_url')."?ref=".$user->attributes('code')?>'><?= "permatanetwork.com/?ref=".$user->attributes('username')?></a>
             </div>
 </div>
 
