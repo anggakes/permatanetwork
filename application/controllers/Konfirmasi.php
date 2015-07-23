@@ -33,7 +33,7 @@ class Konfirmasi extends CI_Controller {
 				"id_member" => $user->attributes('id'),
 				"keterangan" => "Aktivasi dengan Voucher ".$this->input->post('kode_voucher'),
 				"created_at" => date('Y-m-j H:i:s'),
-				"tahap_aktivasi" => "voucher" //tahap aktifasi jadi transfer
+				"tahap_aktivasi" => "voucher" //tahap aktifasi jadi voucher
 			);
 			
 			$user->activation(2); // 2 adalah status member menjadi transfer 
@@ -55,6 +55,7 @@ class Konfirmasi extends CI_Controller {
 		redirect("/");
 	}
 
+/*
 	public function statusAktif(){
 
 		$user = unserialize($_SESSION['login_user']);
@@ -89,6 +90,6 @@ class Konfirmasi extends CI_Controller {
 		redirect("/");
 		
 	}
-	
+*/
 	
 }

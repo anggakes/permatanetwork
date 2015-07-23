@@ -33,8 +33,25 @@ class TransferReferralLibrary {
 
                 $this->memenuhiSyarat(serialize($member), $member->attributes('id'));
 
-                return $this->db->insert_batch($this->table,$this->transfer_member);
-        }
+                if(count($this->transfer_member)>0 and $this->isCariReferral($member->attributes('id'))){
+
+                    return $this->db->insert_batch($this->table,$this->transfer_member);
+                }else {
+
+                    return false;
+                }
+        } 
+
+        public function isCariReferral($id_member){
+
+            $data = $this->db->query("SELECT count(id) as jumlah from ".$this->table." WHERE id_member='$id_member'")->row();
+
+            if($data->jumlah == 0 ){
+                return true;
+            }
+
+                return false;
+        }  
 
         public function memenuhiSyarat($member, $id_member, $level = 1){
                 
@@ -104,23 +121,40 @@ class TransferReferralLibrary {
         public function confirmed($id_transfer, $member, $amount){
             $transfer = $this->getData($id_transfer);
 
-            $this->db->trans_start();
-                $this->wallet_model->deposit($member, $amount, "deposit referral Rp. $amount");
+            if(!$this->isConfirmed($id_transfer)){
+                $this->db->trans_start();
+                    $this->wallet_model->deposit($member, $amount, "deposit referral Rp. $amount dari ".$transfer->id_referral);
 
-                $this->db->where('id',$id_transfer);
-                $this->db->set('status_transfer',2);
-                $this->db->set('confirmation_at', date('Y-m-j H:i:s'));
-                $this->db->update($this->table);
+                    $this->db->where('id',$id_transfer);
+                    $this->db->set('status_transfer',2);
+                    $this->db->set('confirmation_at', date('Y-m-j H:i:s'));
+                    $this->db->update($this->table);
 
-                $id_pengirim = $transfer->data->id_member;
-                $id_penerima = $transfer->data->id_referral;
+                    $id_pengirim = $transfer->data->id_member;
+                    $id_penerima = $transfer->data->id_referral;
 
-                $this->deleteAutomaticConfirm($id_pengirim, $id_penerima);
+                    $this->deleteAutomaticConfirm($id_pengirim, $id_penerima);
 
-            $this->db->trans_complete();
+                $this->db->trans_complete();
 
-            return $this->db->trans_status();
+                return $this->db->trans_status();
+
+            }else{
+
+                return false;
+            }
         }
+
+    public function isConfirmed($id_transfer){
+
+        $data = $this->db->query("SELECT status_transfer from ".$this->table." WHERE id='$id_transfer'")->row();
+
+        if($data->status_transfer == 2){
+            return true;
+        }
+
+            return false;
+    }
 
     public function setAutomaticConfirm($id_pengirim, $id_penerima, $id_transfer, $waktu_transfer){
 
@@ -207,7 +241,7 @@ class TransferReferralLibrary {
         public function getBukti_transfer(){
             return  $this->db
                 ->query("SELECT * FROM transfer_referral_bukti 
-                            WHERE id_transfer_referral='".$this->data->id."'")
+                            WHERE id_transfer_referral='".$this->data->id."' ORDER BY id desc")
                 ->result();
         }
 

@@ -73,7 +73,7 @@
             <li><a href="<?= base_url()?>auth/daftar">REGISTRASI</a></li>
             <li><a href="<?= base_url()?>auth/login">LOGIN</a></li>
             <!-- <li><a href="#">KONTAK</a></li> -->
-            <li><a href="#">TENTANG KAMI</a></li>
+            <li><a href="<?= base_url()?>halaman/index/tentang-kami">TENTANG KAMI</a></li>
         </ul>
       </div>
     </nav>

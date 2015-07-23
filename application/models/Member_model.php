@@ -49,6 +49,10 @@ class Member_model extends CI_Model
 		// buat dompet dulu om ! 
 		$this->wallet_model->create($id_member);
 
+		// set automatic delete member if not active by voucer
+		$waktu_deleteUser = date('Y-m-j H:i:s',strtotime(date('Y-m-j H:i:s').'+ 48 hours')); //2 days
+		$this->setAutomaticDeleteUser($waktu_deleteUser);
+
 		$this->db->trans_complete();
 
 		return $this->db->trans_status();
@@ -102,17 +106,40 @@ class Member_model extends CI_Model
 		
 		if($status == 1){
 
+			// hapus timer user sudah transfer semua sebelum 36 jam
 			$this->deleteAutomaticBlock();
-
+			
 		}else if($status == 2){
 			
+			// set timer block jika user tidak transfer 36 jam 
 			$this->setAutomaticBlock($waktu_transfer);
+			// set event delete user if not active after 2 days
+			// bearti orang ini serius, udah beli voucher..
+			$this->deleteAutomaticDeleteUser();
 		}
 
 		$this->db->trans_complete();
 
 		return $this->db->trans_status();
 	}
+
+	public function setAutomaticDeleteUser($waktu_transfer){
+
+		// set timer menggunakan mysql event
+
+		$query = "CREATE EVENT IF NOT EXISTS delete_".$this->attributes('id')." ON SCHEDULE AT '".$waktu_transfer."'  ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM members WHERE id = ".$this->attributes('id')."";
+
+		return $this->db->query($query);
+	}
+
+	public function deleteAutomaticDeleteUser(){
+
+		// delete timer menggunakan mysql event
+
+		$query = "DROP EVENT IF EXISTS delete_".$this->attributes('id')."";
+
+		return $this->db->query($query);
+	}	
 
 	public function setAutomaticBlock($waktu_transfer){
 
@@ -131,6 +158,9 @@ class Member_model extends CI_Model
 
 		return $this->db->query($query);
 	}	
+
+
+	/* setiap downline lebih dari 5 selalu mengisi kekiri */ 
 
 	public function checkAndMoveMember($referral, $ketemu = false){
 
@@ -156,6 +186,35 @@ class Member_model extends CI_Model
 		return $referral;
 
 	}
+
+	/* misal setiap downline lebih dari 5 selalu check ke kanan */
+
+	public function checkAndMoveMemberRight($referral, $ketemu = false){
+
+		$batas = 5;
+
+		
+			if(count($referral->getDownline())>= $batas){
+				$downline = $referral->getDownline();
+					foreach ($downline as $value) {
+							if(count($value->getDownline())<$batas){
+								$referral = $value;
+								$ketemu=true;
+								break;
+							}
+					}
+			}
+
+		if(!$ketemu){
+			
+			$referral = $this->checkAndMoveMember($value,$ketemu);
+
+		}
+
+		return $referral;
+
+	}
+
 
 
 	public function toogleStatus(){

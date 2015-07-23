@@ -78,7 +78,13 @@
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
           </a> -->
-        
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                
@@ -261,6 +267,10 @@
         /* refresh modal u can change the text with img */
         refreshModal("Loading..");
 
+        // jika tombol dengan id proses di tekan. hanya boleh satu kali.
+        $(".btn").one("click", function() {
+            $(this).click(function () { return false; });
+        });
     </script>
   </body>
 </html>

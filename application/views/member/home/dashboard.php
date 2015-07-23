@@ -33,7 +33,7 @@ if(isset($_SESSION['message'])):
                 <div class="info-box-content">
                   <span class="info-box-text">Maximum Pendapatan</span>
 
-                  <span class="info-box-number"><?= ($user->getMaxIncome() == -1) ? "10 M" : "Rp. ".rupiah($user->getMaxIncome()) ?></span>
+                  <span class="info-box-number"><?= ($user->getMaxIncome() == -1) ? "10 Milyard" : "Rp. ".rupiah($user->getMaxIncome()) ?></span>
 
                 </div><!-- /.info-box-content -->
               </div><!-- /.info-box -->

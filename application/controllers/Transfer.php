@@ -18,6 +18,7 @@ class Transfer extends CI_Controller {
 	    $this->load->library('authlibrary',$this->params);
 	    $this->load->library('form_validation'); 
 	    $this->load->library('transferreferrallibrary');
+	   
 
 	    $this->authlibrary->check_login();
 		$this->authlibrary->check_role('members');  
@@ -47,6 +48,7 @@ class Transfer extends CI_Controller {
 
 			$file_name = date('Y-m-j_H-i-s')."_".$id_transfer;
 			$this->load->library('upload', $this->_upload_conf($file_name));
+
 		if(isset($_FILES['userfile']) && $_FILES['userfile']['size'] > 0){	
 					if ( !$this->upload->do_upload())
 					{
@@ -59,15 +61,26 @@ class Transfer extends CI_Controller {
 						$data_upload=$this->upload->data();
 						$file = $this->input->post();
 						
-
 						$file['id_transfer_referral']= $id_transfer;
 						$file['transfered_at']= date("Y-m-d");
 						$file['bukti_transfer']= $file_name.$data_upload['file_ext'];
-						
-						$this->transferreferrallibrary->transfered($file, $id_transfer);
-						$this->session->set_flashdata('message',"Transfer berhasil harap tunggu verifikasi");
-						$this->session->set_flashdata('sukses', true);
-						redirect(base_url());
+
+						//resize image
+
+						$this->load->library('image_lib', $this->_resize_conf($file_name.$data_upload['file_ext']));
+
+						if ( !$this->image_lib->resize())
+						{		
+							$this->session->set_flashdata('message',$this->image_lib->display_errors());
+							$this->session->set_flashdata('sukses', false);
+							redirect(base_url()."transfer/konfirmasi/".$id_transfer);
+						}else{
+							$this->transferreferrallibrary->transfered($file, $id_transfer);
+							$this->session->set_flashdata('message',"Transfer berhasil harap tunggu verifikasi");
+							$this->session->set_flashdata('sukses', true);
+							redirect(base_url());
+						}
+
 					}
 			} 
 			else {
@@ -131,18 +144,35 @@ class Transfer extends CI_Controller {
 
 		$user = unserialize($_SESSION['login_user']);
 		$transfer = $this->transferreferrallibrary->getData($id_transfer);
+		$referral = $this->member_model->getData($transfer->data->id_member,'id');
 
 		if($user->attributes('id') == $transfer->data->id_referral){
 
-			$transfer->confirmed($id_transfer, $user, $transfer->data->amount);
-			$this->session->set_flashdata('message',"Verifikasi berhasil");
-			$this->session->set_flashdata('sukses', true);
-		}else{
-			$this->session->set_flashdata('message',"Verifikasi gagal");
-			$this->session->set_flashdata('sukses', false);
+			if($transfer->confirmed($id_transfer, $user, $transfer->data->amount)){
+
+				if($referral->cekSelesaiTransfer()){
+
+					$data = array(
+						"id_member" => $referral->attributes('id'),
+						"keterangan" => "Aktifasi selesai transfer referral",
+						"created_at" => date('Y-m-j H:i:s'),
+						"tahap_aktivasi" => "transfer" //tahap aktifasi jadi transfer
+					);
+					
+					$referral->activation(1); // 2 adalah status member menjadi transfer 
+					$this->db->insert("activation_member_logs",$data); // catat logs
+					
+					$this->session->set_flashdata('message',"Verifikasi berhasil");
+					$this->session->set_flashdata('sukses', true);
+					redirect(base_url()."transfer/verifikasi");
+				}	
+			}
+			
 		}
 
-		redirect(base_url()."transfer/verifikasi");
+			$this->session->set_flashdata('message',"Verifikasi gagal");
+			$this->session->set_flashdata('sukses', false);
+			redirect(base_url()."transfer/verifikasi");
 	}
 
 	public function verifikasi_batal(){
@@ -202,6 +232,17 @@ class Transfer extends CI_Controller {
 			);
 	}
 
+	private function _resize_conf($nama_file){
+		
+		$config['image_library'] = 'gd2';
+		$config['source_image']	= 'konfirmasi_transfer/'.$nama_file;
+		$config['maintain_ratio'] = TRUE;
+		$config['width']	= 300;
+		$config['height']	= 300;
+
+		return $config;
+	}
+
 	private function _upload_conf($file_name){
 
 		return array(
@@ -210,9 +251,7 @@ class Transfer extends CI_Controller {
                   'upload_url'      => base_url()."konfirmasi_transfer/",
                   'allowed_types'   => "gif|jpg|png|jpeg",
                   'overwrite'       => TRUE,
-                  'max_size'        => "1000KB",
-                  'max_height'      => "768",
-                  'max_width'       => "1024"  
+                  'max_size'        => "10000KB", 
                 );
 	}
 

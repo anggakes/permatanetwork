@@ -9,10 +9,10 @@ if(isset($_SESSION['message'])):
 <div class="box">
             <div class="box-header with-border">
               <h3 class="box-title">Daftar Member yang wajib Anda Transfer :  </h3>
-              
+              <!--
                 <a href='<?= base_url()?>konfirmasi/statusaktif' class='btn btn-danger pull-right'>Lapor <br> Selesai Transfer</a>              
   <div class='clearfix'></div>
-             
+ -->            
             </div>
             <div class="box-body" style="display: block;">
 
@@ -26,11 +26,11 @@ if(isset($_SESSION['message'])):
   $status = "Belum Melakukan Transfer";
   
   if($r->status_transfer == 1){
-      $status = "Menunggu Konfirmasi";
+      $status = "<span class='label label-default'>Menunggu Konfirmasi</span>";
   }elseif($r->status_transfer == 2){
-      $status = "Selesai";
+      $status = "<span class='label label-success'>Selesai</span>";
   }elseif($r->status_transfer == -1){
-      $status = "Pending";
+      $status = "<span class='label label-danger'> Pending </span>";
   }
 
 ?>

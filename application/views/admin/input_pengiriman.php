@@ -1,4 +1,5 @@
-   <div class='col-md-6'>           
+<div class='row'>
+<div class='col-md-6'>           
 <div class='box'>
   <div class="box-header with-border">
           <h3 class="box-title">Penerima</h3>
@@ -18,6 +19,8 @@
     </div>
 </div>
 </div>
+
+
     <div class='col-md-6'>
      
       <div class="box ">
@@ -30,7 +33,7 @@
           
             <div class="form-group">
               <label for="exampleInputEmail1">Alamat Penerima</label>
-                <textarea name='alamat' readonly class="form-control" id="" placeholder="Alamat Penerima"><?= $users->profile('alamat'); ?></textarea> 
+                <textarea name='alamat' readonly class="form-control" id="" placeholder="Alamat Penerima"><?= $users->profile('alamat') ?>, Provinsi : <?= $users->profile('provinsi') ?>, Kota : <?= $users->profile('kota') ?></textarea> 
                 <div style='color:red'><?= form_error('alamat') ?>
                   </div>
             </div>
@@ -56,6 +59,4 @@
           </div>
         </div>
       </div>
-    </div>
 </div>
-

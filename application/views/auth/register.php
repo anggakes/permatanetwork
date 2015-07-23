@@ -21,11 +21,11 @@ color:#444;
 
   }
 </style>
-<a class='pull-right' href="<?= base_url() ?>"><i class='fa fa-home'>Back To Homepage</i></a>
-<br>
+
 <h3 class='col-sm-8'><strong>Member</strong> <small>Registration Form</small></h3>
     
-    <a href="<?= base_url() ?>auth/login" class='btn btn-link pull-right'> Sudah Punya Akun ?</a>
+   <a class='pull-right btn btn-link' href="<?= base_url() ?>"><i class='fa fa-home'> </i> Back To Homepage</a>
+   <a href="<?= base_url() ?>auth/login" class='btn btn-link pull-right'> Sudah Punya Akun ?</a>
 <div class='clearfix'></div>
   <form role="form" action="<?= base_url() ?>auth/daftar" method="post" class="col-sm-11" id='form-registrasi'>
     <div class="form-group">

@@ -33,7 +33,7 @@ if(isset($_SESSION['message'])):
       $(function () {
 
          $("#datatable").dataTable({ 
-          "order": [[ 4, "desc" ]],
+          "order": [[ 1, "asc" ]],
           "ajax": "<?= base_url()?>admin/pengiriman/datatable",
           "scrollX": true 
         }); 

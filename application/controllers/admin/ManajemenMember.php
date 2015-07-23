@@ -111,13 +111,14 @@ class ManajemenMember extends CI_Controller {
 
 		
 		$transfer = $this->transferreferrallibrary->getData($id_transfer);
-		$user = $this->member_model->getData($transfer->data->id_referral,"id");
-
-			$transfer->confirmed($id_transfer, $user, $transfer->data->amount);
+		$referral = $this->member_model->getData($transfer->data->id_referral,"id");
+		$user = $this->member_model->getData($transfer->data->id_member,"id");
+		
+			$transfer->confirmed($id_transfer, $referral, $transfer->data->amount);
 			$this->session->set_flashdata('message',"Verifikasi berhasil");
 			$this->session->set_flashdata('sukses', true);
 
-		redirect(base_url()."admin/manajemenmember");
+		redirect(base_url()."profile/".$user->attributes('username'));
 	}
 
 	private function _setStatus($status){

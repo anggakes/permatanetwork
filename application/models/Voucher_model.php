@@ -37,7 +37,7 @@ class Voucher_model extends CI_Model
 	}
 
 	public function cekKodeVoucher($kode, $id_member){
-		$sql=$this->db->query("select COUNT(*) as count from voucher where nomor = '$kode'")->row();
+		$sql=$this->db->query("select COUNT(*) as count from voucher where nomor = '$kode' AND status = 0")->row();
 		
 		if($sql->count > 0){
 			$this->db->trans_start();
