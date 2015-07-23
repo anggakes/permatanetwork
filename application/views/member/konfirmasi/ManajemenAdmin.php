@@ -27,7 +27,7 @@ class ManajemenAdmin extends CI_Controller {
 		$crud = new grocery_CRUD;
         $crud->set_table('admin');
 
-        $crud->columns('nama','username','email','last_login', 'role');
+        $crud->columns('nama','username','email','last_login', 'super_admin');
         $crud->unset_export();
         $crud->unset_print();
         $crud->unset_read();

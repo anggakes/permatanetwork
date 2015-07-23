@@ -207,7 +207,7 @@
       </div><!-- /.content-wrapper -->
 
       <footer class="main-footer">
-       
+       <span class='pull-right'>email : <strong>info@permatanetwork.com</strong></span>
         <strong>Copyright &copy; 2015 <a href="#"></a>.</strong> All rights reserved.
       </footer>
       
