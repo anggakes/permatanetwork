@@ -134,6 +134,6 @@
         <span u="arrowright" class="jssora20r" style="top: 123px; right: 8px;">
         </span>
         <!--#endregion Arrow Navigator Skin End -->
-        <a style="display: none" href="http://www.jssor.com">Image Slider</a>
+        
     </div> 
     <!-- Jssor Slider End -->

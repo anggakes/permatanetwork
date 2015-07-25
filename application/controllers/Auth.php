@@ -64,6 +64,7 @@ class Auth extends CI_Controller {
 					                )
 	                			),
 	                'errors' => array('check_captcha'=>'Harap Isi Captcha'));
+
 		$this->form_validation->set_rules('accept_terms_checkbox', '', 'callback_accept_terms');
 		$this->form_validation->set_rules($rule);
 

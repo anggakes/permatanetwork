@@ -27,7 +27,7 @@
         <em>Anda</em> 
         <!-- Downline -->
            <?php 
-              if($user->hasDownline()){
+              if($user->hasDownline(false)){
                 drawChartDownline($user->getDownline(false));
               } 
            ?>

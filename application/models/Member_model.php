@@ -51,7 +51,7 @@ class Member_model extends CI_Model
 
 		// set automatic delete member if not active by voucer
 		$waktu_deleteUser = date('Y-m-j H:i:s',strtotime(date('Y-m-j H:i:s').'+ 48 hours')); //2 days
-		$this->setAutomaticDeleteUser($waktu_deleteUser);
+		$this->setAutomaticDeleteUser($waktu_deleteUser,$id_member);
 
 		$this->db->trans_complete();
 
@@ -123,11 +123,11 @@ class Member_model extends CI_Model
 		return $this->db->trans_status();
 	}
 
-	public function setAutomaticDeleteUser($waktu_transfer){
+	public function setAutomaticDeleteUser($waktu_transfer, $id_member){
 
 		// set timer menggunakan mysql event
 
-		$query = "CREATE EVENT IF NOT EXISTS delete_".$this->attributes('id')." ON SCHEDULE AT '".$waktu_transfer."'  ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM members WHERE id = ".$this->attributes('id')."";
+		$query = "CREATE EVENT IF NOT EXISTS delete_".$id_member." ON SCHEDULE AT '".$waktu_transfer."'  ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM members WHERE id = ".$id_member."";
 
 		return $this->db->query($query);
 	}
