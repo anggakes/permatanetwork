@@ -171,6 +171,8 @@ class AuthLibrary {
                         $this->username = $user->username;
                         return true;    
                     }
+
+                    return false;
                 }
         }
 
