@@ -46,7 +46,6 @@ class Auth extends CI_Controller {
 
 		$rule = $this->member_model->rules();
 		$rule[] = array(
-					array(
 	                'field' => 'captcha',
 	                'label' => 'Captcha',
 	                'rules' => array('required',
@@ -58,9 +57,7 @@ class Auth extends CI_Controller {
 					                        }
 					                )
         						),
-	                'errors' => array('check_captcha'=>'Maaf captcha yang anda masukkan salah')),
-	        
-	        	);
+	                'errors' => array('check_captcha'=>'Maaf captcha yang anda masukkan salah'));
 		$this->form_validation->set_rules('accept_terms_checkbox', '', 'callback_accept_terms');
 		$this->form_validation->set_rules($rule);
 
