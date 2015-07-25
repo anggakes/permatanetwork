@@ -24,6 +24,7 @@ class Auth extends CI_Controller {
 	    $this->load->model('member_model');
 	    $this->load->model('voucher_model');
 	    $this->load->library('captchalibrary');
+	    $this->load->library('recaptcha');
 	}
 
 	function accept_terms()
@@ -43,24 +44,26 @@ class Auth extends CI_Controller {
 
 	public function daftar()
 	{	
-
+		$captcha_answer = $this->input->post('g-recaptcha-response');
+		$response = $this->recaptcha->verifyResponse($captcha_answer);
 		$rule = $this->member_model->rules();
 		$rule[] = array(
-					array(
-	                'field' => 'captcha',
+	                'field' => 'g-recaptcha-response',
 	                'label' => 'Captcha',
 	                'rules' => array('required',
-					                array(
+	                					array(
 					                        'check_captcha',
-					                        function($str)
-					                        {
-					                           return ($this->captchalibrary->cek_captcha());
+					                        function($str)use($response)
+					                        {	
+					                        	if ($response['success']) {
+												    return true;
+												}else {
+													return false;
+												}
 					                        }
 					                )
-        						),
-	                'errors' => array('check_captcha'=>'Maaf captcha yang anda masukkan salah')),
-	        
-	        	);
+	                			),
+	                'errors' => array('check_captcha'=>'Harap Isi Captcha'));
 		$this->form_validation->set_rules('accept_terms_checkbox', '', 'callback_accept_terms');
 		$this->form_validation->set_rules($rule);
 

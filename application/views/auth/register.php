@@ -120,9 +120,8 @@ color:#444;
     <input type="text" name='profile[nama_rekening]' value = "<?= set_value('profile[nama_rekening]')?>" class="form-control" id="" placeholder=" a.n Rekening Anda" required>
     <div style='color:red'><?= form_error('profile[nama_rekening]') ?></div>
   </div>
-  <?php echo $cap_img; ?>
-  <input type="text" name="captcha" placeholder='captcha..' required/>
-  <div style='color:red'><?= form_error('captcha') ?></div>
+  <?php echo $this->recaptcha->render(); ?>
+  <div style='color:red'><?= form_error('g-recaptcha-response') ?></div>
    <div class="checkbox">
     <label>
       <input class='setuju' type="checkbox" name='accept_terms_checkbox' required> Setuju dengan ketentuan dan syarat 
