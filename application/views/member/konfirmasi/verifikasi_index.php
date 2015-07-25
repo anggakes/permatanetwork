@@ -73,7 +73,7 @@ if(isset($_SESSION['message'])):
       $(function () {
 
          $('#datatable').dataTable( {
-              "order": [[ 6, '<?= $sort ?>' ]]
+              "order": [[ 0, '<?= $sort ?>' ]]
           } );
 
       });

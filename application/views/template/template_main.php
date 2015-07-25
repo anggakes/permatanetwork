@@ -261,13 +261,13 @@
         refreshModal("Loading..");
 
         // jika tombol dengan id proses di tekan. hanya boleh satu kali.
-        $(".btn").one("click", function() {
+        $("a.btn").one("click", function() {
             $(this).click(function () { 
               $(this).attr('disabled','disabled');
               return false; 
             });
             
-            $(".btn").click(function () { 
+            $("a.btn").click(function () { 
               $(this).attr('disabled','disabled');
             });
 
