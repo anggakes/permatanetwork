@@ -158,7 +158,7 @@ class TransferReferralLibrary {
 
     public function getJumlahTransfer($id_member){
 
-        $data = $this->db->query("SELECT COUNT(*) AS jumlah FROM transfer_referral WHERE transfer_referral.status_transfer = 2 and id_member = ".$id_member."")->row();
+        $data = $this->db->query("SELECT COUNT(*) AS jumlah FROM transfer_referral WHERE id_member = ".$id_member."")->row();
         return $data->jumlah;
     }
 
