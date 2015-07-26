@@ -51,10 +51,17 @@ class AuthLibrary {
                                 $user = $this->admin_model->getData($this->username);
                         }
 
+                    
                         // Set session data
                         $this->session->set_userdata('login_user',serialize($user));
                         $this->session->set_userdata('login_status',true);
                         $this->session->set_userdata('login_role',$this->model);
+                    
+                    /*
+                        $_SESSION['login_user'] = serialize($user);
+                        $_SESSION['login_status'] = true;
+                        $_SESSION['login_role'] = $this->model;
+                    */
 
                         if($this->model == 'members'){
                             redirect(base_url().$this->homeUrl);

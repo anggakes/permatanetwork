@@ -156,11 +156,20 @@ class TransferReferralLibrary {
             return false;
     }
 
+    public function getJumlahTransfer($id_member){
+
+        $data = $this->db->query("SELECT COUNT(*) AS jumlah FROM transfer_referral WHERE transfer_referral.status_transfer = 2 and id_member = ".$id_member."")->row()->;
+        return $data->jumlah;
+    }
+
     public function setAutomaticConfirm($id_pengirim, $id_penerima, $id_transfer, $waktu_transfer){
 
         // set timer menggunakan mysql event
 
-        $query = "CREATE EVENT IF NOT EXISTS transfer_".$id_pengirim."_".$id_penerima." ON SCHEDULE AT '".$waktu_transfer."'  ON COMPLETION NOT PRESERVE ENABLE DO UPDATE transfer_referral SET status_transfer = 2 WHERE id = ".$id_transfer."";
+        $query = "CREATE EVENT IF NOT EXISTS transfer_".$id_pengirim."_".$id_penerima." ON SCHEDULE AT '".$waktu_transfer."'  ON COMPLETION NOT PRESERVE ENABLE DO 
+        UPDATE transfer_referral SET status_transfer = 2 WHERE id = ".$id_transfer.";
+        UPDATE members inner join (SELECT COUNT(*) AS jumlah FROM transfer_referral WHERE transfer_referral.status_transfer = 2 and id_member = ".$id_pengirim." ) tr  set status = if(tr.jumlah=".$this->getJumlahTransfer($id_pengirim).",1,2) where id=".$id_pengirim.";
+        ";
 
         return $this->db->query($query);
     }

@@ -157,7 +157,7 @@
 <?php if($user->attributes('status') == 2): ?>
 <hr>
             <h5 style='color:#c0c0c0'>Waktu Transfer :</h5>
-            <h3 style='text-align:center;color:#c0c0c0' id='clock'></h3>
+            <h3 style='text-align:center;color:#c0c0c0' id='clock'><?= $user->attributes('limited_transfer_at') ?></h3>
 <?php endif; ?>
 
               
@@ -238,10 +238,12 @@
     <?php if($user->attributes('status') == 2): ?>
 
     <script type="text/javascript">
-        $('#clock').countdown("<?= date('Y/m/d h:i:s',strtotime($user->attributes('limited_transfer_at'))) ?>", function(event) {
-          $(this).html(event.strftime('%D Hari %H:%M:%S'));
-        });
+
+    $("#clock").countdown($("#clock").html(), function(event) {
+                          $("#clock").html(event.strftime('%D Hari %H:%M:%S'));
+                        });
         
+
     </script>
 
     <?php endif; ?>
