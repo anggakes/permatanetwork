@@ -154,12 +154,6 @@
           <div class="user-panel" style='background:#000'>
             <h5 style='color:#c0c0c0'>Kode Member :</h5>
             <h2 style='text-align:center;color:#c0c0c0'><?= $user->attributes('code') ?></h2>
-<?php if($user->attributes('status') == 2): ?>
-<hr>
-            <h5 style='color:#c0c0c0'>Waktu Transfer :</h5>
-            <h3 style='text-align:center;color:#c0c0c0' id='clock'><?= $user->attributes('limited_transfer_at') ?></h3>
-<?php endif; ?>
-
               
           </div>
 <?php endif; ?>
@@ -235,18 +229,6 @@
         <!-- Countdown -->
     <script type="text/javascript" src="<?= base_url() ?>theme/jquery-countdown/jquery.countdown.min.js"></script>
 
-    <?php if($user->attributes('status') == 2): ?>
-
-    <script type="text/javascript">
-
-    $("#clock").countdown($("#clock").html(), function(event) {
-                          $("#clock").html(event.strftime('%D Hari %H:%M:%S'));
-                        });
-        
-
-    </script>
-
-    <?php endif; ?>
 
     <script type="text/javascript">
 

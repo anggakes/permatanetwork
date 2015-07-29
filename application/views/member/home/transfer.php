@@ -52,6 +52,7 @@ if(isset($_SESSION['message'])):
             <dt>Atas Nama Rekening :</dt><dd><?= $r->nama_rekening?></dd>
             <dt>Yang harus ditransfer :</dt><dd>Rp. <?= rupiah($r->amount+$r->unique_transfer) ?></dd>
    <dt>Status :</dt><dd><?= $status?></dd>
+    <dt>Waktu :</dt><dd class='clock'><?= $r->waktu_transfer?></dd>
     </dl>
   </div>
 <?php if($r->status_transfer == 0): ?>
@@ -85,3 +86,18 @@ if(isset($_SESSION['message'])):
             </div><!-- /.box-body -->
           
           </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+    $('.clock').each(function(){
+      $(this).countdown($(this).html(), function(event) {
+              $(this).html(event.strftime('%D Hari %H:%M:%S'));
+            });
+
+    });
+
+
+});
+</script>
