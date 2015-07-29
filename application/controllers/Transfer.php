@@ -146,31 +146,22 @@ class Transfer extends CI_Controller {
 		$transfer = $this->transferreferrallibrary->getData($id_transfer);
 		$referral = $this->member_model->getData($transfer->data->id_member,'id');
 
+		$message = " Anda tidak berhak memverifikasi";
+
 		if($user->attributes('id') == $transfer->data->id_referral){
 
-			if($transfer->confirmed($id_transfer, $user, $transfer->data->amount)){
+			$message = "Data terproses dua kali karena masalah koneksi";
 
-				if($referral->cekSelesaiTransfer()){
+			if($transfer->confirmed($id_transfer, serialize($user), serialize($referral), $transfer->data->amount)){
 
-					$data = array(
-						"id_member" => $referral->attributes('id'),
-						"keterangan" => "Aktifasi selesai transfer referral",
-						"created_at" => date('Y-m-j H:i:s'),
-						"tahap_aktivasi" => "transfer" //tahap aktifasi jadi transfer
-					);
-					
-					$referral->activation(1); // 2 adalah status member menjadi transfer 
-					$this->db->insert("activation_member_logs",$data); // catat logs
-					
-					$this->session->set_flashdata('message',"Verifikasi berhasil");
-					$this->session->set_flashdata('sukses', true);
-					redirect(base_url()."transfer/verifikasi");
-				}	
-			}
+				$this->session->set_flashdata('message',"Verifikasi berhasil");
+				$this->session->set_flashdata('sukses', true);
+				redirect(base_url()."transfer/verifikasi");
+			}	
 			
 		}
 
-			$this->session->set_flashdata('message',"Verifikasi gagal");
+			$this->session->set_flashdata('message',$message);
 			$this->session->set_flashdata('sukses', false);
 			redirect(base_url()."transfer/verifikasi");
 	}

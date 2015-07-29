@@ -40,7 +40,7 @@ if(isset($_SESSION['message'])):
 </table>
 <hr>
 <?php if($_SESSION['login_role']=="admin" AND unserialize($_SESSION['login_user'])->attributes('role') != 2 and $transfer->data->status_transfer != 0 and $transfer->data->status_transfer != 2) {?>
-<a href="<?= base_url('admin/manajemenmember/verifikasi_proses/'.$transfer->data->id."?u=$u")?>" class='btn btn-danger'> Bantu Konfirmasi</a>
+<a href="<?= base_url('admin/manajemenmember/verifikasi_proses/'.$transfer->data->id."?u=$u")?>" class='btn btn-danger proses'> Bantu Konfirmasi</a>
 <?php } ?>
 </div></div>
 
@@ -116,7 +116,7 @@ foreach ($db as $idx => $dataBukti):
 </div>
 <div class='clearfix'></div><br>
 <div id='group-konfirmasi'>
-<a id='proses' href="<?= base_url('transfer/verifikasi_proses/'.$transfer->data->id)?>" class='btn btn-success pull-right'>Konfirm</a>
+<a href="<?= base_url('transfer/verifikasi_proses/'.$transfer->data->id)?>" class='btn btn-success pull-right proses'>Konfirm</a>
 <a href="#!" class='btn btn-danger pull-right' style='margin-right:5px' id='btn_batal'>Tolak</a>
 </div>
 <?php endif; ?>

@@ -27,7 +27,7 @@ class Pengiriman extends CI_Controller {
 		$this->authlibrary->check_role('admin');
 	}
 
-	    public function index()
+	public function index()
     {	
     	$data['status'] = '';
 		$data['title'] = "Daftar yang harus dikirim";

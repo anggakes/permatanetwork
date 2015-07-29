@@ -95,26 +95,13 @@ class Member_model extends CI_Model
 
 			$this->db->set('activation_at',date('Y-m-j H:i:s'));
 
-		}else if($status == 2){
-
-			$waktu_transfer = date('Y-m-j H:i:s',strtotime(date('Y-m-j H:i:s').'+ 36 hours'));
-			$this->db->set('limited_transfer_at',$waktu_transfer);
 		}
 
 		$this->db->where('id', $this->attributes('id'));
 		$this->db->update('members');
 		
-		if($status == 1){
-
-			// hapus timer user sudah transfer semua sebelum 36 jam
-			$this->deleteAutomaticBlock();
+		if($status == 2){
 			
-		}else if($status == 2){
-			
-			// set timer block jika user tidak transfer 36 jam 
-			$this->setAutomaticBlock($waktu_transfer);
-			// set event delete user if not active after 2 days
-			// bearti orang ini serius, udah beli voucher..
 			$this->deleteAutomaticDeleteUser();
 		}
 
@@ -137,24 +124,6 @@ class Member_model extends CI_Model
 		// delete timer menggunakan mysql event
 
 		$query = "DROP EVENT IF EXISTS delete_".$this->attributes('id')."";
-
-		return $this->db->query($query);
-	}	
-
-	public function setAutomaticBlock($waktu_transfer){
-
-		// set timer menggunakan mysql event
-
-		$query = "CREATE EVENT IF NOT EXISTS banned_".$this->attributes('id')." ON SCHEDULE AT '".$waktu_transfer."'  ON COMPLETION NOT PRESERVE ENABLE DO UPDATE members SET status = -1 WHERE id = ".$this->attributes('id')."";
-
-		return $this->db->query($query);
-	}
-
-	public function deleteAutomaticBlock(){
-
-		// delete timer menggunakan mysql event
-
-		$query = "DROP EVENT IF EXISTS banned_".$this->attributes('id')."";
 
 		return $this->db->query($query);
 	}	

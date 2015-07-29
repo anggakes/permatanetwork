@@ -142,6 +142,9 @@ if(isset($_SESSION['message'])):
             <h3 style='text-align:center;color:#c0c0c0'><?= $user->attributes('code') ?></h3>
           </div>
 
+          <h5>Total Pendapatan : </h5>
+          <h3 style='text-align: center'>Rp. <?= rupiah($user->getBalance())?></h3>
+          
           <div class="user-panel" style=''>
             <h5 style=''>Status Member :</h5>
             <?php if($user->attributes('status') == 1){?>
@@ -155,6 +158,7 @@ if(isset($_SESSION['message'])):
             
             <?php } ?>
           </div>
+
           <?php if($user->attributes("status")==2){ ?>
           <center>
             Waktu Transfer : <div class='clock'><?= $user->attributes("limited_transfer_at")?></div>

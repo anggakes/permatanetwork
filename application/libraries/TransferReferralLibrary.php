@@ -64,19 +64,27 @@ class TransferReferralLibrary {
                         if($referral->attributes('status') == 1){ //cek apakah referral aktif
                           
                           $max_income = $this->getMaxIncome(count($referral->getDownline()));
+                          //inisialisasi
+                          $unique_transfer = rand(100,999);
+                          $waktu_transfer = date('Y-m-j H:i:s',strtotime(date('Y-m-j H:i:s').'+ 36 hours'));
+
                           if($max_income>0){
                                      $balance = $referral->getBalance();
                                      if($balance<$max_income){
                                              $this->transfer_member[] = array(
+                                                    
                                                     "id_member"     => $id_member,
-                                                    'unique_transfer' => rand(100,999),
+                                                    'unique_transfer' => $unique_transfer,
                                                     "id_referral"   => $referral->attributes("id"),
                                                     "amount"        => $this->getValue($level),
                                                     "status_transfer"     => 0,
                                                     "updated_at"    =>  date('Y-m-j H:i:s'),
                                                     "created_at"    =>  date('Y-m-j H:i:s'),
+                                                    "waktu_transfer"=>$waktu_transfer,
                                             );
                                              $level++;
+                                             // set auto banned timer
+                                             $this->setTimer('banned', $id_member, $referral->attributes("id"), $waktu_transfer);
                                      }
                             }else{
                                     $this->transfer_member[] = array(
@@ -84,11 +92,15 @@ class TransferReferralLibrary {
                                                     "id_referral"   => $referral->attributes("id"),
                                                     "amount"        => $this->getValue($level),
                                                     "status_transfer"    => 0,
-                                                    'unique_transfer' => rand(100,999),
+                                                    'unique_transfer' => $unique_transfer,
                                                     "updated_at"    =>  date('Y-m-j H:i:s'),
                                                     "created_at"    =>  date('Y-m-j H:i:s'),
+                                                    "waktu_transfer"=>$waktu_transfer,
                                             );
                                     $level++;
+                                    // set auto banned timer
+
+                                    $this->setTimer('banned', $id_member, $referral->attributes("id"), $waktu_transfer);
                             }
                         }
 
@@ -111,19 +123,27 @@ class TransferReferralLibrary {
                 $id_penerima = $transfer->data->id_referral;
                 /* ditambah 12 jam */
                 $waktu_transfer = date('Y-m-j H:i:s',strtotime(date('Y-m-j H:i:s').'+ 12 hours'));
-                $this->setAutomaticConfirm($id_pengirim,$id_penerima,$id_transfer,$waktu_transfer);
+
+                //update waktu transfer
+                $this->db->where('id',$id_transfer);
+                $this->db->update("transfer_referral",array("waktu_transfer"=>$waktu_transfer));
+
+                $this->setTimer('confirm',$id_pengirim,$id_penerima,$waktu_transfer,$id_transfer);
             
             $this->db->trans_complete();
 
             return $this->db->trans_status();
         }
 
-        public function confirmed($id_transfer, $member, $amount){
+        public function confirmed($id_transfer, $member, $referral, $amount){
             $transfer = $this->getData($id_transfer);
+            $member = unserialize($member);
+            $referral = unserialize($referral);
 
             if(!$this->isConfirmed($id_transfer)){
                 $this->db->trans_start();
-                    $this->wallet_model->deposit($member, $amount, "deposit referral Rp. $amount dari ".$transfer->id_referral);
+
+                    $this->wallet_model->deposit($member, $transfer->data->amount, "deposit referral Rp. $amount dari ".$transfer->data->id_referral);
 
                     $this->db->where('id',$id_transfer);
                     $this->db->set('status_transfer',2);
@@ -133,16 +153,30 @@ class TransferReferralLibrary {
                     $id_pengirim = $transfer->data->id_member;
                     $id_penerima = $transfer->data->id_referral;
 
-                    $this->deleteAutomaticConfirm($id_pengirim, $id_penerima);
+                    if($referral->cekSelesaiTransfer()){
+
+                        $data = array(
+                            "id_member" => $referral->attributes('id'),
+                            "keterangan" => "Aktifasi selesai transfer referral",
+                            "created_at" => date('Y-m-j H:i:s'),
+                            "tahap_aktivasi" => "transfer" //tahap aktifasi jadi transfer
+                        );
+                        
+                        $referral->activation(1); // 2 adalah status member menjadi transfer 
+                        $this->db->insert("activation_member_logs",$data); // catat logs
+                    
+                    }
+
+                    $this->unsetTimer($id_pengirim, $id_penerima);
 
                 $this->db->trans_complete();
 
                 return $this->db->trans_status();
 
-            }else{
+            }
 
                 return false;
-            }
+            
         }
 
     public function isConfirmed($id_transfer){
@@ -162,25 +196,41 @@ class TransferReferralLibrary {
         return $data->jumlah;
     }
 
-    public function setAutomaticConfirm($id_pengirim, $id_penerima, $id_transfer, $waktu_transfer){
+    public function setTimer($jenis, $id_pengirim, $id_penerima, $waktu_transfer, $id_transfer=null){
 
-        // set timer menggunakan mysql event
+        $this->unsetTimer($id_pengirim, $id_penerima);
 
-        $query = "CREATE EVENT IF NOT EXISTS transfer_".$id_pengirim."_".$id_penerima." ON SCHEDULE AT '".$waktu_transfer."'  ON COMPLETION NOT PRESERVE ENABLE DO 
-        BEGIN
-        UPDATE transfer_referral SET status_transfer = 2 WHERE id = ".$id_transfer.";
-        UPDATE members inner join (SELECT COUNT(*) AS jumlah FROM transfer_referral WHERE transfer_referral.status_transfer = 2 and id_member = ".$id_pengirim." ) tr  set status = if(tr.jumlah=".$this->getJumlahTransfer($id_pengirim).",1,2) where id=".$id_pengirim.";
-        END
-        ";
+        switch ($jenis) {
 
-        return $this->db->query($query);
+            $query = '';
+            case 'banned':
+                $query = "
+                        CREATE EVENT IF NOT EXISTS timer_".$id_pengirim."_".$id_penerima." ON SCHEDULE AT '".$waktu_transfer."'  ON COMPLETION NOT PRESERVE ENABLE DO 
+                        UPDATE members SET status = -1 WHERE id = ".$id_pengirim."
+                        ";
+                break;
+            
+            case 'confirm':
+                $query = "CREATE EVENT IF NOT EXISTS timer_".$id_pengirim."_".$id_penerima." ON SCHEDULE AT '".$waktu_transfer."'  ON COMPLETION NOT PRESERVE ENABLE DO 
+                            BEGIN
+                            UPDATE transfer_referral SET status_transfer = 2 WHERE id = ".$id_transfer.";
+                            UPDATE members inner join (SELECT COUNT(*) AS jumlah FROM transfer_referral WHERE transfer_referral.status_transfer = 2 and id_member = ".$id_pengirim." ) tr  set status = if(tr.jumlah=".$this->getJumlahTransfer($id_pengirim).",1,2) where id=".$id_pengirim.";
+                            UPDATE wallet inner join (SELECT amount FROM transfer_referral where id_member = ".$id_pengirim." and id_referral = ".$id_penerima.") b  set balance = balance + b.amount where id_member = ".$id_penerima.";
+                            END
+                            ";
+                break;
+        }
+
+         return $this->db->query($query);
+
     }
 
-    public function deleteAutomaticConfirm($id_pengirim, $id_penerima){
+
+    public function unsetTimer($id_pengirim, $id_penerima){
 
         // delete timer menggunakan mysql event
 
-        $query = "DROP EVENT IF EXISTS transfer_".$id_pengirim."_".$id_penerima."";
+        $query = "DROP EVENT IF EXISTS timer_".$id_pengirim."_".$id_penerima."";
 
         return $this->db->query($query);
     }   
@@ -201,7 +251,12 @@ class TransferReferralLibrary {
                     ));
                 $id_pengirim = $this->data->id_member;
                 $id_penerima = $this->data->id_referral;
-                $this->deleteAutomaticConfirm($id_pengirim, $id_penerima);
+                $waktu_transfer = date('Y-m-j H:i:s',strtotime(date('Y-m-j H:i:s').'+ 12 hours'));
+
+                //update waktu transfer
+                $this->db->where('id',$id_transfer);
+                $this->db->update("transfer_referral",array("waktu_transfer"=>$waktu_transfer));
+                $this->setTimer('banned',$id_pengirim, $id_penerima,$waktu_transfer);
             
             $this->db->trans_complete();
 

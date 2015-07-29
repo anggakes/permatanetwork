@@ -109,16 +109,24 @@ class ManajemenMember extends CI_Controller {
 
 	public function verifikasi_proses($id_transfer){
 
-		
+		$admin = unserialize($_SESSION['login_user']);
 		$transfer = $this->transferreferrallibrary->getData($id_transfer);
 		$referral = $this->member_model->getData($transfer->data->id_referral,"id");
 		$user = $this->member_model->getData($transfer->data->id_member,"id");
 		
-			$transfer->confirmed($id_transfer, $referral, $transfer->data->amount);
-			$this->session->set_flashdata('message',"Verifikasi berhasil");
-			$this->session->set_flashdata('sukses', true);
 
-		redirect(base_url()."profile/".$user->attributes('username'));
+			if($transfer->confirmed($id_transfer, $referral, $user, $transfer->data->amount)){
+
+				$this->session->set_flashdata('message',"Verifikasi berhasil");
+					$this->session->set_flashdata('sukses', true);
+					redirect(base_url()."profile/".$user->attributes('username')."?admin");
+			}
+			
+		
+
+			$this->session->set_flashdata('message',"Verifikasi gagal");
+			$this->session->set_flashdata('sukses', false);
+		redirect(base_url()."profile/".$user->attributes('username')."?admin");
 	}
 
 	private function _setStatus($status){

@@ -78,6 +78,18 @@
                     <i class="fa fa-history"></i> <span>Histori Pengiriman</span>
                   </a>
                 </li>
+
+                <li class="header">Voucher Bonus</li> 
+                 <li>
+                  <a href="<?= base_url(); ?>admin/voucher/voucher_bonus">
+                    <i class="fa fa-star"></i> <span>Voucher Bonus</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="<?= base_url(); ?>admin/voucher/histori_voucher_bonus">
+                    <i class="fa fa-history"></i> <span>Histori Voucher Bonus</span>
+                  </a>
+                </li>
             <?php } ?> 
             <?php if( $user->isSuperAdmin() OR $user->isAdmin()) {?>
             
