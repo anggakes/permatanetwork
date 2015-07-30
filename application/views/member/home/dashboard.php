@@ -149,7 +149,7 @@ if(isset($_SESSION['message'])):
             <dt>Atas Nama Rekening :</dt><dd><?= $r->nama_rekening?></dd>
             <dt>Yang harus ditransfer :</dt><dd>Rp. <?= rupiah($r->amount+$r->unique_transfer) ?></dd>
    <dt>Status :</dt><dd><?= $status?></dd>
-    <dt>Waktu Transfer :</dt><dd class='clock'><?= date('Y/m/d h:i:s',strtotime($r->limited_transfer_at)) ?></dd>
+    <dt>Waktu Transfer :</dt><dd class='clock'><?= date('Y/m/d h:i:s',strtotime($r->waktu_transfer)) ?></dd>
     </dl>
   </div>
   <?php if($r->status_transfer >0){ ?>

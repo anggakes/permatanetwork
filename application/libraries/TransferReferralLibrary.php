@@ -199,10 +199,9 @@ class TransferReferralLibrary {
     public function setTimer($jenis, $id_pengirim, $id_penerima, $waktu_transfer, $id_transfer=null){
 
         $this->unsetTimer($id_pengirim, $id_penerima);
-
+        $query = '';
         switch ($jenis) {
-
-            $query = '';
+            
             case 'banned':
                 $query = "
                         CREATE EVENT IF NOT EXISTS timer_".$id_pengirim."_".$id_penerima." ON SCHEDULE AT '".$waktu_transfer."'  ON COMPLETION NOT PRESERVE ENABLE DO 

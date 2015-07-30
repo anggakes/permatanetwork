@@ -50,6 +50,8 @@ if(isset($_SESSION['message'])):
                     <dd><?= $user->attributes('created_at') ?></dd>
                      <dt>Aktif Sejak</dt>
                     <dd><?= $user->attributes('activation_at') ?></dd>
+                    <dt>Total Pendapatan</dt>
+                    <dd>Rp. <?= rupiah($user->getBalance()) ?></dd>
                   </dl>
 
               </div>
@@ -93,6 +95,7 @@ if(isset($_SESSION['message'])):
 <tr>
 <td>Nama</td>
 <td>Status</td>
+<td>Waktu Transfer</td>
 <td>#</td>
 </tr>
 </thead>
@@ -114,6 +117,14 @@ if(isset($_SESSION['message'])):
 <tr>
 <td><?= $r->username." (".$r->nama.") " ?></td>
 <td><?= $status ?></td>
+<td>
+<?php if($r->status_transfer != 2){ ?>
+<div class='clock'><?= date('Y/m/d h:i:s',strtotime($r->waktu_transfer)) ?></div>
+
+<?php } else {?> 
+-
+<?php } ?>
+</td>
 <td> <a href="<?= base_url('admin/manajemenmember/riwayat_transfer/'.$r->id_transfer."?u=".$user->attributes('username')) ?>">Lihat</a></td>
 </tr>
 
@@ -160,10 +171,7 @@ if(isset($_SESSION['message'])):
           </div>
 
           <?php if($user->attributes("status")==2){ ?>
-          <center>
-            Waktu Transfer : <div class='clock'><?= $user->attributes("limited_transfer_at")?></div>
-
-          </center>
+          
           <script type="text/javascript">
             $(document).ready(function(){
             $(".clock").countdown($(".clock").html(), function(event) {
@@ -202,6 +210,22 @@ if(isset($_SESSION['message'])):
 </div>
 </div>
 
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+
+    $('.clock').each(function(){
+      $(this).countdown($(this).html(), function(event) {
+              $(this).html(event.strftime('%D Hari %H:%M:%S'));
+            });
+
+    });
+
+
+});
+</script>
 
 
 
