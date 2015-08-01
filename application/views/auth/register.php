@@ -21,6 +21,11 @@ color:#444;
 
   }
 </style>
+<script type="text/javascript">
+var RecaptchaOptions = {
+    theme : 'red'
+};  
+</script>
 
 <h3 class='col-sm-8'><strong>Member</strong> <small>Registration Form</small></h3>
     
@@ -121,7 +126,7 @@ color:#444;
     <div style='color:red'><?= form_error('profile[nama_rekening]') ?></div>
   </div>
   <?php echo $this->recaptcha->render(); ?>
-  <div style='color:red'><?= form_error('g-recaptcha-response') ?></div>
+  <div style='color:red'><?= form_error('recaptcha_response_field') ?></div>
    <div class="checkbox">
     <label>
       <input class='setuju' type="checkbox" name='accept_terms_checkbox' required> Setuju dengan ketentuan dan syarat 
@@ -241,6 +246,7 @@ $(document).ready(function(){
     }
 
     <?= (isset($kode_referral)) ? "getReferral_code();" : '' ?>
+
 
     
 });

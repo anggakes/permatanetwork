@@ -9,7 +9,7 @@ class Auth extends CI_Controller {
 	* members dan admins	
 	*/
 	protected $params = array('model'=>'members');
-
+	public $recaptcha;
 	
 
 	public function __construct()
@@ -24,7 +24,7 @@ class Auth extends CI_Controller {
 	    $this->load->model('member_model');
 	    $this->load->model('voucher_model');
 	    $this->load->library('captchalibrary');
-	    $this->load->library('recaptcha');
+	    $this->load->library('recaptcha1');
 	}
 
 	function accept_terms()
@@ -44,11 +44,18 @@ class Auth extends CI_Controller {
 
 	public function daftar()
 	{	
-		$captcha_answer = $this->input->post('g-recaptcha-response');
+		$this->recaptcha = new Recaptcha1();
+
+		$captcha_answer["recaptcha_challenge_field"] = $this->input->post('recaptcha_challenge_field');
+		$captcha_answer["recaptcha_response_field"] = $this->input->post('recaptcha_response_field');
+		/*
+			Untuk captcha 2
+			$captcha_answer = $this->input->post('g-recaptcha-response');
+		*/
 		$response = $this->recaptcha->verifyResponse($captcha_answer);
 		$rule = $this->member_model->rules();
 		$rule[] = array(
-	                'field' => 'g-recaptcha-response',
+	                'field' => 'recaptcha_response_field',
 	                'label' => 'Captcha',
 	                'rules' => array('required',
 	                					array(
@@ -63,14 +70,14 @@ class Auth extends CI_Controller {
 					                        }
 					                )
 	                			),
-	                'errors' => array('check_captcha'=>'Harap Isi Captcha'));
+	                'errors' => array('check_captcha'=>'maaf captcha salah'));
 
 		$this->form_validation->set_rules('accept_terms_checkbox', '', 'callback_accept_terms');
 		$this->form_validation->set_rules($rule);
 
 		// Form validation 
 		if ($this->form_validation->run() == FALSE){
-				$data['cap_img'] = $this->captchalibrary->make_captcha();
+				//$data['cap_img'] = $this->captchalibrary->make_captcha();
 				$bank = $this->db->query("SELECT * FROM bank")->result();
 				$data['bank'] = object_to_array($bank,'nama_bank');
 
