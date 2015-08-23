@@ -39,7 +39,7 @@ if(isset($_SESSION['message'])):
               </div><!-- /.info-box -->
             </div>
 <div class="col-md-4">
-              <a href ="<?= base_url("profile/downline/".$user->attributes('username'))?>" data-toggle="modal" data-target="#myModal">
+              <a href ="<?= base_url("profile/downline/".rawurlencode($user->attributes('username'))) ?>" data-toggle="modal" data-target="#myModal">
               <div class="info-box">
                 <span class="info-box-icon bg-green"><i class="fa fa-sitemap"></i></span>
                 <div class="info-box-content">

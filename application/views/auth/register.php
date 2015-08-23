@@ -79,6 +79,11 @@ var RecaptchaOptions = {
     <input type="text" name='profile[nama]' value = "<?= set_value('profile[nama]')?>" class="form-control" id="" placeholder=" Nama Lengkap Anda.." required>
     <div style='color:red'><?= form_error('profile[nama]') ?></div>
   </div>
+   <div class="form-group">
+    <label for="exampleInputPassword1">Country</label>
+    <?php echo form_dropdown('member[country_code]',$list_country,$country,"class='form-control country'") ?>
+    <div style='color:red'><?= form_error('profile[nama_bank]') ?></div>
+  </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Alamat</label>
     <input type="text" name='profile[alamat]' value = "<?= set_value('profile[alamat]')?>" class="form-control" id="" placeholder=" Alamat Tempat Tinggal.." required>
@@ -112,7 +117,8 @@ var RecaptchaOptions = {
   <h4>Informasi Rekening </h4>
     <div class="form-group">
     <label for="exampleInputPassword1">Nama Bank</label>
-    <?php echo form_dropdown('profile[nama_bank]',$bank,set_value('profile[nama_bank]'),'class=form-control') ?>
+
+    <select name='profile[nama_bank]' class="form-control bank"></select>    
     <div style='color:red'><?= form_error('profile[nama_bank]') ?></div>
   </div>
   <div class="form-group">
@@ -217,7 +223,8 @@ $(document).ready(function(){
               var stat;
               var nama = "<b>Nama </b>         : "+data.nama+"<br>";
               var username = "<b>Username </b>     : "+data.username+"<br>";
-              var kode = "<b>kode Referral</b> : "+data.codex+"<br>";
+              var kode = "<b>Kode Referral</b> : "+data.codex+"<br>";
+              var negara = "<b>Negara</b> : "+data.country_name+"<br>";
               var foto = data.foto;
 
               if(data.status_member == 1){
@@ -227,7 +234,7 @@ $(document).ready(function(){
               }
               var status = "<b>Status</b> : "+stat+"<br>";
 
-              var dataReferral = nama+username+kode+status;
+              var dataReferral = nama+username+kode+negara+status;
 
               $('#dataReferralProfile').html(dataReferral);
               $('#foto').html(foto);
@@ -247,8 +254,22 @@ $(document).ready(function(){
 
     <?= (isset($kode_referral)) ? "getReferral_code();" : '' ?>
 
+    function getBank(country_code){
+        $.ajax({
+            method: "GET",
+            url: "<?= base_url() ?>auth/getBank/"+country_code,
+          })
+            .done(function( msg ) {
+              $(".bank").html(msg);
+            });
+    }
 
+    getBank("<?= $country ?>");
     
+    $(".country").change(function(){
+        getBank($(".country").val());
+    });
+
 });
 
 </script>

@@ -314,10 +314,11 @@ class ReCaptcha1 {
 
     public function render(){
 
-        return recaptcha_get_html($this->_sitekey);;
+        return recaptcha_get_html($this->_sitekey,NULL, true);;
     }
 
     public function verifyResponse($response){
+
         if(!isset($response["recaptcha_challenge_field"]) AND !isset($response["recaptcha_response_field"])){
            return array(
                 'success' => FALSE,

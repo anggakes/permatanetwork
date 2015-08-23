@@ -34,7 +34,7 @@
           <?php foreach ($halaman as $hal) { ?>
             <li class="">
                     <a href="<?= base_url('content/view/'.$hal->slug)?>" >
-                      <i class="fa fa-book"></i> <span><?= $hal->judul?></span>
+                      <i class="fa fa-book"></i> <span><?= limitWord($hal->judul,3) ?></span>
                     </a>
             </li>
           <?php } ?>

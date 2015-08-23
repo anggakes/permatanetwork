@@ -25,6 +25,7 @@ class Auth extends CI_Controller {
 	    $this->load->model('voucher_model');
 	    $this->load->library('captchalibrary');
 	    $this->load->library('recaptcha1');
+	    $this->load->library('geoplugin');
 	}
 
 	function accept_terms()
@@ -81,6 +82,12 @@ class Auth extends CI_Controller {
 				$bank = $this->db->query("SELECT * FROM bank")->result();
 				$data['bank'] = object_to_array($bank,'nama_bank');
 
+				$country = $this->db->query("SELECT * FROM country")->result();
+				$data['list_country'] = object_to_array($country,'name','code');
+				
+				$gp = Geoplugin::locate("199.115.117.242"); // edit bagian ini
+				$data['country']  = (in_array($gp->countryCode,$data['list_country'])) ? "ID" : $gp->countryCode; 
+				
 				$data['kode_referral'] = $this->uri->segment(3);
 				$this->template->load('template/template_auth','auth/register',$data);
 
@@ -151,7 +158,7 @@ class Auth extends CI_Controller {
 
 		if($usernameOrRefcode != ''){
 			
-			$data = $this->db->query("SELECT members.status as status_member,members.username,members.code as codex, profile.* FROM members JOIN profile ON members.id = profile.id_member WHERE username = '$usernameOrRefcode' OR code = '$usernameOrRefcode' ")->row();
+			$data = $this->db->query("SELECT members.status as status_member,members.username,members.code as codex,country.name as country_name, profile.* FROM members JOIN profile ON members.id = profile.id_member JOIN country ON members.country_code = country.code WHERE username = '$usernameOrRefcode' OR members.code = '$usernameOrRefcode' ")->row();
 			if(count($data)>0){
 				$alamat_foto = ($data->foto != '') ? $data->foto : "default.png";
 				$data->foto = "<img src='".base_url()."foto_profil/$alamat_foto' class='img-circle' style='width:80px' />";
@@ -163,6 +170,21 @@ class Auth extends CI_Controller {
 			echo json_encode($data);
 
 		}
+	}
+
+	public function getBank($country_code){
+		$selected = (!is_null($this->input->get('selected'))) ? $this->input->get('selected') : "";
+		$bank = $this->db->query("SELECT nama_bank FROM bank WHERE country_code='$country_code'")->result();
+		$list ="";
+		foreach ($bank as $key => $value) {
+			if($value->nama_bank == $selected AND $selected != ""){
+				$list .= "<option value='$value->nama_bank' selected='true'>$value->nama_bank</option>";
+			}else{
+				$list .= "<option value='$value->nama_bank'>$value->nama_bank</option>";
+			}	
+		}
+
+		echo $list;
 	}
 
 	public function forget_password(){

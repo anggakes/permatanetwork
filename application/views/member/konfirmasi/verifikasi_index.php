@@ -16,7 +16,7 @@ th, td { white-space: nowrap; }
 
 
 <div class='box'>
-<div class='box-header'><h4>Daftar Transfer untuk diverifikasi </h4>
+<div class='box-header'><h4><?= $judul ?> </h4>
 <div class="box-tools pull-right">
 <a class='btn btn-default' href='verifikasi'><i class='fa fa-paper-plane'></i>List Menunggu</a>
 <a class='btn btn-default' href='verifikasi?history'><i class='fa fa-history'></i>History</a>
@@ -29,13 +29,14 @@ th, td { white-space: nowrap; }
   <td>Aksi</td>
 <td>Tanggal Dibuat</td>
 <td>Tanggal Diproses</td>
+<td>Jumlah Transfer</td>
+<td>Status</td>
 <td>Username</td>
 <td>Nama</td>
 <td>Nomor HP</td>
 <td>Email</td>
 <td>Alamat</td>
-<td>Jumlah Transfer</td>
-<td>Status</td>
+
 
 </tr>
 </thead>
@@ -66,13 +67,14 @@ th, td { white-space: nowrap; }
 </td>
 <td><?= $v->created_at ?></td>
 <td><?= $v->updated_at ?></td>
+<td>Rp. <?= rupiah($v->amount+$v->unique_transfer) ?></td>
+<td><?= $status ?></td>
 <td><?= $v->username ?></td>
 <td><?= $v->nama ?></td>
 <td><?= $v->no_hp ?></td>
 <td><?= $v->email ?></td>
 <td><?= $v->alamat ?>, Provinsi : <?= $v->provinsi ?>, Kota : <?= $v->kota ?></td>
-<td>Rp. <?= rupiah($v->amount+$v->unique_transfer) ?></td>
-<td><?= $status ?></td>
+
 
 </tr>
 <?php endforeach; ?>

@@ -25,3 +25,15 @@ if ( ! function_exists('rupiah'))
 		return number_format($nilai,0,'.',',');
 	}
 }
+
+if ( ! function_exists('limitWord'))
+{
+function limitWord($string, $word_limit) {
+        $words = explode(" ", $string);
+        if($words>$word_limit){
+       		return implode(" ", array_splice($words, 0, $word_limit))." ...";
+    	}
+
+    	return false;
+    }
+}

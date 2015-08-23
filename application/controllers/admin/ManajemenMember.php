@@ -150,6 +150,15 @@ class ManajemenMember extends CI_Controller {
 		}
 	}
 
+	public function hapus($username){
+		$this->db->where("username",$username);
+		if($this->db->delete("members")){
+			$this->session->set_flashdata('message',"Data Berhasil dihapus");
+					$this->session->set_flashdata('sukses', true);
+			redirect(base_url()."admin/manajemenmember?status=-1");
+		}
+	}
+
 
 	private function _aksi($username){
 			$button = "

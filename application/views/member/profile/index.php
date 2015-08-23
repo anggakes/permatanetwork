@@ -58,7 +58,7 @@ if(isset($_SESSION['message'])):
             </div>
     <div class='box-footer'>
       <div class='pull-right'>
-      <a href="<?= base_url("profile/downline/".$user->attributes('username'))?>" class='btn btn-default' data-toggle="modal" data-target="#myModal">Downline</a>
+      <a href="<?= base_url("profile/downline/".rawurlencode($user->attributes('username')))?>" class='btn btn-default' data-toggle="modal" data-target="#myModal">Downline</a>
        
     </div>
     </div>             
@@ -196,7 +196,9 @@ if(isset($_SESSION['message'])):
           
               <center>
 <?php if($user->attributes('status') == -1){?>
+<a href="<?= base_url('admin/manajemenmember/hapus/'.$user->attributes('username')) ?>" class='btn btn-link' onClick="return confirm('semua data yang berhubungan dengan member ini akan ikut terhapus\n\nAnda yakin untuk menghapus ? ')"><i class='fa fa-trash'></i> Hapus</a>
 <a href="<?= base_url('admin/manajemenmember/toogle/'.$user->attributes('username')) ?>" class='btn btn-success'><i class='fa fa-check'></i> Aktifkan</a>
+
 <?php }elseif($user->attributes('status') == 1){ ?> 
 <a href="<?= base_url('admin/manajemenmember/toogle/'.$user->attributes('username')) ?>" class='btn btn-danger'><i class='fa fa-ban'></i> Banned</a>
 <?php } ?>
