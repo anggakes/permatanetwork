@@ -105,7 +105,7 @@
               </a>
             </li>
             <li>
-              <a href="<?= base_url(); ?>admin/contents/berita">
+              <a href="<?= base_url(); ?>admin/contents/Berita">
                 <i class="fa fa-circle-o"></i> <span>Berita</span>
               </a>
             </li>
