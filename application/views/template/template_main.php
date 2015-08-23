@@ -112,7 +112,13 @@
                         <?php echo($user->profile('nama')) ?>
                       
 
-                      <small>Bergabung Sejak : <?php echo($user->attributes('created_at')) ?></small>
+                    <small>Bergabung Sejak : <?php echo($user->attributes('created_at')) ?>
+                      <br> 
+                    <?php if($_SESSION['login_role'] == "members"){ ?>
+                      Country : <?php echo($user->attributes('country_code')) ?>
+                    <?php } ?>
+                    </small>
+       
                     </p>
                   </li>
                   <!-- Menu Body -->

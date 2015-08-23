@@ -37,3 +37,11 @@ function limitWord($string, $word_limit) {
     	return false;
     }
 }
+
+if ( ! function_exists('currConverter'))
+{
+function currConverter($amount) {
+        $cc = unserialize($_SESSION['login_cc']);
+    	return $cc->convert($amount);
+    }
+}

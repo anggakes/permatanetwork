@@ -31,12 +31,24 @@ if(isset($_SESSION['message'])):
 
 <table class='table'>
     <tr>
+  <?php if( $this->member_model->getData($transfer->data->id_member,'id')->attributes('country_code') == "ID") { ?>
+        <td><b>Jumlah :</b></td><td>Rp. <?= rupiah($transfer->data->amount+$transfer->data->unique_transfer) ?></td>
+   <?php }else{ ?>
+         <td><b>Jumlah :</b></td><td>
+         <?php
+         $i = $this->member_model->getData($transfer->data->id_member,'id');
+         $this->load->library("currencyconverter");
+         $cc = $this->currencyconverter->getRate($i->getCurrency()->currency_code);
 
-   <td><b>Jumlah :</b></td><td>Rp. <?= rupiah($transfer->data->amount+$transfer->data->unique_transfer) ?></td>
+         ?>
+         <?= $i->getCurrency()->currency. $cc->convert($transfer->data->amount+$transfer->data->unique_transfer) ?></td>
+
+   <?php } ?>
    </tr>
    <tr>
    <td><b>Status :</b></td><td><?= $status?></td>
     </tr>
+   
 </table>
 <hr>
 <?php if($_SESSION['login_role']=="admin" AND unserialize($_SESSION['login_user'])->attributes('role') != 2 and $transfer->data->status_transfer != 0 and $transfer->data->status_transfer != 2) {?>
@@ -91,6 +103,11 @@ foreach ($db as $idx => $dataBukti):
 <td>Nomor Rekening</td>
 <td><?= $dataBukti->no_rekening_pengirim ?></td>
 <td><?= $dataBukti->no_rekening_penerima ?></td>
+</tr>
+<tr>
+<td>Country</td>
+<td><?= $this->member_model->getData($transfer->data->id_member,'id')->attributes('country_code') ?></td>
+<td><?= $this->member_model->getData($transfer->data->id_referral,'id')->attributes('country_code') ?></td>
 </tr>
 </tbody>
 </table>

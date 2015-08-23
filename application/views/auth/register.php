@@ -81,7 +81,7 @@ var RecaptchaOptions = {
   </div>
    <div class="form-group">
     <label for="exampleInputPassword1">Country</label>
-    <?php echo form_dropdown('member[country_code]',$list_country,$country,"class='form-control country'") ?>
+    <?php echo form_dropdown('member[country_code]',$list_country,(set_value("member[country_code]")!= '') ? set_value("member[country_code]") : $country,"class='form-control country'") ?>
     <div style='color:red'><?= form_error('profile[nama_bank]') ?></div>
   </div>
   <div class="form-group">
@@ -254,20 +254,24 @@ $(document).ready(function(){
 
     <?= (isset($kode_referral)) ? "getReferral_code();" : '' ?>
 
-    function getBank(country_code){
+    function getBank(country_code,bank_name){
+        var selected = "";
+        if(bank_name != ""){
+          selected = "?selected="+bank_name;
+        }
         $.ajax({
             method: "GET",
-            url: "<?= base_url() ?>auth/getBank/"+country_code,
+            url: "<?= base_url() ?>auth/getBank/"+country_code+selected,
           })
             .done(function( msg ) {
               $(".bank").html(msg);
             });
     }
 
-    getBank("<?= $country ?>");
+    getBank("<?= (set_value("member[country_code]") !='') ? set_value("member[country_code]") : $country ?>","<?= (set_value("profile[nama_bank]") != '') ? set_value("profile[nama_bank]") : '' ?>");
     
     $(".country").change(function(){
-        getBank($(".country").val());
+        getBank($(".country").val(),"");
     });
 
 });

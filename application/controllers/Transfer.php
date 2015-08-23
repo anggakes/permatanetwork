@@ -39,7 +39,7 @@ class Transfer extends CI_Controller {
 		// Form validation 
 		if ($this->form_validation->run() == FALSE){
 			
-				$bank = $this->db->query("SELECT * FROM bank")->result();
+				$bank = $this->db->query("SELECT * FROM bank WHERE country_code = '".$data['user']->attributes('country_code')."'")->result();
 				$data['bank'] = object_to_array($bank,'nama_bank');
 
 				$this->template->load('template/template_main','member/konfirmasi/konfirmasi_transfer',$data);

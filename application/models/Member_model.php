@@ -33,6 +33,7 @@ class Member_model extends CI_Model
 				'email'      	=> $this->input->post('member[email]'),
 				'password'   	=> $this->hash_password($this->input->post('member[password]')),
 				'referral_code' => $referral_code,
+				'country_code' => $this->input->post("member[country_code]"),
 				'created_at' => date('Y-m-j H:i:s'),
 				'updated_at' => date('Y-m-j H:i:s'),
 
@@ -71,6 +72,12 @@ class Member_model extends CI_Model
 		
 		return ($confirmation->b > 0) ? true : false ;
 	}
+
+	public function getCurrency(){
+		$data = $this->db->query("SELECT currency_code,currency FROM country where code='".$this->attributes('country_code')."'")->row();
+		return $data;
+	}
+
 
 	public function getConfirmation(){
 		

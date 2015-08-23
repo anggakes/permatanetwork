@@ -22,7 +22,8 @@ if(isset($_SESSION['message'])):
 
        <div class="form-group">
       <label for="exampleInputPassword1">Nama Bank Penerima</label>
-      <?php echo form_dropdown('nama_bank_penerima',$bank,$referral->profile('nama_bank'),'class=form-control readonly') ?>
+       <input type="text" name='nama_bank_penerima' class="form-control" id="" placeholder="Username atau Email.." value= "<?= $referral->profile('nama_bank') ?>" readonly>
+
       <div style='color:red'><?= form_error('nama_bank_penerima') ?></div>
     </div>
 

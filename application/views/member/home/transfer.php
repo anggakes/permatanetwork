@@ -47,11 +47,14 @@ if(isset($_SESSION['message'])):
          ,<b>Kota : </b><?= $r->kota ?> 
          ,<b>Provinsi : </b><?= $r->provinsi ?></dd>
 
+         <dt>Country :</dt><dd><?= $r->country_code?></dd>
           <dt>Nama Bank :</dt><dd><?= $r->nama_bank?></dd>
            <dt>No Rekening :</dt><dd><?= $r->no_rekening?></dd>
             <dt>Atas Nama Rekening :</dt><dd><?= $r->nama_rekening?></dd>
-            <dt>Yang harus ditransfer :</dt><dd>Rp. <?= rupiah($r->amount+$r->unique_transfer) ?></dd>
-   <dt>Status :</dt><dd><?= $status?></dd>
+            <dt>Yang harus ditransfer :</dt><dd>
+            <?= $user->getCurrency()->currency ?> <?= ($user->attributes("country_code") == "ID")? rupiah($r->amount+$r->unique_transfer) : currConverter($r->amount+$r->unique_transfer)?>
+          </dd>
+          <dt>Status :</dt><dd><?= $status?></dd>
     <dt>Waktu :</dt><dd class='clock'><?= $r->waktu_transfer?></dd>
     </dl>
   </div>

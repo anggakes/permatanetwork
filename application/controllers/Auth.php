@@ -268,14 +268,15 @@ class Auth extends CI_Controller {
 
 	}
 
-/*
+
 	public function tes(){
 
-		$referral = $this->member_model->checkAndMoveMember($this->member_model->getData("first"));
-		
-		print_r($referral->attributes('code'));
+		$this->load->library("currencyconverter");
+		print_r($this->currencyconverter->getRate("USD"));
+
+	echo $this->currencyconverter->convert(300000);
 
 	}
-*/
+
 
 }

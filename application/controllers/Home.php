@@ -35,7 +35,7 @@ class Home extends CI_Controller {
 			if($user->attributes('status') == 1){
 
 				$data['verifikasi'] = $this->transferreferrallibrary->getDataAllVerifikasi($user->attributes('id')," AND status_transfer = 1");
-				$data['harus_transfer'] = $this->transferreferrallibrary->getDataAllVerifikasi($user->attributes('id')," AND status_transfer <> 2 AND status_transfer <> 1 AND members.limited_transfer_at >= NOW()");
+				$data['harus_transfer'] = $this->transferreferrallibrary->getDataAllVerifikasi($user->attributes('id')," AND status_transfer <> 2 AND status_transfer <> 1 AND members.status <>-1 ");
 				//ambil pengumuman
 				$data['pengumumans'] = $this->pengumuman_model->getPengumuman();
 				$data['beritas'] = $this->content_model->getBerita();

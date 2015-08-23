@@ -67,13 +67,16 @@ th, td { white-space: nowrap; }
 </td>
 <td><?= $v->created_at ?></td>
 <td><?= $v->updated_at ?></td>
-<td>Rp. <?= rupiah($v->amount+$v->unique_transfer) ?></td>
+
+<td>
+<?= $user->getCurrency()->currency ?> <?= ($user->attributes("country_code") == "ID")? rupiah($v->amount+$v->unique_transfer) : currConverter($v->amount+$v->unique_transfer)?>
+</td>
 <td><?= $status ?></td>
 <td><?= $v->username ?></td>
 <td><?= $v->nama ?></td>
 <td><?= $v->no_hp ?></td>
 <td><?= $v->email ?></td>
-<td><?= $v->alamat ?>, Provinsi : <?= $v->provinsi ?>, Kota : <?= $v->kota ?></td>
+<td><?= $v->alamat ?>, Provinsi : <?= $v->provinsi ?>, Kota : <?= $v->kota ?>, country: <?= $v->country_code ?> </td>
 
 
 </tr>

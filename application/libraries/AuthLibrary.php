@@ -25,6 +25,7 @@ class AuthLibrary {
                 $this->load->model('member_model');
                 $this->load->model('admin_model');
                  $this->load->library('email');
+                 $this->load->library("currencyconverter");
                 $this->model = $params['model'];
         }
 
@@ -51,10 +52,16 @@ class AuthLibrary {
                                 $user = $this->admin_model->getData($this->username);
                         }
 
-                    
+                        if($this->model == "members"){
+                            if($user->attributes('country_code') != "ID"){
+                                $cc = $this->currencyconverter->getRate($user->getCurrency()->currency_code);
+                            }
+                            $this->session->set_userdata('login_cc',serialize($cc));
+                        }
                         // Set session data
                         $this->session->set_userdata('login_user',serialize($user));
                         $this->session->set_userdata('login_status',true);
+                        
                         $this->session->set_userdata('login_role',$this->model);
                     
                     /*
